@@ -29,10 +29,10 @@ session; everything else is a default chosen for simplicity and can be changed b
 auction-app/
   package.json          # express, ejs, better-sqlite3, dotenv
   server.js             # starts Express, runs seed, starts poller
-  .env.example          # SLACK_WEBHOOK_URL=
+  .env.example          # SLACK_WEBHOOK_URL=  APP_BASE_URL=http://localhost:3000
   db/
     schema.sql          # CREATE TABLE statements (below)
-    db.js               # open SQLite, run schema, seed if empty
+    db.js               # open SQLite (PRAGMA foreign_keys = ON), run schema, seed if empty
   data/
     seed/users.json
     seed/events.json
@@ -42,7 +42,7 @@ auction-app/
     slack.js            # notifyNewItem(user, item, event)
     poller.js           # every 30s: read items.json, insert new, notify matches
   routes/
-    index.js            # GET /            pick user
+    index.js            # mounts every router below; GET / pick user
     preferences.js      # GET/POST /u/:userId/preferences
     summary.js          # GET /u/:userId/summary
     events.js           # GET /events, GET /events/:id, POST .../tickets
@@ -54,6 +54,10 @@ auction-app/
 
 Directory ownership for parallel work: one workstream per file in `lib/` and `routes/`
 (+ its view). `db/schema.sql` and `data/seed/` are frozen after milestone 1.
+
+Milestone 1 creates every file in `lib/` and `routes/` as a stub and mounts all routers from
+`routes/index.js`, so `server.js` and `routes/index.js` are never touched again. Later PRs
+only fill in their own file and view.
 
 ## Schema (`db/schema.sql`)
 
@@ -69,11 +73,19 @@ CREATE TABLE items       (id TEXT PRIMARY KEY, event_id TEXT REFERENCES events(i
                           title TEXT, artist TEXT, category TEXT,
                           estimate_low INTEGER, estimate_high INTEGER,
                           image_url TEXT, created_at TEXT DEFAULT CURRENT_TIMESTAMP);
-CREATE TABLE likes       (user_id INTEGER, item_id TEXT, PRIMARY KEY (user_id, item_id));
-CREATE TABLE tickets     (user_id INTEGER, event_id TEXT, PRIMARY KEY (user_id, event_id));
-CREATE TABLE bids        (id INTEGER PRIMARY KEY, user_id INTEGER, item_id TEXT,
+CREATE TABLE likes       (user_id INTEGER REFERENCES users(id), item_id TEXT REFERENCES items(id),
+                          PRIMARY KEY (user_id, item_id));
+CREATE TABLE tickets     (user_id INTEGER REFERENCES users(id), event_id TEXT REFERENCES events(id),
+                          PRIMARY KEY (user_id, event_id));
+CREATE TABLE bids        (id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES users(id),
+                          item_id TEXT REFERENCES items(id),
                           amount INTEGER, placed_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE notifications (user_id INTEGER REFERENCES users(id), item_id TEXT REFERENCES items(id),
+                          sent_at TEXT, PRIMARY KEY (user_id, item_id));
 ```
+
+`db/db.js` runs `PRAGMA foreign_keys = ON` on every connection; SQLite ignores the
+`REFERENCES` clauses otherwise.
 
 Rule: a bid is accepted only if `amount > MAX(amount)` for that item (or `> estimate_low` if none).
 
@@ -100,15 +112,29 @@ Adding an object to this file (or using `/admin`) is how the team triggers a Sla
 | `/items/:id` | Lot detail, current high bid, bid form |
 | `/admin/items` | Form to add a lot to an event (the demo trigger) |
 
+## Poller and notifications
+
+Every 30s `lib/poller.js`:
+
+1. Reads `items.json`, inserts rows whose `id` is not yet in `items`.
+2. For each new item and each user whose preferences match, inserts a `notifications` row
+   with `sent_at = NULL` in the same transaction.
+3. Selects all `notifications WHERE sent_at IS NULL`, posts each to Slack, and sets `sent_at`
+   on success. A failed post stays `NULL` and is retried on the next tick.
+
+The `/admin/items` form does steps 2–3 immediately after inserting.
+
 ## Slack message
 
 ```
 New lot for Mark Porter: "Untitled (Blue)" by Yayoi Kusama
 Contemporary Art · est. $40,000–$60,000 · London, 12 Oct 2026
-http://localhost:3000/items/lot-101
+https://<APP_BASE_URL>/items/lot-101
 ```
 
-Sent via `POST SLACK_WEBHOOK_URL` with `{ "text": "..." }`. If the env var is unset, log to console instead so the app runs without Slack.
+Sent via `POST SLACK_WEBHOOK_URL` with `{ "text": "..." }`. Links are built from
+`APP_BASE_URL` (default `http://localhost:3000`). If `SLACK_WEBHOOK_URL` is unset, log to
+console instead so the app runs without Slack.
 
 ## Running it
 
@@ -120,7 +146,8 @@ npm start                 # http://localhost:3000
 
 ## Build order
 
-1. `package.json`, `server.js`, `db/`, seed files, `/` page — one PR, lands first.
+1. `package.json`, `server.js`, `db/`, seed files, `/` page, stub files for every router and
+   `lib/` module, all mounted in `routes/index.js` — one PR, lands first.
 2. Preferences page + `lib/matching.js` + summary page.
 3. Events/items pages with Like / Bid / Book ticket.
 4. `lib/poller.js` + `lib/slack.js` + `/admin/items`.
