@@ -47,6 +47,7 @@ auction-app/
     index.js            # mounts every router below; GET / pick user
     preferences.js      # GET/POST /u/:userId/preferences
     summary.js          # GET /u/:userId/summary
+    history.js          # GET /u/:userId/history
     events.js           # GET /events, GET /events/:id, POST .../tickets
     items.js            # GET /items/:id, POST .../like, POST .../bid
     admin.js            # GET/POST /admin/items
@@ -99,14 +100,14 @@ The mock data is already written — milestone 1 just loads it:
 |---|---|
 | `users.json` | 6 team members, each with pre-filled `preferences` so the summary page is non-empty on first run |
 | `events.json` | 3 upcoming events: London (art), Geneva (watches & cars), New York (wine, books, design) |
-| `items.json` | 18 lots across those events; `imageUrl` points at placehold.co so no image files are needed |
+| `items.json` | 18 lots across those events; `imageUrl` hotlinks a Wikimedia Commons photo (credits in `IMAGE_CREDITS.md`) so no image files are needed |
 
 Item shape:
 
 ```json
 { "id": "lot-101", "eventId": "ev-2026-10-london",
   "title": "Untitled (Blue)", "artist": "Yayoi Kusama", "category": "Contemporary Art",
-  "estimateLow": 40000, "estimateHigh": 60000, "imageUrl": "https://placehold.co/600x400?text=Lot+101" }
+  "estimateLow": 40000, "estimateHigh": 60000, "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/.../960px-....jpg" }
 ```
 
 Categories used (drive the preferences checkboxes): Contemporary Art, Photography, Watches,
@@ -122,6 +123,7 @@ Adding an object to `items.json` (or using `/admin`) is how the team triggers a 
    "Contemporary Art", 50,000–70,000, event London.
 4. Slack channel (or the console, if no webhook) shows "New lot for Mark Porter …".
 5. Back on the summary, Like it, then Bid 55,000. Book a ticket for the London sale.
+6. Open `/u/1/history`: the like, the $55,000 bid and the ticket are listed.
 
 Everything else is nice-to-have for the demo.
 
@@ -132,6 +134,7 @@ Everything else is nice-to-have for the demo.
 | `/` | "Who are you?" dropdown → redirects to `/u/:id/summary` |
 | `/u/:id/preferences` | Form: categories (checkboxes), artists (text, comma-separated), keywords, price range |
 | `/u/:id/summary` | "Upcoming lots for you": matching items grouped by event, with Like / Bid / Book ticket buttons |
+| `/u/:id/history` | "Your activity": three lists — lots you liked, bids you placed (amount, time, whether you're still the high bidder), tickets you booked — newest first. Read-only; data comes from `likes`, `bids`, `tickets` |
 | `/events` , `/events/:id` | All upcoming events and their lots |
 | `/items/:id` | Lot detail, current high bid, bid form |
 | `/admin/items` | Form to add a lot to an event (the demo trigger) |
@@ -173,7 +176,7 @@ npm start                 # http://localhost:3000
 1. `package.json`, `server.js`, `db/`, seed files, `/` page, stub files for every router and
    `lib/` module, all mounted in `routes/index.js` — one PR, lands first.
 2. Preferences page + `lib/matching.js` + summary page.
-3. Events/items pages with Like / Bid / Book ticket.
+3. Events/items pages with Like / Bid / Book ticket, plus the history page.
 4. `lib/poller.js` + `lib/slack.js` + `/admin/items`.
 5. README (run-locally instructions). No deploy step for the demo; a hosted target is tracked in #10.
 
