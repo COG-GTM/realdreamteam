@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Real Dream Team</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav>
+      <span class="brand">Real Dream Team</span>
+      <a href="#team">Team</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn">Join us</a>
+    </nav>
+    <div class="hero-body">
+      <h1>Build the team you've always dreamed of.</h1>
+      <p>Real Dream Team brings together the right people, at the right time, on the right problems.</p>
+      <a href="#team" class="btn btn-lg">Meet the team</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="team" class="cards">
+      <h2>The team</h2>
+      <div class="grid">
+        <article class="card"><h3>Engineering</h3><p>Ship fast, ship well. Builders who care about craft.</p></article>
+        <article class="card"><h3>Design</h3><p>Clarity over cleverness. Interfaces people actually enjoy.</p></article>
+        <article class="card"><h3>Product</h3><p>Relentless focus on what matters to users.</p></article>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>This site is deployed straight from the <code>COG-GTM/realdreamteam</code> repository. Every push to <code>main</code> publishes a new version.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Want in? <a href="mailto:hello@example.com">hello@example.com</a></p>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Real Dream Team</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
