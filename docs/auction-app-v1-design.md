@@ -183,3 +183,9 @@ Each step is one PR on its own branch. Steps 2–4 can be built in parallel once
 
 Real login, per-user Slack DMs, scraping a real auction site, a separate mock service, a
 frontend framework, Postgres, background job queues, tests beyond `lib/matching.js`.
+
+## Mockup
+
+Static mockup of `/u/:id/summary` after the golden path: [`docs/mockup-summary.html`](mockup-summary.html) (open it in a browser). Builders should copy its layout and CSS into `views/summary.ejs` and `public/styles.css`.
+
+![Summary page mockup](mockup-summary.png)

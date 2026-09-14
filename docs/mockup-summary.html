@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Upcoming lots for you — Auction Interest</title>
+<style>
+:root{--bg:#0b1020;--fg:#e8ecf5;--muted:#9aa5c1;--accent:#6ee7b7;--card:#141b33;--line:#1e2743}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
+a{color:var(--accent);text-decoration:none}
+nav{display:flex;gap:1.5rem;align-items:center;padding:1rem 2rem;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--line)}
+nav a{color:var(--fg)}.brand{font-weight:700;margin-right:auto}
+.user{color:var(--muted);font-size:.9rem}.user b{color:var(--fg)}
+main{max-width:1100px;margin:0 auto;padding:2rem}
+h1{margin:0 0 .25rem;font-size:2rem}.sub{color:var(--muted);margin:0 0 2rem}
+.prefs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.25rem .8rem;font-size:.85rem;color:var(--muted)}
+.chip b{color:var(--fg);font-weight:500}
+h2{font-size:1.15rem;margin:2rem 0 .25rem}.ev{color:var(--muted);font-size:.9rem;margin:0 0 1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:150px;object-fit:cover;display:block}
+.body{padding:1rem 1.1rem;flex:1}
+.card h3{margin:0 0 .15rem;font-size:1.05rem}.artist{color:var(--muted);margin:0 0 .6rem;font-size:.92rem}
+.est{font-size:.9rem}.why{font-size:.8rem;color:var(--accent);margin-top:.5rem}
+.actions{display:flex;gap:.5rem;padding:.75rem 1.1rem;border-top:1px solid var(--line)}
+.btn{border-radius:999px;padding:.4rem .9rem;font-size:.85rem;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);color:#062018;border-color:var(--accent)}
+.btn.liked{border-color:var(--accent);color:var(--accent)}
+.new{position:absolute;margin:.6rem;background:#f59e0b;color:#1c1400;font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;letter-spacing:.03em}
+.ticket{margin-left:auto;font-size:.85rem}
+.evrow{display:flex;align-items:baseline;gap:1rem}
+</style></head><body>
+<nav><span class="brand">Auction Interest</span><a href="#">Summary</a><a href="#">Preferences</a><a href="#">Events</a><a href="#">Admin</a>
+<span class="user">Signed in as <b>Mark Porter</b> · <a href="#">switch</a></span></nav>
+<main>
+<h1>Upcoming lots for you</h1>
+<p class="sub">6 lots across 2 events match your preferences.</p>
+<div class="prefs">
+ <span class="chip">Categories: <b>Contemporary Art</b></span>
+ <span class="chip">Artists: <b>Yayoi Kusama, Banksy</b></span>
+ <span class="chip">Keywords: <b>blue</b></span>
+ <span class="chip">Price: <b>$10,000 – $250,000</b></span>
+ <a class="chip" href="#">Edit preferences →</a>
+</div>
+
+<div class="evrow"><h2>Contemporary Art Evening Sale</h2><span class="ev">London · 12 Oct 2026</span><a class="btn ticket" href="#">Book ticket</a></div>
+<div class="grid">
+ <div class="card"><span class="new">NEW · 2 min ago</span><img src="https://placehold.co/600x400/1e40af/ffffff?text=Lot+107"><div class="body"><h3>Pumpkin (Blue)</h3><p class="artist">Yayoi Kusama</p><div class="est">Est. $50,000 – $70,000</div><div class="why">Matches: artist, category, "blue"</div></div><div class="actions"><button class="btn">♡ Like</button><button class="btn primary">Bid</button></div></div>
+ <div class="card"><img src="https://placehold.co/600x400/1e40af/ffffff?text=Lot+101"><div class="body"><h3>Untitled (Blue)</h3><p class="artist">Yayoi Kusama</p><div class="est">Est. $40,000 – $60,000</div><div class="why">Matches: artist, category, "blue"</div></div><div class="actions"><button class="btn liked">♥ Liked</button><button class="btn primary">Bid</button></div></div>
+ <div class="card"><img src="https://placehold.co/600x400/be123c/ffffff?text=Lot+102"><div class="body"><h3>Girl with Balloon (print)</h3><p class="artist">Banksy</p><div class="est">Est. $120,000 – $180,000 · <b>High bid $125,000</b></div><div class="why">Matches: artist, category</div></div><div class="actions"><button class="btn">♡ Like</button><button class="btn primary">Bid</button></div></div>
+ <div class="card"><img src="https://placehold.co/600x400/0e7490/ffffff?text=Lot+103"><div class="body"><h3>Pool with Two Figures (study)</h3><p class="artist">David Hockney</p><div class="est">Est. $90,000 – $140,000</div><div class="why">Matches: category</div></div><div class="actions"><button class="btn">♡ Like</button><button class="btn primary">Bid</button></div></div>
+ <div class="card"><img src="https://placehold.co/600x400/4c1d95/ffffff?text=Lot+105"><div class="body"><h3>Abstract Composition No. 7</h3><p class="artist">Elena Marsh</p><div class="est">Est. $8,000 – $12,000</div><div class="why">Matches: category</div></div><div class="actions"><button class="btn">♡ Like</button><button class="btn primary">Bid</button></div></div>
+</div>
+
+<div class="evrow"><h2>Important Watches &amp; Motor Cars</h2><span class="ev">Geneva · 19 Oct 2026</span><a class="btn ticket" href="#">Book ticket</a></div>
+<div class="grid">
+ <div class="card"><img src="https://placehold.co/600x400/1d4ed8/ffffff?text=Lot+206"><div class="body"><h3>Art Deco Sapphire and Diamond Bracelet</h3><p class="artist">Van Cleef &amp; Arpels</p><div class="est">Est. $25,000 – $40,000</div><div class="why">Matches: price range</div></div><div class="actions"><button class="btn">♡ Like</button><button class="btn primary">Bid</button></div></div>
+</div>
+</main></body></html>
