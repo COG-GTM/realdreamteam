@@ -15,13 +15,15 @@ session; everything else is a default chosen for simplicity and can be changed b
 |---|---|---|
 | Stack | **Decided:** Node + Express, SQLite, server-rendered HTML (EJS templates) | Plain files, no compiler, `npm start` and it runs |
 | Auth | **Decided:** no login — pick your name from a dropdown of seeded users | Removes passwords, sessions, email |
-| Auction data | Seeded JSON fixtures (`data/seed/*.json`) loaded into SQLite on first start | Editable in any text editor |
+| Auction data | Seeded JSON fixtures (`data/seed/*.json`) loaded into SQLite on first start — **the seed files already exist in `auction-app/data/seed/`** | Editable in any text editor |
 | Triggering a "new item" | An `/admin` page with an "Add item to event" form | Deterministic demo of the notification flow |
 | Ingestion / scheduler | A `setInterval` inside the app that re-reads `data/seed/items.json` every 30s and inserts any item IDs it hasn't seen | No cron, no queue; editing the JSON file *is* the auction site publishing a lot |
 | Matching | Plain function: item matches if category or artist is in the user's list, price within range, or a keyword appears in the title | Readable in one screen |
 | Slack | Single incoming webhook URL from `.env`; one channel, message names the user | No bot token, no OAuth, no user-ID mapping |
 | Database | SQLite file `data/app.db`, created automatically; delete it to reset | Zero setup |
 | Styling | One `public/styles.css`; no framework | Same approach as this site |
+| Demo hosting | **Decided:** run locally on the presenter's laptop (`npm start`). GitHub Pages only serves the static site in `src/` and cannot run Node | Zero deploy risk for the demo |
+| Location in repo | **Decided:** `auction-app/` at the repo root, next to `src/` (the existing static site). The Pages workflow only uploads `src/`, so the app is never published as static files | Keeps the two things separate |
 
 ## Repo layout
 
@@ -89,17 +91,39 @@ CREATE TABLE notifications (user_id INTEGER REFERENCES users(id), item_id TEXT R
 
 Rule: a bid is accepted only if `amount > MAX(amount)` for that item (or `> estimate_low` if none).
 
-## Seed data shape (`data/seed/items.json`)
+## Seed data (`auction-app/data/seed/`)
+
+The mock data is already written — milestone 1 just loads it:
+
+| File | Contents |
+|---|---|
+| `users.json` | 6 team members, each with pre-filled `preferences` so the summary page is non-empty on first run |
+| `events.json` | 3 upcoming events: London (art), Geneva (watches & cars), New York (wine, books, design) |
+| `items.json` | 18 lots across those events; `imageUrl` points at placehold.co so no image files are needed |
+
+Item shape:
 
 ```json
-[
-  { "id": "lot-101", "eventId": "ev-2026-10-london",
-    "title": "Untitled (Blue)", "artist": "Yayoi Kusama", "category": "Contemporary Art",
-    "estimateLow": 40000, "estimateHigh": 60000, "imageUrl": "/images/lot-101.jpg" }
-]
+{ "id": "lot-101", "eventId": "ev-2026-10-london",
+  "title": "Untitled (Blue)", "artist": "Yayoi Kusama", "category": "Contemporary Art",
+  "estimateLow": 40000, "estimateHigh": 60000, "imageUrl": "https://placehold.co/600x400?text=Lot+101" }
 ```
 
-Adding an object to this file (or using `/admin`) is how the team triggers a Slack notification.
+Categories used (drive the preferences checkboxes): Contemporary Art, Photography, Watches,
+Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts.
+
+Adding an object to `items.json` (or using `/admin`) is how the team triggers a Slack notification.
+
+## Demo golden path (must work)
+
+1. Open `http://localhost:3000`, pick **Mark Porter**.
+2. Summary shows Kusama / Banksy lots from the London sale already matched.
+3. Open `/admin/items`, add a lot: title "Pumpkin (Blue)", artist "Yayoi Kusama", category
+   "Contemporary Art", 50,000–70,000, event London.
+4. Slack channel (or the console, if no webhook) shows "New lot for Mark Porter …".
+5. Back on the summary, Like it, then Bid 55,000. Book a ticket for the London sale.
+
+Everything else is nice-to-have for the demo.
 
 ## Pages (all server-rendered)
 
@@ -151,7 +175,7 @@ npm start                 # http://localhost:3000
 2. Preferences page + `lib/matching.js` + summary page.
 3. Events/items pages with Like / Bid / Book ticket.
 4. `lib/poller.js` + `lib/slack.js` + `/admin/items`.
-5. README + deploy (Pages can't run Node; use Render/Railway free tier or run locally for the demo).
+5. README (run-locally instructions). No deploy step for the demo; a hosted target is tracked in #10.
 
 Each step is one PR on its own branch. Steps 2–4 can be built in parallel once step 1 is merged.
 
