@@ -1,0 +1,38 @@
+:root {
+  color: #1f2937;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f3f4f6;
+}
+
+.site-header {
+  padding: 1rem 2rem;
+  background: #1e3a8a;
+}
+
+.site-header a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 42rem;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+  max-width: 24rem;
+}
+
+select,
+button {
+  padding: 0.65rem;
+  font: inherit;
+}

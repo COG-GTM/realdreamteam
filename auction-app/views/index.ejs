@@ -1,0 +1,11 @@
+<h1>Who are you?</h1>
+<form method="post" action="/">
+  <label for="userId">Choose your name</label>
+  <select id="userId" name="userId" required>
+    <option value="">Select a user</option>
+    <% users.forEach((user) => { %>
+      <option value="<%= user.id %>"><%= user.name %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Continue</button>
+</form>
