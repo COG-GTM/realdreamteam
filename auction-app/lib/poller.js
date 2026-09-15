@@ -1,33 +1,37 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { insertItemIfNew } = require('../db/db');
+const { query, withTransaction, insertItemIfNew } = require('../db/db');
 const { loadPreferences, matchesPreferences } = require('./matching');
 const { notifyNewItem } = require('./slack');
 
 const itemsPath = path.resolve(__dirname, '..', 'data', 'seed', 'items.json');
 
-function processNewItem(db, item) {
-  const users = db.prepare(`
+async function processNewItem(item) {
+  const { rows: users } = await query(`
     SELECT u.id, u.name, p.categories, p.artists, p.keywords, p.min_price, p.max_price
     FROM users u JOIN preferences p ON p.user_id = u.id
-  `).all();
-  const insertNotification = db.prepare(`
-    INSERT OR IGNORE INTO notifications (user_id, item_id, sent_at)
-    VALUES (?, ?, NULL)
   `);
+  const matchedUsers = [];
+  for (const user of users) {
+    const prefs = await loadPreferences(user.id);
+    if (matchesPreferences(item, prefs)) matchedUsers.push(user);
+  }
 
-  db.transaction(() => {
-    for (const user of users) {
-      const prefs = loadPreferences(db, user.id);
-      if (matchesPreferences(item, prefs)) insertNotification.run(user.id, item.id);
+  await withTransaction(async (client) => {
+    for (const user of matchedUsers) {
+      await client.query(`
+        INSERT INTO notifications (user_id, item_id, sent_at)
+        VALUES ($1, $2, NULL)
+        ON CONFLICT (user_id, item_id) DO NOTHING
+      `, [user.id, item.id]);
     }
-  })();
+  });
 
-  return flushNotifications(db);
+  return flushNotifications();
 }
 
-async function flushNotifications(db) {
-  const pending = db.prepare(`
+async function flushNotifications() {
+  const { rows: pending } = await query(`
     SELECT n.user_id, n.item_id, u.name, i.title, i.artist, i.category,
            i.estimate_low, i.estimate_high, e.location, e.starts_at
     FROM notifications n
@@ -35,11 +39,7 @@ async function flushNotifications(db) {
     JOIN items i ON i.id = n.item_id
     JOIN events e ON e.id = i.event_id
     WHERE n.sent_at IS NULL
-  `).all();
-  const markSent = db.prepare(`
-    UPDATE notifications SET sent_at = ? WHERE user_id = ? AND item_id = ?
   `);
-
   for (const row of pending) {
     const user = { id: row.user_id, name: row.name };
     const item = {
@@ -53,24 +53,27 @@ async function flushNotifications(db) {
     const event = { location: row.location, starts_at: row.starts_at };
     try {
       await notifyNewItem(user, item, event);
-      markSent.run(new Date().toISOString(), row.user_id, row.item_id);
+      await query(
+        'UPDATE notifications SET sent_at = now() WHERE user_id = $1 AND item_id = $2',
+        [row.user_id, row.item_id]
+      );
     } catch (error) {
       console.error(error);
     }
   }
 }
 
-async function tick(db) {
+async function tick() {
   const items = JSON.parse(fs.readFileSync(itemsPath, 'utf8'));
   for (const item of items) {
-    if (insertItemIfNew(item)) await processNewItem(db, item);
+    if (await insertItemIfNew(item)) await processNewItem(item);
   }
-  await flushNotifications(db);
+  await flushNotifications();
 }
 
-function startPoller(db, intervalMs = 30000) {
+function startPoller(intervalMs = 30000) {
   const run = () => {
-    Promise.resolve(tick(db)).catch((error) => console.error(error));
+    Promise.resolve(tick()).catch((error) => console.error(error));
   };
   const interval = setInterval(run, intervalMs);
   run();

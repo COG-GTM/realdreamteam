@@ -1,16 +1,16 @@
 const express = require('express');
-const { db } = require('../db/db');
+const { query } = require('../db/db');
 const preferences = require('./preferences');
 const summary = require('./summary');
 const events = require('./events');
 const items = require('./items');
 const admin = require('./admin');
 
-function createRouter(database = db) {
+function createRouter() {
   const router = express.Router();
 
-  router.get('/', (req, res) => {
-    const users = database.prepare('SELECT id, name FROM users ORDER BY id').all();
+  router.get('/', async (req, res) => {
+    const { rows: users } = await query('SELECT id, name FROM users ORDER BY id');
     res.render('layout', { title: 'Auction Interest App', view: 'index', users });
   });
 

@@ -6,21 +6,21 @@ session; everything else is a default chosen for simplicity and can be changed b
 ## Goals for v1
 
 - A non-technical team member can run it with two commands and understand every file.
-- One deployable thing. No build step, no separate services, no cloud database.
+- One deployable thing. No build step or separate application services.
 - Every feature from the original plan is present in its simplest form.
 
 ## Decisions
 
 | Topic | Decision | Why |
 |---|---|---|
-| Stack | **Decided:** Node + Express, SQLite, server-rendered HTML (EJS templates) | Plain files, no compiler, `npm start` and it runs |
+| Stack | **Decided:** Node + Express, Supabase Postgres, server-rendered HTML (EJS templates) | Plain files, no compiler, `npm start` and it runs |
 | Auth | **Decided:** no login — pick your name from a dropdown of seeded users | Removes passwords, sessions, email |
-| Auction data | Seeded JSON fixtures (`data/seed/*.json`) loaded into SQLite on first start — **the seed files already exist in `auction-app/data/seed/`** | Editable in any text editor |
+| Auction data | Seeded JSON fixtures (`data/seed/*.json`) loaded into Supabase Postgres on first start — **the seed files already exist in `auction-app/data/seed/`** | Editable in any text editor |
 | Triggering a "new item" | An `/admin` page with an "Add item to event" form | Deterministic demo of the notification flow |
 | Ingestion / scheduler | A `setInterval` inside the app that re-reads `data/seed/items.json` every 30s and inserts any item IDs it hasn't seen | No cron, no queue; editing the JSON file *is* the auction site publishing a lot |
 | Matching | Plain function: item matches if category or artist is in the user's list, price within range, or a keyword appears in the title | Readable in one screen |
 | Slack | Single incoming webhook URL from `.env`; one channel, message names the user | No bot token, no OAuth, no user-ID mapping |
-| Database | SQLite file `data/app.db`, created automatically; delete it to reset | Zero setup |
+| Database | Supabase Postgres, configured with `AUCTION_DATABASE_URL` | Durable hosted storage |
 | Styling | One `public/styles.css`; no framework | Same approach as this site |
 | Demo hosting | **Decided:** run locally on the presenter's laptop (`npm start`). GitHub Pages only serves the static site in `src/` and cannot run Node | Zero deploy risk for the demo |
 | Location in repo | **Decided:** `auction-app/` at the repo root, next to `src/` (the existing static site). The Pages workflow only uploads `src/`, so the app is never published as static files | Keeps the two things separate |
@@ -29,12 +29,12 @@ session; everything else is a default chosen for simplicity and can be changed b
 
 ```
 auction-app/
-  package.json          # express, ejs, better-sqlite3, dotenv
+  package.json          # express, ejs, pg, dotenv
   server.js             # starts Express, runs seed, starts poller
   .env.example          # SLACK_WEBHOOK_URL=  APP_BASE_URL=http://localhost:3000
   db/
     schema.sql          # CREATE TABLE statements (below)
-    db.js               # open SQLite (PRAGMA foreign_keys = ON), run schema, seed if empty
+    db.js               # connect to Supabase Postgres, run schema, seed if empty
   data/
     seed/users.json
     seed/events.json
@@ -64,30 +64,59 @@ only fill in their own file and view.
 ## Schema (`db/schema.sql`)
 
 ```sql
-CREATE TABLE users       (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
-CREATE TABLE preferences (user_id INTEGER PRIMARY KEY REFERENCES users(id),
-                          categories TEXT,   -- JSON array of strings
-                          artists    TEXT,   -- JSON array of strings
-                          keywords   TEXT,   -- JSON array of strings
-                          min_price  INTEGER, max_price INTEGER);
-CREATE TABLE events      (id TEXT PRIMARY KEY, title TEXT, location TEXT, starts_at TEXT);
-CREATE TABLE items       (id TEXT PRIMARY KEY, event_id TEXT REFERENCES events(id),
-                          title TEXT, artist TEXT, category TEXT,
-                          estimate_low INTEGER, estimate_high INTEGER,
-                          image_url TEXT, created_at TEXT DEFAULT CURRENT_TIMESTAMP);
-CREATE TABLE likes       (user_id INTEGER REFERENCES users(id), item_id TEXT REFERENCES items(id),
-                          PRIMARY KEY (user_id, item_id));
-CREATE TABLE tickets     (user_id INTEGER REFERENCES users(id), event_id TEXT REFERENCES events(id),
-                          PRIMARY KEY (user_id, event_id));
-CREATE TABLE bids        (id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES users(id),
-                          item_id TEXT REFERENCES items(id),
-                          amount INTEGER, placed_at TEXT DEFAULT CURRENT_TIMESTAMP);
-CREATE TABLE notifications (user_id INTEGER REFERENCES users(id), item_id TEXT REFERENCES items(id),
-                          sent_at TEXT, PRIMARY KEY (user_id, item_id));
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS preferences (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id),
+  categories JSONB,
+  artists JSONB,
+  keywords JSONB,
+  min_price INTEGER,
+  max_price INTEGER
+);
+CREATE TABLE IF NOT EXISTS events (
+  id TEXT PRIMARY KEY,
+  title TEXT,
+  location TEXT,
+  starts_at TEXT
+);
+CREATE TABLE IF NOT EXISTS items (
+  id TEXT PRIMARY KEY,
+  event_id TEXT REFERENCES events(id),
+  title TEXT,
+  artist TEXT,
+  category TEXT,
+  estimate_low INTEGER,
+  estimate_high INTEGER,
+  image_url TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS likes (
+  user_id INTEGER REFERENCES users(id),
+  item_id TEXT REFERENCES items(id),
+  PRIMARY KEY (user_id, item_id)
+);
+CREATE TABLE IF NOT EXISTS tickets (
+  user_id INTEGER REFERENCES users(id),
+  event_id TEXT REFERENCES events(id),
+  PRIMARY KEY (user_id, event_id)
+);
+CREATE TABLE IF NOT EXISTS bids (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  item_id TEXT REFERENCES items(id),
+  amount INTEGER,
+  placed_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS notifications (
+  user_id INTEGER REFERENCES users(id),
+  item_id TEXT REFERENCES items(id),
+  sent_at TIMESTAMPTZ,
+  PRIMARY KEY (user_id, item_id)
+);
 ```
-
-`db/db.js` runs `PRAGMA foreign_keys = ON` on every connection; SQLite ignores the
-`REFERENCES` clauses otherwise.
 
 Rule: a bid is accepted only if `amount > MAX(amount)` for that item (or `> estimate_low` if none).
 
@@ -163,10 +192,12 @@ console instead so the app runs without Slack.
 ## Running it
 
 ```
-cp .env.example .env      # optionally paste a Slack webhook URL
+cp .env.example .env      # set AUCTION_DATABASE_URL and optionally paste a Slack webhook URL
 npm install
 npm start                 # http://localhost:3000
 ```
+
+Reset the seeded data with `npm run db:reset -- --yes`.
 
 ## Build order
 

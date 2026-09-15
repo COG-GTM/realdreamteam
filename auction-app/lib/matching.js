@@ -22,22 +22,25 @@ function matchesPreferences(item, prefs) {
     && itemHigh >= minPrice;
 }
 
-function loadPreferences(db, userId) {
-  const row = db.prepare(`
+function parseArray(value) {
+  if (Array.isArray(value)) return value;
+  try {
+    const parsed = JSON.parse(value || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+async function loadPreferences(userId) {
+  const { query } = require('../db/db');
+  const { rows } = await query(`
     SELECT categories, artists, keywords, min_price, max_price
-    FROM preferences WHERE user_id = ?
-  `).get(userId);
-  if (!row) return null;
+    FROM preferences WHERE user_id = $1
+  `, [userId]);
+  if (rows.length === 0) return null;
 
-  const parseArray = (value) => {
-    try {
-      const parsed = JSON.parse(value || '[]');
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
-  };
-
+  const row = rows[0];
   return {
     categories: parseArray(row.categories),
     artists: parseArray(row.artists),
