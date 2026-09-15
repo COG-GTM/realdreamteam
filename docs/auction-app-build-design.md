@@ -244,6 +244,6 @@ owned by the DB session since it holds the connection. Nothing else in the schem
    load; realtime push is #32.
 7. **EC2 / secrets** — provided as org secrets: `AUCTION_DATABASE_URL`,
    `AUCTION_DATABASE_PASSWORD`, `RDT_EC2_SSH_KEY`. Devin deploys in step 7 (systemd unit, `.env`
-   on the box). Hostname/port confirmed at build time.
+   on the box). EC2 host: `3.76.162.103`; SSH user, Node version and port confirmed at deploy time.
 
 No open decisions remain; the design is ready for Mark's sign-off, then step 1 of §7.
