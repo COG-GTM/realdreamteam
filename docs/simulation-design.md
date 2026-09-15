@@ -213,7 +213,8 @@ actions, inside the same transactions:
 
 ```
 activity(id, kind, actor_user_id, lot_id, auction_id, amount, detail, created_at)
-kind ∈ bid | outbid | favorite | new_lot | reoffered | opened | closed | sold
+kind ∈ bid | favorite | new_lot | reoffered | opened | closed | sold | reopened
+(outbids live in `bid.detail`, e.g. "outbid Priya R.", not in a separate kind)
 ```
 
 - New pane **Live** (third pane, or replacing the empty "Pick a user to see

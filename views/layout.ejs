@@ -28,8 +28,6 @@
             <a href="/auctions?u=<%= user.id %>">Auctions</a>
             <a href="/u/<%= user.id %>/history">History</a>
             <a href="/u/<%= user.id %>/preferences">Preferences</a>
-          <% } else { %>
-            <a href="/auctions">Auctions</a>
           <% } %>
           <a href="/admin<%= user ? `?u=${user.id}` : '' %>">Admin</a>
         </nav>

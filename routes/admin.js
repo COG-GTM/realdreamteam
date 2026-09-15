@@ -8,6 +8,7 @@ const {
   deleteCategory, usageCounts, candidateLots, moveLots
 } = require('../lib/category-admin');
 const { closeAuction, validateClosesAt } = require('../lib/close');
+const { logActivity } = require('../lib/activity');
 const sim = require('../lib/sim');
 const presence = require('../lib/sim/presence');
 const { cloneForward } = require('../lib/sim/recycle');
@@ -287,6 +288,7 @@ router.post('/admin/auctions/:id/reopen', async (req, res, next) => {
         'UPDATE lots SET hammer_price = NULL, winner_user_id = NULL WHERE auction_id = $1',
         [auction.id]
       );
+      await logActivity(client, { kind: 'reopened', auctionId: auction.id });
       return true;
     });
     if (!reopened) return res.redirect(adminUrl(req, { error: 'That auction is not closed.' }));

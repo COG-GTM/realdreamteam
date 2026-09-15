@@ -67,6 +67,37 @@ describeDb('sim director', (it) => {
     assert.equal((await notificationsFor(human.id)).length, 0);
   });
 
+  it('favorites still apply to lots fairness blocks for bids', async () => {
+    presence.reset();
+    resetDirector();
+    const human = await createUser({ name: 'Human' });
+    const shadow = await makeShadow('Shadow Fav');
+    await setPreferences(shadow.id, { categories: ['Contemporary Art'] });
+    const auction = await createAuction({ closes_at: new Date(Date.now() + 5 * 60 * 1000) });
+    const lot = await createLot({ auction_id: auction.id, starting_bid: 100 });
+    await createBid(lot.id, human.id, 120);
+    presence.touch(human.id);
+
+    const favoriteRng = {
+      ...forcedRng(),
+      weighted: (entries) => {
+        const favorite = entries.find((entry) => entry.value === 'favorite');
+        return favorite ? favorite.value : (entries.length ? entries[0].value : null);
+      }
+    };
+
+    // A bid tick is blocked by fairness (closes within 15 min)…
+    const bidResult = await runTick({ rng: forcedRng(), now: new Date(), presence, log: silent });
+    assert.equal(bidResult.skipped, 'no eligible lot');
+
+    // …but a favorite tick still picks the same lot.
+    const favResult = await runTick({ rng: favoriteRng, now: new Date(), presence, log: silent });
+    assert.equal(favResult.action, 'favorite');
+    assert.equal(Number(favResult.lotId), Number(lot.id));
+    const favorites = await rows('SELECT COUNT(*)::int AS count FROM favorites WHERE lot_id = $1 AND user_id = $2', [lot.id, shadow.id]);
+    assert.equal(favorites[0].count, 1);
+  });
+
   it('a human outbidding a shadow produces no notification for the shadow', async () => {
     presence.reset();
     resetDirector();
