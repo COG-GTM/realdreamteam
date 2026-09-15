@@ -10,8 +10,8 @@ async function unreadCount(userId) {
   return result.rows[0].count;
 }
 
-// Newest first. Each row carries the lot title so the feed can link to the lot.
-async function listFeed(userId, limit = 20) {
+// Newest first (all rows unless a limit is given). Each row carries the lot title so the feed can link to the lot.
+async function listFeed(userId, limit = null) {
   const result = await query(
     `SELECT n.id, n.lot_id, n.kind, n.reason, n.created_at, n.read_at, l.title AS lot_title
      FROM notifications n
