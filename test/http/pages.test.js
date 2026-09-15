@@ -174,3 +174,43 @@ describeHttp('page smoke tests', (it) => {
     assert.equal((await client.post('/admin/auctions/999999/closes_at', { closes_at: '2030-01-01T10:00' })).status, 404);
   });
 });
+
+describeHttp('error pages', (it) => {
+  it('renders a styled 404 for unknown routes and a 500 without a stack trace', async () => {
+    const client = await signedIn();
+    const missing = await client.get('/no/such/page');
+    assert.equal(missing.status, 404);
+    const missingHtml = await missing.text();
+    assert.match(missingHtml, /Not found/);
+    assert.match(missingHtml, /class="shell"/);
+
+    const broken = await client.get('/lots/not-a-number');
+    assert.equal(broken.status, 500);
+    const brokenHtml = await broken.text();
+    assert.match(brokenHtml, /Something went wrong/);
+    assert.doesNotMatch(brokenHtml, /invalid input syntax|at .*\.js:\d+/);
+  });
+
+  it('tolerates a repeated ?u= query parameter', async () => {
+    const client = await signedIn();
+    const user = await createUser({ name: 'Dup' });
+    const lot = await createLot({ title: 'Twice' });
+    const page = await client.get(`/lots/${lot.id}?u=${user.id}&u=${user.id}`);
+    assert.equal(page.status, 200);
+    assert.match(await page.text(), /You are <b>Dup<\/b>/);
+  });
+
+  it('renders lot, auction and pane pages anonymously for a non-numeric ?u=', async () => {
+    const client = await signedIn();
+    const lot = await createLot({ title: 'Anon' });
+    for (const url of [
+      `/lots/${lot.id}?u=abc`,
+      `/auctions/${lot.auction_id}?u=abc`,
+      '/panes/feed?u=abc'
+    ]) {
+      const page = await client.get(url);
+      assert.equal(page.status, 200, url);
+      assert.doesNotMatch(await page.text(), /You are <b>/, url);
+    }
+  });
+});

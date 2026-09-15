@@ -132,6 +132,27 @@ Typical edits: change wording → the `.ejs` file for that page; change a rule
 look → `public/styles.css`. Run `npm test` after touching `lib/`, `routes/` or
 `db/` (see "Testing").
 
+### Code size (as of 15 Sep 2026)
+
+Line counts on `main`, excluding images, audio and the pptx deck.
+
+| What | Lines | Notes |
+| --- | ---: | --- |
+| App JavaScript (Node) | 2,570 | `server.js` 119 · `routes/` 900 · `lib/` 1,185 · `db/` 364 |
+| Tests | 2,194 | 117 test cases; unit tests beside each `lib/` file, HTTP + integration tests in `test/` |
+| Templates (EJS) | 724 | 21 views, incl. ~50 lines of inline browser JS for the live panes and sale sound |
+| SQL | 381 | `db/schema.sql`, `db/reset.sql`, 7 migrations |
+| CSS | 1 file, 16 KB | `public/styles.css` (minified) |
+| Python | 397 | `docs/generate_overview_deck.py` builds the overview deck |
+| Seed data (JSON) | 15,207 | lots 6,028 · notifications 5,192 · bids 2,810 · favorites 485 · preferences 434 · users 142 · auctions 90 · auction houses 26 |
+| Docs (Markdown) | 854 | README 315 · build-design 251 · v1-design 184 · schema 104 |
+| Assets | 64 files, 2.9 MB | lot photos, 49 default avatar SVGs, `sold.mp3` |
+
+Largest source files: `routes/admin.js` 296, `db/db.js` 265, `lib/category-admin.js` 258,
+`lib/bids.js` 160, `lib/new-lot.js` 158, `routes/lots.js` 127, `lib/close.js` 104.
+Roughly 45% app code, 38% tests, 13% templates/SQL/CSS; the seed data is about
+2.7× the size of all the code.
+
 ## Testing
 
 Tests use Node's built-in `node:test` runner; there are no test dependencies.
@@ -236,8 +257,23 @@ repeatedly.
 - `ACCESS_CODE`: site-wide access code, default `20240312`.
 - `ADMIN_CODE`: admin access code, default `20250714`.
 - `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
+- `SIM_ENABLED`: run the auction-house simulator, default `true` (tests force `false`).
+- `SIM_MIN_SECONDS` / `SIM_MAX_SECONDS`: jittered delay between simulated actions, defaults `5` / `30`.
+- `SIM_IDLE_SECONDS`: how long without a pane heartbeat counts as "nobody online", default `90`.
+- `SIM_IDLE_CHECK_SECONDS`: how often the simulator re-checks presence while asleep, default `30`.
 - `PORT`: HTTP port, default `3000`.
 - `COOKIE_SECRET`: secret used to sign access cookies, default `change-me`.
+
+## Simulation
+
+The site can run a "living auction house" simulator: hidden shadow users bid,
+favorite and respond to outbids so the site feels busy while someone is
+looking at it. It only acts while at least one browser is polling the panes
+(presence = the existing 3 s `/panes/*` poll), caps itself at 300 actions an
+hour, and serialises across processes with a Postgres advisory lock. The
+`/admin` page has a Simulation box: on/off, run-one-action-now, and a
+"wake for 10 min" button for demos. Design and rationale:
+[`docs/simulation-design.md`](docs/simulation-design.md).
 
 ## Seed contract
 

@@ -7,18 +7,31 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const path = require('node:path');
+const querystring = require('node:querystring');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const { seedIfEmpty } = require('./db/db');
 const routes = require('./routes');
 const { renderPage } = require('./routes/helpers');
 const { start } = require('./lib/poller');
+const sim = require('./lib/sim');
 const { gateCookieOptions } = require('./lib/cookies');
 const { gateLimiter } = require('./lib/rate-limit');
 const { SESSION, requireAccess, loadUser, requireAdmin } = require('./lib/gates');
 
 const app = express();
 app.set('trust proxy', 1);
+// Repeated keys (?u=1&u=1) keep their first value instead of becoming arrays,
+// and ?u= is dropped unless it is a plain integer id, so no route can pass
+// junk to a bigint column.
+app.set('query parser', (text) => {
+  const parsed = querystring.parse(text);
+  for (const key of Object.keys(parsed)) {
+    if (Array.isArray(parsed[key])) parsed[key] = parsed[key][0];
+  }
+  if ('u' in parsed && !/^\d{1,18}$/.test(parsed.u)) delete parsed.u;
+  return parsed;
+});
 const cookieSecret = process.env.COOKIE_SECRET || 'auction-interest-demo';
 const accessLimiter = gateLimiter();
 
@@ -72,9 +85,28 @@ app.use(requireAdmin);
 
 app.use(routes);
 
+app.use((req, res) => {
+  res.status(404);
+  renderPage(res, 'Not found', 'error', {
+    status: 404,
+    message: 'There is nothing at this address. It may have been withdrawn from sale.'
+  });
+});
+
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(500);
+  renderPage(res, 'Something went wrong', 'error', {
+    status: 500,
+    message: 'The sale room hit an unexpected error. Please try again in a moment.'
+  });
+});
+
 async function boot() {
   await seedIfEmpty();
   start();
+  sim.start();
   const port = Number(process.env.PORT || 3000);
   app.listen(port, () => console.log(`Auction app listening on ${port}`));
 }

@@ -6,6 +6,32 @@
   <% if (flash) { %><div class="flash ok"><%= flash %></div><% } %>
   <% if (sold) { %><audio autoplay src="/sold.mp3"></audio><% } %>
 
+  <h2>Simulation</h2>
+  <div class="admin-box sim-box">
+    <p class="sim-status">
+      <span class="pill <%= sim.enabled ? 'open' : 'closed' %>"><%= sim.enabled ? 'on' : 'off' %></span>
+      <span class="pill <%= sim.awake ? 'open' : 'upcoming' %>"><%= sim.awake ? 'awake' : 'asleep' %></span>
+      · <b><%= sim.actionsLastHour %></b> actions in the last hour (cap 300)
+      <% if (sim.nextTickAt) { %> · next tick ~<%= Math.max(0, Math.round((sim.nextTickAt - Date.now()) / 1000)) %> s<% } %>
+      <% if (sim.awakeUntil && sim.awakeUntil > Date.now()) { %> · forced awake until <%= central(new Date(sim.awakeUntil)) %><% } %>
+    </p>
+    <p class="sim-humans">Online now:
+      <% if (sim.onlineNames.length) { %><%= sim.onlineNames.map((p) => p.name).join(', ') %><% } else { %>nobody<% } %>
+    </p>
+    <div class="sim-actions-row">
+      <form method="post" action="/admin/sim/toggle" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit"><%= sim.enabled ? 'Pause simulation' : 'Resume simulation' %></button></form>
+      <form method="post" action="/admin/sim/run" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit">Run one action now</button></form>
+      <form method="post" action="/admin/sim/wake" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit">Wake for 10 min</button></form>
+    </div>
+    <% if (sim.lastActions.length) { %>
+      <ul class="sim-log">
+        <% for (const entry of sim.lastActions) { %>
+          <li><small class="muted"><%= entry.at.slice(11, 19) %></small> <%= entry.action %><%= entry.userName ? ` · ${entry.userName}` : '' %><%= entry.lotId ? ` · lot ${entry.lotId}` : '' %><%= entry.amount ? ` · ${entry.amount}` : '' %><%= entry.skipped ? ` (${entry.skipped})` : '' %></li>
+        <% } %>
+      </ul>
+    <% } %>
+  </div>
+
   <h2>Auctions</h2>
   <table class="admin-table">
     <thead>
