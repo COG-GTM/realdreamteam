@@ -59,7 +59,7 @@ async function showAuction(req, res, next) {
         EXISTS (SELECT 1 FROM favorites f WHERE f.lot_id = l.id AND f.user_id = $2::bigint) AS favorited
        FROM lots l
        JOIN auctions a ON a.id = l.auction_id
-       LEFT JOIN LATERAL (SELECT user_id, amount FROM bids b WHERE b.lot_id = l.id ORDER BY amount DESC, placed_at DESC, id DESC LIMIT 1) hb ON true
+       LEFT JOIN LATERAL (SELECT user_id, amount FROM bids b WHERE b.lot_id = l.id ORDER BY amount DESC, placed_at ASC, id ASC LIMIT 1) hb ON true
        LEFT JOIN users hu ON hu.id = hb.user_id
        LEFT JOIN users w ON w.id = l.winner_user_id
        WHERE l.auction_id = $1

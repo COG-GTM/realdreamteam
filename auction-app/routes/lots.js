@@ -51,9 +51,10 @@ async function showLot(req, res, next) {
     ]);
 
     const bids = bidsResult.rows;
+    // bids are newest first, so on equal amounts the earliest bid wins (same rule as lib/close.js)
     let highBid = null;
     for (const bid of bids) {
-      if (!highBid || bid.amount > highBid.amount) highBid = bid;
+      if (!highBid || Number(bid.amount) >= Number(highBid.amount)) highBid = bid;
     }
 
     renderPage(res, lot.title, 'lot', {

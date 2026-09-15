@@ -46,7 +46,7 @@ async function placeBid({ userId, lotId, amount }) {
 
     const highResult = await client.query(
       `SELECT user_id, amount FROM bids
-       WHERE lot_id = $1 ORDER BY amount DESC, placed_at DESC, id DESC LIMIT 1`,
+       WHERE lot_id = $1 ORDER BY amount DESC, placed_at ASC, id ASC LIMIT 1`,
       [lotId]
     );
     const high = highResult.rows[0] || null;
