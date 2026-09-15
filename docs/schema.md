@@ -31,15 +31,16 @@ so we use plain words:
 | Table | One row is… | Key columns |
 |---|---|---|
 | `auction_houses` | Sotheby's, Christie's, Phillips, Bonhams | `name`, `location`, `website`, `logo_url` |
-| `users` | a demo account (no login) | `name`, `email`, `avatar_url`, `avatar_data`, `avatar_mime`, `banned` |
+| `users` | a demo account (no login) | `name`, `email`, `avatar_url`, `avatar_data`, `avatar_mime`, `banned`, `shadow` (simulated bidder, hidden from picker/notifications), `persona` (simulator tuning JSON) |
 | `preferences` | one user's interests (1:1 with users) | `categories[]`, `artists[]`, `keywords[]` — empty array = any |
 | `categories` | an admin-managed lot category | `name`, `position`, `active`, `created_at` |
-| `auctions` | an auction run by one house | `house_ref`, `title`, `location`, `format` (live/timed), `status` (upcoming/open/closed), `starts_at`, `closes_at`, `source_url` |
-| `lots` | an item in an auction | `lot_number`, `title`, `artist`, `category`, `description`, `currency`, `estimate_low/high`, `starting_bid`, `hammer_price`, `winner_user_id`, `source_url` |
+| `auctions` | an auction run by one house | `house_ref`, `title`, `location`, `format` (live/timed), `status` (upcoming/open/closed), `starts_at`, `closes_at`, `source_url`, `cloned_from_auction_id` |
+| `lots` | an item in an auction | `lot_number`, `title`, `artist`, `category`, `description`, `currency`, `estimate_low/high`, `starting_bid`, `hammer_price`, `winner_user_id`, `source_url`, `reoffered_from_lot_id` |
 | `lot_images` | one photo of a lot, ordered | `position` (1 = thumbnail), `url`, `credit` |
 | `favorites` | user ♥ lot | `created_at` |
 | `bids` | one bid, append-only | `lot_id`, `user_id`, `amount`, `placed_at` |
 | `notifications` | in-app feed row: one per (user, lot, kind) | `kind` (`new_lot` / `outbid` / `sold`), `reason`, `created_at`, `read_at` (NULL = unread) |
+| `activity` | site-wide event for the Live pane, append-only | `kind` (`bid` / `favorite` / `new_lot` / `reoffered` / `opened` / `closed` / `sold` / `reopened`), `actor_user_id`, `lot_id`, `auction_id`, `amount`, `detail`, `created_at` |
 
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.

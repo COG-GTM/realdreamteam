@@ -1,4 +1,5 @@
 TRUNCATE TABLE
+  activity,
   notifications,
   bids,
   favorites,

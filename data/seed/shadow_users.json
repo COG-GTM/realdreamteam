@@ -1,0 +1,1119 @@
+[
+  {
+    "name": "Priya Raman",
+    "persona": {
+      "budget": 1.57,
+      "aggression": 0.69,
+      "sniper": true,
+      "activity": 0.81
+    },
+    "preferences": {
+      "categories": [
+        "Jewellery",
+        "Contemporary Art"
+      ],
+      "artists": [
+        "Jacob Epstein"
+      ],
+      "keywords": [
+        "Steiff"
+      ]
+    }
+  },
+  {
+    "name": "Marcus Thompson",
+    "persona": {
+      "budget": 1.34,
+      "aggression": 0.87,
+      "sniper": false,
+      "activity": 0.33
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Watches"
+      ],
+      "artists": [
+        "Aldous Huxley"
+      ],
+      "keywords": [
+        "computer",
+        "Jaguar"
+      ]
+    }
+  },
+  {
+    "name": "Ingrid Sorensen",
+    "persona": {
+      "budget": 1.35,
+      "aggression": 0.7,
+      "sniper": false,
+      "activity": 0.64
+    },
+    "preferences": {
+      "categories": [
+        "Cars",
+        "Watches",
+        "Jewellery"
+      ],
+      "artists": [
+        "Ian Fleming",
+        "Damien Hirst"
+      ],
+      "keywords": [
+        "Porsche",
+        "bear"
+      ]
+    }
+  },
+  {
+    "name": "Tomas Herrera",
+    "persona": {
+      "budget": 1.77,
+      "aggression": 0.53,
+      "sniper": false,
+      "activity": 0.51
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Jewellery"
+      ],
+      "artists": [],
+      "keywords": [
+        "Aston Martin"
+      ]
+    }
+  },
+  {
+    "name": "Fatima Al-Sayed",
+    "persona": {
+      "budget": 1.2,
+      "aggression": 0.71,
+      "sniper": false,
+      "activity": 0.73
+    },
+    "preferences": {
+      "categories": [
+        "Books & Manuscripts",
+        "Toys and Clothes"
+      ],
+      "artists": [
+        "Henry Moore",
+        "Eero Saarinen"
+      ],
+      "keywords": [
+        "Lamborghini"
+      ]
+    }
+  },
+  {
+    "name": "Kwame Asante",
+    "persona": {
+      "budget": 1.03,
+      "aggression": 0.55,
+      "sniper": true,
+      "activity": 0.82
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Cars",
+        "Wine & Spirits"
+      ],
+      "artists": [
+        "Audemars Piguet",
+        "Charlotte Perriand"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Yuki Tanaka",
+    "persona": {
+      "budget": 1.74,
+      "aggression": 0.27,
+      "sniper": false,
+      "activity": 0.78
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Photography",
+        "Design"
+      ],
+      "artists": [
+        "Harry Winston",
+        "J. K. Farnell"
+      ],
+      "keywords": [
+        "Jaguar",
+        "diamond",
+        "Girl"
+      ]
+    }
+  },
+  {
+    "name": "Oliver Whitfield",
+    "persona": {
+      "budget": 1.51,
+      "aggression": 0.42,
+      "sniper": false,
+      "activity": 0.72
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Watches",
+        "Photography"
+      ],
+      "artists": [
+        "Damien Hirst"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Nadia Petrova",
+    "persona": {
+      "budget": 0.99,
+      "aggression": 0.37,
+      "sniper": false,
+      "activity": 0.92
+    },
+    "preferences": {
+      "categories": [
+        "Miscellaneous IT Items",
+        "Cars",
+        "Jewellery"
+      ],
+      "artists": [
+        "Van Cleef & Arpels",
+        "David Bomberg"
+      ],
+      "keywords": [
+        "Untitled",
+        "Porsche"
+      ]
+    }
+  },
+  {
+    "name": "Seamus O'Connell",
+    "persona": {
+      "budget": 1.48,
+      "aggression": 0.76,
+      "sniper": false,
+      "activity": 0.85
+    },
+    "preferences": {
+      "categories": [
+        "Miscellaneous IT Items",
+        "Cars",
+        "Contemporary Art"
+      ],
+      "artists": [
+        "Francis Bacon"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Beatrice Lindqvist",
+    "persona": {
+      "budget": 1.72,
+      "aggression": 0.59,
+      "sniper": true,
+      "activity": 0.32
+    },
+    "preferences": {
+      "categories": [
+        "Toys and Clothes",
+        "Miscellaneous IT Items",
+        "Jewellery"
+      ],
+      "artists": [
+        "Sinclair"
+      ],
+      "keywords": [
+        "Untitled",
+        "Nautilus"
+      ]
+    }
+  },
+  {
+    "name": "Rajesh Iyer",
+    "persona": {
+      "budget": 1.18,
+      "aggression": 0.34,
+      "sniper": false,
+      "activity": 0.67
+    },
+    "preferences": {
+      "categories": [
+        "Design",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Yayoi Kusama"
+      ],
+      "keywords": [
+        "study"
+      ]
+    }
+  },
+  {
+    "name": "Clara Fontaine",
+    "persona": {
+      "budget": 1.53,
+      "aggression": 0.71,
+      "sniper": false,
+      "activity": 0.42
+    },
+    "preferences": {
+      "categories": [
+        "Toys and Clothes",
+        "Books & Manuscripts"
+      ],
+      "artists": [],
+      "keywords": [
+        "Commodore"
+      ]
+    }
+  },
+  {
+    "name": "Dmitri Volkov",
+    "persona": {
+      "budget": 1.28,
+      "aggression": 0.32,
+      "sniper": false,
+      "activity": 0.6
+    },
+    "preferences": {
+      "categories": [
+        "Watches",
+        "Modern British Art"
+      ],
+      "artists": [],
+      "keywords": [
+        "Rabbit",
+        "Steiff",
+        "vintage"
+      ]
+    }
+  },
+  {
+    "name": "Amara Okafor",
+    "persona": {
+      "budget": 1.07,
+      "aggression": 0.32,
+      "sniper": false,
+      "activity": 0.87
+    },
+    "preferences": {
+      "categories": [
+        "Jewellery",
+        "Design",
+        "Photography",
+        "Cars"
+      ],
+      "artists": [
+        "Paul Nash"
+      ],
+      "keywords": [
+        "bottle",
+        "Steiff",
+        "Rabbit"
+      ]
+    }
+  },
+  {
+    "name": "Henrik Johansson",
+    "persona": {
+      "budget": 1.75,
+      "aggression": 0.89,
+      "sniper": true,
+      "activity": 0.83
+    },
+    "preferences": {
+      "categories": [
+        "Design",
+        "Jewellery",
+        "Contemporary Art"
+      ],
+      "artists": [
+        "Chad Valley"
+      ],
+      "keywords": [
+        "Mercedes-Benz",
+        "Balloon",
+        "Figure"
+      ]
+    }
+  },
+  {
+    "name": "Lucia Moretti",
+    "persona": {
+      "budget": 0.83,
+      "aggression": 0.7,
+      "sniper": false,
+      "activity": 0.88
+    },
+    "preferences": {
+      "categories": [
+        "Cars",
+        "Watches"
+      ],
+      "artists": [
+        "Wyndham Lewis",
+        "Francis Bacon"
+      ],
+      "keywords": [
+        "Rothschild"
+      ]
+    }
+  },
+  {
+    "name": "Felix Braun",
+    "persona": {
+      "budget": 1.67,
+      "aggression": 0.32,
+      "sniper": false,
+      "activity": 0.42
+    },
+    "preferences": {
+      "categories": [
+        "Modern British Art",
+        "Cars"
+      ],
+      "artists": [
+        "Marcel Breuer",
+        "Cartier"
+      ],
+      "keywords": [
+        "Ferrari"
+      ]
+    }
+  },
+  {
+    "name": "Zainab Qureshi",
+    "persona": {
+      "budget": 0.81,
+      "aggression": 0.7,
+      "sniper": false,
+      "activity": 0.39
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Cars",
+        "Watches",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Rowland Ward",
+        "Philippe Halsman"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Rafael Mendoza",
+    "persona": {
+      "budget": 0.92,
+      "aggression": 0.61,
+      "sniper": false,
+      "activity": 0.89
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Watches",
+        "Books & Manuscripts",
+        "Cars"
+      ],
+      "artists": [
+        "Ludwig Mies van der Rohe",
+        "J. K. Rowling"
+      ],
+      "keywords": [
+        "computer"
+      ]
+    }
+  },
+  {
+    "name": "Astrid Nilsson",
+    "persona": {
+      "budget": 1.43,
+      "aggression": 0.27,
+      "sniper": true,
+      "activity": 0.52
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Design",
+        "Miscellaneous IT Items",
+        "Toys and Clothes"
+      ],
+      "artists": [],
+      "keywords": [
+        "Porsche",
+        "Chair",
+        "study"
+      ]
+    }
+  },
+  {
+    "name": "Connor Doyle",
+    "persona": {
+      "budget": 1.04,
+      "aggression": 0.84,
+      "sniper": false,
+      "activity": 0.62
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Modern British Art",
+        "Design"
+      ],
+      "artists": [
+        "Jean-Michel Basquiat",
+        "Paul Cézanne"
+      ],
+      "keywords": [
+        "Commodore"
+      ]
+    }
+  },
+  {
+    "name": "Mei-Ling Chen",
+    "persona": {
+      "budget": 1.38,
+      "aggression": 0.63,
+      "sniper": false,
+      "activity": 0.47
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Contemporary Art",
+        "Toys and Clothes"
+      ],
+      "artists": [
+        "Omega"
+      ],
+      "keywords": [
+        "Rothschild",
+        "Chair",
+        "Jaguar"
+      ]
+    }
+  },
+  {
+    "name": "Joaquim Ferreira",
+    "persona": {
+      "budget": 1.23,
+      "aggression": 0.64,
+      "sniper": false,
+      "activity": 0.68
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Books & Manuscripts",
+        "Design",
+        "Cars"
+      ],
+      "artists": [
+        "Commodore",
+        "Patek Philippe"
+      ],
+      "keywords": [
+        "Lamborghini",
+        "Figure",
+        "Rolex"
+      ]
+    }
+  },
+  {
+    "name": "Sofia Kowalska",
+    "persona": {
+      "budget": 1.88,
+      "aggression": 0.44,
+      "sniper": false,
+      "activity": 0.94
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Cars"
+      ],
+      "artists": [],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Tariq Haddad",
+    "persona": {
+      "budget": 0.84,
+      "aggression": 0.87,
+      "sniper": true,
+      "activity": 0.58
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Cars",
+        "Watches"
+      ],
+      "artists": [
+        "Steiff"
+      ],
+      "keywords": [
+        "Girl"
+      ]
+    }
+  },
+  {
+    "name": "Elena Vasquez",
+    "persona": {
+      "budget": 1.05,
+      "aggression": 0.47,
+      "sniper": false,
+      "activity": 0.98
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Modern British Art",
+        "Wine & Spirits",
+        "Toys and Clothes"
+      ],
+      "artists": [
+        "John Singer Sargent",
+        "Lamborghini"
+      ],
+      "keywords": [
+        "Commodore"
+      ]
+    }
+  },
+  {
+    "name": "Magnus Eriksen",
+    "persona": {
+      "budget": 1.35,
+      "aggression": 0.7,
+      "sniper": false,
+      "activity": 0.5
+    },
+    "preferences": {
+      "categories": [
+        "Miscellaneous IT Items",
+        "Contemporary Art"
+      ],
+      "artists": [
+        "Charles C. Ebbets"
+      ],
+      "keywords": [
+        "Portrait",
+        "Steiff"
+      ]
+    }
+  },
+  {
+    "name": "Chinwe Eze",
+    "persona": {
+      "budget": 1.07,
+      "aggression": 0.51,
+      "sniper": false,
+      "activity": 0.73
+    },
+    "preferences": {
+      "categories": [
+        "Miscellaneous IT Items",
+        "Wine & Spirits",
+        "Books & Manuscripts"
+      ],
+      "artists": [],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Lars Andersen",
+    "persona": {
+      "budget": 1.29,
+      "aggression": 0.7,
+      "sniper": false,
+      "activity": 0.85
+    },
+    "preferences": {
+      "categories": [
+        "Books & Manuscripts",
+        "Jewellery"
+      ],
+      "artists": [],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Gabriella Rossi",
+    "persona": {
+      "budget": 1.92,
+      "aggression": 0.25,
+      "sniper": true,
+      "activity": 0.71
+    },
+    "preferences": {
+      "categories": [
+        "Books & Manuscripts",
+        "Contemporary Art"
+      ],
+      "artists": [
+        "Patek Philippe",
+        "Steiff"
+      ],
+      "keywords": [
+        "maquette",
+        "Commodore",
+        "Flag"
+      ]
+    }
+  },
+  {
+    "name": "Sven Olafsson",
+    "persona": {
+      "budget": 1.08,
+      "aggression": 0.22,
+      "sniper": false,
+      "activity": 0.57
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Toys and Clothes"
+      ],
+      "artists": [],
+      "keywords": [
+        "Girl",
+        "Portrait"
+      ]
+    }
+  },
+  {
+    "name": "Anouk de Vries",
+    "persona": {
+      "budget": 1.57,
+      "aggression": 0.61,
+      "sniper": false,
+      "activity": 0.7
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Modern British Art",
+        "Watches",
+        "Jewellery"
+      ],
+      "artists": [
+        "Vacheron Constantin",
+        "Aston Martin"
+      ],
+      "keywords": [
+        "Commodore"
+      ]
+    }
+  },
+  {
+    "name": "Vikram Malhotra",
+    "persona": {
+      "budget": 0.81,
+      "aggression": 0.29,
+      "sniper": false,
+      "activity": 0.44
+    },
+    "preferences": {
+      "categories": [
+        "Miscellaneous IT Items",
+        "Watches",
+        "Design",
+        "Books & Manuscripts"
+      ],
+      "artists": [
+        "L. Frank Baum"
+      ],
+      "keywords": [
+        "Rabbit",
+        "Portrait"
+      ]
+    }
+  },
+  {
+    "name": "Ines Dubois",
+    "persona": {
+      "budget": 1.35,
+      "aggression": 0.5,
+      "sniper": false,
+      "activity": 0.9
+    },
+    "preferences": {
+      "categories": [
+        "Jewellery",
+        "Design",
+        "Modern British Art",
+        "Wine & Spirits"
+      ],
+      "artists": [
+        "Leonardo da Vinci",
+        "David Hockney"
+      ],
+      "keywords": [
+        "Aston Martin",
+        "Girl"
+      ]
+    }
+  },
+  {
+    "name": "Jonah Freeman",
+    "persona": {
+      "budget": 1.61,
+      "aggression": 0.27,
+      "sniper": true,
+      "activity": 0.51
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Books & Manuscripts",
+        "Wine & Spirits",
+        "Jewellery"
+      ],
+      "artists": [],
+      "keywords": [
+        "Aston Martin",
+        "Mercedes-Benz",
+        "Lamborghini"
+      ]
+    }
+  },
+  {
+    "name": "Selma Kaya",
+    "persona": {
+      "budget": 1.61,
+      "aggression": 0.74,
+      "sniper": false,
+      "activity": 0.78
+    },
+    "preferences": {
+      "categories": [
+        "Jewellery",
+        "Modern British Art",
+        "Photography",
+        "Design"
+      ],
+      "artists": [],
+      "keywords": [
+        "vintage"
+      ]
+    }
+  },
+  {
+    "name": "Barnaby Hollis",
+    "persona": {
+      "budget": 1.7,
+      "aggression": 0.85,
+      "sniper": false,
+      "activity": 0.79
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Jewellery",
+        "Toys and Clothes",
+        "Watches"
+      ],
+      "artists": [],
+      "keywords": [
+        "Figure",
+        "maquette"
+      ]
+    }
+  },
+  {
+    "name": "Renata Silva",
+    "persona": {
+      "budget": 1.97,
+      "aggression": 0.81,
+      "sniper": false,
+      "activity": 0.49
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Design",
+        "Wine & Spirits"
+      ],
+      "artists": [
+        "Jasper Johns",
+        "Commodore"
+      ],
+      "keywords": [
+        "Aston Martin",
+        "study"
+      ]
+    }
+  },
+  {
+    "name": "Koichi Sato",
+    "persona": {
+      "budget": 1.42,
+      "aggression": 0.24,
+      "sniper": false,
+      "activity": 0.93
+    },
+    "preferences": {
+      "categories": [
+        "Toys and Clothes",
+        "Miscellaneous IT Items",
+        "Watches"
+      ],
+      "artists": [
+        "Henry Moore"
+      ],
+      "keywords": [
+        "Steiff",
+        "vintage",
+        "Untitled"
+      ]
+    }
+  },
+  {
+    "name": "Marlene Vogel",
+    "persona": {
+      "budget": 1.9,
+      "aggression": 0.53,
+      "sniper": true,
+      "activity": 0.67
+    },
+    "preferences": {
+      "categories": [
+        "Watches",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Jeff Koons",
+        "David Bomberg"
+      ],
+      "keywords": [
+        "maquette",
+        "Lamborghini",
+        "Jaguar"
+      ]
+    }
+  },
+  {
+    "name": "Alejandro Cruz",
+    "persona": {
+      "budget": 1.95,
+      "aggression": 0.87,
+      "sniper": false,
+      "activity": 0.51
+    },
+    "preferences": {
+      "categories": [
+        "Modern British Art",
+        "Watches",
+        "Books & Manuscripts"
+      ],
+      "artists": [
+        "Leonardo da Vinci"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Grethe Madsen",
+    "persona": {
+      "budget": 1.25,
+      "aggression": 0.87,
+      "sniper": false,
+      "activity": 0.74
+    },
+    "preferences": {
+      "categories": [
+        "Contemporary Art",
+        "Design",
+        "Books & Manuscripts",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Roy Lichtenstein",
+        "James Joyce"
+      ],
+      "keywords": [
+        "Girl"
+      ]
+    }
+  },
+  {
+    "name": "Nikhil Desai",
+    "persona": {
+      "budget": 0.88,
+      "aggression": 0.22,
+      "sniper": false,
+      "activity": 0.37
+    },
+    "preferences": {
+      "categories": [
+        "Watches",
+        "Miscellaneous IT Items",
+        "Wine & Spirits",
+        "Contemporary Art"
+      ],
+      "artists": [
+        "Xerox PARC"
+      ],
+      "keywords": [
+        "brooch"
+      ]
+    }
+  },
+  {
+    "name": "Paloma Vega",
+    "persona": {
+      "budget": 1.3,
+      "aggression": 0.4,
+      "sniper": false,
+      "activity": 0.59
+    },
+    "preferences": {
+      "categories": [
+        "Photography",
+        "Contemporary Art",
+        "Books & Manuscripts"
+      ],
+      "artists": [
+        "Aston Martin"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Hamish MacLeod",
+    "persona": {
+      "budget": 1.82,
+      "aggression": 0.52,
+      "sniper": true,
+      "activity": 0.36
+    },
+    "preferences": {
+      "categories": [
+        "Watches",
+        "Toys and Clothes",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Cartier",
+        "Hans Wegner"
+      ],
+      "keywords": []
+    }
+  },
+  {
+    "name": "Sanne Bakker",
+    "persona": {
+      "budget": 1.97,
+      "aggression": 0.42,
+      "sniper": false,
+      "activity": 0.77
+    },
+    "preferences": {
+      "categories": [
+        "Cars",
+        "Contemporary Art",
+        "Photography",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Eero Saarinen",
+        "Isamu Noguchi"
+      ],
+      "keywords": [
+        "first edition",
+        "Rolex"
+      ]
+    }
+  },
+  {
+    "name": "Diego Alvarez",
+    "persona": {
+      "budget": 1.12,
+      "aggression": 0.23,
+      "sniper": false,
+      "activity": 0.63
+    },
+    "preferences": {
+      "categories": [
+        "Wine & Spirits",
+        "Contemporary Art",
+        "Miscellaneous IT Items"
+      ],
+      "artists": [
+        "J. M. Barrie",
+        "Anish Kapoor"
+      ],
+      "keywords": [
+        "Portrait",
+        "Flag",
+        "maquette"
+      ]
+    }
+  },
+  {
+    "name": "Ruth Callaghan",
+    "persona": {
+      "budget": 0.9,
+      "aggression": 0.39,
+      "sniper": false,
+      "activity": 0.8
+    },
+    "preferences": {
+      "categories": [
+        "Miscellaneous IT Items",
+        "Watches",
+        "Modern British Art"
+      ],
+      "artists": [
+        "J. M. Barrie",
+        "L. S. Lowry"
+      ],
+      "keywords": [
+        "bear"
+      ]
+    }
+  },
+  {
+    "name": "Emeka Obi",
+    "persona": {
+      "budget": 0.91,
+      "aggression": 0.23,
+      "sniper": false,
+      "activity": 0.64
+    },
+    "preferences": {
+      "categories": [
+        "Design",
+        "Toys and Clothes",
+        "Watches",
+        "Modern British Art"
+      ],
+      "artists": [
+        "Bram Stoker",
+        "Cartier"
+      ],
+      "keywords": [
+        "Nautilus"
+      ]
+    }
+  }
+]
