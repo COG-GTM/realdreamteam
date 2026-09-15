@@ -1,6 +1,6 @@
 # Auction Interest App — Build Design for the Demo
 
-Status: **for review** (Mark: completeness, simplicity, demo data). Supersedes the "Pages",
+Status: **all open points decided (§9), awaiting Mark's final sign-off**. Supersedes the "Pages",
 "Seed data" and "Build order" sections of [`auction-app-v1-design.md`](auction-app-v1-design.md);
 the stack and decisions there still stand. Data model is frozen in
 [`auction-app-schema.md`](auction-app-schema.md) / [`db/schema.sql`](../auction-app/db/schema.sql) (#34).
@@ -42,7 +42,7 @@ so buttons know who is acting.
 
 | # | URL | Shows | Actions |
 |---|---|---|---|
-| 0 | `GET/POST /enter` | Single field: access code. Correct (`ACCESS_CODE` env, default `20240312`) sets a cookie for 30 days; every other route redirects here without it | enter → `/` |
+| 0 | `GET/POST /enter` | Single field: access code, with the hint *"Your favorite otter's birthday in ISO 8601 basic format…"*. Correct (`ACCESS_CODE` env, default `20240312`) sets a cookie for 30 days; every other route redirects here without it. `/admin*` additionally asks for `ADMIN_CODE` (default `20250714`, hint *"The day Cognition signed the definitive agreement to acquire Windsurf (agentic IDE)…"*) | enter → `/` |
 | 1 | `GET /` | User picker: avatar + name cards for every user | click → `/u/:id/summary` |
 | 2 | `GET /u/:id/summary` | **Notifications** feed (unread first, badge count) · **Matches your interests** (always shown): lots matching preferences, grouped by auction, each card = thumbnail, title, artist, estimate, current bid + bidder, **why it matched** ("artist · keyword *blue*"), ♥ state, SOLD ribbon if closed; empty state links to preferences · **Discover** (always shown): 5 random open lots the user hasn't bid on or favorited, re-drawn on every refresh | ♥ toggle, quick bid, mark feed read |
 | 3 | `GET/POST /u/:id/preferences` | Checkbox grid of the 11 categories (`lib/categories.js`); artists and keywords as comma-separated text. Most users arrive with preferences from the data phase; a user without a row simply has an empty Matches section until they save one | save → back to summary |
@@ -76,8 +76,11 @@ absentee bids, realtime push (refresh the page).
 - **Summary always renders both sections**, Matches and Discover, for every user, with or without
   preferences. Discover excludes lots already in Matches so the two never overlap.
 - **Access code**: `/enter` compares the input to `ACCESS_CODE` (default `20240312`) and sets a
-  signed cookie; a tiny middleware redirects everything else to `/enter` without it. One shared
-  code, no per-user passwords (#4 is real auth).
+  signed cookie; a tiny middleware redirects everything else to `/enter` without it. `/admin*`
+  has the same pattern with `ADMIN_CODE` and its own cookie. Two shared codes, no per-user
+  passwords (#4 is real auth).
+- **Poller** runs every `POLL_SECONDS` (default 5): closes auctions whose `closes_at` has passed
+  (hammer/winner per lot, `sold` feed rows) and ingests new lots from the mock feed.
 - **Categories**: fixed list in `lib/categories.js` (11): Contemporary Art, Modern British Art,
   Photography, Watches, Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts, Stuffed
   Animals, Miscellaneous IT Items. Admin add/drop of categories is #37.
@@ -219,24 +222,28 @@ Schema changes from this table — #2 (`kind`, `read_at`, new unique), #4 (two C
 (comment) — are one small `schema.sql` PR plus the matching `ALTER`s on the live Supabase DB,
 owned by the DB session since it holds the connection. Nothing else in the schema changes.
 
-## 9. Open decisions (Mark, one by one)
+## 9. Decisions on the open points (Mark, 2026-09-15)
 
-1. **Manual close/reopen on `/admin`** — deviates from the schema doc ("no admin page flips
-   status by hand"). With two auctions timed to close during the demo (§6) the poller does the
-   real closes; manual close/reopen becomes a rehearsal safety net. Keep, or rely on
-   *edit closes_at* only?
-2. **Rehearsal reset**: the server and DB are always on, so every rehearsal leaves bids,
-   notifications and SOLD results behind. Proposal: `npm run db:reset` (TRUNCATE + reseed from
-   `data/seed/*.json`) run once right before the demo, then re-time the two auctions on `/admin`.
-3. **Images**: hotlink Wikimedia (zero work, occasional 429s) vs. upload ~30 files to the
-   Supabase `lots` bucket (30 min, reliable). Recommendation: hotlink for the demo, bucket later.
-4. **Bid amounts**: whole units of currency only (no cents, no increments table — #26).
-5. **Admin behind the same access code**: the otter-birthday cookie gates `/admin` like every
-   other page, so anyone in the demo can add lots or close auctions. Acceptable for the demo
-   (#12 tracks real admin access), or add a second `ADMIN_CODE`?
-6. **Poller vs. live close**: the poller checks every 30 s, so a `closes_at` of 10:30:00 flips
-   between 10:30:00 and 10:30:30, and the audience sees it on their next page load (no realtime
-   push, #32). Acceptable, or shorten the interval to 5 s for the demo?
-7. **EC2 specifics** needed before step 7: instance/URL, who holds SSH, Node 20 present?, port
-   80/443 vs `:3000`, where `.env` (Supabase URL, `ACCESS_CODE`) lives. Not a design choice,
-   just inputs I need.
+1. **Manual Close now / Reopen on `/admin`** — **keep both.** The poller does the real closes at
+   `closes_at`; the buttons are the rehearsal safety net.
+2. **Rehearsal reset** — **yes.** The seed files (`data/seed/*.json`, produced by the data
+   session) are the single source of truth; `npm run db:reset` = TRUNCATE every table + reload
+   from seed, in one transaction, runnable any number of times (before a demo, after a buggy
+   rehearsal, between demos). Run it when nobody is bidding; anything added by hand that must
+   survive goes into the seed files first.
+3. **Images** — **Supabase Storage bucket `lots`.** The real dataset has 200–300 images, too
+   many to hotlink from Wikimedia reliably. The data session uploads them; `lot_images.url` is
+   the public bucket URL; `source_url` still links to Wikipedia.
+4. **Bid amounts** — **whole units only**, any amount strictly above the current high bid.
+   Minimum steps and cents later: #40 (with #26).
+5. **Admin access** — **second code.** `/admin*` asks for `ADMIN_CODE` (default `20250714`,
+   hint: *"The day Cognition signed the definitive agreement to acquire Windsurf (agentic IDE),
+   ISO 8601 basic format…"*), separate cookie. The site-wide `ACCESS_CODE` (`20240312`) shows
+   the hint *"Your favorite otter's birthday in ISO 8601 basic format…"*. Real roles: #12.
+6. **Poller interval** — **5 s** (`POLL_SECONDS` env, default 5). Closes appear on the next page
+   load; realtime push is #32.
+7. **EC2 / secrets** — provided as org secrets: `AUCTION_DATABASE_URL`,
+   `AUCTION_DATABASE_PASSWORD`, `RDT_EC2_SSH_KEY`. Devin deploys in step 7 (systemd unit, `.env`
+   on the box). Hostname/port confirmed at build time.
+
+No open decisions remain; the design is ready for Mark's sign-off, then step 1 of §7.
