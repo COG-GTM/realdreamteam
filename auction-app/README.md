@@ -61,14 +61,17 @@ The data phase supplies these files in `data/seed/`:
 - `users.json`: an array of `{name, email, avatar_url, banned, preferences?}`.
   A preference object has `categories`, `artists`, and `keywords` arrays.
   A `preferences` row is created only when that property is present.
+- `preferences.json`: `{user, categories, artists, keywords}` objects for
+  users whose preferences are stored separately from `users.json`.
 - `auction_houses.json`: `{name, location, website, logo_url}` objects.
 - `auctions.json`: `{house, house_ref, title, location, format, starts_at,
   closes_at, source_url}` objects. `house` is the exact house name and dates
   are absolute ISO 8601 timestamps. The loader computes `status` from them.
 - `lots.json`: `{house, house_ref, lot_number, title, artist, category,
   description, currency, estimate_low, estimate_high, starting_bid,
-  source_url, images}` objects. Each image is `{url, credit}` and is stored
-  in its array order.
+  hammer_price, winner, source_url, images}` objects. `hammer_price` and
+  `winner` are optional closed-lot result fields. Each image is
+  `{url, credit}` and is stored in its array order.
 
 The loader uses natural keys rather than fixture IDs: users by `name`, houses
 by `name`, auctions by `(house, house_ref)`, and lots by
@@ -79,6 +82,9 @@ Optional activity files may also be supplied:
 
 - `bids.json`: `{house, house_ref, lot_number, user, amount, placed_at}`.
 - `favorites.json`: `{user, house, house_ref, lot_number}`.
+- `notifications.json`: `{user, house, house_ref, lot_number, kind, reason,
+  created_at, read_at, sent_at}`. Duplicate `(user, lot, kind)` rows are
+  ignored.
 
 Unknown natural keys and invalid categories fail the transaction with a clear
 error. This seed shape is the contract for the data-phase session.

@@ -48,7 +48,9 @@ function seedFiles() {
     auctions: read('auctions.json'),
     lots: read('lots.json'),
     bids: read('bids.json', true),
-    favorites: read('favorites.json', true)
+    favorites: read('favorites.json', true),
+    preferences: read('preferences.json', true),
+    notifications: read('notifications.json', true)
   };
 }
 
@@ -101,6 +103,21 @@ async function seedAll(client) {
     }
   }
 
+  for (const preferences of data.preferences) {
+    const userId = userIds.get(preferences.user);
+    if (!userId) throw new Error(`Unknown preferences user "${preferences.user}"`);
+    await client.query(
+      `INSERT INTO preferences (user_id, categories, artists, keywords)
+       VALUES ($1, $2, $3, $4)`,
+      [
+        userId,
+        preferences.categories || [],
+        preferences.artists || [],
+        preferences.keywords || []
+      ]
+    );
+  }
+
   for (const auction of data.auctions) {
     const house = await findOne(
       client,
@@ -139,11 +156,16 @@ async function seedAll(client) {
       [lot.house, lot.house_ref],
       `Unknown auction "${lot.house}" / "${lot.house_ref}" for lot ${lot.lot_number}`
     );
+    let winnerUserId = null;
+    if (lot.winner) {
+      winnerUserId = userIds.get(lot.winner);
+      if (!winnerUserId) throw new Error(`Unknown winner "${lot.winner}" for ${lot.title}`);
+    }
     const result = await client.query(
       `INSERT INTO lots
        (auction_id, lot_number, title, artist, category, description, currency,
-        estimate_low, estimate_high, starting_bid, source_url)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`,
+        estimate_low, estimate_high, starting_bid, hammer_price, winner_user_id, source_url)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id`,
       [
         auction.id,
         lot.lot_number,
@@ -155,6 +177,8 @@ async function seedAll(client) {
         lot.estimate_low ?? null,
         lot.estimate_high ?? null,
         lot.starting_bid ?? null,
+        lot.hammer_price ?? null,
+        winnerUserId,
         lot.source_url || null
       ]
     );
@@ -188,6 +212,30 @@ async function seedAll(client) {
     await client.query(
       `INSERT INTO favorites (user_id, lot_id) VALUES ($1, $2)`,
       [userId, lotId]
+    );
+  }
+
+  for (const notification of data.notifications) {
+    const lotId = lotIds.get(`${notification.house}\u0000${notification.house_ref}\u0000${notification.lot_number}`);
+    const userId = userIds.get(notification.user);
+    if (!lotId) {
+      throw new Error(`Unknown lot for notification ${notification.house}/${notification.house_ref}/${notification.lot_number}`);
+    }
+    if (!userId) throw new Error(`Unknown notification user "${notification.user}"`);
+    await client.query(
+      `INSERT INTO notifications
+       (user_id, lot_id, kind, reason, created_at, read_at, sent_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       ON CONFLICT (user_id, lot_id, kind) DO NOTHING`,
+      [
+        userId,
+        lotId,
+        notification.kind,
+        notification.reason,
+        notification.created_at || new Date().toISOString(),
+        notification.read_at || null,
+        notification.sent_at || null
+      ]
     );
   }
 }
