@@ -40,7 +40,7 @@ so we use plain words:
 | `favorites` | user ♥ lot | `created_at` |
 | `bids` | one bid, append-only | `lot_id`, `user_id`, `amount`, `placed_at` |
 | `notifications` | in-app feed row: one per (user, lot, kind) | `kind` (`new_lot` / `outbid` / `sold`), `reason`, `created_at`, `read_at` (NULL = unread) |
-| `activity` | site-wide event for the Live pane, append-only | `kind` (`bid` / `favorite` / `new_lot` / `reoffered` / `opened` / `closed` / `sold`), `actor_user_id`, `lot_id`, `auction_id`, `amount`, `detail`, `created_at` |
+| `activity` | site-wide event for the Live pane, append-only | `kind` (`bid` / `favorite` / `new_lot` / `reoffered` / `opened` / `closed` / `sold` / `reopened`), `actor_user_id`, `lot_id`, `auction_id`, `amount`, `detail`, `created_at` |
 
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.

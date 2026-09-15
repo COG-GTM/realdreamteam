@@ -123,7 +123,7 @@ lib/poller.js        the 5 s status poller
 lib/categories.js    the default category seed/fallback list
 lib/notifications.js feed queries, unread count, mark-all-read
 public/styles.css    all styling; public/sold.mp3 the sale sound
-db/schema.sql        the 10 tables; db/db.js the pool, transactions and seed loader
+db/schema.sql        the 11 tables; db/db.js the pool, transactions and seed loader
 data/seed/*.json     the demo data (see "Seed contract")
 ```
 
@@ -194,8 +194,10 @@ database.
 
 Before running `db:reset` against Supabase, apply every migration in
 `db/migrations/`; migrations `001-schema-review.sql`, `002-bigint-money.sql`,
-`003-decimal-money.sql`, `003-categories.sql`, `004-avatars.sql`, and
-`005-rename-stuffed-animals.sql` are required.
+`003-decimal-money.sql`, `003-categories.sql`, `004-avatars.sql`,
+`005-rename-stuffed-animals.sql`, and `006-simulation.sql` are required
+(`006-simulation.sql` adds shadow users, auction/lot lineage columns and the
+`activity` table).
 Money columns use `NUMERIC(16,2)` to support values up to 9,999,999,999,999.99.
 On an existing database,
 follow `004-avatars.sql` with `npm run db:avatars` to give every user a default icon.

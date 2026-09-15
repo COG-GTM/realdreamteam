@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { describeHttp, Client, createUser, createLot, rows, db } = require('../http-helper');
+const { describeHttp, Client, createUser, createLot, createAuction, rows, db } = require('../http-helper');
 const { placeBid } = require('../../lib/bids');
 
 async function signedIn() {
@@ -52,5 +52,18 @@ describeHttp('simulation foundations', (it) => {
     assert.match(html, /Live Larry bid \$120 on Pane Painting/);
     assert.match(html, new RegExp(`/lots/${lot.id}`));
     assert.match(html, /ago/);
+  });
+
+  it('reopening a closed auction writes a reopened activity row', async () => {
+    const client = await signedIn();
+    await client.enterAdmin();
+    const auction = await createAuction({ status: 'closed' });
+
+    const response = await client.post(`/admin/auctions/${auction.id}/reopen`, {});
+    assert.equal(response.status, 302);
+
+    const activity = await rows("SELECT kind, auction_id FROM activity WHERE kind = 'reopened'");
+    assert.equal(activity.length, 1);
+    assert.equal(Number(activity[0].auction_id), Number(auction.id));
   });
 });
