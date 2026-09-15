@@ -7,11 +7,12 @@
 %>
 <% const cardReasons = typeof reasons !== 'undefined' && Array.isArray(reasons) ? reasons : []; %>
 <% const lotHref = `/lots/${lot.id}${userId ? `?u=${userId}` : ''}`; %>
-<% const lotLabel = lot.lot_number ? `Lot ${lot.lot_number}` : `№ ${lot.id}`; %>
+<% const lotLabel = lot.lot_number != null ? `Lot ${lot.lot_number}` : `№ ${lot.id}`; %>
 <article class="lot-card">
   <% if (lot.status === 'closed' && lot.hammer_price) { %><span class="sold-ribbon">SOLD</span><% } %>
-  <a class="lot-card-image<%= lot.image_url ? '' : ' is-empty' %>" href="<%= lotHref %>" data-lot="<%= lotLabel %>"<% if (lot.image_url) { %> style="background-image:url('<%= lot.image_url %>')"<% } %>>
+  <a class="lot-card-image<%= lot.image_url ? '' : ' is-empty' %>" href="<%= lotHref %>" data-lot="<%= lotLabel %>">
     <% if (lot.image_url) { %>
+      <img class="lot-card-backdrop" src="<%= lot.image_url %>" alt="" aria-hidden="true" width="400" height="300" loading="lazy" decoding="async">
       <img src="<%= lot.image_url %>" alt="<%= lot.title %>" width="400" height="300" loading="lazy" decoding="async"
            onload="if(this.naturalHeight>this.naturalWidth*.85)this.classList.add('is-tall')"
            onerror="this.parentNode.classList.add('is-empty');this.remove()">
