@@ -1,9 +1,9 @@
 # Auction Interest App — Build Design for the Demo
 
 Status: **all open points decided (§9), awaiting Mark's final sign-off**. Supersedes the "Pages",
-"Seed data" and "Build order" sections of [`auction-app-v1-design.md`](auction-app-v1-design.md);
+"Seed data" and "Build order" sections of [`v1-design.md`](v1-design.md);
 the stack and decisions there still stand. Data model is frozen in
-[`auction-app-schema.md`](auction-app-schema.md) / [`db/schema.sql`](../auction-app/db/schema.sql) (#34).
+[`schema.md`](schema.md) / [`db/schema.sql`](../db/schema.sql) (#34).
 
 Constraint: **demo tomorrow morning, < 12 hours of build time.** The app runs on the **EC2
 server** (one `node server.js` process behind a public URL, kept up 24/7 with `systemd`/`pm2`);
@@ -111,7 +111,6 @@ absentee bids, realtime push (refresh the page).
 ## 5. Files
 
 ```
-auction-app/
   package.json  server.js  .env.example  README.md
   db/schema.sql (frozen)  db/db.js (pool, query, seedIfEmpty)  db/reset.sql (TRUNCATE all, for re-demo)
   data/seed/{auction_houses,users,preferences,auctions,lots,bids,favorites,notifications}.json
@@ -130,7 +129,7 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 
 > Built table by table in FK order by the data session
 > (https://app.devin.ai/sessions/7fa64fef151f440eb9ab5d7ca1a1bf1a), each table dictated or
-> approved by Mark before moving on. Files live in `auction-app/data/seed/` on branch
+> approved by Mark before moving on. Files live in `data/seed/` on branch
 > `devin/1789454012-seed-data`. **Nothing has been loaded into the live DB** — that happens via
 > the loader (§4 Seeding / §9.2 `db:reset`) when Mark says so. The old v2 seed
 > (`items.json`, `sales.json`, `IMAGE_CREDITS.md`) was deleted.
@@ -233,8 +232,8 @@ sessions and of the infrastructure they share, collected from the "Links and Ref
 
 **GitHub repo** — https://github.com/COG-GTM/realdreamteam
 
-- Schema: `auction-app/db/schema.sql` (9 tables, `public`, all commented); incremental changes
-  under `auction-app/db/migrations/`.
+- Schema: `db/schema.sql` (9 tables, `public`, all commented); incremental changes
+  under `db/migrations/`.
 
 **Supabase (Real Dream Team auction app)**
 

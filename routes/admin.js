@@ -5,8 +5,11 @@ const { categories } = require('../lib/categories');
 const { createLot } = require('../lib/new-lot');
 const { closeAuction, validateClosesAt } = require('../lib/close');
 const { formatCentral, toCentralInput } = require('../lib/time');
+const { gateCookieOptions } = require('../lib/cookies');
+const { gateLimiter } = require('../lib/rate-limit');
 
 const router = express.Router();
+const adminLimiter = gateLimiter();
 
 const ADMIN_HINT = 'The day Cognition signed the definitive agreement to acquire Windsurf (agentic IDE), ISO 8601 basic format…';
 
@@ -19,9 +22,20 @@ router.get('/admin/enter', (req, res) => {
   });
 });
 
-router.post('/admin/enter', (req, res) => {
+router.post('/admin/enter', adminLimiter, (req, res) => {
+  if (req.rateLimited) {
+    res.status(429);
+    return renderPage(res, 'Admin access', 'enter', {
+      gate: true,
+      admin: true,
+      error: 'Too many attempts. Try again in a few minutes.',
+      hint: ADMIN_HINT,
+      u: req.body.u || ''
+    });
+  }
   const expected = process.env.ADMIN_CODE || '20250714';
   if (String(req.body.code || '') !== expected) {
+    adminLimiter.recordFailure(req);
     return renderPage(res, 'Admin access', 'enter', {
       gate: true,
       admin: true,
@@ -30,10 +44,7 @@ router.post('/admin/enter', (req, res) => {
       u: req.body.u || ''
     });
   }
-  res.cookie('rdt_admin', 'session', {
-    signed: true,
-    httpOnly: true
-  });
+  res.cookie('rdt_admin', 'session', gateCookieOptions());
   const userId = String(req.body.u || '');
   res.redirect(`/admin${/^\d+$/.test(userId) ? `?u=${userId}` : ''}`);
 });

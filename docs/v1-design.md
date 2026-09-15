@@ -23,13 +23,12 @@ session; everything else is a default chosen for simplicity and can be changed b
 | Slack | Single incoming webhook URL from `.env`; one channel, message names the user | No bot token, no OAuth, no user-ID mapping |
 | Database | **Decided:** Supabase Postgres; schema in `db/schema.sql` (already applied to the Supabase project). App connects via `AUCTION_DATABASE_URL` / `AUCTION_DATABASE_PASSWORD` | Shared, real database; no local file to manage |
 | Styling | One `public/styles.css`; no framework | Same approach as this site |
-| Demo hosting | **Decided:** run locally on the presenter's laptop (`npm start`). GitHub Pages only serves the static site in `src/` and cannot run Node | Zero deploy risk for the demo |
-| Location in repo | **Decided:** `auction-app/` at the repo root, next to `src/` (the existing static site). The Pages workflow only uploads `src/`, so the app is never published as static files | Keeps the two things separate |
+| Demo hosting | **Decided:** run locally on the presenter's laptop (`npm start`). GitHub Pages only serves the static site in `src/` and cannot run Node *(historical — the static site and Pages workflow were removed in #57 and the app now lives at the repo root, #60)* | Zero deploy risk for the demo |
+| Location in repo | **Decided:** `auction-app/` at the repo root, next to `src/` (the existing static site). The Pages workflow only uploads `src/`, so the app is never published as static files *(historical — the static site and Pages workflow were removed in #57 and the app now lives at the repo root, #60)* | Keeps the two things separate |
 
 ## Repo layout
 
 ```
-auction-app/
   package.json          # express, ejs, pg, dotenv
   server.js             # starts Express, runs seed, starts poller
   .env.example          # SLACK_WEBHOOK_URL=  APP_BASE_URL=http://localhost:3000
@@ -66,10 +65,10 @@ only fill in their own file and view.
 
 ## Schema (`db/schema.sql`)
 
-Schema lives in [`auction-app-schema.md`](auction-app-schema.md).
+Schema lives in [`schema.md`](schema.md).
 
 
-## Seed data (`auction-app/data/seed/`)
+## Seed data (`data/seed/`)
 
 Seed files are generated and loaded on first start — the planned content:
 

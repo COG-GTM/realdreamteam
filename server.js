@@ -1,5 +1,11 @@
 require('dotenv').config({ override: true });
 
+if (process.env.NODE_ENV === 'production') {
+  const missing = ['COOKIE_SECRET', 'ACCESS_CODE', 'ADMIN_CODE']
+    .filter((name) => !process.env[name]);
+  if (missing.length) throw new Error(`Missing required env: ${missing.join(', ')}`);
+}
+
 const path = require('node:path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -7,9 +13,13 @@ const { query, seedIfEmpty } = require('./db/db');
 const routes = require('./routes');
 const { renderPage } = require('./routes/helpers');
 const { start } = require('./lib/poller');
+const { gateCookieOptions } = require('./lib/cookies');
+const { gateLimiter } = require('./lib/rate-limit');
 
 const app = express();
+app.set('trust proxy', 1);
 const cookieSecret = process.env.COOKIE_SECRET || 'auction-interest-demo';
+const accessLimiter = gateLimiter();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -25,9 +35,19 @@ app.get('/enter', (req, res) => {
   });
 });
 
-app.post('/enter', (req, res) => {
+app.post('/enter', accessLimiter, (req, res) => {
+  if (req.rateLimited) {
+    res.status(429);
+    return renderPage(res, 'Access', 'enter', {
+      gate: true,
+      admin: false,
+      error: 'Too many attempts. Try again in a few minutes.',
+      hint: "Your favorite otter's birthday in ISO 8601 basic format…"
+    });
+  }
   const expected = process.env.ACCESS_CODE || '20240312';
   if (String(req.body.code || '') !== expected) {
+    accessLimiter.recordFailure(req);
     return renderPage(res, 'Access', 'enter', {
       gate: true,
       admin: false,
@@ -35,10 +55,7 @@ app.post('/enter', (req, res) => {
       hint: "Your favorite otter's birthday in ISO 8601 basic format…"
     });
   }
-  res.cookie('rdt_access', 'session', {
-    signed: true,
-    httpOnly: true
-  });
+  res.cookie('rdt_access', 'session', gateCookieOptions());
   res.redirect('/');
 });
 
