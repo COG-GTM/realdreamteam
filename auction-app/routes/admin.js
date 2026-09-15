@@ -11,7 +11,12 @@ const router = express.Router();
 const ADMIN_HINT = 'The day Cognition signed the definitive agreement to acquire Windsurf (agentic IDE), ISO 8601 basic format…';
 
 router.get('/admin/enter', (req, res) => {
-  renderPage(res, 'Admin access', 'enter', { gate: true, admin: true, hint: ADMIN_HINT });
+  renderPage(res, 'Admin access', 'enter', {
+    gate: true,
+    admin: true,
+    hint: ADMIN_HINT,
+    u: req.query.u || ''
+  });
 });
 
 router.post('/admin/enter', (req, res) => {
@@ -21,14 +26,16 @@ router.post('/admin/enter', (req, res) => {
       gate: true,
       admin: true,
       error: 'That code did not match.',
-      hint: ADMIN_HINT
+      hint: ADMIN_HINT,
+      u: req.body.u || ''
     });
   }
   res.cookie('rdt_admin', 'session', {
     signed: true,
     httpOnly: true
   });
-  res.redirect('/admin');
+  const userId = String(req.body.u || '');
+  res.redirect(`/admin${/^\d+$/.test(userId) ? `?u=${userId}` : ''}`);
 });
 
 // Builds "/admin?flash=...&u=..." so the user in the nav is kept.
