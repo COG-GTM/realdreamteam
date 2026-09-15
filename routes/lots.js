@@ -3,8 +3,8 @@ const { query, withTransaction } = require('../db/db');
 const { renderPage, flashUrl } = require('./helpers');
 const { formatCentral, formatMoney, userPath } = require('../lib/format');
 const { placeBid, bidIncrement, nextBid, maxBid, INCREMENTS } = require('../lib/bids');
-const { logActivity } = require('../lib/activity');
 const { pickWinner } = require('../lib/close');
+const { toggleFavorite } = require('../lib/favorites');
 
 const router = express.Router();
 
@@ -102,19 +102,7 @@ async function postFavorite(req, res, next) {
   try {
     const userId = userIdFrom(req);
     const lotId = req.params.lotId;
-    await withTransaction(async (client) => {
-      const removed = await client.query(
-        'DELETE FROM favorites WHERE user_id = $1 AND lot_id = $2',
-        [userId, lotId]
-      );
-      if (removed.rowCount === 0) {
-        await client.query(
-          'INSERT INTO favorites (user_id, lot_id) VALUES ($1, $2)',
-          [userId, lotId]
-        );
-        await logActivity(client, { kind: 'favorite', actorUserId: userId, lotId });
-      }
-    });
+    await withTransaction((client) => toggleFavorite(client, { userId, lotId }));
     res.redirect(req.get('referer') || userPath(userId, `/lots/${lotId}`));
   } catch (error) {
     next(error);

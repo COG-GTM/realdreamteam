@@ -59,9 +59,35 @@
     <script>
       (() => {
         const panes = document.querySelectorAll('.pane[data-src]');
+        const panesAside = document.querySelector('.panes');
         let refreshing = false;
+        let lastInput = Date.now();
+        let paused = false;
+        const pausedNote = document.createElement('p');
+        pausedNote.className = 'panes-paused';
+        pausedNote.textContent = 'Paused — move the mouse to resume';
+        const IDLE_LIMIT = 60 * 60 * 1000;
+        for (const type of ['mousemove', 'keydown', 'scroll', 'click', 'touchstart']) {
+          window.addEventListener(type, () => {
+            lastInput = Date.now();
+            if (paused) {
+              paused = false;
+              panesAside.classList.remove('paused');
+              pausedNote.remove();
+              refresh();
+            }
+          }, { passive: true });
+        }
         async function refresh() {
           if (document.hidden || refreshing) return;
+          if (Date.now() - lastInput > IDLE_LIMIT) {
+            if (!paused) {
+              paused = true;
+              panesAside.classList.add('paused');
+              panesAside.appendChild(pausedNote);
+            }
+            return;
+          }
           refreshing = true;
           await Promise.all([...panes].map(async (pane) => {
             const itemSelector = pane.id === 'pane-live' ? '.live-item' : '.unread';

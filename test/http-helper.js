@@ -2,6 +2,7 @@
 // built-in fetch. Requires the test database (see db-helper.js); the app is
 // started only when a group actually runs.
 const test = require('node:test');
+process.env.SIM_ENABLED = 'false';
 const dbHelper = require('./db-helper');
 
 let server = null;
