@@ -22,6 +22,7 @@
       <form method="post" action="/admin/sim/toggle" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit"><%= sim.enabled ? 'Pause simulation' : 'Resume simulation' %></button></form>
       <form method="post" action="/admin/sim/run" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit">Run one action now</button></form>
       <form method="post" action="/admin/sim/wake" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit">Wake for 10 min</button></form>
+      <form method="post" action="/admin/sim/clone" class="inline"><input type="hidden" name="u" value="<%= u %>"><button class="btn" type="submit">Clone next auction now</button></form>
     </div>
     <% if (sim.lastActions.length) { %>
       <ul class="sim-log">

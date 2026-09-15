@@ -32,6 +32,9 @@
     <% if (lot.starting_bid != null) { %><p class="muted">Starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p><% } %>
     <% if (lot.source_url) { %><p><a class="btn" href="<%= lot.source_url %>">View on Wikipedia/source →</a></p><% } %>
     <p class="muted"><%= lot.house_name %> · <a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.auction_title %></a> · <span class="pill <%= lot.auction_status %>"><%= lot.auction_status %></span></p>
+    <% if (previouslyOffered) { %>
+      <p class="muted"><small>Previously offered in <a href="<%= userPath(userId, '/lots/' + previouslyOffered.id) %>"><%= previouslyOffered.auction_title %></a><% if (previouslyOffered.closes_at) { %> (<%= formatCentral(previouslyOffered.closes_at) %>)<% } %> — <%= previouslyOffered.hammer_price != null ? `sold for ${formatMoney(previouslyOffered.hammer_price, previouslyOffered.currency)}` : 'unsold' %></small></p>
+    <% } %>
   </div>
 
   <div class="bid-panel">
