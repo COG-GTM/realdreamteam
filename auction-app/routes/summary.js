@@ -10,7 +10,7 @@ router.get('/u/:userId/summary', (req, res) => {
   if (!user) return res.status(404).send('User not found');
   const sales = allSales().map((sale) => {
     const items = itemsForSale(sale.id, user.id)
-      .filter((item) => sale.status !== 'closed' && matchesPreferences(item, user.preferences))
+      .filter((item) => matchesPreferences(item, user.preferences))
       .map((item) => ({ ...item, reasons: matchReasons(item, user.preferences) }));
     const ticket = db.prepare('SELECT 1 FROM tickets WHERE user_id = ? AND sale_id = ?')
       .get(user.id, sale.id);
