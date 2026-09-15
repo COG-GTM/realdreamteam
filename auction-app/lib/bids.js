@@ -64,7 +64,7 @@ async function placeBid({ userId, lotId, amount }) {
       [lotId, userId, check.amount]
     );
 
-    if (high && high.user_id !== Number(userId)) {
+    if (high && Number(high.user_id) !== Number(userId)) {
       await client.query(
         `INSERT INTO notifications (user_id, lot_id, kind, reason)
          VALUES ($1, $2, 'outbid', $3)
