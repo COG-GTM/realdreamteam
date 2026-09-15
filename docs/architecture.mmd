@@ -1,0 +1,18 @@
+flowchart LR
+    U["Team members<br/>(any browser)"]
+    subgraph EC2["EC2 instance 3.76.162.103 &nbsp;·&nbsp; rdt-auction.marklovestech.com (DNS at IONOS)"]
+        direction LR
+        C["Caddy<br/>ports 80/443<br/>Let's Encrypt TLS"]
+        N["Node.js 20 · Express · EJS<br/>systemd: rdt-auction<br/>+ 5 s poller"]
+        C -->|"localhost:3000"| N
+    end
+    DB[("Supabase Postgres<br/>users · auctions · lots<br/>bids · favorites · notifications")]
+    W["Wikimedia Commons<br/>(lot images)"]
+    G["GitHub · main<br/>code + data/seed/*.json"]
+
+    U -->|HTTPS| C
+    N -->|"SQL (pg)"| DB
+    G -->|"git pull + restart"| N
+    G -->|"npm run db:reset"| DB
+    U -->|"image URLs"| W
+    W ~~~ G
