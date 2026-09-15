@@ -113,6 +113,7 @@ sudo systemctl status rdt-auction
 journalctl -u rdt-auction -n 50 --no-pager
 ```
 
-HTTP port 80 is redirected to the app's port 3000 by the persistent
-`rdt-auction-port80.service` systemd unit. Do not run `db:reset` on the
+Caddy (`/etc/caddy/Caddyfile`) terminates TLS for
+<https://rdt-auction.marklovestech.com> (Let's Encrypt, auto-renew) and
+proxies to `:3000`; DNS A record at IONOS. Do not run `db:reset` on the
 production host.
