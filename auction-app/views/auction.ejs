@@ -1,1 +1,15 @@
-<%- include('coming-soon') %>
+<%- include('partials/flash', { error: typeof error !== 'undefined' ? error : null }) %>
+<% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash ok"><%= flash %></div><% } %>
+<p class="eyebrow"><%= auction.house_name %><% if (auction.location) { %> · <%= auction.location %><% } %></p>
+<h1><%= auction.title %></h1>
+<p class="lede">
+  <span class="pill <%= auction.status %>"><%= auction.status %></span>
+  <%= auction.format %> · starts <%= formatUtc(auction.starts_at) %><% if (auction.closes_at) { %> · closes <%= formatUtc(auction.closes_at) %><% } %>
+</p>
+<% if (auction.source_url) { %><p><a class="btn" href="<%= auction.source_url %>">View at <%= auction.house_name %> →</a></p><% } %>
+
+<div class="lot-grid">
+  <% for (const lot of lots) { %>
+    <%- include('partials/lot-card', { lot, userId, userPath, formatMoney }) %>
+  <% } %>
+</div>

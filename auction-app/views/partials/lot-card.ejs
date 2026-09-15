@@ -1,4 +1,37 @@
+<%
+  var lotUrl = (typeof userId !== 'undefined' && userId ? '/u/' + userId : '') + '/lots/' + lot.id;
+  var money = function (amount) {
+    if (amount == null) return '';
+    if (typeof formatMoney !== 'undefined') return formatMoney(amount, lot.currency);
+    return (lot.currency ? lot.currency + ' ' : '') + Number(amount).toLocaleString('en-GB');
+  };
+%>
 <article class="lot-card">
-  <h2><%= lot.title %></h2>
-  <% if (lot.artist) { %><p><%= lot.artist %></p><% } %>
+  <% if (lot.image_url) { %>
+    <a href="<%= lotUrl %>"><img class="lot-card-image" src="<%= lot.image_url %>" alt="<%= lot.title %>"></a>
+  <% } %>
+  <div class="lot-card-body">
+    <% if (lot.status === 'closed') { %>
+      <% if (lot.hammer_price != null) { %><span class="sold-ribbon">SOLD</span><% } %>
+    <% } %>
+    <h3><a href="<%= lotUrl %>"><%= lot.title %></a><% if (lot.favorited) { %> <span class="fav">♥</span><% } %></h3>
+    <% if (lot.artist) { %><p class="muted"><%= lot.artist %></p><% } %>
+    <p class="muted"><%= lot.category %></p>
+    <% if (lot.estimate_low != null || lot.estimate_high != null) { %>
+      <p class="muted">Estimate <%= money(lot.estimate_low) %> – <%= money(lot.estimate_high) %></p>
+    <% } %>
+    <% if (lot.status === 'closed') { %>
+      <% if (lot.hammer_price != null) { %>
+        <p>Sold for <b><%= money(lot.hammer_price) %></b><% if (lot.winner_name) { %> to <%= lot.winner_name %><% } %></p>
+      <% } else { %>
+        <p class="muted">Unsold</p>
+      <% } %>
+    <% } else if (lot.high_bid != null) { %>
+      <p>High bid <b><%= money(lot.high_bid) %></b><% if (lot.high_bidder) { %> by <%= lot.high_bidder %><% } %></p>
+    <% } else if (lot.starting_bid != null) { %>
+      <p class="muted">Starting bid <%= money(lot.starting_bid) %></p>
+    <% } else { %>
+      <p class="muted">No starting bid</p>
+    <% } %>
+  </div>
 </article>

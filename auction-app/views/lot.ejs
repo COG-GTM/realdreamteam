@@ -1,1 +1,82 @@
-<%- include('coming-soon') %>
+<%- include('partials/flash', { error: typeof error !== 'undefined' ? error : null }) %>
+<% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash ok"><%= flash %></div><% } %>
+<p class="eyebrow"><a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.house_name %> · <%= lot.auction_title %></a></p>
+<h1><%= lot.title %></h1>
+
+<% if (lot.auction_status === 'closed') { %>
+  <% if (lot.hammer_price != null) { %>
+    <div class="sold-banner">SOLD — Sold to <%= lot.winner_name || 'a bidder' %> for <%= formatMoney(lot.hammer_price, lot.currency) %></div>
+  <% } else { %>
+    <div class="sold-banner">Unsold</div>
+  <% } %>
+<% } %>
+
+<% if (images.length > 0) { %>
+  <div class="gallery">
+    <% for (const image of images) { %>
+      <figure>
+        <a href="<%= lot.source_url || image.url %>"><img src="<%= image.url %>" alt="<%= lot.title %>"></a>
+        <% if (image.credit) { %><figcaption class="muted"><%= image.credit %></figcaption><% } %>
+      </figure>
+    <% } %>
+  </div>
+<% } %>
+
+<div class="lot-detail">
+  <div>
+    <% if (lot.artist) { %><p class="muted"><%= lot.artist %></p><% } %>
+    <p class="muted"><%= lot.category %></p>
+    <% if (lot.description) { %><p><%= lot.description %></p><% } %>
+    <% if (lot.estimate_low != null || lot.estimate_high != null) { %>
+      <p class="muted">Estimate <%= formatMoney(lot.estimate_low, lot.currency) %> – <%= formatMoney(lot.estimate_high, lot.currency) %></p>
+    <% } %>
+    <% if (lot.starting_bid != null) { %><p class="muted">Starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p><% } %>
+    <% if (lot.source_url) { %><p><a class="btn" href="<%= lot.source_url %>">View on Wikipedia/source →</a></p><% } %>
+    <p class="muted"><%= lot.house_name %> · <a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.auction_title %></a> · <span class="pill <%= lot.auction_status %>"><%= lot.auction_status %></span></p>
+  </div>
+
+  <div class="bid-panel">
+    <% if (highBid) { %>
+      <p>Current high bid <b><%= formatMoney(highBid.amount, lot.currency) %></b> by <%= highBid.name %></p>
+    <% } else if (lot.starting_bid != null) { %>
+      <p>No bids yet — starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p>
+    <% } else { %>
+      <p>No bids yet.</p>
+    <% } %>
+    <p class="muted"><%= bids.length %> bid<%= bids.length === 1 ? '' : 's' %></p>
+
+    <% if (lot.auction_status === 'open' && userId) { %>
+      <form class="bid-form" method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/bid') %>">
+        <input name="amount" inputmode="numeric" placeholder="Your bid">
+        <button class="btn primary" type="submit">Bid</button>
+      </form>
+      <p class="muted"><% if (highBid) { %>Bid more than <%= formatMoney(highBid.amount, lot.currency) %>.<% } else if (lot.starting_bid != null) { %>Minimum bid <%= formatMoney(lot.starting_bid, lot.currency) %>.<% } %></p>
+    <% } %>
+
+    <% if (userId) { %>
+      <form method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/favorite') %>">
+        <button class="btn" type="submit"><%= favorited ? '♥ Favorited' : '♡ Favorite' %></button>
+      </form>
+    <% } %>
+  </div>
+</div>
+
+<h2 class="section-heading">Bid history</h2>
+<% if (bids.length === 0) { %>
+  <p class="lede">No bids yet.</p>
+<% } else { %>
+  <table class="table">
+    <tr><th>Bidder</th><th>Amount</th><th>Time</th></tr>
+    <% for (const bid of bids) { %>
+      <tr><td><%= bid.name %></td><td><%= formatMoney(bid.amount, lot.currency) %></td><td><%= formatUtc(bid.placed_at) %></td></tr>
+    <% } %>
+  </table>
+<% } %>
+
+<audio id="sold-sound" src="/sold.mp3"></audio>
+<script>
+  if (document.querySelector('.sold-banner') && location.search.indexOf('justClosed=1') !== -1) {
+    var sound = document.getElementById('sold-sound');
+    if (sound) sound.play().catch(function () {});
+  }
+</script>
