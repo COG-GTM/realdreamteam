@@ -38,7 +38,7 @@ so we use plain words:
 | `lot_images` | one photo of a lot, ordered | `position` (1 = thumbnail), `url`, `credit` |
 | `favorites` | user ♥ lot | `created_at` |
 | `bids` | one bid, append-only | `lot_id`, `user_id`, `amount`, `placed_at` |
-| `notifications` | one (user, lot) match to deliver to Slack | `reason`, `created_at`, `sent_at` (NULL = pending) |
+| `notifications` | in-app feed row: one per (user, lot, kind) | `kind` (`new_lot` / `outbid` / `sold`), `reason`, `created_at`, `read_at` (NULL = unread), `sent_at` (Slack, optional) |
 
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.
@@ -55,8 +55,10 @@ shows the same explanations.
   high bidder = user of the max row.
 - **Matching** = a lot hits any of the user's `categories`, `artists`, or `keywords`
   (keywords checked against title and description). No price filtering.
-- **Notify once.** `notifications` is unique on (user, lot); the poller delivers rows with
-  `sent_at IS NULL` and stamps `sent_at` on success.
+- **Notify once per kind.** `notifications` is unique on (user, lot, kind); the feed shows rows
+  with `read_at IS NULL` as unread. Optional Slack delivery stamps `sent_at`.
+- **Silent-auction close.** Every lot stays open until its auction closes; winners announced then
+  (per-lot inactivity close is #38). `closes_at > starts_at` and `hammer_price > 0` are CHECKed.
 
 ## Files and images
 
