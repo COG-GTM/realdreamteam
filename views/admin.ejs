@@ -49,6 +49,7 @@
   </table>
 
   <h2>Add a lot</h2>
+  <p><a class="btn" href="/admin/categories<%= u ? `?u=${u}` : '' %>">Manage categories →</a></p>
   <form method="post" action="/admin/lots" class="admin-form">
     <input type="hidden" name="u" value="<%= u %>">
     <label>Auction

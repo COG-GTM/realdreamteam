@@ -1,0 +1,23 @@
+<%- include('partials/flash') %>
+<section class="admin">
+  <p class="eyebrow">SALE ROOM · ADMIN</p>
+  <h1>Lots that might belong in <%= category.name %></h1>
+  <form method="post" action="/admin/categories/<%= category.id %>/move">
+    <input type="hidden" name="u" value="<%= u %>">
+    <% const lotRows = from ? others.filter((lot) => lot.category && lot.category.toLowerCase() === from.toLowerCase()) : others; %>
+    <h2>Suggested</h2>
+    <% if (!suggested.length) { %><p class="muted">No matching lots found.</p><% } %>
+    <%- include('partials/category-lot-rows', { lots: suggested }) %>
+    <h2>Other open/upcoming lots</h2>
+    <label>Filter by current category
+      <select onchange="location.href=this.value">
+        <option value="/admin/categories/<%= category.id %>/candidates<%= u ? `?u=${u}` : '' %>">All categories</option>
+        <% for (const name of [...new Set(others.map((lot) => lot.category).filter(Boolean))]) { %>
+          <option value="/admin/categories/<%= category.id %>/candidates?from=<%= encodeURIComponent(name) %><%= u ? `&u=${u}` : '' %>" <%= from.toLowerCase() === name.toLowerCase() ? 'selected' : '' %>><%= name %></option>
+        <% } %>
+      </select>
+    </label>
+    <%- include('partials/category-lot-rows', { lots: lotRows }) %>
+    <button class="btn primary" type="submit">Move selected to <%= category.name %> →</button>
+  </form>
+</section>

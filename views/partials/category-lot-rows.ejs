@@ -1,0 +1,13 @@
+<% if (!lots.length) { %><p class="muted">None.</p><% } else { %>
+  <div class="category-lots">
+    <% for (const lot of lots) { %>
+      <label class="category-lot">
+        <input type="checkbox" name="lot_ids[]" value="<%= lot.id %>">
+        <span><b>Lot <%= lot.lot_number || '—' %>: <%= lot.title %></b>
+          <% if (lot.artist) { %><small><%= lot.artist %></small><% } %>
+          <small><%= lot.category %> · <%= lot.auction_title %></small>
+        </span>
+      </label>
+    <% } %>
+  </div>
+<% } %>

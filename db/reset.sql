@@ -6,6 +6,7 @@ TRUNCATE TABLE
   lots,
   auctions,
   preferences,
+  categories,
   users,
   auction_houses
 RESTART IDENTITY CASCADE;

@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "node --test",
-    "db:reset": "node db/reset.js"
+    "db:reset": "node db/reset.js",
+    "db:check": "node db/check.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",

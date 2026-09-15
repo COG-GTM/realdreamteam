@@ -27,13 +27,18 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { pool, withTransaction } = require('./db');
 const { seed } = require('./seed');
+const { integrityReport } = require('../lib/category-admin');
 
 async function main() {
   await withTransaction(async (client) => {
     await client.query(fs.readFileSync(path.join(__dirname, 'reset.sql'), 'utf8'));
     await seed(client);
+    const report = await integrityReport(client);
+    if (report.unmatchedLots.length || report.unmatchedPreferences.length) {
+      throw new Error(`Category integrity check failed: ${report.unmatchedLots.length} unmatched lots, ${report.unmatchedPreferences.length} unmatched preferences.`);
+    }
   });
-  const tables = ['auction_houses', 'users', 'preferences', 'auctions', 'lots', 'lot_images', 'favorites', 'bids', 'notifications'];
+  const tables = ['auction_houses', 'users', 'preferences', 'categories', 'auctions', 'lots', 'lot_images', 'favorites', 'bids', 'notifications'];
   const counts = [];
   for (const table of tables) {
     const result = await pool.query(`SELECT COUNT(*)::int AS count FROM ${table}`);

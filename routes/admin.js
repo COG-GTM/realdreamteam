@@ -1,8 +1,12 @@
 const express = require('express');
 const { query, withTransaction } = require('../db/db');
 const { renderPage } = require('./helpers');
-const { categories } = require('../lib/categories');
+const { listCategories } = require('../lib/categories');
 const { createLot } = require('../lib/new-lot');
+const {
+  addCategory, renameCategory, moveCategory, deactivateCategory, reactivateCategory,
+  deleteCategory, usageCounts, candidateLots, moveLots
+} = require('../lib/category-admin');
 const { closeAuction, validateClosesAt } = require('../lib/close');
 const { formatCentral, toCentralInput } = require('../lib/time');
 const { gateCookieOptions } = require('../lib/cookies');
@@ -61,6 +65,17 @@ function adminUrl(req, params = {}) {
   return text ? `/admin?${text}` : '/admin';
 }
 
+function categoryUrl(req, path, params = {}) {
+  const search = new URLSearchParams();
+  const userId = req.body.u || req.query.u;
+  if (userId) search.set('u', userId);
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== '') search.set(key, value);
+  }
+  const text = search.toString();
+  return `${path}${text ? `?${text}` : ''}`;
+}
+
 router.param('id', (req, res, next, id) => {
   if (!/^\d+$/.test(id)) return res.status(404).send('Not found');
   next();
@@ -80,10 +95,11 @@ router.get('/admin', async (req, res, next) => {
               (SELECT COUNT(*)::int FROM bids b WHERE b.user_id = u.id) AS bid_count
        FROM users u ORDER BY u.name`
     )).rows;
+    const categoryRows = await listCategories();
     renderPage(res, 'Admin', 'admin', {
       auctions,
       users,
-      categories,
+      categories: categoryRows.filter((category) => category.active).map((category) => category.name),
       flash: req.query.flash || '',
       error: req.query.error || '',
       sold: req.query.sold || '',
@@ -93,6 +109,130 @@ router.get('/admin', async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+});
+
+router.get('/admin/categories', async (req, res, next) => {
+  try {
+    const categoryRows = await listCategories(null, { includeInactive: true });
+    const counts = await usageCounts();
+    renderPage(res, 'Categories', 'admin-categories', {
+      categories: categoryRows.map((category) => ({ ...category, ...(counts[category.name] || { lots: 0, followers: 0 }) })),
+      flash: req.query.flash || '',
+      error: req.query.error || '',
+      newCategoryId: req.query.new_category || '',
+      u: req.query.u || ''
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/admin/categories', async (req, res, next) => {
+  try {
+    const category = await addCategory(req.body.name);
+    res.redirect(categoryUrl(req, '/admin/categories', {
+      flash: `Added "${category.name}".`,
+      new_category: category.id
+    }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, '/admin/categories', { error: error.message }));
+  }
+});
+
+router.post('/admin/categories/:id/rename', async (req, res, next) => {
+  try {
+    await renameCategory(req.params.id, req.body.name);
+    res.redirect(categoryUrl(req, '/admin/categories', { flash: 'Category renamed.' }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, '/admin/categories', { error: error.message }));
+  }
+});
+
+router.post('/admin/categories/:id/position', async (req, res, next) => {
+  try {
+    await moveCategory(req.params.id, req.body.direction);
+    res.redirect(categoryUrl(req, '/admin/categories', { flash: 'Category order saved.' }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, '/admin/categories', { error: error.message }));
+  }
+});
+
+router.get('/admin/categories/:id/deactivate', async (req, res, next) => {
+  try {
+    const rows = await listCategories(null, { includeInactive: true });
+    const category = rows.find((row) => String(row.id) === String(req.params.id));
+    if (!category) return res.status(404).send('Category not found');
+    const counts = (await usageCounts())[category.name] || { lots: 0, followers: 0 };
+    renderPage(res, 'Deactivate category', 'admin-category-deactivate', {
+      category,
+      counts,
+      alternatives: rows.filter((row) => row.active && row.id !== category.id),
+      u: req.query.u || ''
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/admin/categories/:id/deactivate', async (req, res, next) => {
+  try {
+    await deactivateCategory(req.params.id, { reassignTo: req.body.reassign_to || null });
+    res.redirect(categoryUrl(req, '/admin/categories', { flash: 'Category deactivated.' }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, `/admin/categories/${req.params.id}/deactivate`, { error: error.message }));
+  }
+});
+
+router.post('/admin/categories/:id/reactivate', async (req, res, next) => {
+  try {
+    await reactivateCategory(req.params.id);
+    res.redirect(categoryUrl(req, '/admin/categories', { flash: 'Category reactivated.' }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, '/admin/categories', { error: error.message }));
+  }
+});
+
+router.post('/admin/categories/:id/delete', async (req, res, next) => {
+  try {
+    await deleteCategory(req.params.id);
+    res.redirect(categoryUrl(req, '/admin/categories', { flash: 'Category deleted.' }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, '/admin/categories', { error: error.message }));
+  }
+});
+
+router.get('/admin/categories/:id/candidates', async (req, res, next) => {
+  try {
+    const result = await candidateLots(req.params.id);
+    renderPage(res, 'Find category lots', 'admin-category-candidates', {
+      ...result,
+      from: req.query.from || '',
+      u: req.query.u || ''
+    });
+  } catch (error) {
+    if (error.status === 400) return res.status(404).send(error.message);
+    next(error);
+  }
+});
+
+router.post('/admin/categories/:id/move', async (req, res, next) => {
+  try {
+    const result = await moveLots(req.body.lot_ids || req.body['lot_ids[]'], req.params.id);
+    const target = (await listCategories(null, { includeInactive: true }))
+      .find((category) => String(category.id) === String(req.params.id));
+    res.redirect(categoryUrl(req, '/admin/categories', {
+      flash: `Moved ${result.moved} lots to "${target ? target.name : 'category'}"; notified ${result.notified} users.`
+    }));
+  } catch (error) {
+    if (!error.status) return next(error);
+    res.redirect(categoryUrl(req, `/admin/categories/${req.params.id}/candidates`, { error: error.message }));
   }
 });
 
