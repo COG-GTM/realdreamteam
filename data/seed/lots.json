@@ -5937,43 +5937,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 34,
-    "title": "Cognition pyramid model, brushed aluminium",
+    "title": "Tetra pyramid, Cognition branded, 2026",
     "artist": "Cognition",
     "category": "Design",
-    "description": "Desk-sized model of the Cognition pyramid mark in brushed aluminium on a black acrylic base, about 15 cm tall. A small run was produced as gifts for early customers; this example is numbered on the base.",
+    "description": "Cognition-branded Tetra pyramid, 2026: a palm-sized brushed stainless-steel tetrahedron whose faces split into interlocking segments, echoing the Cognition pyramid mark. About 6 cm on a side; made in a small run for the team.",
     "currency": "USD",
-    "estimate_low": 300,
-    "estimate_high": 600,
+    "estimate_low": 200,
+    "estimate_high": 400,
     "starting_bid": 200,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-pyramid-aluminium.jpg",
-        "credit": "Cognition"
-      }
-    ],
-    "winner": null
-  },
-  {
-    "house": "Sotheby's",
-    "house_ref": "L26021",
-    "lot_number": 35,
-    "title": "Cognition pyramid model, walnut",
-    "artist": "Cognition",
-    "category": "Design",
-    "description": "Hand-turned walnut version of the Cognition pyramid, roughly 12 cm tall, with a laser-etched wordmark on one face. Made by a team member's woodworking side project; a few dozen exist.",
-    "currency": "USD",
-    "estimate_low": 250,
-    "estimate_high": 500,
-    "starting_bid": 175,
-    "hammer_price": null,
-    "source_url": "https://cognition.ai",
-    "images": [
-      {
-        "position": 1,
-        "url": "/images/lots/cognition-pyramid-walnut.jpg",
+        "url": "/images/lots/cognition-tetra-pyramid.jpg",
         "credit": "Cognition"
       }
     ],
