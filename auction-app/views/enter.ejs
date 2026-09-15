@@ -1,0 +1,11 @@
+<section class="hero intro access-card">
+  <p class="eyebrow">PRIVATE SALE ROOM · ACCESS</p>
+  <h1><%= admin ? 'Admin access' : 'Welcome inside.' %></h1>
+  <p class="lede">Enter the shared code to continue.</p>
+  <form method="post" action="<%= admin ? '/admin/enter' : '/enter' %>" class="access-form">
+    <label for="code">Access code</label>
+    <input id="code" name="code" inputmode="numeric" autocomplete="off" autofocus required>
+    <p class="hint"><%= hint %></p>
+    <button class="btn primary" type="submit">Continue →</button>
+  </form>
+</section>

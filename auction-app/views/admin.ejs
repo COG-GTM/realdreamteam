@@ -1,0 +1,102 @@
+<section class="admin">
+  <p class="eyebrow">SALE ROOM · ADMIN</p>
+  <h1>Admin</h1>
+  <p class="lede">Add lots, re-time auctions, and close or reopen them. All times are UTC.</p>
+
+  <% if (flash) { %><div class="flash ok"><%= flash %></div><% } %>
+  <% if (sold) { %><audio autoplay src="/sold.mp3"></audio><% } %>
+
+  <h2>Auctions</h2>
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Auction</th><th>Status</th><th>Starts (UTC)</th><th>Closes (UTC)</th><th>Lots</th><th>Bids</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const auction of auctions) { %>
+        <tr>
+          <td><b><%= auction.title %></b><br><small><%= auction.house %> · <%= auction.location %></small></td>
+          <td><span class="pill <%= auction.status %>"><%= auction.status %></span></td>
+          <td><%= utc(auction.starts_at) %></td>
+          <td>
+            <form method="post" action="/admin/auctions/<%= auction.id %>/closes_at" class="inline">
+              <input type="hidden" name="u" value="<%= u %>">
+              <input type="datetime-local" name="closes_at" value="<%= forInput(auction.closes_at) %>" step="60" required>
+              <button class="btn" type="submit">Save time</button>
+            </form>
+          </td>
+          <td><%= auction.lot_count %></td>
+          <td><%= auction.bid_count %></td>
+          <td>
+            <% if (auction.status === 'open') { %>
+              <form method="post" action="/admin/auctions/<%= auction.id %>/close" class="inline">
+                <input type="hidden" name="u" value="<%= u %>">
+                <button class="btn danger" type="submit">Close now</button>
+              </form>
+            <% } else if (auction.status === 'closed') { %>
+              <form method="post" action="/admin/auctions/<%= auction.id %>/reopen" class="inline">
+                <input type="hidden" name="u" value="<%= u %>">
+                <button class="btn" type="submit">Reopen</button>
+              </form>
+            <% } else { %>
+              <small class="muted">opens automatically</small>
+            <% } %>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <h2>Add a lot</h2>
+  <form method="post" action="/admin/lots" class="admin-form">
+    <input type="hidden" name="u" value="<%= u %>">
+    <label>Auction
+      <select name="auction_id" required>
+        <% for (const auction of auctions.filter((a) => a.status !== 'closed')) { %>
+          <option value="<%= auction.id %>"><%= auction.title %> (<%= auction.status %>)</option>
+        <% } %>
+      </select>
+    </label>
+    <label>Lot number <input name="lot_number" inputmode="numeric" placeholder="e.g. 7"></label>
+    <label class="wide">Title <input name="title" required placeholder="Pumpkin (Blue)"></label>
+    <label>Artist <input name="artist" placeholder="Yayoi Kusama"></label>
+    <label>Category
+      <select name="category" required>
+        <% for (const category of categories) { %>
+          <option value="<%= category %>"><%= category %></option>
+        <% } %>
+      </select>
+    </label>
+    <label class="wide">Description <textarea name="description" rows="3" placeholder="Medium, dimensions, year — one paragraph."></textarea></label>
+    <label>Currency <input name="currency" value="USD" maxlength="3"></label>
+    <label>Estimate low <input name="estimate_low" inputmode="numeric" placeholder="50000"></label>
+    <label>Estimate high <input name="estimate_high" inputmode="numeric" placeholder="70000"></label>
+    <label>Starting bid <input name="starting_bid" inputmode="numeric" placeholder="40000"></label>
+    <label class="wide">Source URL <input name="source_url" type="url" placeholder="https://en.wikipedia.org/wiki/…"></label>
+    <label>Image URL <input name="image_url" type="url" placeholder="https://…/image.jpg"></label>
+    <label>Image credit <input name="image_credit" placeholder="Wikimedia Commons, CC BY-SA 4.0"></label>
+    <div class="wide"><button class="btn primary" type="submit">Add lot →</button></div>
+  </form>
+
+  <h2>Users</h2>
+  <table class="admin-table">
+    <thead><tr><th>Name</th><th>Email</th><th>Bids</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      <% for (const person of users) { %>
+        <tr>
+          <td><b><%= person.name %></b></td>
+          <td><%= person.email || '—' %></td>
+          <td><%= person.bid_count %></td>
+          <td><span class="pill <%= person.banned ? 'closed' : 'open' %>"><%= person.banned ? 'banned' : 'active' %></span></td>
+          <td>
+            <form method="post" action="/admin/users/<%= person.id %>/ban" class="inline">
+              <input type="hidden" name="u" value="<%= u %>">
+              <button class="btn <%= person.banned ? '' : 'danger' %>" type="submit"><%= person.banned ? 'Unban' : 'Ban' %></button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</section>

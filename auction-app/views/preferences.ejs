@@ -1,0 +1,37 @@
+<%- include('partials/flash') %>
+
+<section class="summary-block">
+  <p class="eyebrow">Preferences</p>
+  <h2>What are you looking for?</h2>
+  <p class="lede">A lot matches when it hits any category, artist, or keyword you list. Keywords are checked against lot titles and descriptions.</p>
+
+  <form class="prefs-form" method="post" action="/u/<%= userId %>/preferences">
+    <fieldset>
+      <legend>Categories</legend>
+      <div class="category-grid">
+        <% for (const category of categories) { %>
+          <label class="category-option">
+            <input type="checkbox" name="categories" value="<%= category %>"
+              <%= prefs.categories.includes(category) ? 'checked' : '' %>>
+            <span><%= category %></span>
+          </label>
+        <% } %>
+      </div>
+    </fieldset>
+
+    <label class="prefs-field">
+      <span>Artists <small>(comma-separated)</small></span>
+      <input type="text" name="artists" value="<%= prefs.artists.join(', ') %>" placeholder="Yayoi Kusama, David Hockney">
+    </label>
+
+    <label class="prefs-field">
+      <span>Keywords <small>(comma-separated)</small></span>
+      <input type="text" name="keywords" value="<%= prefs.keywords.join(', ') %>" placeholder="blue, sculpture, 1970s">
+    </label>
+
+    <div class="prefs-actions">
+      <button class="btn primary" type="submit">Save preferences</button>
+      <a class="btn" href="/u/<%= userId %>/summary">Back to summary</a>
+    </div>
+  </form>
+</section>
