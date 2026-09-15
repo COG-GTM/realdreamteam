@@ -63,6 +63,9 @@ only fill in their own file and view.
 
 ## Schema (`db/schema.sql`)
 
+> A revised schema based on the whiteboard session and a survey of the major auction houses is
+> proposed in [`auction-app-schema.md`](auction-app-schema.md). If accepted it replaces this section.
+
 ```sql
 CREATE TABLE users       (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 CREATE TABLE preferences (user_id INTEGER PRIMARY KEY REFERENCES users(id),
