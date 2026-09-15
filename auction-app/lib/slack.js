@@ -3,7 +3,7 @@ function money(amount, currency = 'USD') {
     style: 'currency',
     currency,
     maximumFractionDigits: 0
-  }).format(amount);
+  }).format(Number(amount));
 }
 
 function messageFor(user, lot, auction) {

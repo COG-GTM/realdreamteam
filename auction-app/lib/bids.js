@@ -53,8 +53,8 @@ async function placeBid({ userId, lotId, amount }) {
 
     const check = validateBid({
       amount,
-      highBid: high ? high.amount : null,
-      startingBid: lot.starting_bid,
+      highBid: high ? Number(high.amount) : null,
+      startingBid: lot.starting_bid == null ? null : Number(lot.starting_bid),
       status: lot.status
     });
     if (!check.ok) return check;

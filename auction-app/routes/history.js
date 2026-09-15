@@ -27,7 +27,7 @@ router.get('/u/:userId/history', async (req, res, next) => {
       if (bid.status === 'closed') {
         state = Number(bid.winner_user_id) === Number(userId) ? 'Won' : 'Lost';
       } else {
-        state = bid.amount >= bid.high_bid ? 'Winning' : 'Outbid';
+        state = Number(bid.amount) >= Number(bid.high_bid) ? 'Winning' : 'Outbid';
       }
       return { ...bid, state };
     });

@@ -5748,5 +5748,28 @@
       }
     ],
     "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 26,
+    "title": "Portrait of Devin",
+    "artist": "Cognition",
+    "category": "Stuffed Animals",
+    "description": "A 2026 plush portrait of Devin, the AI software engineer. Priced at two trillion dollars, it is expected to set a new auction record; the artist notes the sitter kept trying to refactor the frame.",
+    "currency": "USD",
+    "estimate_low": 2000000000000,
+    "estimate_high": 2000000000000,
+    "starting_bid": 2000000000000,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/portrait-of-devin.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
   }
 ]
