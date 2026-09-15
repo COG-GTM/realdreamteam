@@ -247,3 +247,56 @@ owned by the DB session since it holds the connection. Nothing else in the schem
    on the box). EC2 host: `3.76.162.103`; SSH user, Node version and port confirmed at deploy time.
 
 No open decisions remain; the design is ready for Mark's sign-off, then step 1 of §7.
+
+## 10. Build process — sessions and infrastructure (Mark, 2026-09-15)
+
+The build is split across Devin sessions, one per concern. This section is the index of those
+sessions and of the infrastructure they share, collected from the "Links and References" session.
+
+### 10.1 Sessions
+
+| Session | Link |
+|---|---|
+| Design | https://app.devin.ai/sessions/561423377905490f860d4dce40ebaffc |
+| Permissions & access | https://app.devin.ai/sessions/6f260d9890044a15b05ba97aa63a780c |
+| Backend database work | https://app.devin.ai/sessions/3fad6d1676eb4e2696b7530c1790c2cd |
+| Data Model (`devin-58958727868644a5b50e5392ef87f177`) | https://app.devin.ai/sessions/58958727868644a5b50e5392ef87f177 |
+| RDT Synthetic Data | https://app.devin.ai/sessions/7fa64fef151f440eb9ab5d7ca1a1bf1a |
+| RDT-Quality | https://app.devin.ai/sessions/89efaff3ae2a447a81a1d3937c824900 |
+| RDT-Security | https://app.devin.ai/sessions/26ffca78071c4df0be84df380f9be03b |
+| Links and References (this index) | https://app.devin.ai/sessions/dffb7ddf86af4c018beba279c2f13c77 |
+
+### 10.2 Infrastructure
+
+**GitHub repo** — https://github.com/COG-GTM/realdreamteam
+
+- Schema: `auction-app/db/schema.sql` (9 tables, `public`, all commented); incremental changes
+  under `auction-app/db/migrations/`.
+
+**Supabase (Real Dream Team auction app)**
+
+- Project ref `zksjlykcgfykyabhxjei`; dashboard:
+  https://supabase.com/dashboard/project/zksjlykcgfykyabhxjei
+- Postgres via the Supavisor session pooler: host `aws-0-ca-central-1.pooler.supabase.com`,
+  port `5432`, database `postgres`, user `postgres.zksjlykcgfykyabhxjei`.
+- Devin secrets: `AUCTION_DATABASE_URL` (full
+  `postgresql://postgres.zksjlykcgfykyabhxjei@aws-0-ca-central-1.pooler.supabase.com:5432/postgres`
+  connection string, without the password) and `AUCTION_DATABASE_PASSWORD`.
+- From a shell: `PGPASSWORD="$AUCTION_DATABASE_PASSWORD" psql "$AUCTION_DATABASE_URL"`
+- Images live in Supabase Storage buckets `logos`, `avatars`, and `lots`.
+
+**EC2 instance — `rdt-auction`**
+
+- Public IP `3.76.162.103` (Elastic IP); DNS `rdt-auction.marklovestech.com` (IONOS A record,
+  TTL 3600).
+- Region eu-central-1 (Frankfurt, inferred from the IP range). ARM64, 2 vCPU / ~1.8 GiB RAM —
+  consistent with a t4g.small; exact type not confirmed from the AWS console.
+- Ubuntu Server (reports 26.04 LTS), Node v20.20.2, Caddy v2.11.4 on ports 80/443 with a
+  Let's Encrypt cert, reverse-proxying to `localhost:3000`. Security group opens 22/80/443.
+- Login: user `ubuntu`, key-based only (no password). The private key is the `.pem` from the
+  `rdt-auction` key pair, stored in Devin secrets as `RDT_EC2_SSH_KEY`. From a laptop:
+  `ssh -i ~/Downloads/rdt-auction.pem ubuntu@3.76.162.103`
+- State at time of writing: repo checked out at `/home/ubuntu/realdreamteam`; systemd unit
+  `auction-app` stopped and disabled (the old prototype); `.env` on the box holds the DB URL,
+  DB password, and a session secret. Caddy is still running, so the domain returns a 502 until
+  a new app listens on 3000.
