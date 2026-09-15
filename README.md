@@ -261,6 +261,8 @@ repeatedly.
 - `SIM_MIN_SECONDS` / `SIM_MAX_SECONDS`: jittered delay between simulated actions, defaults `5` / `30`.
 - `SIM_IDLE_SECONDS`: how long without a pane heartbeat counts as "nobody online", default `90`.
 - `SIM_IDLE_CHECK_SECONDS`: how often the simulator re-checks presence while asleep, default `30`.
+- `SIM_MIN_OPEN_AUCTIONS`: keep at least this many auctions open by pulling the next upcoming sale forward, default `3`.
+- `SIM_MIN_UPCOMING_AUCTIONS`: keep at least this many upcoming auctions by cloning a closed one forward, default `1`.
 - `PORT`: HTTP port, default `3000`.
 - `COOKIE_SECRET`: secret used to sign access cookies, default `change-me`.
 

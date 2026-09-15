@@ -21,6 +21,8 @@ async function listAuctions(req, res, next) {
     for (const auction of result.rows) {
       (groups[auction.status] || groups.upcoming).push(auction);
     }
+    // History grows forever once the simulator recycles: show the last 12 closed.
+    groups.closed = groups.closed.slice(-12);
     renderPage(res, 'Auctions', 'auctions', {
       userId: userIdFrom(req),
       groups,
@@ -66,9 +68,13 @@ async function showAuction(req, res, next) {
        ORDER BY l.lot_number, l.id`,
       [req.params.id, userId || null]
     );
+    const season = auction.cloned_from_auction_id
+      ? Number((/-S(\d+)$/i.exec(auction.house_ref || '') || [null, 2])[1])
+      : null;
     renderPage(res, auction.title, 'auction', {
       userId,
       auction,
+      season,
       lots: lotsResult.rows,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,

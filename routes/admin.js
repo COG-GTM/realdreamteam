@@ -11,6 +11,8 @@ const { closeAuction, validateClosesAt } = require('../lib/close');
 const { logActivity } = require('../lib/activity');
 const sim = require('../lib/sim');
 const presence = require('../lib/sim/presence');
+const { cloneForward } = require('../lib/sim/recycle');
+const { makeRng } = require('../lib/sim/rng');
 const { formatCentral, toCentralInput } = require('../lib/time');
 const { gateCookieOptions } = require('../lib/cookies');
 const { gateLimiter } = require('../lib/rate-limit');
@@ -309,6 +311,17 @@ router.post('/admin/sim/run', async (req, res, next) => {
       ? `Sim action ${result.action}: ${result.skipped}`
       : `Sim action ${result.action}: ${result.userName || 'system'}${result.lotId ? ` on lot ${result.lotId}` : ''}${result.amount ? ` for ${result.amount}` : ''}`;
     res.redirect(adminUrl(req, { flash: message }));
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/admin/sim/clone', async (req, res, next) => {
+  try {
+    const result = await cloneForward(makeRng(Date.now() & 0x7fffffff));
+    res.redirect(adminUrl(req, result.skipped
+      ? { error: `Clone skipped: ${result.skipped}` }
+      : { flash: `Cloned auction ${result.sourceId} forward (${result.lotCount} lots).` }));
   } catch (error) {
     next(error);
   }

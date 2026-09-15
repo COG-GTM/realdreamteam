@@ -36,7 +36,16 @@ async function showLot(req, res, next) {
       });
     }
 
-    const [imagesResult, bidsResult, favoriteResult] = await Promise.all([
+    const previouslyResult = lot.reoffered_from_lot_id
+      ? query(
+          `SELECT p.id, p.hammer_price, p.currency, pa.id AS auction_id, pa.title AS auction_title, pa.closes_at
+           FROM lots p JOIN auctions pa ON pa.id = p.auction_id
+           WHERE p.id = $1`,
+          [lot.reoffered_from_lot_id]
+        )
+      : Promise.resolve({ rows: [] });
+
+    const [imagesResult, bidsResult, favoriteResult, previously] = await Promise.all([
       query('SELECT url, credit FROM lot_images WHERE lot_id = $1 ORDER BY position', [lot.id]),
       query(
         `SELECT b.id AS bid_id, b.user_id, b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
@@ -46,7 +55,8 @@ async function showLot(req, res, next) {
       ),
       userId
         ? query('SELECT 1 FROM favorites WHERE user_id = $1 AND lot_id = $2', [userId, lot.id])
-        : Promise.resolve({ rows: [] })
+        : Promise.resolve({ rows: [] }),
+      previouslyResult
     ]);
 
     const bids = bidsResult.rows;
@@ -69,6 +79,7 @@ async function showLot(req, res, next) {
       INCREMENTS,
       isHighBidder: Boolean(highBid && userId && Number(highBid.user_id) === Number(userId)),
       favorited: favoriteResult.rows.length > 0,
+      previouslyOffered: previously.rows[0] || null,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,
       formatCentral,
