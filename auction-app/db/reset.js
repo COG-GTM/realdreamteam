@@ -10,16 +10,23 @@ if (!process.argv.includes('--yes')) {
     try {
       await withTransaction(async (client) => {
         for (const table of [
+          'lot_images',
+          'lots',
+          'auctions',
           'notifications',
           'bids',
-          'tickets',
+          'favorites',
           'likes',
+          'tickets',
+          'item_images',
           'preferences',
           'items',
+          'sales',
           'events',
+          'auction_houses',
           'users'
         ]) {
-          await client.query(`DROP TABLE IF EXISTS ${table}`);
+          await client.query(`DROP TABLE IF EXISTS ${table} CASCADE`);
         }
       });
       await init();

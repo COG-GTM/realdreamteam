@@ -67,8 +67,16 @@ async function seedIfEmpty(client) {
     if (rows.length > 0) return false;
 
     const users = readSeed('users.json');
-    const events = readSeed('events.json');
+    const auctionHouses = readSeed('auction_houses.json');
+    const sales = readSeed('sales.json');
     const items = readSeed('items.json');
+
+    for (const auctionHouse of auctionHouses) {
+      await connection.query(
+        'INSERT INTO auction_houses (id, name, website) VALUES ($1, $2, $3)',
+        [auctionHouse.id, auctionHouse.name, auctionHouse.website]
+      );
+    }
 
     for (const user of users) {
       const prefs = user.preferences || {};
@@ -90,10 +98,23 @@ async function seedIfEmpty(client) {
         ]
       );
     }
-    for (const event of events) {
+    for (const sale of sales) {
       await connection.query(
-        'INSERT INTO events (id, title, location, starts_at) VALUES ($1, $2, $3, $4)',
-        [event.id, event.title, event.location, event.startsAt ?? event.starts_at]
+        `INSERT INTO sales
+          (id, auction_house_id, sale_number, title, location, sale_type, status, starts_at, closes_at, source_url)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        [
+          sale.id,
+          sale.auctionHouseId ?? sale.auction_house_id,
+          sale.saleNumber ?? sale.sale_number,
+          sale.title,
+          sale.location,
+          sale.saleType ?? sale.sale_type,
+          sale.status,
+          sale.startsAt ?? sale.starts_at,
+          sale.closesAt ?? sale.closes_at,
+          sale.sourceUrl ?? sale.source_url
+        ]
       );
     }
     for (const item of items) await insertItemIfNew(item, connection);
@@ -105,23 +126,42 @@ async function seedIfEmpty(client) {
 
 async function insertItemIfNew(item, client) {
   const connection = client || pool;
+  const existing = await connection.query('SELECT 1 FROM items WHERE id = $1', [item.id]);
+  if (existing.rows.length > 0) return false;
+
   const result = await connection.query(
     `INSERT INTO items
-      (id, event_id, title, artist, category, estimate_low, estimate_high, image_url)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      (id, sale_id, lot_number, title, artist, category, description, currency,
+       estimate_low, estimate_high, starting_bid, source_url)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
      ON CONFLICT (id) DO NOTHING`,
     [
       item.id,
-      item.eventId ?? item.event_id,
+      item.saleId ?? item.sale_id,
+      item.lotNumber ?? item.lot_number,
       item.title,
       item.artist,
       item.category,
+      item.description,
+      item.currency ?? 'USD',
       item.estimateLow ?? item.estimate_low,
       item.estimateHigh ?? item.estimate_high,
-      item.imageUrl ?? item.image_url
+      item.startingBid ?? item.starting_bid ?? item.estimateLow ?? item.estimate_low,
+      item.sourceUrl ?? item.source_url
     ]
   );
-  return result.rowCount === 1;
+  if (result.rowCount !== 1) return false;
+
+  for (const [index, image] of (item.images || []).entries()) {
+    await connection.query(
+      `INSERT INTO item_images (item_id, position, url, credit)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (item_id, position) DO NOTHING`,
+      [item.id, index + 1, image.url, image.credit]
+    );
+  }
+
+  return true;
 }
 
 async function init() {

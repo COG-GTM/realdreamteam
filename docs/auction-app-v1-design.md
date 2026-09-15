@@ -37,18 +37,20 @@ auction-app/
     db.js               # connect to Supabase Postgres, run schema, seed if empty
   data/
     seed/users.json
-    seed/events.json
-    seed/items.json     # edit this to "publish" new lots
+    seed/auction_houses.json
+    seed/sales.json
+    seed/items.json     # edit this to "publish" new lots; each lot has an images array
   lib/
     matching.js         # matchesPreferences(item, prefs) -> boolean
-    slack.js            # notifyNewItem(user, item, event)
+    slack.js            # notifyNewItem(user, item, sale)
     poller.js           # every 30s: read items.json, insert new, notify matches
   routes/
     index.js            # mounts every router below; GET / pick user
     preferences.js      # GET/POST /u/:userId/preferences
     summary.js          # GET /u/:userId/summary
-    events.js           # GET /events, GET /events/:id, POST .../tickets
-    items.js            # GET /items/:id, POST .../like, POST .../bid
+    history.js          # GET /u/:userId/history
+    sales.js           # GET /sales, GET /sales/:id, POST .../tickets
+    items.js            # GET /items/:id, POST .../favorite, POST .../bid
     admin.js            # GET/POST /admin/items
   views/                # one .ejs per route above + layout.ejs
   public/styles.css
@@ -63,60 +65,7 @@ only fill in their own file and view.
 
 ## Schema (`db/schema.sql`)
 
-```sql
-CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS preferences (
-  user_id INTEGER PRIMARY KEY REFERENCES users(id),
-  categories JSONB,
-  artists JSONB,
-  keywords JSONB,
-  min_price INTEGER,
-  max_price INTEGER
-);
-CREATE TABLE IF NOT EXISTS events (
-  id TEXT PRIMARY KEY,
-  title TEXT,
-  location TEXT,
-  starts_at TEXT
-);
-CREATE TABLE IF NOT EXISTS items (
-  id TEXT PRIMARY KEY,
-  event_id TEXT REFERENCES events(id),
-  title TEXT,
-  artist TEXT,
-  category TEXT,
-  estimate_low INTEGER,
-  estimate_high INTEGER,
-  image_url TEXT,
-  created_at TIMESTAMPTZ DEFAULT now()
-);
-CREATE TABLE IF NOT EXISTS likes (
-  user_id INTEGER REFERENCES users(id),
-  item_id TEXT REFERENCES items(id),
-  PRIMARY KEY (user_id, item_id)
-);
-CREATE TABLE IF NOT EXISTS tickets (
-  user_id INTEGER REFERENCES users(id),
-  event_id TEXT REFERENCES events(id),
-  PRIMARY KEY (user_id, event_id)
-);
-CREATE TABLE IF NOT EXISTS bids (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
-  item_id TEXT REFERENCES items(id),
-  amount INTEGER,
-  placed_at TIMESTAMPTZ DEFAULT now()
-);
-CREATE TABLE IF NOT EXISTS notifications (
-  user_id INTEGER REFERENCES users(id),
-  item_id TEXT REFERENCES items(id),
-  sent_at TIMESTAMPTZ,
-  PRIMARY KEY (user_id, item_id)
-);
-```
+Schema lives in [`auction-app-schema.md`](auction-app-schema.md).
 
 Rule: a bid is accepted only if `amount > MAX(amount)` for that item (or `> estimate_low` if none).
 
@@ -127,15 +76,20 @@ The mock data is already written — milestone 1 just loads it:
 | File | Contents |
 |---|---|
 | `users.json` | 6 team members, each with pre-filled `preferences` so the summary page is non-empty on first run |
-| `events.json` | 3 upcoming events: London (art), Geneva (watches & cars), New York (wine, books, design) |
-| `items.json` | 18 lots across those events; `imageUrl` points at placehold.co so no image files are needed |
+| `auction_houses.json` | 4 auction houses with IDs, names, and website roots |
+| `sales.json` | 3 upcoming sales: London (art), Geneva (watches & cars), New York (wine, books, design) |
+| `items.json` | 18 lots across those sales; each has an `images` array with Wikimedia Commons credits |
 
 Item shape:
 
 ```json
-{ "id": "lot-101", "eventId": "ev-2026-10-london",
+{ "id": "lot-101", "saleId": "ev-2026-10-london", "lotNumber": 1,
   "title": "Untitled (Blue)", "artist": "Yayoi Kusama", "category": "Contemporary Art",
-  "estimateLow": 40000, "estimateHigh": 60000, "imageUrl": "https://placehold.co/600x400?text=Lot+101" }
+  "description": "Acrylic on canvas, 2019, 130 × 162 cm", "currency": "GBP",
+  "estimateLow": 40000, "estimateHigh": 60000, "startingBid": 40000,
+  "sourceUrl": null,
+  "images": [{ "url": "https://upload.wikimedia.org/...",
+               "credit": "CC BY-SA 4.0, Wikimedia Commons" }] }
 ```
 
 Categories used (drive the preferences checkboxes): Contemporary Art, Photography, Watches,
@@ -148,9 +102,10 @@ Adding an object to `items.json` (or using `/admin`) is how the team triggers a 
 1. Open `http://localhost:3000`, pick **Mark Porter**.
 2. Summary shows Kusama / Banksy lots from the London sale already matched.
 3. Open `/admin/items`, add a lot: title "Pumpkin (Blue)", artist "Yayoi Kusama", category
-   "Contemporary Art", 50,000–70,000, event London.
+   "Contemporary Art", 50,000–70,000, sale London.
 4. Slack channel (or the console, if no webhook) shows "New lot for Mark Porter …".
-5. Back on the summary, Like it, then Bid 55,000. Book a ticket for the London sale.
+5. Back on the summary, Favorite it, then Bid 55,000. Book a ticket for the London sale.
+6. Open `/u/1/history`: the favorite, the $55,000 bid and the ticket are listed.
 
 Everything else is nice-to-have for the demo.
 
@@ -160,10 +115,11 @@ Everything else is nice-to-have for the demo.
 |---|---|
 | `/` | "Who are you?" dropdown → redirects to `/u/:id/summary` |
 | `/u/:id/preferences` | Form: categories (checkboxes), artists (text, comma-separated), keywords, price range |
-| `/u/:id/summary` | "Upcoming lots for you": matching items grouped by event, with Like / Bid / Book ticket buttons |
-| `/events` , `/events/:id` | All upcoming events and their lots |
+| `/u/:id/summary` | "Upcoming lots for you": matching items grouped by sale, with Favorite / Bid / Book ticket buttons |
+| `/u/:id/history` | "Your activity": three lists — lots you favorited, bids you placed (amount, time, whether you're still the high bidder), tickets you booked — newest first. Read-only; data comes from `favorites`, `bids`, `tickets` |
+| `/sales` , `/sales/:id` | All upcoming sales and their lots |
 | `/items/:id` | Lot detail, current high bid, bid form |
-| `/admin/items` | Form to add a lot to an event (the demo trigger) |
+| `/admin/items` | Form to add a lot to a sale (the demo trigger) |
 
 ## Poller and notifications
 
@@ -209,7 +165,7 @@ Reset the seeded data with `npm run db:reset -- --yes`.
 1. `package.json`, `server.js`, `db/`, seed files, `/` page, stub files for every router and
    `lib/` module, all mounted in `routes/index.js` — one PR, lands first.
 2. Preferences page + `lib/matching.js` + summary page.
-3. Events/items pages with Like / Bid / Book ticket.
+3. Sales/items pages with Favorite / Bid / Book ticket, plus the history page.
 4. `lib/poller.js` + `lib/slack.js` + `/admin/items`.
 5. README (run-locally instructions). No deploy step for the demo; a hosted target is tracked in #10.
 
@@ -219,3 +175,9 @@ Each step is one PR on its own branch. Steps 2–4 can be built in parallel once
 
 Real login, per-user Slack DMs, scraping a real auction site, a separate mock service, a
 frontend framework, Postgres, background job queues, tests beyond `lib/matching.js`.
+
+## Mockup
+
+Static mockup of `/u/:id/summary` after the golden path: [`docs/mockup-summary.html`](mockup-summary.html) (open it in a browser). Builders should copy its layout and CSS into `views/summary.ejs` and `public/styles.css`.
+
+![Summary page mockup](mockup-summary.png)

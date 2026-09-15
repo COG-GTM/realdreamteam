@@ -33,11 +33,11 @@ async function processNewItem(item) {
 async function flushNotifications() {
   const { rows: pending } = await query(`
     SELECT n.user_id, n.item_id, u.name, i.title, i.artist, i.category,
-           i.estimate_low, i.estimate_high, e.location, e.starts_at
+           i.estimate_low, i.estimate_high, s.location, s.starts_at
     FROM notifications n
     JOIN users u ON u.id = n.user_id
     JOIN items i ON i.id = n.item_id
-    JOIN events e ON e.id = i.event_id
+    JOIN sales s ON s.id = i.sale_id
     WHERE n.sent_at IS NULL
   `);
   for (const row of pending) {

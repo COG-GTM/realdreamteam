@@ -18,6 +18,9 @@ are logged to the server console. Reset the seeded data with:
 npm run db:reset -- --yes
 ```
 
+Seed fixtures are split across `data/seed/auction_houses.json`,
+`data/seed/sales.json`, and `data/seed/items.json`.
+
 ### Access gate
 
 The app uses the default codes `20240312`, `03122024`, and `12032024` for its
