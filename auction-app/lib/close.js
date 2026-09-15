@@ -11,9 +11,9 @@ function pickWinner(bids) {
   for (const bid of bids) {
     if (!winner) {
       winner = bid;
-    } else if (bid.amount > winner.amount) {
+    } else if (Number(bid.amount) > Number(winner.amount)) {
       winner = bid;
-    } else if (bid.amount === winner.amount && new Date(bid.placed_at) < new Date(winner.placed_at)) {
+    } else if (Number(bid.amount) === Number(winner.amount) && new Date(bid.placed_at) < new Date(winner.placed_at)) {
       winner = bid;
     }
   }
@@ -72,7 +72,7 @@ async function closeAuction(auctionId) {
       );
       const bidderIds = [...new Set(bids.map((bid) => bid.user_id))];
       for (const userId of bidderIds) {
-        const reason = soldReason(winner.name, winner.amount, lot.currency, userId === winner.user_id);
+        const reason = soldReason(winner.name, Number(winner.amount), lot.currency, userId === winner.user_id);
         await client.query(
           `INSERT INTO notifications (user_id, lot_id, kind, reason)
            VALUES ($1, $2, 'sold', $3)

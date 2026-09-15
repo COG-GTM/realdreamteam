@@ -80,6 +80,10 @@ Set `AUCTION_DATABASE_PASSWORD` in `.env` when the local PostgreSQL role
 requires a password. Do not point local verification at the shared Supabase
 database.
 
+Before running `db:reset` against Supabase, apply every migration in
+`db/migrations/`; migration `002-bigint-money.sql` is required for the
+trillion-dollar lot.
+
 ### Safety
 
 Some environments pre-inject the shared Supabase connection variables. The
