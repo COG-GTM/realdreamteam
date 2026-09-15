@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Pool } = require('pg');
-const { isCategory } = require('../lib/categories');
+const { categories } = require('../lib/categories');
 
 const databaseUrl = process.env.AUCTION_DATABASE_URL;
 const database = databaseUrl ? new URL(databaseUrl) : null;
@@ -72,6 +72,15 @@ async function seedAll(client) {
   const data = seedFiles();
   const userIds = new Map();
   const lotIds = new Map();
+  for (const [index, name] of categories.entries()) {
+    await client.query(
+      `INSERT INTO categories (name, position)
+       VALUES ($1, $2)
+       ON CONFLICT ((lower(name))) DO NOTHING`,
+      [name, index + 1]
+    );
+  }
+  const categoryNames = (await client.query('SELECT name FROM categories')).rows.map((row) => row.name);
 
   for (const house of data.houses) {
     await client.query(
@@ -145,7 +154,7 @@ async function seedAll(client) {
   }
 
   for (const lot of data.lots) {
-    if (!isCategory(lot.category)) {
+    if (!categoryNames.some((name) => name.toLowerCase() === String(lot.category).toLowerCase())) {
       throw new Error(`Unknown lot category "${lot.category}" for ${lot.title}`);
     }
     const auction = await findOne(

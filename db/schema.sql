@@ -1,6 +1,6 @@
 -- Real Dream Team — Auction Interest App
 -- V1 data model, Postgres (Supabase). Agreed table-by-table with Mark, 2026-09-15.
--- 9 tables. Applied to the Supabase project on 2026-09-15. Explained in docs/auction-app-schema.md.
+-- 10 tables. Applied to the Supabase project on 2026-09-15. Explained in docs/schema.md.
 
 -- ---------------------------------------------------------------- enums
 CREATE TYPE auction_format AS ENUM ('live', 'timed');
@@ -188,6 +188,24 @@ COMMENT ON COLUMN notifications.reason     IS 'Human-readable text, e.g. "artist
 COMMENT ON COLUMN notifications.created_at IS 'When the event happened.';
 COMMENT ON COLUMN notifications.read_at    IS 'When the user saw it in the feed. NULL = unread (counts toward the badge).';
 COMMENT ON COLUMN notifications.sent_at    IS 'When delivered to Slack, if configured. NULL = not sent.';
+
+-- ---------------------------------------------------------------- 10. categories
+CREATE TABLE categories (
+  id         BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name       TEXT NOT NULL,
+  position   INTEGER NOT NULL,
+  active     BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE UNIQUE INDEX categories_name_lower_idx ON categories (lower(name));
+
+COMMENT ON TABLE categories IS 'Admin-managed lot categories. Names remain denormalized in lots and preferences.';
+COMMENT ON COLUMN categories.id IS 'Surrogate integer key.';
+COMMENT ON COLUMN categories.name IS 'Display spelling used in lot and preference text values. Case-insensitively unique.';
+COMMENT ON COLUMN categories.position IS 'Display order, starting at 1.';
+COMMENT ON COLUMN categories.active IS 'Whether this category can be selected for new preferences and lots.';
+COMMENT ON COLUMN categories.created_at IS 'When the category was created.';
 
 -- ---------------------------------------------------------------- dropped from v2
 -- tickets            : everyone may bid in any open auction; no reservation needed.

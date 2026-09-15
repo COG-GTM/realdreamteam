@@ -1,0 +1,19 @@
+<%- include('partials/flash') %>
+<section class="admin">
+  <p class="eyebrow">SALE ROOM · ADMIN</p>
+  <h1>Deactivate category</h1>
+  <p class="lede">What should happen to existing uses of <b><%= category.name %></b>?</p>
+  <p><%= counts.lots %> lot<%= counts.lots === 1 ? '' : 's' %> and <%= counts.followers %> follower<%= counts.followers === 1 ? '' : 's' %>.</p>
+  <form method="post" action="/admin/categories/<%= category.id %>/deactivate" class="admin-form">
+    <input type="hidden" name="u" value="<%= u %>">
+    <% if (counts.lots || counts.followers) { %>
+      <label class="wide">Move them to
+        <select name="reassign_to" required>
+          <option value="">Choose a category…</option>
+          <% for (const alternative of alternatives) { %><option value="<%= alternative.id %>"><%= alternative.name %></option><% } %>
+        </select>
+      </label>
+    <% } %>
+    <div><button class="btn danger" type="submit">Deactivate</button> <a class="btn" href="/admin/categories<%= u ? `?u=${u}` : '' %>">Cancel</a></div>
+  </form>
+</section>

@@ -33,6 +33,7 @@ so we use plain words:
 | `auction_houses` | Sotheby's, Christie's, Phillips, Bonhams | `name`, `location`, `website`, `logo_url` |
 | `users` | a demo account (no login) | `name`, `email`, `avatar_url`, `banned` |
 | `preferences` | one user's interests (1:1 with users) | `categories[]`, `artists[]`, `keywords[]` — empty array = any |
+| `categories` | an admin-managed lot category | `name`, `position`, `active`, `created_at` |
 | `auctions` | an auction run by one house | `house_ref`, `title`, `location`, `format` (live/timed), `status` (upcoming/open/closed), `starts_at`, `closes_at`, `source_url` |
 | `lots` | an item in an auction | `lot_number`, `title`, `artist`, `category`, `description`, `currency`, `estimate_low/high`, `starting_bid`, `hammer_price`, `winner_user_id`, `source_url` |
 | `lot_images` | one photo of a lot, ordered | `position` (1 = thumbnail), `url`, `credit` |
@@ -42,6 +43,10 @@ so we use plain words:
 
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.
+
+Categories are the source of truth for the selectable list, while lots and preferences
+continue to store category names as text. Inactive categories remain available to users
+who already follow them, marked as retired, until they choose otherwise.
 
 ## Rules the app enforces (in code, not the DB)
 

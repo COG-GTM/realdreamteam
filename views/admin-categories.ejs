@@ -1,0 +1,59 @@
+<%- include('partials/flash') %>
+<section class="admin">
+  <p class="eyebrow">SALE ROOM · ADMIN</p>
+  <h1>Categories</h1>
+  <p class="lede">Manage the names used to organize lots and match preferences.</p>
+
+  <form method="post" action="/admin/categories" class="admin-form category-add-form">
+    <input type="hidden" name="u" value="<%= u %>">
+    <label class="wide">Add category <input name="name" required placeholder="New category"></label>
+    <div><button class="btn primary" type="submit">Add category →</button></div>
+  </form>
+
+  <table class="admin-table">
+    <thead><tr><th>Name</th><th>Position</th><th>Lots</th><th>Following</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+      <% for (const category of categories) { %>
+        <tr>
+          <td>
+            <form method="post" action="/admin/categories/<%= category.id %>/rename" class="inline category-rename">
+              <input type="hidden" name="u" value="<%= u %>">
+              <input name="name" value="<%= category.name %>" required>
+              <button class="btn" type="submit">Save</button>
+            </form>
+          </td>
+          <td>
+            <form method="post" action="/admin/categories/<%= category.id %>/position" class="inline">
+              <input type="hidden" name="u" value="<%= u %>">
+              <button class="btn linklike" name="direction" value="up" type="submit" title="Move up">▲</button>
+              <button class="btn linklike" name="direction" value="down" type="submit" title="Move down">▼</button>
+            </form>
+          </td>
+          <td><%= category.lots %></td>
+          <td><%= category.followers %></td>
+          <td><span class="pill <%= category.active ? 'open' : 'closed' %>"><%= category.active ? 'active' : 'inactive' %></span></td>
+          <td>
+            <a class="btn" href="/admin/categories/<%= category.id %>/candidates<%= u ? `?u=${u}` : '' %>">Find lots</a>
+            <% if (category.active) { %>
+              <a class="btn" href="/admin/categories/<%= category.id %>/deactivate<%= u ? `?u=${u}` : '' %>">Deactivate</a>
+            <% } else { %>
+              <form method="post" action="/admin/categories/<%= category.id %>/reactivate" class="inline">
+                <input type="hidden" name="u" value="<%= u %>">
+                <button class="btn" type="submit">Reactivate</button>
+              </form>
+            <% } %>
+            <% if (!category.lots && !category.followers) { %>
+              <form method="post" action="/admin/categories/<%= category.id %>/delete" class="inline">
+                <input type="hidden" name="u" value="<%= u %>">
+                <button class="btn danger" type="submit">Delete</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <% if (newCategoryId) { %>
+    <p class="flash success">Find lots for the new category: <a href="/admin/categories/<%= newCategoryId %>/candidates<%= u ? `?u=${u}` : '' %>">open candidates →</a></p>
+  <% } %>
+</section>

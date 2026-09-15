@@ -28,6 +28,10 @@ one template.
 - **/admin** (second code) lets you add lots, change close times, close/reopen
   auctions and ban/unban users.
 
+Admins can manage categories at `/admin/categories`, including renaming, ordering,
+retiring, and finding likely lots to move. Run `npm run db:check` after applying
+migration 003 to report any lot or preference names that do not match a category.
+
 ## Architecture
 
 Three moving parts, all always on:
@@ -118,10 +122,10 @@ lib/bids.js          bid validation + placing a bid (transaction, row lock, outb
 lib/close.js         close / reopen an auction, pick winners, sold notifications
 lib/new-lot.js       admin add-lot validation + new_lot notifications
 lib/poller.js        the 5 s status poller
-lib/categories.js    the fixed category list (edit here to add one)
+lib/categories.js    the default category seed/fallback list
 lib/notifications.js feed queries, unread count, mark-all-read
 public/styles.css    all styling; public/sold.mp3 the sale sound
-db/schema.sql        the 9 tables; db/db.js the pool, transactions and seed loader
+db/schema.sql        the 10 tables; db/db.js the pool, transactions and seed loader
 data/seed/*.json     the demo data (see "Seed contract")
 ```
 
@@ -154,8 +158,8 @@ requires a password. Do not point local verification at the shared Supabase
 database.
 
 Before running `db:reset` against Supabase, apply every migration in
-`db/migrations/`; migration `002-bigint-money.sql` is required for the
-trillion-dollar lot.
+`db/migrations/`; migrations `001-schema-review.sql`, `002-bigint-money.sql`,
+and `003-categories.sql` are required.
 
 ### Safety
 
@@ -177,7 +181,7 @@ ALLOW_REMOTE_RESET=1 npm run db:reset
 
 ## Reset
 
-`npm run db:reset` truncates the nine application tables, resets identity
+`npm run db:reset` truncates the ten application tables, resets identity
 sequences, and loads the seed contract in one transaction. It is safe to run
 repeatedly.
 

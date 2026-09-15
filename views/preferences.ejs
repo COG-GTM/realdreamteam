@@ -10,10 +10,9 @@
       <legend>Categories</legend>
       <div class="category-grid">
         <% for (const category of categories) { %>
-          <label class="category-option">
-            <input type="checkbox" name="categories" value="<%= category %>"
-              <%= prefs.categories.includes(category) ? 'checked' : '' %>>
-            <span><%= category %></span>
+          <label class="category-option<%= category.retired ? ' muted' : '' %>">
+            <input type="checkbox" name="categories" value="<%= category.name %>" <%= category.selected ? 'checked' : '' %>>
+            <span><%= category.name %><%= category.retired ? ' (retired)' : '' %><% if (category.isNew) { %> <span class="badge">New</span><% } %></span>
           </label>
         <% } %>
       </div>
