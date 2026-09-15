@@ -1,20 +1,170 @@
 [
-  { "id": 1, "name": "Mark Porter",
-    "preferences": { "categories": ["Contemporary Art"], "artists": ["Yayoi Kusama", "Banksy"],
-                     "keywords": ["blue"], "minPrice": 10000, "maxPrice": 250000 } },
-  { "id": 2, "name": "Christian Wencel",
-    "preferences": { "categories": ["Watches", "Cars"], "artists": [],
-                     "keywords": ["Porsche", "chronograph"], "minPrice": 20000, "maxPrice": 500000 } },
-  { "id": 3, "name": "Alex Chen",
-    "preferences": { "categories": ["Wine & Spirits"], "artists": [],
-                     "keywords": ["Bordeaux", "Macallan"], "minPrice": 1000, "maxPrice": 50000 } },
-  { "id": 4, "name": "Priya Patel",
-    "preferences": { "categories": ["Jewellery", "Contemporary Art"], "artists": ["David Hockney"],
-                     "keywords": ["diamond"], "minPrice": 5000, "maxPrice": 150000 } },
-  { "id": 5, "name": "Sam Okafor",
-    "preferences": { "categories": ["Photography", "Design"], "artists": ["Ansel Adams"],
-                     "keywords": ["Eames"], "minPrice": 500, "maxPrice": 30000 } },
-  { "id": 6, "name": "Jordan Lee",
-    "preferences": { "categories": ["Books & Manuscripts"], "artists": [],
-                     "keywords": ["first edition", "signed"], "minPrice": 1000, "maxPrice": 100000 } }
+  {
+    "name": "Abi",
+    "email": "abi.nourai@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Abigail",
+    "email": "abigail.rowland@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Albert",
+    "email": "albert.chen@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Charlie",
+    "email": "charlie.osborne@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Christian",
+    "email": "christian.wencel@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Daisuke",
+    "email": "daisuke.ohno@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Davis",
+    "email": "davis.berryhill@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "De'Anna",
+    "email": "deanna.green@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Grace",
+    "email": "grace.juan@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Graham",
+    "email": "graham.paul@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Hitomi",
+    "email": "hitomi.sawamura@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Joey",
+    "email": "joey.heaney@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Jonny",
+    "email": "jonathan.thabot@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Kenji",
+    "email": "kenji.itoh@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Lisa",
+    "email": "lisa.bechtold-scott@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "MarkK",
+    "email": "mark.kosoy@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "MarkP",
+    "email": "mark@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Mateo",
+    "email": "mateo.weiner@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Matthew",
+    "email": "matthew.guerra@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Mike",
+    "email": "mike.hoffacker@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Nouf",
+    "email": "nouf.alsoghyar@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Phil",
+    "email": "phil.morrison@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Reilly",
+    "email": "reilly.opelka@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Rusty",
+    "email": "rusty.pierce@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Sean",
+    "email": "sean.dreifuss@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Stephen",
+    "email": "stephen@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Tanja",
+    "email": "tanja.koch@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  },
+  {
+    "name": "Travis",
+    "email": "travis.binen@cognition.ai",
+    "avatar_url": null,
+    "banned": false
+  }
 ]
