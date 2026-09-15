@@ -1,4 +1,38 @@
+<%#
+  Lot card. Expects `lot` (id, title, artist, category, currency, estimate_low,
+  estimate_high, starting_bid, image_url, current_bid — the last five are optional)
+  and `userId`. Pass an optional `reasons` array to show why the lot matched.
+%>
+<% const cardReasons = typeof reasons !== 'undefined' && Array.isArray(reasons) ? reasons : []; %>
+<% const lotHref = `/lots/${lot.id}${userId ? `?u=${userId}` : ''}`; %>
 <article class="lot-card">
-  <h2><%= lot.title %></h2>
-  <% if (lot.artist) { %><p><%= lot.artist %></p><% } %>
+  <a class="lot-card-image" href="<%= lotHref %>">
+    <% if (lot.image_url) { %>
+      <img src="<%= lot.image_url %>" alt="<%= lot.title %>" loading="lazy">
+    <% } else { %>
+      <span class="lot-card-placeholder">No image</span>
+    <% } %>
+  </a>
+  <div class="lot-card-body">
+    <p class="eyebrow"><%= lot.category %></p>
+    <h3><a href="<%= lotHref %>"><%= lot.title %></a></h3>
+    <% if (lot.artist) { %><p class="lot-card-artist"><%= lot.artist %></p><% } %>
+    <% if (lot.estimate_low || lot.estimate_high) { %>
+      <p class="lot-card-meta">Estimate <%= lot.currency %> <%= Number(lot.estimate_low || 0).toLocaleString('en-US') %>–<%= Number(lot.estimate_high || 0).toLocaleString('en-US') %></p>
+    <% } %>
+    <p class="lot-card-bid">
+      <% if (lot.current_bid) { %>
+        Current bid <b><%= lot.currency %> <%= Number(lot.current_bid).toLocaleString('en-US') %></b>
+      <% } else if (lot.starting_bid) { %>
+        Starting bid <b><%= lot.currency %> <%= Number(lot.starting_bid).toLocaleString('en-US') %></b>
+      <% } else { %>
+        No bids yet
+      <% } %>
+    </p>
+    <% if (cardReasons.length) { %>
+      <ul class="lot-card-reasons">
+        <% for (const reason of cardReasons) { %><li><%= reason %></li><% } %>
+      </ul>
+    <% } %>
+  </div>
 </article>
