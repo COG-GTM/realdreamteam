@@ -6047,5 +6047,28 @@
       }
     ],
     "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 39,
+    "title": "Framed vintage print: Devin in Austin, August 2026",
+    "artist": "Cognition",
+    "category": "Design",
+    "description": "Framed vintage-style print made to celebrate the opening of Cognition's Austin office in August 2026: Devin the otter, backpack on, leans on a boardwalk rail over Lady Bird Lake among bluebonnets, with paddleboarders, a windsurfer and the downtown Austin skyline beyond. Giclée on archival paper, black frame, about 60 x 35 cm.",
+    "currency": "USD",
+    "estimate_low": 300,
+    "estimate_high": 600,
+    "starting_bid": 300,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/devin-austin-print.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
   }
 ]
