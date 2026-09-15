@@ -54,7 +54,7 @@ async function showAuction(req, res, next) {
     const lotsResult = await query(
       `SELECT l.*, a.status,
         (SELECT url FROM lot_images i WHERE i.lot_id = l.id ORDER BY position LIMIT 1) AS image_url,
-        hb.amount AS high_bid, hu.name AS high_bidder,
+        hb.amount AS current_bid, hu.name AS high_bidder,
         w.name AS winner_name,
         EXISTS (SELECT 1 FROM favorites f WHERE f.lot_id = l.id AND f.user_id = $2::bigint) AS favorited
        FROM lots l

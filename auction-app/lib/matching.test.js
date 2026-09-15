@@ -41,3 +41,35 @@ test('does not match unrelated preferences', () => {
     keywords: ['green']
   }), false);
 });
+
+const { matchLot } = require('./matching');
+
+test('matchLot: no preferences row means no match', () => {
+  assert.deepEqual(matchLot(lot, null), { matched: false, reasons: [] });
+  assert.deepEqual(matchLot(lot, { categories: [], artists: [], keywords: [] }), { matched: false, reasons: [] });
+});
+
+test('matchLot: category matches case-insensitively', () => {
+  assert.deepEqual(matchLot(lot, { categories: ['contemporary ART'] }), {
+    matched: true,
+    reasons: ['category: Contemporary Art']
+  });
+});
+
+test('matchLot: keyword found in description only', () => {
+  assert.deepEqual(matchLot(lot, { keywords: ['Resin'] }), {
+    matched: true,
+    reasons: ['keyword: Resin']
+  });
+});
+
+test('matchLot: reports every matching reason', () => {
+  assert.deepEqual(matchLot(lot, {
+    categories: ['Contemporary Art'],
+    artists: ['yayoi kusama'],
+    keywords: ['blue', 'green']
+  }), {
+    matched: true,
+    reasons: ['category: Contemporary Art', 'artist: Yayoi Kusama', 'keyword: blue']
+  });
+});

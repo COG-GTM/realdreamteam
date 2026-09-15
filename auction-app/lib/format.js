@@ -1,10 +1,4 @@
-function formatUtc(value) {
-  if (value == null) return '';
-  const date = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(date.getTime())) return '';
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())} UTC`;
-}
+const { formatUtc } = require('./time');
 
 function formatMoney(amount, currency) {
   if (amount == null) return '';

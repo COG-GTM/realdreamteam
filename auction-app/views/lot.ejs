@@ -1,4 +1,4 @@
-<% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash ok"><%= flash %></div><% } %>
+<% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash success"><%= flash %></div><% } %>
 <p class="eyebrow"><a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.house_name %> · <%= lot.auction_title %></a></p>
 <h1><%= lot.title %></h1>
 

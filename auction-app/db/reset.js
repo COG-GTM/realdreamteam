@@ -1,3 +1,28 @@
+require('dotenv').config({ override: true });
+
+const databaseUrl = process.env.AUCTION_DATABASE_URL;
+if (!databaseUrl) {
+  console.error('AUCTION_DATABASE_URL is required.');
+  process.exit(1);
+}
+
+let database;
+try {
+  database = new URL(databaseUrl);
+} catch (error) {
+  console.error(`Invalid AUCTION_DATABASE_URL: ${error.message}`);
+  process.exit(1);
+}
+
+const remoteHosts = !['localhost', '127.0.0.1'].includes(database.hostname);
+if (remoteHosts && process.env.ALLOW_REMOTE_RESET !== '1') {
+  console.error(`Refusing to reset remote database host "${database.hostname}". Set ALLOW_REMOTE_RESET=1 to confirm.`);
+  process.exit(1);
+}
+
+const databaseName = decodeURIComponent(database.pathname.replace(/^\//, ''));
+console.log(`Resetting ${database.hostname}/${databaseName}...`);
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { pool, withTransaction } = require('./db');

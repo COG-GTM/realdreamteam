@@ -1,37 +1,44 @@
-<%
-  var lotUrl = (typeof userId !== 'undefined' && userId ? '/u/' + userId : '') + '/lots/' + lot.id;
-  var money = function (amount) {
-    if (amount == null) return '';
-    if (typeof formatMoney !== 'undefined') return formatMoney(amount, lot.currency);
-    return (lot.currency ? lot.currency + ' ' : '') + Number(amount).toLocaleString('en-GB');
-  };
+<%#
+  Lot card. Expects `lot` (id, title, artist, category, currency, estimate_low,
+  estimate_high, starting_bid, image_url, current_bid, high_bidder, favorited,
+  status, hammer_price, winner_name — everything after currency is optional)
+  and `userId`. Pass an optional `reasons` array to show why the lot matched.
 %>
+<% const cardReasons = typeof reasons !== 'undefined' && Array.isArray(reasons) ? reasons : []; %>
+<% const lotHref = `/lots/${lot.id}${userId ? `?u=${userId}` : ''}`; %>
 <article class="lot-card">
-  <% if (lot.image_url) { %>
-    <a href="<%= lotUrl %>"><img class="lot-card-image" src="<%= lot.image_url %>" alt="<%= lot.title %>"></a>
-  <% } %>
-  <div class="lot-card-body">
-    <% if (lot.status === 'closed') { %>
-      <% if (lot.hammer_price != null) { %><span class="sold-ribbon">SOLD</span><% } %>
-    <% } %>
-    <h3><a href="<%= lotUrl %>"><%= lot.title %></a><% if (lot.favorited) { %> <span class="fav">♥</span><% } %></h3>
-    <% if (lot.artist) { %><p class="muted"><%= lot.artist %></p><% } %>
-    <p class="muted"><%= lot.category %></p>
-    <% if (lot.estimate_low != null || lot.estimate_high != null) { %>
-      <p class="muted">Estimate <%= money(lot.estimate_low) %> – <%= money(lot.estimate_high) %></p>
-    <% } %>
-    <% if (lot.status === 'closed') { %>
-      <% if (lot.hammer_price != null) { %>
-        <p>Sold for <b><%= money(lot.hammer_price) %></b><% if (lot.winner_name) { %> to <%= lot.winner_name %><% } %></p>
-      <% } else { %>
-        <p class="muted">Unsold</p>
-      <% } %>
-    <% } else if (lot.high_bid != null) { %>
-      <p>High bid <b><%= money(lot.high_bid) %></b><% if (lot.high_bidder) { %> by <%= lot.high_bidder %><% } %></p>
-    <% } else if (lot.starting_bid != null) { %>
-      <p class="muted">Starting bid <%= money(lot.starting_bid) %></p>
+  <% if (lot.status === 'closed' && lot.hammer_price) { %><span class="sold-ribbon">SOLD</span><% } %>
+  <a class="lot-card-image" href="<%= lotHref %>">
+    <% if (lot.image_url) { %>
+      <img src="<%= lot.image_url %>" alt="<%= lot.title %>" loading="lazy">
     <% } else { %>
-      <p class="muted">No starting bid</p>
+      <span class="lot-card-placeholder">No image</span>
+    <% } %>
+  </a>
+  <div class="lot-card-body">
+    <p class="eyebrow"><%= lot.category %></p>
+    <h3><a href="<%= lotHref %>"><%= lot.title %></a><% if (lot.favorited) { %> <span class="fav" title="Favorited">♥</span><% } %></h3>
+    <% if (lot.artist) { %><p class="lot-card-artist"><%= lot.artist %></p><% } %>
+    <% if (lot.estimate_low || lot.estimate_high) { %>
+      <p class="lot-card-meta">Estimate <%= lot.currency %> <%= Number(lot.estimate_low || 0).toLocaleString('en-US') %>–<%= Number(lot.estimate_high || 0).toLocaleString('en-US') %></p>
+    <% } %>
+    <p class="lot-card-bid">
+      <% if (lot.status === 'closed' && lot.hammer_price) { %>
+        Sold for <b><%= lot.currency %> <%= Number(lot.hammer_price).toLocaleString('en-US') %></b><% if (lot.winner_name) { %> to <%= lot.winner_name %><% } %>
+      <% } else if (lot.status === 'closed') { %>
+        Unsold
+      <% } else if (lot.current_bid) { %>
+        Current bid <b><%= lot.currency %> <%= Number(lot.current_bid).toLocaleString('en-US') %></b><% if (lot.high_bidder) { %> by <%= lot.high_bidder %><% } %>
+      <% } else if (lot.starting_bid) { %>
+        Starting bid <b><%= lot.currency %> <%= Number(lot.starting_bid).toLocaleString('en-US') %></b>
+      <% } else { %>
+        No bids yet
+      <% } %>
+    </p>
+    <% if (cardReasons.length) { %>
+      <ul class="lot-card-reasons">
+        <% for (const reason of cardReasons) { %><li><%= reason %></li><% } %>
+      </ul>
     <% } %>
   </div>
 </article>
