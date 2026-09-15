@@ -67,3 +67,21 @@ dialog#bidding-rules{background:var(--panel);color:var(--text);border:1px solid 
 .house-row{display:flex;align-items:center;gap:10px}
 .auction-card .house-row img{flex:0 0 auto}
 .house-logo[hidden]{display:none}
+
+/* Lot cards as catalogue tiles (#84) */
+.lot-card{background:linear-gradient(180deg,#24252f 0,#1c1d27 100%);border:1px solid #ffffff12;border-radius:14px;box-shadow:0 1px 0 #ffffff10 inset,0 14px 34px -18px #000c,0 2px 6px -2px #0008;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.lot-card:hover{border-color:#ffffff26;transform:translateY(-4px);box-shadow:0 1px 0 #ffffff14 inset,0 26px 46px -20px #000d,0 4px 10px -3px #0009}
+.lot-card-image{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background-color:#2a2b36;background-size:cover;background-position:center;border-bottom:1px solid #ffffff10;isolation:isolate}
+.lot-card-image::before{content:"";position:absolute;inset:-24px;background:inherit;filter:blur(22px) saturate(.85) brightness(.55);transform:scale(1.15);z-index:0}
+.lot-card-image::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;box-shadow:0 0 0 1px #ffffff0c inset,0 -30px 40px -30px #0009 inset}
+.lot-card-image img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#0000;transition:transform .5s ease}
+.lot-card:hover .lot-card-image img{transform:scale(1.025)}
+.lot-card-image img.is-tall{object-fit:contain}
+.lot-card-placeholder{position:absolute;inset:0;z-index:0;display:grid;place-items:center;height:auto;color:#cfcbd9;font:500 12px "DM Mono",monospace;letter-spacing:.22em;text-transform:uppercase;background:radial-gradient(60% 55% at 50% 40%,#3a3b4a 0,#23242e 70%,#1b1c25 100%)}
+.lot-card-placeholder::before{content:"";position:absolute;inset:14px;border:1px solid #ffffff1a;border-radius:6px;pointer-events:none}
+.lot-card-image.is-empty{background-image:none!important}
+.lot-card-image.is-empty::before{display:none}
+.lot-card-number{margin:0 0 4px;display:flex;justify-content:space-between;gap:10px;font:11px "DM Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}.lot-card-number span:first-child{white-space:nowrap;flex-shrink:0}
+.lot-card-number span+span{color:#8a8892;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.lot-card-meta{font:10.5px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:#8a8892;margin-top:2px}
+.lot-card-body h3{font:500 1.15rem/1.22 var(--serif)}
