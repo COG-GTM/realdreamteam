@@ -21,8 +21,8 @@ one template.
 | `/` | Pick your name. Everything after this is under `/u/<your id>/…`. |
 | **Summary** `/u/:id/summary` | Your home page. **Notifications** (new matching lots, outbid, sold — unread ones are highlighted; *Mark all read* clears the badge; the five newest are shown, *Show all* expands the rest). **Matches your interests** — open lots matching your preferences, each with a chip saying *why* it matched. **Discover** — five random open lots you haven't bid on or favorited, different on every refresh (*Shuffle*). Everyone gets Discover, even with no preferences. |
 | **Preferences** `/u/:id/preferences` | Tick categories (fixed list, see `lib/categories.js`), type artists and keywords (comma-separated). Optional — it only sharpens Matches. |
-| **Auctions** `/u/:id/auctions` | All auctions grouped Open / Upcoming / Closed, with lot and bid counts. Click through to the auction's lots. |
-| **Lot** `/u/:id/lots/:lotId` | Images, estimate, link to the source page, ★ favorite toggle, the bid form and the full bid history (newest first). Bids are whole numbers and must beat the current high bid (or meet the starting bid on the first bid). You can bid again after being outbid. Closed lots show SOLD, hammer price and winner (and play `sold.mp3`). |
+| **Auctions** `/u/:id/auctions` | All auctions grouped Open / Upcoming / Closed, with lot counts. Click through to the auction's lots. |
+| **Lot** `/u/:id/lots/:lotId` | Images, estimate, link to the source page, ★ favorite toggle, the bid form and the full bid history (newest first). Bids are whole numbers and must beat the current high bid (or meet the starting bid on the first bid). You can bid again after being outbid. Closed lots show SOLD, hammer price and winner (the `sold.mp3` sound plays on `/admin` right after Close now). |
 | **History** `/u/:id/history` | Every bid you've placed with its state — Winning / Outbid / Won / Lost — and your favorites. |
 | **Admin** `/admin` | Table of auctions with editable close time (US Central), *Close now* / *Reopen*; add a lot to any auction (matching users get a notification); ban / unban users (banned users can't bid, nothing is deleted) |
 

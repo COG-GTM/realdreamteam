@@ -12,6 +12,9 @@ function validateBid({ amount, highBid, startingBid, status }) {
   if (value <= 0) {
     return { ok: false, error: 'Enter a whole number amount.' };
   }
+  if (value > Number.MAX_SAFE_INTEGER) {
+    return { ok: false, error: 'That amount is too large.' };
+  }
   if (typeof highBid === 'number') {
     if (value <= highBid) {
       return { ok: false, error: `Your bid must be higher than the current high bid of ${highBid}.` };

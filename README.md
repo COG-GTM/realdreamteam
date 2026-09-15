@@ -67,7 +67,7 @@ layer) → the browser fetches lot images straight from Wikimedia.
 
 State lives only in Postgres — the Node process is stateless (the login cookie
 is signed, not stored), so it can be restarted at any time without losing
-anything. `npm run db:reset` wipes Postgres and reloads it from
+anything. `npm run db:reset` (run inside `auction-app/`) wipes Postgres and reloads it from
 `auction-app/data/seed/*.json`, which is how the demo is put back to a known
 state (see the deploy section of `auction-app/README.md`). Optional: a Slack
 webhook (`SLACK_WEBHOOK_URL`) mirrors notifications to a channel; unset in
