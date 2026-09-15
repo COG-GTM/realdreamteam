@@ -1,0 +1,464 @@
+[
+  {
+    "user": "Abi",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 5,
+    "created_at": "2026-09-14T05:33:01Z"
+  },
+  {
+    "user": "Abi",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 5,
+    "created_at": "2026-09-14T03:41:21Z"
+  },
+  {
+    "user": "Abi",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 14,
+    "created_at": "2026-09-09T07:12:52Z"
+  },
+  {
+    "user": "Abi",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 16,
+    "created_at": "2026-09-10T20:34:12Z"
+  },
+  {
+    "user": "Abigail",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 6,
+    "created_at": "2026-09-05T12:45:23Z"
+  },
+  {
+    "user": "Abigail",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 18,
+    "created_at": "2026-09-08T18:27:06Z"
+  },
+  {
+    "user": "Albert",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 19,
+    "created_at": "2026-09-13T16:02:33Z"
+  },
+  {
+    "user": "Charlie",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 26,
+    "created_at": "2026-09-08T08:46:36Z"
+  },
+  {
+    "user": "Christian",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 48,
+    "created_at": "2026-09-18T20:28:41Z"
+  },
+  {
+    "user": "Christian",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 17,
+    "created_at": "2026-09-10T21:00:20Z"
+  },
+  {
+    "user": "Daisuke",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 30,
+    "created_at": "2026-09-26T10:57:03Z"
+  },
+  {
+    "user": "Daisuke",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 12,
+    "created_at": "2026-09-14T05:18:31Z"
+  },
+  {
+    "user": "Davis",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 48,
+    "created_at": "2026-09-22T17:42:41Z"
+  },
+  {
+    "user": "Davis",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 17,
+    "created_at": "2026-09-09T19:13:19Z"
+  },
+  {
+    "user": "Davis",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 22,
+    "created_at": "2026-09-09T10:52:35Z"
+  },
+  {
+    "user": "Davis",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 38,
+    "created_at": "2026-09-14T02:30:48Z"
+  },
+  {
+    "user": "De'Anna",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 8,
+    "created_at": "2026-09-08T14:59:36Z"
+  },
+  {
+    "user": "De'Anna",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 43,
+    "created_at": "2026-09-17T07:27:22Z"
+  },
+  {
+    "user": "Grace",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 20,
+    "created_at": "2026-09-12T12:00:35Z"
+  },
+  {
+    "user": "Graham",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 21,
+    "created_at": "2026-09-24T12:26:05Z"
+  },
+  {
+    "user": "Hitomi",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 29,
+    "created_at": "2026-09-03T01:22:18Z"
+  },
+  {
+    "user": "Hitomi",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 4,
+    "created_at": "2026-09-09T18:23:47Z"
+  },
+  {
+    "user": "Hitomi",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 13,
+    "created_at": "2026-09-13T22:51:24Z"
+  },
+  {
+    "user": "Hitomi",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 6,
+    "created_at": "2026-09-13T00:35:27Z"
+  },
+  {
+    "user": "Joey",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 8,
+    "created_at": "2026-09-06T23:02:55Z"
+  },
+  {
+    "user": "Joey",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 11,
+    "created_at": "2026-09-16T20:32:43Z"
+  },
+  {
+    "user": "Joey",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 40,
+    "created_at": "2026-09-24T00:10:35Z"
+  },
+  {
+    "user": "Joey",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 21,
+    "created_at": "2026-09-12T13:04:20Z"
+  },
+  {
+    "user": "Jonny",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 12,
+    "created_at": "2026-09-05T15:07:28Z"
+  },
+  {
+    "user": "Jonny",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 6,
+    "created_at": "2026-09-13T09:16:17Z"
+  },
+  {
+    "user": "Jonny",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 8,
+    "created_at": "2026-09-11T05:28:46Z"
+  },
+  {
+    "user": "Jonny",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 26,
+    "created_at": "2026-09-13T19:48:47Z"
+  },
+  {
+    "user": "Kenji",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 10,
+    "created_at": "2026-09-18T11:23:31Z"
+  },
+  {
+    "user": "Lisa",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 9,
+    "created_at": "2026-09-11T13:15:49Z"
+  },
+  {
+    "user": "Lisa",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 39,
+    "created_at": "2026-09-11T15:07:20Z"
+  },
+  {
+    "user": "MarkK",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 17,
+    "created_at": "2026-09-21T14:10:21Z"
+  },
+  {
+    "user": "MarkK",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 23,
+    "created_at": "2026-09-15T15:41:18Z"
+  },
+  {
+    "user": "MarkK",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 21,
+    "created_at": "2026-09-14T04:07:24Z"
+  },
+  {
+    "user": "MarkK",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 21,
+    "created_at": "2026-09-11T20:19:25Z"
+  },
+  {
+    "user": "MarkP",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 37,
+    "created_at": "2026-09-14T15:42:37Z"
+  },
+  {
+    "user": "MarkP",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 3,
+    "created_at": "2026-09-06T09:46:54Z"
+  },
+  {
+    "user": "MarkP",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 15,
+    "created_at": "2026-09-08T12:22:16Z"
+  },
+  {
+    "user": "MarkP",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 22,
+    "created_at": "2026-09-12T05:06:32Z"
+  },
+  {
+    "user": "Mateo",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 1,
+    "created_at": "2026-09-07T22:13:58Z"
+  },
+  {
+    "user": "Mateo",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 16,
+    "created_at": "2026-09-09T14:22:32Z"
+  },
+  {
+    "user": "Mateo",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 14,
+    "created_at": "2026-09-07T15:24:38Z"
+  },
+  {
+    "user": "Mateo",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 27,
+    "created_at": "2026-09-14T14:05:52Z"
+  },
+  {
+    "user": "Matthew",
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 19,
+    "created_at": "2026-09-09T02:31:53Z"
+  },
+  {
+    "user": "Mike",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 23,
+    "created_at": "2026-09-06T05:59:30Z"
+  },
+  {
+    "user": "Mike",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 14,
+    "created_at": "2026-09-14T21:53:01Z"
+  },
+  {
+    "user": "Mike",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 17,
+    "created_at": "2026-09-14T04:26:42Z"
+  },
+  {
+    "user": "Nouf",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 15,
+    "created_at": "2026-09-07T06:06:30Z"
+  },
+  {
+    "user": "Phil",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 17,
+    "created_at": "2026-09-07T08:38:06Z"
+  },
+  {
+    "user": "Phil",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 31,
+    "created_at": "2026-09-13T07:57:05Z"
+  },
+  {
+    "user": "Reilly",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 4,
+    "created_at": "2026-09-13T10:58:07Z"
+  },
+  {
+    "user": "Reilly",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 28,
+    "created_at": "2026-09-10T09:08:43Z"
+  },
+  {
+    "user": "Reilly",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 47,
+    "created_at": "2026-09-18T10:29:42Z"
+  },
+  {
+    "user": "Reilly",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 17,
+    "created_at": "2026-09-07T14:02:52Z"
+  },
+  {
+    "user": "Rusty",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 17,
+    "created_at": "2026-09-08T22:17:45Z"
+  },
+  {
+    "user": "Sean",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 17,
+    "created_at": "2026-09-10T13:22:31Z"
+  },
+  {
+    "user": "Sean",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 30,
+    "created_at": "2026-09-09T10:35:49Z"
+  },
+  {
+    "user": "Stephen",
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 13,
+    "created_at": "2026-09-09T02:28:22Z"
+  },
+  {
+    "user": "Tanja",
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 20,
+    "created_at": "2026-09-09T02:17:44Z"
+  },
+  {
+    "user": "Tanja",
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 11,
+    "created_at": "2026-09-14T07:47:17Z"
+  },
+  {
+    "user": "Travis",
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 7,
+    "created_at": "2026-09-13T19:37:37Z"
+  },
+  {
+    "user": "Travis",
+    "house": "Christie's",
+    "house_ref": "23180",
+    "lot_number": 4,
+    "created_at": "2026-09-18T23:21:07Z"
+  }
+]

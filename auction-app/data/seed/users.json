@@ -1,17 +1,170 @@
 [
   {
-    "name": "Mark Porter",
-    "email": "mark@example.com",
-    "avatar_url": null,
-    "preferences": {
-      "categories": ["Contemporary Art"],
-      "artists": ["Yayoi Kusama"],
-      "keywords": ["blue"]
-    }
+    "name": "Abi",
+    "email": "abi.nourai@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/4f95ad5b3fca6fa8ff79c10258a0dce2?d=identicon&s=200",
+    "banned": false
   },
   {
-    "name": "Christian Wencel",
-    "email": "christian@example.com",
-    "avatar_url": null
+    "name": "Abigail",
+    "email": "abigail.rowland@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/dfa2798a4b42081a6506ce8865f2dd7e?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Albert",
+    "email": "albert.chen@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/676ce7bdc3be05cf3510f076da2477ee?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Charlie",
+    "email": "charlie.osborne@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/042608929206e996c6a8e28572bae3e1?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Christian",
+    "email": "christian.wencel@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/4f3fb28560e7cdfbc91a8e2b75242dff?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Daisuke",
+    "email": "daisuke.ohno@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/97e5fd1e5376029a9325635df9cd0303?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Davis",
+    "email": "davis.berryhill@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/2622dd07be2e7a9b3950d79ac5cf375e?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "De'Anna",
+    "email": "deanna.green@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/7db86a9a3f3d9d5862fc53e14184559e?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Grace",
+    "email": "grace.juan@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/34fdc77321cb87b4d8aad5d2fe11faca?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Graham",
+    "email": "graham.paul@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/109ed3f076e249a6ec7bf3a161178a91?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Hitomi",
+    "email": "hitomi.sawamura@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/c795514e5f717cc86fb53d080489528c?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Joey",
+    "email": "joey.heaney@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/83d42f5cb8edec05b6628d444aa2a549?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Jonny",
+    "email": "jonathan.thabot@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/333913fd38bf46d773aaab971184f8a0?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Kenji",
+    "email": "kenji.itoh@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/510db989dc45dfb5fd04b33dbfc7e53f?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Lisa",
+    "email": "lisa.bechtold-scott@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/aa2bc3b815a897f1648f14675baad303?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "MarkK",
+    "email": "mark.kosoy@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/0f0a016a50b62bcd4cfb4766a8b4ca02?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "MarkP",
+    "email": "mark@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/5f45e88e94333aed069aca7d13bd9d3e?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Mateo",
+    "email": "mateo.weiner@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/a1099cdc8ed8cc33b03216369411d5ac?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Matthew",
+    "email": "matthew.guerra@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/c9bffccd5ec1ffb6b601f073af940f93?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Mike",
+    "email": "mike.hoffacker@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/9f081a42da3a46adb2438056df7de863?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Nouf",
+    "email": "nouf.alsoghyar@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/cc48baa3e14ef064bea64ff86e2b287d?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Phil",
+    "email": "phil.morrison@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/2644a235a2de9d28956ee177d764f8b9?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Reilly",
+    "email": "reilly.opelka@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/de7e96fa8226946d3c8f302dc4b647a4?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Rusty",
+    "email": "rusty.pierce@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/60f71ac6af329c413eb747dd4df0d5cf?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Sean",
+    "email": "sean.dreifuss@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/0efb042174351b3b915919b5de2d9a31?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Stephen",
+    "email": "stephen@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/944a5e2f4e74032b4d430c036c8b7816?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Tanja",
+    "email": "tanja.koch@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/c6208144f9b06c8fe3120b44c2443623?d=identicon&s=200",
+    "banned": false
+  },
+  {
+    "name": "Travis",
+    "email": "travis.binen@cognition.ai",
+    "avatar_url": "https://www.gravatar.com/avatar/f2d853bf1c658e0b212dfba42683bd53?d=identicon&s=200",
+    "banned": false
   }
 ]

@@ -115,7 +115,7 @@ absentee bids, realtime push (refresh the page).
 auction-app/
   package.json  server.js  .env.example  README.md
   db/schema.sql (frozen)  db/db.js (pool, query, seedIfEmpty)  db/reset.sql (TRUNCATE all, for re-demo)
-  data/seed/{users,auction_houses,auctions,lots}.json
+  data/seed/{auction_houses,users,preferences,auctions,lots,bids,favorites,notifications}.json
   lib/matching.js (+ .test.js)  lib/slack.js  lib/poller.js
   routes/index.js  routes/{summary,preferences,auctions,lots,history,admin}.js
   views/layout.ejs  views/{index,summary,preferences,auctions,auction,lot,history,admin}.ejs
@@ -127,68 +127,68 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 `views/*`, `styles.css`, `matching.js` + tests, `poller.js`, `slack.js`, close/SOLD flow,
 `sold.mp3`, architecture diagrams.
 
-## 6. Demo data (the "rich" part) — shape only
+## 6. Demo data — what was built (data session, 2026-09-15)
 
-> **Decision (Mark):** demo data — users, **preferences**, houses, auctions, lots, bids,
-> favorites, notifications — is generated in a **separate phase by a separate session**. What
-> follows is the *shape and volume* the app should be built to handle, not the content. The app
-> builder ships only the loader plus a tiny smoke dataset (§7 step 2) so `npm start` works; the
-> data session replaces `data/seed/*.json` with the real content in the same shape. The app must
-> also behave well for users the data phase gives *no* preferences to (see Discover).
+> Built table by table in FK order by the data session
+> (https://app.devin.ai/sessions/7fa64fef151f440eb9ab5d7ca1a1bf1a), each table dictated or
+> approved by Mark before moving on. Files live in `auction-app/data/seed/` on branch
+> `devin/1789454012-seed-data`. **Nothing has been loaded into the live DB** — that happens via
+> the loader (§4 Seeding / §9.2 `db:reset`) when Mark says so. The old v2 seed
+> (`items.json`, `sales.json`, `IMAGE_CREDITS.md`) was deleted.
 
-Goal: every page is full on first load, every beat in §2 has pre-existing data to point at,
-and nothing looks like a fixture.
+### 6.1 Conventions
 
-**Users (6 in the example, unbounded in practice)** — the team, with avatars (Supabase `avatars` bucket or Gravatar-style placeholders)
-and *distinct, overlapping* interests so one new lot alerts 2–3 people:
+- One JSON array per table; rows carry **natural keys**, never DB ids: houses by `name`,
+  users by `name`, auctions by `(house, house_ref)`, lots by `(house, house_ref, lot_number)`.
+- All timestamps are **absolute UTC** (`...Z`). The app displays them in **US Central**
+  (`America/Chicago`) — issue #45.
+- `lot_images` rows are embedded in each lot as `images[]` (`position`, `url`, `credit`);
+  `lots.winner_user_id` is expressed as `winner` (user name). The loader maps both.
+- Every cross-reference was validated: all 8 auctions resolve to a house, all 250 lots to an
+  auction, every bid/favorite/notification/winner to an existing user and lot.
 
-| User | Categories | Artists | Keywords |
-|---|---|---|---|
-| Mark Porter | Contemporary Art | Kusama, Banksy | blue |
-| Christian Wencel | Watches, Cars | Rolex, Ferrari | chronograph |
-| Priya Shah | Photography, Contemporary Art | Cindy Sherman, Kusama | portrait |
-| Diego Alvarez | Wine & Spirits, Design | — | Bordeaux, Eames |
-| Aisha Rahman | Jewellery, Books & Manuscripts | Cartier | first edition |
-| Tom Becker | Cars, Design | Porsche | 1960s |
+### 6.2 Tables
 
-Most users get preferences from the data phase; a few deliberately don't, to show Discover
-carrying them. Many more than 6 users must work.
+| File | Rows | Content / decisions |
+|---|---:|---|
+| `auction_houses.json` | 4 | Sotheby's (New York), Christie's, Phillips, Bonhams (London). `website` + `logo_url`: Sotheby's/Christie's/Bonhams hotlink the logo from their own sites; Phillips has none online, so Mark's image is committed as `public/logos/phillips.png` → `/logos/phillips.png`. |
+| `users.json` | 28 | The Cognition team as supplied by Mark (first name + email). Two "Mark"s disambiguated as **MarkK** (mark.kosoy@) and **MarkP** (mark@). `banned=false` for all. `avatar_url` = Gravatar by md5(email) with identicon fallback (`?d=identicon&s=200`); real local avatars are issue #42. |
+| `preferences.json` | 26 | **No price range** — Mark dropped budget filtering for good (no issue). 2–4 categories per user from the fixed list, 2–3 researched artists/makers matching those categories (e.g. Rolex/Lange for Watches, Château Margaux/DRC for Wine, Steiff/Merrythought for Stuffed Animals, Commodore/Cray for IT), 0–4 deliberately fun keywords (penguins, blenders, volcanoes, tacos…). **Matthew and Nouf have no row** to exercise Discover-only. MarkP: Contemporary Art, Photography, Cars, Watches · Banksy, Diane Arbus, Marc Chagall, Claude Monet · toaster, llamas, robots. Reilly: Contemporary/Modern British Art, Watches, Cars · Warhol, Rolex, Aston Martin · tennis, racquets, penguins, trophies. |
+| `auctions.json` | 8 | The 6 from the original plan plus 2 Mark asked for so that **four auctions close live on 15 Sep at staggered Central times** (see below). Each has `house_ref` (natural key), `format`, `status`, `source_url`. |
+| `lots.json` | 250 | Mark set minimums per category; agreed split: Contemporary Art 45, Modern British Art 40, Photography 28, Watches 8, Cars 18, Jewellery 6, Wine & Spirits 20, Design 12, Books & Manuscripts 38, Stuffed Animals 12, Miscellaneous IT Items 23. Every lot: real image (Wikimedia Commons or Wikipedia fair-use, credited), Wikipedia `source_url`, catalogue-style description, estimates + `starting_bid` (≈50–75 % of low estimate) in the auction's currency (GBP/CHF/USD/EUR). Per auction: 25 / 24 / 30 / 26 / 39 / 48 / 40 / 18. ~40 subjects have no dedicated Wikipedia page, so their image/link is the closest page (artist, model line); ~25 % of images are fair-use — fine internally, not for public deployment. |
+| `bids.json` | 350 | Closed auctions: 0–5 bids per lot (45 of 58 lots sold, 13 unsold). Open auctions: ~40 % of lots have 1–4 bids so far. First bid = `starting_bid`, each next bid +4–12 % (rounded), `placed_at` strictly increasing and inside the auction window (open ones up to ~now). All 28 users bid. **MarkP: 23 bids — leading on 9 open lots, outbid on 6.** No bids on the upcoming auction. |
+| `lots.json` (closed) | 45 | `hammer_price` = highest bid, `winner` = that bidder, derived from `bids.json`; unsold lots keep both null. Sold lots are history only — a lot belongs to one auction and is never re-listed. |
+| `favorites.json` | 66 | 1–4 per user (MarkP 4), mostly lots matching the user's prefs plus one off-interest each, on open/upcoming lots. |
+| `notifications.json` | 519 | Derived, not invented: 150 `new_lot` (open/upcoming lots matching prefs; `reason` lists the match, e.g. `category: Watches · artist: Rolex`), 221 `outbid` (every bidder beaten by a later bid, `reason` = who/how much), 148 `sold` (every bidder on a sold closed lot). 223 unread (`read_at` null); `sent_at` null everywhere. MarkP: 14 / 12 / 8, 13 unread. |
 
-**Auction houses (4)**: Sotheby's, Christie's, Phillips, Bonhams — with real logo URLs and websites.
+### 6.3 Auctions
 
-**Auctions (5+)** — statuses come from absolute `starts_at`/`closes_at`. **Demo requirement:**
-several auctions are open at once during the demo, and **at least two of them open before
-15 Sep and close on 15 Sep at two different times** (e.g. 10:30 and 11:15 local), so the audience
-sees one auction close live — SOLD banners, `sold` feed rows — while bidding continues on the
-other, and then a second close later. The exact times are edited on `/admin` right before the
-demo once the slot is known.
+| # | House | Auction | Location | Format | Status | Starts (UTC) | Closes (UTC → Central) |
+|---|---|---|---|---|---|---|---|
+| 1 | Christie's | Post-War & Contemporary Art Online *(added)* | Online | timed | open | 05 Sep 14:00 | 15 Sep 15:00 → **10:00** |
+| 2 | Sotheby's | Contemporary Evening Sale | London | live | open | 08 Sep 18:00 | 15 Sep 15:30 → **10:30** |
+| 3 | Phillips | Important Watches & Motor Cars | Geneva | live | open | 09 Sep 13:00 | 15 Sep 16:15 → **11:15** |
+| 4 | Bonhams | The Collector's Garage: Fine Motor Cars, Watches & Automobilia *(added)* | Online | timed | open | 07 Sep 12:00 | 15 Sep 17:00 → **12:00** |
+| 5 | Phillips | Design & Decorative Arts | London | live | open | 12 Sep 10:00 | 19 Sep 14:00 |
+| 6 | Christie's | Fine Wine, Books & Design | New York | live | upcoming | 29 Sep 14:00 | 01 Oct 22:00 |
+| 7 | Bonhams | Modern British Art | London | live | closed | 03 Sep 13:00 | 08 Sep 16:00 |
+| 8 | Christie's | Photographs | Paris | live | closed | 10 Aug 13:00 | 14 Aug 16:00 |
 
-| Auction | House | Status at demo | Purpose |
-|---|---|---|---|
-| Contemporary Evening Sale, London | Sotheby's | **open**, **closes 15 Sep, time A** | the main bidding stage; closes live during the demo |
-| Important Watches & Motor Cars, Geneva | Phillips | **open**, **closes 15 Sep, time B (> A)** | Christian's beat; second live close |
-| Design & Decorative Arts, London | Phillips | **open** (closes in a few days) | still open after the demo ends |
-| Fine Wine, Books & Design, New York | Christie's | **upcoming** (starts in 2 weeks) | shows "upcoming" |
-| Modern British Art, London | Bonhams | **closed** (last week) | pre-filled SOLD results + history |
-| Photographs, Paris | Christie's | **closed** (last month) | more history depth |
+Four live closes over two hours on demo day, #5 stays open afterwards, #6 shows "upcoming",
+#7–8 supply SOLD results and history. `/admin` can still re-time `closes_at` before the demo.
 
-**Lots (~30, was 18)**: 6–8 per open auction, 5 upcoming, 4–5 per closed auction. Every lot:
-real Wikimedia image, credit, Wikipedia `source_url`, one-paragraph description written like a
-catalogue note, realistic estimates in the auction's currency (GBP/CHF/USD/EUR).
+### 6.4 Demo trigger lot
 
-**Pre-seeded activity** (so history and lot pages aren't empty):
-- ~25 bids across open lots from all 6 users, timestamped over the last 3 days; two lots with a
-  visible bidding war (5+ bids), several lots with one bid, a few with none (so "be the first" shows).
-- Closed auctions: every lot has 2–4 bids and `hammer_price` + `winner_user_id` set; Mark won one,
-  Christian won one, Mark lost one to Priya.
-- ~12 favorites spread across users.
-- ~10 notifications of mixed `kind`, some `read_at` set (so the feed shows a badge and history).
+Not seeded; typed live on `/admin`: a Chagall or Monet, Contemporary Art, in an open London
+sale — matches MarkP (artist + category) and Reilly/Hitomi (category), so several alerts fire.
 
-**Demo trigger lot** (not seeded; typed live on `/admin`): "Pumpkin (Blue)", Yayoi Kusama,
-Contemporary Art, GBP 50,000–70,000, London sale — matches Mark (artist + keyword) **and**
-Priya (artist), so two alerts fire.
+### 6.5 Open items
 
-Content questions (names, exact volume) go to the data-phase session, not this doc.
+- Images are **hotlinked** from Wikimedia/Wikipedia today (`images[].url`); §9.3's upload to the
+  Supabase `lots` bucket has not been done (needs a service-role key) — decide before a public deployment.
+- Loader must accept the extra files (`preferences`, `bids`, `favorites`, `notifications`), the
+  embedded `images[]`, and `winner` by name.
+- #42 real avatars, #45 Central-time display.
 
 ## 7. Build plan (< 12 h, one builder + Devin)
 

@@ -1,14 +1,26 @@
 [
   {
     "name": "Sotheby's",
-    "location": "London",
+    "location": "New York",
     "website": "https://www.sothebys.com",
-    "logo_url": null
+    "logo_url": "https://sothebys-com.brightspotcdn.com/dims4/default/6459e22/2147483647/strip/false/crop/200x60+0+0/resize/200x60!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fdotcom%2Ffa%2F1e%2F824c9f1d4e4f9fb495368c7bafdc%2Ftest-sothebys-logo-200x60-1.png"
+  },
+  {
+    "name": "Christie's",
+    "location": "London",
+    "website": "https://www.christies.com",
+    "logo_url": "https://www.christies.com/-/media/Logos/Christies-logo.jpg"
   },
   {
     "name": "Phillips",
-    "location": "Geneva",
+    "location": "London",
     "website": "https://www.phillips.com",
-    "logo_url": null
+    "logo_url": "/logos/phillips.png"
+  },
+  {
+    "name": "Bonhams",
+    "location": "London",
+    "website": "https://www.bonhams.com",
+    "logo_url": "https://www.bonhams.com/web-assets/bonhams-logo-neue-world.png"
   }
 ]

@@ -1,22 +1,90 @@
 [
   {
     "house": "Sotheby's",
-    "house_ref": "L26001",
-    "title": "Contemporary Art Evening Sale",
+    "house_ref": "L26021",
+    "title": "Contemporary Evening Sale",
     "location": "London",
     "format": "live",
-    "starts_at": "2026-09-10T09:00:00Z",
-    "closes_at": "2026-09-15T10:30:00Z",
-    "source_url": "https://www.sothebys.com"
+    "status": "open",
+    "starts_at": "2026-09-08T18:00:00Z",
+    "closes_at": "2026-09-15T15:30:00Z",
+    "source_url": "https://www.sothebys.com/en/buy/auction/2026/contemporary-evening-sale"
   },
   {
     "house": "Phillips",
-    "house_ref": "GE26001",
+    "house_ref": "CH080326",
     "title": "Important Watches & Motor Cars",
     "location": "Geneva",
     "format": "live",
-    "starts_at": "2026-09-10T09:00:00Z",
-    "closes_at": "2026-09-15T11:15:00Z",
-    "source_url": "https://www.phillips.com"
+    "status": "open",
+    "starts_at": "2026-09-09T13:00:00Z",
+    "closes_at": "2026-09-15T16:15:00Z",
+    "source_url": "https://www.phillips.com/auction/CH080326"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "title": "Post-War & Contemporary Art Online",
+    "location": "Online",
+    "format": "timed",
+    "status": "open",
+    "starts_at": "2026-09-05T14:00:00Z",
+    "closes_at": "2026-09-15T15:00:00Z",
+    "source_url": "https://onlineonly.christies.com/s/post-war-contemporary-art-online/23141"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "title": "The Collector's Garage: Fine Motor Cars, Watches & Automobilia",
+    "location": "Online",
+    "format": "timed",
+    "status": "open",
+    "starts_at": "2026-09-07T12:00:00Z",
+    "closes_at": "2026-09-15T17:00:00Z",
+    "source_url": "https://www.bonhams.com/auction/30412/"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "title": "Design & Decorative Arts",
+    "location": "London",
+    "format": "live",
+    "status": "open",
+    "starts_at": "2026-09-12T10:00:00Z",
+    "closes_at": "2026-09-19T14:00:00Z",
+    "source_url": "https://www.phillips.com/auction/UK050326"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23180",
+    "title": "Fine Wine, Books & Design",
+    "location": "New York",
+    "format": "live",
+    "status": "upcoming",
+    "starts_at": "2026-09-29T14:00:00Z",
+    "closes_at": "2026-10-01T22:00:00Z",
+    "source_url": "https://www.christies.com/en/auction/fine-wine-books-design-23180"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "title": "Modern British Art",
+    "location": "London",
+    "format": "live",
+    "status": "closed",
+    "starts_at": "2026-09-03T13:00:00Z",
+    "closes_at": "2026-09-08T16:00:00Z",
+    "source_url": "https://www.bonhams.com/auction/30377/"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "title": "Photographs",
+    "location": "Paris",
+    "format": "live",
+    "status": "closed",
+    "starts_at": "2026-08-10T13:00:00Z",
+    "closes_at": "2026-08-14T16:00:00Z",
+    "source_url": "https://www.christies.com/en/auction/photographs-22960"
   }
 ]

@@ -1,0 +1,2802 @@
+[
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 1,
+    "user": "Charlie",
+    "amount": 60000,
+    "placed_at": "2026-09-10T07:09:53Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 1,
+    "user": "MarkP",
+    "amount": 66000,
+    "placed_at": "2026-09-14T01:04:26Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 2,
+    "user": "Travis",
+    "amount": 160000,
+    "placed_at": "2026-09-11T23:20:44Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 2,
+    "user": "MarkP",
+    "amount": 180000,
+    "placed_at": "2026-09-12T19:25:52Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 4,
+    "user": "MarkP",
+    "amount": 53000,
+    "placed_at": "2026-09-14T03:06:12Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 5,
+    "user": "Davis",
+    "amount": 1600000,
+    "placed_at": "2026-09-12T04:29:49Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 5,
+    "user": "MarkP",
+    "amount": 1700000,
+    "placed_at": "2026-09-13T18:18:10Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 6,
+    "user": "MarkP",
+    "amount": 920000,
+    "placed_at": "2026-09-14T13:12:52Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 7,
+    "user": "MarkP",
+    "amount": 1200000,
+    "placed_at": "2026-09-13T07:17:08Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 7,
+    "user": "Rusty",
+    "amount": 1300000,
+    "placed_at": "2026-09-13T21:48:25Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 8,
+    "user": "MarkP",
+    "amount": 1100000,
+    "placed_at": "2026-09-09T06:16:14Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 8,
+    "user": "Mateo",
+    "amount": 1300000,
+    "placed_at": "2026-09-11T17:15:45Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 9,
+    "user": "MarkP",
+    "amount": 190000,
+    "placed_at": "2026-09-12T07:17:26Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 9,
+    "user": "Joey",
+    "amount": 220000,
+    "placed_at": "2026-09-13T18:00:46Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 11,
+    "user": "De'Anna",
+    "amount": 50000,
+    "placed_at": "2026-09-12T04:02:00Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 11,
+    "user": "Matthew",
+    "amount": 54000,
+    "placed_at": "2026-09-13T14:01:48Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 11,
+    "user": "MarkK",
+    "amount": 57000,
+    "placed_at": "2026-09-14T20:07:17Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 12,
+    "user": "Nouf",
+    "amount": 110000,
+    "placed_at": "2026-09-08T19:59:33Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 12,
+    "user": "Abigail",
+    "amount": 120000,
+    "placed_at": "2026-09-09T02:05:05Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 12,
+    "user": "Rusty",
+    "amount": 140000,
+    "placed_at": "2026-09-15T02:08:24Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 14,
+    "user": "Reilly",
+    "amount": 42000,
+    "placed_at": "2026-09-14T13:49:38Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 14,
+    "user": "MarkK",
+    "amount": 44000,
+    "placed_at": "2026-09-15T02:15:47Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 15,
+    "user": "Abi",
+    "amount": 1900000,
+    "placed_at": "2026-09-09T16:47:11Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 15,
+    "user": "Tanja",
+    "amount": 2200000,
+    "placed_at": "2026-09-12T04:03:55Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 15,
+    "user": "MarkK",
+    "amount": 2500000,
+    "placed_at": "2026-09-12T23:07:04Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 15,
+    "user": "Joey",
+    "amount": 2800000,
+    "placed_at": "2026-09-14T01:04:49Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 17,
+    "user": "De'Anna",
+    "amount": 2800000,
+    "placed_at": "2026-09-09T16:38:09Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 17,
+    "user": "Albert",
+    "amount": 3000000,
+    "placed_at": "2026-09-13T06:17:51Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 17,
+    "user": "Phil",
+    "amount": 3300000,
+    "placed_at": "2026-09-14T02:01:15Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 17,
+    "user": "Lisa",
+    "amount": 3600000,
+    "placed_at": "2026-09-14T13:47:15Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 19,
+    "user": "Sean",
+    "amount": 20000,
+    "placed_at": "2026-09-10T10:24:50Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 1,
+    "user": "Sean",
+    "amount": 9500,
+    "placed_at": "2026-09-13T07:50:09Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 2,
+    "user": "Kenji",
+    "amount": 690000,
+    "placed_at": "2026-09-12T19:07:15Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 2,
+    "user": "MarkK",
+    "amount": 740000,
+    "placed_at": "2026-09-13T16:12:34Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 2,
+    "user": "MarkP",
+    "amount": 820000,
+    "placed_at": "2026-09-15T00:00:11Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 4,
+    "user": "Davis",
+    "amount": 23000,
+    "placed_at": "2026-09-11T02:26:24Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 4,
+    "user": "Abi",
+    "amount": 25000,
+    "placed_at": "2026-09-11T04:59:06Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 4,
+    "user": "Matthew",
+    "amount": 27000,
+    "placed_at": "2026-09-12T02:28:58Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 4,
+    "user": "MarkK",
+    "amount": 29000,
+    "placed_at": "2026-09-13T01:14:52Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 7,
+    "user": "Sean",
+    "amount": 170000,
+    "placed_at": "2026-09-13T08:57:45Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 8,
+    "user": "Lisa",
+    "amount": 39000,
+    "placed_at": "2026-09-10T11:24:57Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 8,
+    "user": "MarkK",
+    "amount": 43000,
+    "placed_at": "2026-09-11T17:04:36Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 8,
+    "user": "Mateo",
+    "amount": 48000,
+    "placed_at": "2026-09-14T21:53:32Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 9,
+    "user": "Nouf",
+    "amount": 2000000,
+    "placed_at": "2026-09-14T11:51:33Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 10,
+    "user": "Albert",
+    "amount": 39000,
+    "placed_at": "2026-09-11T03:25:25Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 10,
+    "user": "Travis",
+    "amount": 42000,
+    "placed_at": "2026-09-14T07:32:46Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 10,
+    "user": "MarkP",
+    "amount": 47000,
+    "placed_at": "2026-09-14T14:50:35Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 11,
+    "user": "Phil",
+    "amount": 52000,
+    "placed_at": "2026-09-13T19:16:27Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 11,
+    "user": "MarkK",
+    "amount": 59000,
+    "placed_at": "2026-09-15T00:26:27Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 12,
+    "user": "Jonny",
+    "amount": 11000,
+    "placed_at": "2026-09-11T19:15:32Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 12,
+    "user": "Rusty",
+    "amount": 13000,
+    "placed_at": "2026-09-12T09:20:09Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 12,
+    "user": "Mateo",
+    "amount": 15000,
+    "placed_at": "2026-09-14T10:40:21Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 14,
+    "user": "Joey",
+    "amount": 6600,
+    "placed_at": "2026-09-10T08:39:51Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 14,
+    "user": "Stephen",
+    "amount": 7300,
+    "placed_at": "2026-09-13T08:28:31Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 15,
+    "user": "Matthew",
+    "amount": 28000,
+    "placed_at": "2026-09-14T16:25:48Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 20,
+    "user": "Hitomi",
+    "amount": 190000,
+    "placed_at": "2026-09-13T05:26:05Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 20,
+    "user": "Abigail",
+    "amount": 210000,
+    "placed_at": "2026-09-14T00:37:25Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 21,
+    "user": "Lisa",
+    "amount": 53000,
+    "placed_at": "2026-09-09T23:41:34Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 21,
+    "user": "Nouf",
+    "amount": 59000,
+    "placed_at": "2026-09-10T00:45:16Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 21,
+    "user": "Mike",
+    "amount": 62000,
+    "placed_at": "2026-09-13T12:09:50Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 22,
+    "user": "Travis",
+    "amount": 1800000,
+    "placed_at": "2026-09-10T09:10:48Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 22,
+    "user": "Tanja",
+    "amount": 1900000,
+    "placed_at": "2026-09-11T19:50:18Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 22,
+    "user": "Albert",
+    "amount": 2000000,
+    "placed_at": "2026-09-13T18:24:43Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 22,
+    "user": "Kenji",
+    "amount": 2300000,
+    "placed_at": "2026-09-15T01:56:16Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 24,
+    "user": "Nouf",
+    "amount": 2300000,
+    "placed_at": "2026-09-14T03:46:25Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "CH080326",
+    "lot_number": 24,
+    "user": "Tanja",
+    "amount": 2500000,
+    "placed_at": "2026-09-14T19:54:16Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 4,
+    "user": "Davis",
+    "amount": 1800000,
+    "placed_at": "2026-09-06T06:30:19Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 4,
+    "user": "Mateo",
+    "amount": 2000000,
+    "placed_at": "2026-09-10T11:55:38Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 4,
+    "user": "Matthew",
+    "amount": 2200000,
+    "placed_at": "2026-09-12T16:00:09Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 5,
+    "user": "Rusty",
+    "amount": 1100000,
+    "placed_at": "2026-09-07T18:56:32Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 5,
+    "user": "Phil",
+    "amount": 1300000,
+    "placed_at": "2026-09-09T18:32:23Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 5,
+    "user": "Travis",
+    "amount": 1400000,
+    "placed_at": "2026-09-10T06:01:32Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 5,
+    "user": "Mateo",
+    "amount": 1500000,
+    "placed_at": "2026-09-11T00:22:08Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 6,
+    "user": "Nouf",
+    "amount": 74000,
+    "placed_at": "2026-09-08T18:14:07Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 6,
+    "user": "Kenji",
+    "amount": 79000,
+    "placed_at": "2026-09-11T18:18:35Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 7,
+    "user": "Joey",
+    "amount": 810000,
+    "placed_at": "2026-09-07T15:08:58Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 7,
+    "user": "Stephen",
+    "amount": 860000,
+    "placed_at": "2026-09-13T02:55:03Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 9,
+    "user": "MarkP",
+    "amount": 2500000,
+    "placed_at": "2026-09-12T00:28:06Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 9,
+    "user": "Lisa",
+    "amount": 2700000,
+    "placed_at": "2026-09-13T13:36:16Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 10,
+    "user": "Grace",
+    "amount": 28000,
+    "placed_at": "2026-09-07T21:10:16Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 10,
+    "user": "Graham",
+    "amount": 32000,
+    "placed_at": "2026-09-10T04:36:23Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 10,
+    "user": "Daisuke",
+    "amount": 35000,
+    "placed_at": "2026-09-12T03:08:25Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 10,
+    "user": "Abi",
+    "amount": 38000,
+    "placed_at": "2026-09-14T15:12:04Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 11,
+    "user": "Phil",
+    "amount": 4900,
+    "placed_at": "2026-09-12T05:19:41Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 11,
+    "user": "Lisa",
+    "amount": 5500,
+    "placed_at": "2026-09-13T06:50:35Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 11,
+    "user": "Stephen",
+    "amount": 5900,
+    "placed_at": "2026-09-14T00:02:01Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 12,
+    "user": "Kenji",
+    "amount": 58000,
+    "placed_at": "2026-09-09T06:57:51Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 12,
+    "user": "Mike",
+    "amount": 61000,
+    "placed_at": "2026-09-13T21:54:47Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 12,
+    "user": "Sean",
+    "amount": 67000,
+    "placed_at": "2026-09-14T03:57:59Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 12,
+    "user": "Grace",
+    "amount": 75000,
+    "placed_at": "2026-09-14T08:56:22Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 13,
+    "user": "Jonny",
+    "amount": 25000,
+    "placed_at": "2026-09-09T19:50:24Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 13,
+    "user": "Hitomi",
+    "amount": 27000,
+    "placed_at": "2026-09-10T11:49:52Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 13,
+    "user": "Joey",
+    "amount": 31000,
+    "placed_at": "2026-09-11T00:46:57Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 13,
+    "user": "Phil",
+    "amount": 33000,
+    "placed_at": "2026-09-11T02:51:13Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 14,
+    "user": "Christian",
+    "amount": 2700,
+    "placed_at": "2026-09-06T23:42:02Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 14,
+    "user": "Daisuke",
+    "amount": 2900,
+    "placed_at": "2026-09-09T20:45:16Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 15,
+    "user": "Phil",
+    "amount": 1900000,
+    "placed_at": "2026-09-08T21:10:52Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 15,
+    "user": "Grace",
+    "amount": 2100000,
+    "placed_at": "2026-09-14T16:26:51Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 18,
+    "user": "Matthew",
+    "amount": 200000,
+    "placed_at": "2026-09-05T19:38:30Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 18,
+    "user": "Charlie",
+    "amount": 220000,
+    "placed_at": "2026-09-09T16:17:31Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 19,
+    "user": "MarkK",
+    "amount": 2400,
+    "placed_at": "2026-09-07T19:24:16Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 19,
+    "user": "Charlie",
+    "amount": 2700,
+    "placed_at": "2026-09-11T05:07:33Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 19,
+    "user": "Mike",
+    "amount": 3100,
+    "placed_at": "2026-09-12T11:53:17Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 23,
+    "user": "Mateo",
+    "amount": 11000,
+    "placed_at": "2026-09-08T06:03:24Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 23,
+    "user": "Albert",
+    "amount": 13000,
+    "placed_at": "2026-09-10T06:09:19Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 24,
+    "user": "Travis",
+    "amount": 2900000,
+    "placed_at": "2026-09-10T13:28:13Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 24,
+    "user": "Reilly",
+    "amount": 3100000,
+    "placed_at": "2026-09-11T04:40:08Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 27,
+    "user": "Graham",
+    "amount": 31000,
+    "placed_at": "2026-09-08T05:56:33Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "23141",
+    "lot_number": 30,
+    "user": "Lisa",
+    "amount": 1200000,
+    "placed_at": "2026-09-09T02:23:23Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 1,
+    "user": "Rusty",
+    "amount": 16000,
+    "placed_at": "2026-09-08T09:06:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 1,
+    "user": "Kenji",
+    "amount": 17000,
+    "placed_at": "2026-09-11T04:28:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 1,
+    "user": "Matthew",
+    "amount": 18000,
+    "placed_at": "2026-09-13T03:05:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 1,
+    "user": "Lisa",
+    "amount": 20000,
+    "placed_at": "2026-09-14T18:21:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 2,
+    "user": "Stephen",
+    "amount": 51000,
+    "placed_at": "2026-09-09T16:23:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 3,
+    "user": "MarkK",
+    "amount": 1200,
+    "placed_at": "2026-09-10T00:51:17Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 3,
+    "user": "Joey",
+    "amount": 1400,
+    "placed_at": "2026-09-13T05:30:23Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 4,
+    "user": "Abi",
+    "amount": 1100,
+    "placed_at": "2026-09-14T10:28:09Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 7,
+    "user": "Mike",
+    "amount": 1100,
+    "placed_at": "2026-09-13T10:41:39Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 9,
+    "user": "Phil",
+    "amount": 1500,
+    "placed_at": "2026-09-13T02:40:26Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 9,
+    "user": "Kenji",
+    "amount": 1700,
+    "placed_at": "2026-09-14T03:04:24Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 9,
+    "user": "De'Anna",
+    "amount": 1900,
+    "placed_at": "2026-09-14T19:04:43Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 10,
+    "user": "De'Anna",
+    "amount": 7100,
+    "placed_at": "2026-09-09T20:15:14Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 12,
+    "user": "Daisuke",
+    "amount": 2700,
+    "placed_at": "2026-09-11T06:10:11Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 12,
+    "user": "Jonny",
+    "amount": 3000,
+    "placed_at": "2026-09-11T22:27:23Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 13,
+    "user": "Daisuke",
+    "amount": 170000,
+    "placed_at": "2026-09-07T17:31:10Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 13,
+    "user": "Abi",
+    "amount": 190000,
+    "placed_at": "2026-09-07T18:37:46Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 13,
+    "user": "Joey",
+    "amount": 210000,
+    "placed_at": "2026-09-08T16:00:11Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 14,
+    "user": "Mateo",
+    "amount": 420,
+    "placed_at": "2026-09-10T18:01:00Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 14,
+    "user": "Charlie",
+    "amount": 440,
+    "placed_at": "2026-09-11T09:50:02Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 14,
+    "user": "Mike",
+    "amount": 500,
+    "placed_at": "2026-09-13T21:01:59Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 14,
+    "user": "Lisa",
+    "amount": 540,
+    "placed_at": "2026-09-14T10:29:24Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 18,
+    "user": "Charlie",
+    "amount": 5100,
+    "placed_at": "2026-09-13T07:22:57Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 18,
+    "user": "Reilly",
+    "amount": 5500,
+    "placed_at": "2026-09-14T14:21:00Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 19,
+    "user": "Lisa",
+    "amount": 38000,
+    "placed_at": "2026-09-07T14:50:35Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 19,
+    "user": "De'Anna",
+    "amount": 41000,
+    "placed_at": "2026-09-09T17:31:14Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 20,
+    "user": "Phil",
+    "amount": 10000,
+    "placed_at": "2026-09-07T13:14:26Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 20,
+    "user": "Sean",
+    "amount": 11000,
+    "placed_at": "2026-09-08T20:04:23Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 24,
+    "user": "Charlie",
+    "amount": 250000,
+    "placed_at": "2026-09-09T02:59:09Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 24,
+    "user": "Graham",
+    "amount": 270000,
+    "placed_at": "2026-09-10T13:01:47Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 24,
+    "user": "Stephen",
+    "amount": 290000,
+    "placed_at": "2026-09-12T10:31:59Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 25,
+    "user": "De'Anna",
+    "amount": 13000,
+    "placed_at": "2026-09-09T04:16:51Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 25,
+    "user": "Mateo",
+    "amount": 14000,
+    "placed_at": "2026-09-12T01:32:15Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 26,
+    "user": "MarkP",
+    "amount": 110000,
+    "placed_at": "2026-09-07T16:46:45Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 26,
+    "user": "Matthew",
+    "amount": 120000,
+    "placed_at": "2026-09-08T07:18:30Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30412",
+    "lot_number": 26,
+    "user": "Abi",
+    "amount": 130000,
+    "placed_at": "2026-09-12T15:09:53Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 1,
+    "user": "Sean",
+    "amount": 11000,
+    "placed_at": "2026-09-12T18:35:12Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 1,
+    "user": "MarkK",
+    "amount": 13000,
+    "placed_at": "2026-09-13T04:17:57Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 1,
+    "user": "Stephen",
+    "amount": 15000,
+    "placed_at": "2026-09-13T21:03:09Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 1,
+    "user": "Albert",
+    "amount": 17000,
+    "placed_at": "2026-09-14T07:20:35Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 2,
+    "user": "Davis",
+    "amount": 66000,
+    "placed_at": "2026-09-13T12:31:11Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 2,
+    "user": "Abigail",
+    "amount": 70000,
+    "placed_at": "2026-09-14T09:15:30Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 2,
+    "user": "Mike",
+    "amount": 78000,
+    "placed_at": "2026-09-15T03:07:38Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 6,
+    "user": "MarkP",
+    "amount": 4500,
+    "placed_at": "2026-09-13T19:32:59Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 6,
+    "user": "Rusty",
+    "amount": 5100,
+    "placed_at": "2026-09-14T02:10:46Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 8,
+    "user": "Albert",
+    "amount": 550,
+    "placed_at": "2026-09-12T19:11:00Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 8,
+    "user": "Mateo",
+    "amount": 580,
+    "placed_at": "2026-09-13T16:07:41Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 10,
+    "user": "Graham",
+    "amount": 21000,
+    "placed_at": "2026-09-13T03:50:22Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 10,
+    "user": "Christian",
+    "amount": 23000,
+    "placed_at": "2026-09-14T13:38:55Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 10,
+    "user": "MarkP",
+    "amount": 26000,
+    "placed_at": "2026-09-14T14:49:09Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 12,
+    "user": "Travis",
+    "amount": 5000,
+    "placed_at": "2026-09-13T02:56:37Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 12,
+    "user": "Reilly",
+    "amount": 5300,
+    "placed_at": "2026-09-13T13:01:51Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 12,
+    "user": "Phil",
+    "amount": 5900,
+    "placed_at": "2026-09-14T18:40:29Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 13,
+    "user": "MarkP",
+    "amount": 41000,
+    "placed_at": "2026-09-13T06:32:39Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 15,
+    "user": "Sean",
+    "amount": 4900,
+    "placed_at": "2026-09-12T16:17:03Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 15,
+    "user": "Kenji",
+    "amount": 5200,
+    "placed_at": "2026-09-14T16:32:15Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 16,
+    "user": "Hitomi",
+    "amount": 84000,
+    "placed_at": "2026-09-13T04:52:56Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 16,
+    "user": "Phil",
+    "amount": 90000,
+    "placed_at": "2026-09-13T07:05:51Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 16,
+    "user": "Graham",
+    "amount": 96000,
+    "placed_at": "2026-09-14T23:04:55Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 17,
+    "user": "Nouf",
+    "amount": 14000,
+    "placed_at": "2026-09-13T09:49:44Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 17,
+    "user": "Abi",
+    "amount": 16000,
+    "placed_at": "2026-09-15T03:00:12Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 18,
+    "user": "Phil",
+    "amount": 180,
+    "placed_at": "2026-09-12T18:06:06Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 18,
+    "user": "Abigail",
+    "amount": 200,
+    "placed_at": "2026-09-14T18:36:30Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 18,
+    "user": "Rusty",
+    "amount": 220,
+    "placed_at": "2026-09-14T19:35:52Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 18,
+    "user": "Matthew",
+    "amount": 240,
+    "placed_at": "2026-09-15T00:09:11Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 20,
+    "user": "MarkK",
+    "amount": 1100,
+    "placed_at": "2026-09-12T10:53:14Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 22,
+    "user": "Mike",
+    "amount": 1500,
+    "placed_at": "2026-09-13T12:48:03Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 22,
+    "user": "Sean",
+    "amount": 1600,
+    "placed_at": "2026-09-15T01:08:46Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 22,
+    "user": "Graham",
+    "amount": 1800,
+    "placed_at": "2026-09-15T02:04:12Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 23,
+    "user": "Travis",
+    "amount": 17000,
+    "placed_at": "2026-09-13T11:26:42Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 24,
+    "user": "Joey",
+    "amount": 65000,
+    "placed_at": "2026-09-13T02:35:44Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 24,
+    "user": "Lisa",
+    "amount": 72000,
+    "placed_at": "2026-09-14T22:17:33Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 25,
+    "user": "Tanja",
+    "amount": 1200,
+    "placed_at": "2026-09-13T12:39:37Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 25,
+    "user": "Sean",
+    "amount": 1300,
+    "placed_at": "2026-09-15T02:33:40Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 27,
+    "user": "Kenji",
+    "amount": 2800,
+    "placed_at": "2026-09-14T00:23:37Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 27,
+    "user": "Davis",
+    "amount": 3100,
+    "placed_at": "2026-09-14T07:41:51Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 27,
+    "user": "Abi",
+    "amount": 3500,
+    "placed_at": "2026-09-14T23:10:41Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 30,
+    "user": "Stephen",
+    "amount": 5400,
+    "placed_at": "2026-09-13T04:10:06Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 30,
+    "user": "Daisuke",
+    "amount": 6000,
+    "placed_at": "2026-09-13T05:35:48Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 30,
+    "user": "Hitomi",
+    "amount": 6500,
+    "placed_at": "2026-09-13T08:29:20Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 30,
+    "user": "Christian",
+    "amount": 7100,
+    "placed_at": "2026-09-13T17:03:12Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 33,
+    "user": "Abigail",
+    "amount": 2200,
+    "placed_at": "2026-09-12T18:52:27Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 33,
+    "user": "Stephen",
+    "amount": 2400,
+    "placed_at": "2026-09-13T11:17:20Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 33,
+    "user": "Matthew",
+    "amount": 2700,
+    "placed_at": "2026-09-13T12:48:46Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 34,
+    "user": "Mateo",
+    "amount": 15000,
+    "placed_at": "2026-09-12T18:59:36Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 34,
+    "user": "Travis",
+    "amount": 16000,
+    "placed_at": "2026-09-13T00:06:48Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 34,
+    "user": "Daisuke",
+    "amount": 18000,
+    "placed_at": "2026-09-14T12:08:48Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 38,
+    "user": "Jonny",
+    "amount": 210000,
+    "placed_at": "2026-09-12T22:56:50Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 38,
+    "user": "Abi",
+    "amount": 230000,
+    "placed_at": "2026-09-14T13:23:45Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 39,
+    "user": "Matthew",
+    "amount": 120000,
+    "placed_at": "2026-09-12T17:21:25Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 39,
+    "user": "Graham",
+    "amount": 130000,
+    "placed_at": "2026-09-13T18:40:24Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 39,
+    "user": "Daisuke",
+    "amount": 140000,
+    "placed_at": "2026-09-13T20:24:47Z"
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "UK050326",
+    "lot_number": 39,
+    "user": "MarkK",
+    "amount": 160000,
+    "placed_at": "2026-09-14T20:00:36Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 1,
+    "user": "Jonny",
+    "amount": 25000,
+    "placed_at": "2026-09-04T00:31:20Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 1,
+    "user": "Abi",
+    "amount": 27000,
+    "placed_at": "2026-09-04T03:51:26Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 1,
+    "user": "MarkP",
+    "amount": 29000,
+    "placed_at": "2026-09-04T10:19:56Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 1,
+    "user": "Mike",
+    "amount": 31000,
+    "placed_at": "2026-09-05T02:42:11Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 1,
+    "user": "De'Anna",
+    "amount": 33000,
+    "placed_at": "2026-09-08T08:51:10Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 2,
+    "user": "Graham",
+    "amount": 5100,
+    "placed_at": "2026-09-05T16:39:41Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 2,
+    "user": "Reilly",
+    "amount": 5400,
+    "placed_at": "2026-09-06T02:14:50Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 3,
+    "user": "Christian",
+    "amount": 9800,
+    "placed_at": "2026-09-05T19:12:36Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 3,
+    "user": "Tanja",
+    "amount": 10300,
+    "placed_at": "2026-09-05T20:52:45Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 3,
+    "user": "Abigail",
+    "amount": 11000,
+    "placed_at": "2026-09-06T20:52:37Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 3,
+    "user": "Graham",
+    "amount": 12000,
+    "placed_at": "2026-09-06T23:46:38Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 5,
+    "user": "Phil",
+    "amount": 260000,
+    "placed_at": "2026-09-04T18:34:23Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 5,
+    "user": "Lisa",
+    "amount": 280000,
+    "placed_at": "2026-09-05T20:33:16Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 5,
+    "user": "MarkP",
+    "amount": 300000,
+    "placed_at": "2026-09-06T11:21:27Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 7,
+    "user": "MarkP",
+    "amount": 33000,
+    "placed_at": "2026-09-04T10:07:12Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 7,
+    "user": "Phil",
+    "amount": 35000,
+    "placed_at": "2026-09-06T08:19:28Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 7,
+    "user": "Davis",
+    "amount": 37000,
+    "placed_at": "2026-09-06T09:10:26Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 7,
+    "user": "Matthew",
+    "amount": 40000,
+    "placed_at": "2026-09-08T09:34:33Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 8,
+    "user": "Abigail",
+    "amount": 54000,
+    "placed_at": "2026-09-05T05:17:24Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 8,
+    "user": "Kenji",
+    "amount": 57000,
+    "placed_at": "2026-09-06T15:08:05Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 9,
+    "user": "Phil",
+    "amount": 200000,
+    "placed_at": "2026-09-04T10:57:52Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 9,
+    "user": "Tanja",
+    "amount": 220000,
+    "placed_at": "2026-09-05T10:17:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 10,
+    "user": "Reilly",
+    "amount": 14000,
+    "placed_at": "2026-09-03T17:14:56Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 10,
+    "user": "Joey",
+    "amount": 16000,
+    "placed_at": "2026-09-04T17:32:03Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 10,
+    "user": "Kenji",
+    "amount": 18000,
+    "placed_at": "2026-09-07T11:36:02Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 11,
+    "user": "Phil",
+    "amount": 170000,
+    "placed_at": "2026-09-03T22:01:33Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 11,
+    "user": "Abigail",
+    "amount": 180000,
+    "placed_at": "2026-09-05T04:25:29Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 12,
+    "user": "MarkK",
+    "amount": 9000,
+    "placed_at": "2026-09-03T18:39:18Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 12,
+    "user": "Daisuke",
+    "amount": 10100,
+    "placed_at": "2026-09-03T19:43:08Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 12,
+    "user": "Jonny",
+    "amount": 12000,
+    "placed_at": "2026-09-05T08:34:57Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 12,
+    "user": "Nouf",
+    "amount": 14000,
+    "placed_at": "2026-09-06T08:26:30Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 12,
+    "user": "Graham",
+    "amount": 15000,
+    "placed_at": "2026-09-08T00:31:07Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 13,
+    "user": "Stephen",
+    "amount": 120000,
+    "placed_at": "2026-09-05T23:54:00Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 13,
+    "user": "Christian",
+    "amount": 140000,
+    "placed_at": "2026-09-06T01:11:11Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 13,
+    "user": "Phil",
+    "amount": 150000,
+    "placed_at": "2026-09-06T20:56:24Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 13,
+    "user": "Abigail",
+    "amount": 170000,
+    "placed_at": "2026-09-08T05:10:39Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 15,
+    "user": "Lisa",
+    "amount": 15000,
+    "placed_at": "2026-09-06T00:25:53Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 15,
+    "user": "Daisuke",
+    "amount": 17000,
+    "placed_at": "2026-09-08T04:53:09Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 16,
+    "user": "Mike",
+    "amount": 23000,
+    "placed_at": "2026-09-05T09:40:54Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 16,
+    "user": "Lisa",
+    "amount": 25000,
+    "placed_at": "2026-09-06T07:25:43Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 17,
+    "user": "MarkP",
+    "amount": 13000,
+    "placed_at": "2026-09-05T19:14:46Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 17,
+    "user": "Mateo",
+    "amount": 14000,
+    "placed_at": "2026-09-06T23:22:29Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 17,
+    "user": "Daisuke",
+    "amount": 16000,
+    "placed_at": "2026-09-08T02:26:22Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 18,
+    "user": "Lisa",
+    "amount": 33000,
+    "placed_at": "2026-09-04T23:17:11Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 18,
+    "user": "Daisuke",
+    "amount": 36000,
+    "placed_at": "2026-09-05T04:45:35Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 18,
+    "user": "MarkK",
+    "amount": 41000,
+    "placed_at": "2026-09-06T11:42:29Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 18,
+    "user": "Matthew",
+    "amount": 46000,
+    "placed_at": "2026-09-06T20:37:04Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 20,
+    "user": "Nouf",
+    "amount": 6600,
+    "placed_at": "2026-09-04T17:38:09Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 20,
+    "user": "MarkP",
+    "amount": 7000,
+    "placed_at": "2026-09-04T19:22:29Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 20,
+    "user": "Mike",
+    "amount": 7400,
+    "placed_at": "2026-09-05T17:37:42Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 20,
+    "user": "Albert",
+    "amount": 8300,
+    "placed_at": "2026-09-06T05:18:01Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 20,
+    "user": "MarkK",
+    "amount": 8700,
+    "placed_at": "2026-09-06T18:01:25Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 21,
+    "user": "Hitomi",
+    "amount": 290000,
+    "placed_at": "2026-09-04T17:20:16Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 21,
+    "user": "Daisuke",
+    "amount": 310000,
+    "placed_at": "2026-09-05T17:15:05Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 21,
+    "user": "Mike",
+    "amount": 340000,
+    "placed_at": "2026-09-07T22:29:24Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 21,
+    "user": "Joey",
+    "amount": 380000,
+    "placed_at": "2026-09-08T08:39:02Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 21,
+    "user": "Stephen",
+    "amount": 400000,
+    "placed_at": "2026-09-08T09:21:09Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 22,
+    "user": "Nouf",
+    "amount": 84000,
+    "placed_at": "2026-09-05T06:23:58Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 22,
+    "user": "MarkK",
+    "amount": 93000,
+    "placed_at": "2026-09-06T12:18:29Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 22,
+    "user": "Mateo",
+    "amount": 104000,
+    "placed_at": "2026-09-08T06:55:59Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 23,
+    "user": "Davis",
+    "amount": 200000,
+    "placed_at": "2026-09-03T21:24:04Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 23,
+    "user": "Stephen",
+    "amount": 230000,
+    "placed_at": "2026-09-04T20:46:53Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 23,
+    "user": "Kenji",
+    "amount": 250000,
+    "placed_at": "2026-09-05T09:08:44Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 23,
+    "user": "Reilly",
+    "amount": 280000,
+    "placed_at": "2026-09-05T17:34:49Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 23,
+    "user": "Charlie",
+    "amount": 320000,
+    "placed_at": "2026-09-06T02:05:14Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 24,
+    "user": "Daisuke",
+    "amount": 18000,
+    "placed_at": "2026-09-03T18:48:00Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 24,
+    "user": "Albert",
+    "amount": 20000,
+    "placed_at": "2026-09-04T23:31:45Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 26,
+    "user": "Rusty",
+    "amount": 87000,
+    "placed_at": "2026-09-03T14:12:17Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 26,
+    "user": "Joey",
+    "amount": 93000,
+    "placed_at": "2026-09-06T23:45:46Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 26,
+    "user": "Charlie",
+    "amount": 100000,
+    "placed_at": "2026-09-08T08:49:20Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 27,
+    "user": "Rusty",
+    "amount": 25000,
+    "placed_at": "2026-09-05T12:22:47Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 27,
+    "user": "Hitomi",
+    "amount": 28000,
+    "placed_at": "2026-09-06T05:17:57Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 27,
+    "user": "Abi",
+    "amount": 31000,
+    "placed_at": "2026-09-06T15:31:51Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 27,
+    "user": "Kenji",
+    "amount": 33000,
+    "placed_at": "2026-09-08T09:32:34Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 27,
+    "user": "Matthew",
+    "amount": 36000,
+    "placed_at": "2026-09-08T15:19:28Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 28,
+    "user": "Charlie",
+    "amount": 56000,
+    "placed_at": "2026-09-04T23:36:25Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 28,
+    "user": "Reilly",
+    "amount": 61000,
+    "placed_at": "2026-09-06T02:41:40Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 28,
+    "user": "Hitomi",
+    "amount": 65000,
+    "placed_at": "2026-09-07T01:43:41Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 28,
+    "user": "De'Anna",
+    "amount": 68000,
+    "placed_at": "2026-09-07T13:30:28Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 28,
+    "user": "Abi",
+    "amount": 75000,
+    "placed_at": "2026-09-08T12:37:30Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 29,
+    "user": "Lisa",
+    "amount": 300000,
+    "placed_at": "2026-09-05T17:20:15Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 29,
+    "user": "Jonny",
+    "amount": 340000,
+    "placed_at": "2026-09-06T18:13:26Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 29,
+    "user": "Charlie",
+    "amount": 370000,
+    "placed_at": "2026-09-07T11:17:49Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 29,
+    "user": "Graham",
+    "amount": 410000,
+    "placed_at": "2026-09-08T04:23:44Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 30,
+    "user": "Charlie",
+    "amount": 100000,
+    "placed_at": "2026-09-04T06:42:33Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 30,
+    "user": "Christian",
+    "amount": 110000,
+    "placed_at": "2026-09-04T16:28:26Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 31,
+    "user": "MarkK",
+    "amount": 10000,
+    "placed_at": "2026-09-04T03:04:38Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 31,
+    "user": "De'Anna",
+    "amount": 11000,
+    "placed_at": "2026-09-05T08:05:57Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 31,
+    "user": "Mateo",
+    "amount": 13000,
+    "placed_at": "2026-09-08T14:55:39Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 32,
+    "user": "Mike",
+    "amount": 180000,
+    "placed_at": "2026-09-05T01:24:57Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 32,
+    "user": "Hitomi",
+    "amount": 200000,
+    "placed_at": "2026-09-05T03:39:37Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 32,
+    "user": "Abi",
+    "amount": 210000,
+    "placed_at": "2026-09-06T21:20:37Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 34,
+    "user": "Rusty",
+    "amount": 12000,
+    "placed_at": "2026-09-04T13:49:01Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 34,
+    "user": "Christian",
+    "amount": 13000,
+    "placed_at": "2026-09-06T10:52:52Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 35,
+    "user": "Reilly",
+    "amount": 140000,
+    "placed_at": "2026-09-06T20:23:50Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 35,
+    "user": "Nouf",
+    "amount": 150000,
+    "placed_at": "2026-09-08T00:53:32Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 36,
+    "user": "Charlie",
+    "amount": 330000,
+    "placed_at": "2026-09-03T16:21:34Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 36,
+    "user": "Jonny",
+    "amount": 370000,
+    "placed_at": "2026-09-04T19:03:58Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 36,
+    "user": "Hitomi",
+    "amount": 420000,
+    "placed_at": "2026-09-04T20:56:58Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 36,
+    "user": "Travis",
+    "amount": 450000,
+    "placed_at": "2026-09-05T18:01:47Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 36,
+    "user": "De'Anna",
+    "amount": 480000,
+    "placed_at": "2026-09-08T01:24:57Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 37,
+    "user": "Daisuke",
+    "amount": 44000,
+    "placed_at": "2026-09-03T19:56:06Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 37,
+    "user": "Phil",
+    "amount": 49000,
+    "placed_at": "2026-09-04T05:03:37Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 37,
+    "user": "Jonny",
+    "amount": 55000,
+    "placed_at": "2026-09-04T10:32:40Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 38,
+    "user": "Phil",
+    "amount": 86000,
+    "placed_at": "2026-09-05T08:49:49Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 38,
+    "user": "Charlie",
+    "amount": 92000,
+    "placed_at": "2026-09-06T08:50:50Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 38,
+    "user": "Stephen",
+    "amount": 102000,
+    "placed_at": "2026-09-07T23:27:28Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 38,
+    "user": "Lisa",
+    "amount": 110000,
+    "placed_at": "2026-09-08T02:39:28Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 39,
+    "user": "Joey",
+    "amount": 540000,
+    "placed_at": "2026-09-03T14:12:24Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 39,
+    "user": "Jonny",
+    "amount": 590000,
+    "placed_at": "2026-09-04T00:44:48Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 39,
+    "user": "Tanja",
+    "amount": 660000,
+    "placed_at": "2026-09-04T12:57:19Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 39,
+    "user": "Grace",
+    "amount": 710000,
+    "placed_at": "2026-09-05T19:11:18Z"
+  },
+  {
+    "house": "Bonhams",
+    "house_ref": "30377",
+    "lot_number": 39,
+    "user": "Kenji",
+    "amount": 780000,
+    "placed_at": "2026-09-08T00:44:07Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 1,
+    "user": "Travis",
+    "amount": 60000,
+    "placed_at": "2026-08-13T01:07:12Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 1,
+    "user": "Abi",
+    "amount": 63000,
+    "placed_at": "2026-08-13T14:46:32Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 1,
+    "user": "Lisa",
+    "amount": 70000,
+    "placed_at": "2026-08-14T07:46:10Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 1,
+    "user": "Sean",
+    "amount": 78000,
+    "placed_at": "2026-08-14T11:47:36Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 2,
+    "user": "Davis",
+    "amount": 79000,
+    "placed_at": "2026-08-11T04:37:13Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 2,
+    "user": "MarkK",
+    "amount": 84000,
+    "placed_at": "2026-08-12T16:39:52Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 2,
+    "user": "Abi",
+    "amount": 90000,
+    "placed_at": "2026-08-14T04:30:08Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 3,
+    "user": "Mike",
+    "amount": 2700,
+    "placed_at": "2026-08-12T09:51:44Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 3,
+    "user": "Reilly",
+    "amount": 2900,
+    "placed_at": "2026-08-14T12:48:53Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 6,
+    "user": "MarkP",
+    "amount": 18000,
+    "placed_at": "2026-08-10T20:53:35Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 6,
+    "user": "Mike",
+    "amount": 19000,
+    "placed_at": "2026-08-11T22:25:07Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 6,
+    "user": "Christian",
+    "amount": 22000,
+    "placed_at": "2026-08-11T22:27:06Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 6,
+    "user": "Nouf",
+    "amount": 25000,
+    "placed_at": "2026-08-12T21:52:27Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 6,
+    "user": "Reilly",
+    "amount": 27000,
+    "placed_at": "2026-08-13T16:26:57Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 7,
+    "user": "Abigail",
+    "amount": 53000,
+    "placed_at": "2026-08-11T16:01:35Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 7,
+    "user": "Tanja",
+    "amount": 58000,
+    "placed_at": "2026-08-12T01:48:35Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 7,
+    "user": "Travis",
+    "amount": 64000,
+    "placed_at": "2026-08-14T11:11:25Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 8,
+    "user": "Albert",
+    "amount": 6700,
+    "placed_at": "2026-08-10T21:12:55Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 8,
+    "user": "Sean",
+    "amount": 7500,
+    "placed_at": "2026-08-10T22:40:27Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 8,
+    "user": "MarkP",
+    "amount": 8300,
+    "placed_at": "2026-08-14T06:42:25Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 9,
+    "user": "Graham",
+    "amount": 85000,
+    "placed_at": "2026-08-11T15:47:23Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 9,
+    "user": "Hitomi",
+    "amount": 93000,
+    "placed_at": "2026-08-13T15:07:47Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 9,
+    "user": "Travis",
+    "amount": 100000,
+    "placed_at": "2026-08-14T05:14:22Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 10,
+    "user": "Abi",
+    "amount": 40000,
+    "placed_at": "2026-08-12T21:55:52Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 10,
+    "user": "Grace",
+    "amount": 44000,
+    "placed_at": "2026-08-13T14:17:26Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 13,
+    "user": "Albert",
+    "amount": 76000,
+    "placed_at": "2026-08-11T08:39:29Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 13,
+    "user": "Joey",
+    "amount": 85000,
+    "placed_at": "2026-08-11T15:16:09Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 13,
+    "user": "Nouf",
+    "amount": 93000,
+    "placed_at": "2026-08-13T02:00:25Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 14,
+    "user": "Daisuke",
+    "amount": 12000,
+    "placed_at": "2026-08-12T06:46:53Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 14,
+    "user": "Tanja",
+    "amount": 13000,
+    "placed_at": "2026-08-13T17:43:07Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 16,
+    "user": "Mike",
+    "amount": 4500,
+    "placed_at": "2026-08-12T09:08:09Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 16,
+    "user": "Kenji",
+    "amount": 4900,
+    "placed_at": "2026-08-13T01:21:10Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 17,
+    "user": "MarkP",
+    "amount": 18000,
+    "placed_at": "2026-08-10T13:18:48Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 17,
+    "user": "Mateo",
+    "amount": 20000,
+    "placed_at": "2026-08-10T16:11:15Z"
+  },
+  {
+    "house": "Christie's",
+    "house_ref": "22960",
+    "lot_number": 17,
+    "user": "Jonny",
+    "amount": 23000,
+    "placed_at": "2026-08-12T22:28:25Z"
+  }
+]
