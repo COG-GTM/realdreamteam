@@ -22,6 +22,11 @@
       <% if (user) { %>
         <span class="user-switch">You are <b><%= user.name %></b> · <a href="/">switch</a></span>
       <% } %>
+      <% if (typeof gate === 'undefined' || !gate) { %>
+        <form method="post" action="/signout" class="inline signout" title="Forget both codes in this browser">
+          <button class="linklike" type="submit">Sign out</button>
+        </form>
+      <% } %>
     </nav>
   </header>
   <main class="page">

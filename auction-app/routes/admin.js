@@ -10,22 +10,22 @@ const router = express.Router();
 const ADMIN_HINT = 'The day Cognition signed the definitive agreement to acquire Windsurf (agentic IDE), ISO 8601 basic format…';
 
 router.get('/admin/enter', (req, res) => {
-  renderPage(res, 'Admin access', 'enter', { admin: true, hint: ADMIN_HINT });
+  renderPage(res, 'Admin access', 'enter', { gate: true, admin: true, hint: ADMIN_HINT });
 });
 
 router.post('/admin/enter', (req, res) => {
   const expected = process.env.ADMIN_CODE || '20250714';
   if (String(req.body.code || '') !== expected) {
     return renderPage(res, 'Admin access', 'enter', {
+      gate: true,
       admin: true,
       error: 'That code did not match.',
       hint: ADMIN_HINT
     });
   }
-  res.cookie('rdt_admin', '1', {
+  res.cookie('rdt_admin', 'session', {
     signed: true,
-    httpOnly: true,
-    maxAge: 30 * 24 * 60 * 60 * 1000
+    httpOnly: true
   });
   res.redirect('/admin');
 });
