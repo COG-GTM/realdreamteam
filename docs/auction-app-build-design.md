@@ -5,8 +5,10 @@ Status: **for review** (Mark: completeness, simplicity, demo data). Supersedes t
 the stack and decisions there still stand. Data model is frozen in
 [`auction-app-schema.md`](auction-app-schema.md) / [`db/schema.sql`](../auction-app/db/schema.sql) (#34).
 
-Constraint: **demo tomorrow morning, < 12 hours of build time, runs on the presenter's laptop
-against the shared Supabase database.**
+Constraint: **demo tomorrow morning, < 12 hours of build time.** The app runs on the **EC2
+server** (one `node server.js` process behind a public URL, kept up 24/7 with `systemd`/`pm2`);
+many people connect to it at once from their own browsers. Database is the shared Supabase
+project, also up indefinitely. Nothing runs on a laptop.
 
 ## 1. Stack (decided)
 
@@ -15,8 +17,11 @@ no build step, no client-side framework. ~6 dependencies.
 
 ## 2. What the demo must show (the story)
 
-1. Pick a user (no login). Their **summary** shows lots matching their interests plus a
-   **Discover** row of 5 random open lots — so a brand-new user always has something to bid on.
+1. Open the URL, enter the **access code** (the otter's birthday, `20240312`), pick a user. Their
+   **summary** always has **two sections**: **Matches your interests** (from their preferences)
+   and **Discover** (5 random open lots). Both appear for every user — a user with no
+   preferences gets an empty-but-inviting Matches section ("tell us what you like →") and a full
+   Discover row, so everyone always has something to bid on.
 2. **Preferences** — change an interest, the matches change.
 3. **Browse** auctions → lot detail: images (link to Wikipedia), estimates, current bid, bid history.
 4. **Two tabs, two users** bid on the same lot; rejected low bid; high bidder flips.
@@ -37,16 +42,17 @@ so buttons know who is acting.
 
 | # | URL | Shows | Actions |
 |---|---|---|---|
+| 0 | `GET/POST /enter` | Single field: access code. Correct (`ACCESS_CODE` env, default `20240312`) sets a cookie for 30 days; every other route redirects here without it | enter → `/` |
 | 1 | `GET /` | User picker: avatar + name cards for every user | click → `/u/:id/summary` |
-| 2 | `GET /u/:id/summary` | **Notifications** feed (unread first, badge count) · **Matches your interests**: lots matching preferences, grouped by auction, each card = thumbnail, title, artist, estimate, current bid + bidder, **why it matched** ("artist · keyword *blue*"), ♥ state, SOLD ribbon if closed · **Discover**: 5 random open lots the user hasn't bid on or favorited, re-drawn on every refresh | ♥ toggle, quick bid, mark feed read |
-| 3 | `GET/POST /u/:id/preferences` | Checkbox grid of the 11 categories (`lib/categories.js`); artists and keywords as comma-separated text. Optional — no row means "no interests yet", Discover still fills the page | save → back to summary |
+| 2 | `GET /u/:id/summary` | **Notifications** feed (unread first, badge count) · **Matches your interests** (always shown): lots matching preferences, grouped by auction, each card = thumbnail, title, artist, estimate, current bid + bidder, **why it matched** ("artist · keyword *blue*"), ♥ state, SOLD ribbon if closed; empty state links to preferences · **Discover** (always shown): 5 random open lots the user hasn't bid on or favorited, re-drawn on every refresh | ♥ toggle, quick bid, mark feed read |
+| 3 | `GET/POST /u/:id/preferences` | Checkbox grid of the 11 categories (`lib/categories.js`); artists and keywords as comma-separated text. Most users arrive with preferences from the data phase; a user without a row simply has an empty Matches section until they save one | save → back to summary |
 | 4 | `GET /auctions?u=` | All auctions as cards: house logo, title, location, live/timed, status pill, starts/closes, lot count | open |
 | 5 | `GET /auctions/:id?u=` | Auction header + every lot as card (same card partial as summary) | ♥, bid |
 | 6 | `GET /lots/:id?u=` | Lot detail: image gallery (each image links to `source_url`), description, estimate, starting bid, **current bid / high bidder / bid count**, full bid history table (who, amount, when), SOLD banner + winner when closed | ♥, bid form (with min-bid hint) |
 | 7 | `POST /u/:id/lots/:lotId/favorite` | — | toggle ♥ |
 | 8 | `POST /u/:id/lots/:lotId/bid` | — | validate, insert; error → `?error=` flash |
 | 9 | `GET /u/:id/history` | Three lists newest first: **Bids** (amount, lot, status: *leading / outbid / won / lost*), **Favorites**, **Notifications** (full feed, read and unread) | — |
-| 10 | `GET /admin?u=` | "Publish a lot" form (auction, lot no., title, artist, category dropdown, currency, estimates, starting bid, image URL, Wikipedia URL, description) + list of auctions with **Close now / Reopen** buttons | add lot, close, reopen |
+| 10 | `GET /admin?u=` | "Publish a lot" form (auction, lot no., title, artist, category dropdown, currency, estimates, starting bid, image URL, Wikipedia URL, description) + list of auctions with **Close now / Reopen** buttons and an editable **closes_at** field | add lot, close, reopen, re-time |
 | 11 | `POST /admin/lots` | — | insert lot + image, run matching, create `new_lot` notifications |
 | 13 | `POST /u/:id/notifications/read` | — | set `read_at` on the user's unread rows |
 | 12 | `POST /admin/auctions/:id/close` · `/reopen` | — | close: status=closed, set `hammer_price`/`winner_user_id` from high bid; reopen: revert. Redirect to `/admin?sold=:id` which plays `sold.mp3` |
@@ -64,9 +70,14 @@ absentee bids, realtime push (refresh the page).
   keyword appears in title or description (supersedes the v1 doc's "title only") — all
   comparisons case-insensitive. Returns the reasons
   so the summary can print them. Pure function, unit-tested. A user with no `preferences` row
-  simply has no matches (LEFT JOIN, never seeded).
+  has zero matches (LEFT JOIN); the app never creates a row on their behalf.
 - **Discover**: `SELECT … FROM lots JOIN auctions … WHERE status='open' AND lot NOT IN (user's
   bids ∪ favorites) ORDER BY random() LIMIT 5`. Works for any number of users and any catalogue.
+- **Summary always renders both sections**, Matches and Discover, for every user, with or without
+  preferences. Discover excludes lots already in Matches so the two never overlap.
+- **Access code**: `/enter` compares the input to `ACCESS_CODE` (default `20240312`) and sets a
+  signed cookie; a tiny middleware redirects everything else to `/enter` without it. One shared
+  code, no per-user passwords (#4 is real auth).
 - **Categories**: fixed list in `lib/categories.js` (11): Contemporary Art, Modern British Art,
   Photography, Watches, Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts, Stuffed
   Animals, Miscellaneous IT Items. Admin add/drop of categories is #37.
@@ -91,8 +102,9 @@ absentee bids, realtime push (refresh the page).
   **natural keys**, not ids: houses by `name`, auctions by `(house name, house_ref)`, lots by
   `(house name, house_ref, lot_number)` — `house_ref` is only unique per house — users by `name`;
   the DB assigns ids and the loader resolves each level by lookup.
-  Dates in seed are **relative offsets** (`"starts_in_hours": -48`) resolved at seed time, so the demo always
-  has one closed, one open, one upcoming auction whenever it's run.
+  Dates in seed are **absolute ISO timestamps** (the server runs 24/7, so "relative to now" would
+  drift); the data phase sets them, and `/admin` shows an **edit closes_at** field per auction so
+  the demo auctions can be re-timed minutes before the demo without touching SQL.
 
 ## 5. Files
 
@@ -114,11 +126,12 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 
 ## 6. Demo data (the "rich" part) — shape only
 
-> **Decision (Mark):** demo data is generated in a **separate phase by a separate session**, and
-> `preferences` are never pre-populated. What follows is the *shape and volume* the app should be
-> built to handle, not the content. The app builder ships only the loader plus a tiny smoke
-> dataset (§7 step 2) so `npm start` works; the data session replaces `data/seed/*.json` with the
-> real content in the same shape.
+> **Decision (Mark):** demo data — users, **preferences**, houses, auctions, lots, bids,
+> favorites, notifications — is generated in a **separate phase by a separate session**. What
+> follows is the *shape and volume* the app should be built to handle, not the content. The app
+> builder ships only the loader plus a tiny smoke dataset (§7 step 2) so `npm start` works; the
+> data session replaces `data/seed/*.json` with the real content in the same shape. The app must
+> also behave well for users the data phase gives *no* preferences to (see Discover).
 
 Goal: every page is full on first load, every beat in §2 has pre-existing data to point at,
 and nothing looks like a fixture.
@@ -135,17 +148,23 @@ and *distinct, overlapping* interests so one new lot alerts 2–3 people:
 | Aisha Rahman | Jewellery, Books & Manuscripts | Cartier | first edition |
 | Tom Becker | Cars, Design | Porsche | 1960s |
 
-Users may or may not have preferences — Discover covers the ones who don't. Many more than 6
-users must work.
+Most users get preferences from the data phase; a few deliberately don't, to show Discover
+carrying them. Many more than 6 users must work.
 
 **Auction houses (4)**: Sotheby's, Christie's, Phillips, Bonhams — with real logo URLs and websites.
 
-**Auctions (5, was 3)** — statuses computed from relative dates:
+**Auctions (5+)** — statuses come from absolute `starts_at`/`closes_at`. **Demo requirement:**
+several auctions are open at once during the demo, and **at least two of them open before
+15 Sep and close on 15 Sep at two different times** (e.g. 10:30 and 11:15 local), so the audience
+sees one auction close live — SOLD banners, `sold` feed rows — while bidding continues on the
+other, and then a second close later. The exact times are edited on `/admin` right before the
+demo once the slot is known.
 
 | Auction | House | Status at demo | Purpose |
 |---|---|---|---|
-| Contemporary Evening Sale, London | Sotheby's | **open** (closes in 3 days) | the main bidding stage |
-| Important Watches & Motor Cars, Geneva | Phillips | **open** (closes in 5 days) | Christian's beat |
+| Contemporary Evening Sale, London | Sotheby's | **open**, **closes 15 Sep, time A** | the main bidding stage; closes live during the demo |
+| Important Watches & Motor Cars, Geneva | Phillips | **open**, **closes 15 Sep, time B (> A)** | Christian's beat; second live close |
+| Design & Decorative Arts, London | Phillips | **open** (closes in a few days) | still open after the demo ends |
 | Fine Wine, Books & Design, New York | Christie's | **upcoming** (starts in 2 weeks) | shows "upcoming" |
 | Modern British Art, London | Bonhams | **closed** (last week) | pre-filled SOLD results + history |
 | Photographs, Paris | Christie's | **closed** (last month) | more history depth |
@@ -172,13 +191,13 @@ Content questions (names, exact volume) go to the data-phase session, not this d
 
 | Step | Hours | Deliverable |
 |---|---|---|
-| 1 | 1.5 | Scaffold (#19): pg pool, seed loader with relative dates, layout, user picker, all stubs mounted. `npm start` works against Supabase |
-| 2 | 1.5 | Seed loader (natural keys, relative dates) + a *minimal* smoke dataset (2 users, 1 auction, 3 lots) so the app runs; real demo data is the separate data phase |
+| 1 | 1.5 | Scaffold (#19): pg pool, access-code gate, layout, user picker, all stubs mounted. `npm start` works against Supabase |
+| 2 | 1.5 | Seed loader (natural keys, absolute dates) + a *minimal* smoke dataset (2 users, 1 auction, 3 lots) so the app runs; real demo data is the separate data phase |
 | 3 | 1.5 | Summary (feed + matches + Discover) + preferences + `matching.js` (+ tests) |
 | 4 | 2 | Auctions, auction, lot detail; favorite + bid with validation |
 | 5 | 1 | History page |
-| 6 | 1.5 | Admin add-lot, poller, `new_lot`/`outbid`/`sold` feed rows, optional Slack, close/reopen + SOLD + sound |
-| 7 | 1 | README, `db/reset.sql`, full click-through recording, fix-ups |
+| 6 | 1.5 | Admin add-lot, edit `closes_at`, poller, `new_lot`/`outbid`/`sold` feed rows, optional Slack, close/reopen + SOLD + sound |
+| 7 | 1 | README, `db/reset.sql`, EC2 deploy (`systemd` unit, `.env`, public URL), full click-through recording |
 | | **10** | buffer 2 h |
 
 Steps 3–6 are independent once 1–2 land; sequential is fine for one builder. Each step = one PR
@@ -190,7 +209,7 @@ Steps 3–6 are independent once 1–2 land; sequential is fine for one builder.
 |---|---|---|
 | 1 | Seed/poller use string ids (`lot-101`) but schema ids are `BIGINT IDENTITY` | **Natural keys.** Seed files reference auctions by `(house, house_ref)` and lots by `(house_ref, lot_number)`; the DB assigns ids, the loader looks them up. No `OVERRIDING SYSTEM VALUE`. |
 | 2 | `notifications UNIQUE(user_id, lot_id)` blocks an "outbid" notice after a "new lot" notice | **Notifications become an in-app feed** on the web frontend (new lot, outbid, sold), Slack optional. Schema: add `kind TEXT NOT NULL` (`new_lot` / `outbid` / `sold`), `read_at TIMESTAMPTZ`, unique becomes `(user_id, lot_id, kind)`. |
-| 3 | Users without a `preferences` row match nothing | **Never pre-populate preferences.** Summary = "Matches your interests" (if any prefs) + "Discover" (5 random open lots not yet bid/favorited, re-drawn per refresh). Durable for any number of users and a changing catalogue. |
+| 3 | Users without a `preferences` row match nothing | **The app never invents preferences** (the data phase populates them). Summary = "Matches your interests" + "Discover" (5 random open lots not yet bid/favorited, re-drawn per refresh), both always shown. Durable for any number of users and a changing catalogue. |
 | 4 | Missing `CHECK (closes_at > starts_at)`, `hammer_price > 0`, winner-has-a-bid | Add the **two CHECKs**. No trigger for winner-has-a-bid (cross-table, needs a trigger; `close` derives winner from bids anyway). |
 | 5 | Free-text categories → casing drift breaks matching | **Fixed list of 11** in `lib/categories.js` (see §4), dropdown + checkboxes, case-insensitive matching. Admin add/drop categories: **#37**. |
 | 6 | Deleting a user with bids/wins fails (no `ON DELETE`) | **Intentional — governance.** Users are never deleted; `banned` instead. No change. |
@@ -200,15 +219,24 @@ Schema changes from this table — #2 (`kind`, `read_at`, new unique), #4 (two C
 (comment) — are one small `schema.sql` PR plus the matching `ALTER`s on the live Supabase DB,
 owned by the DB session since it holds the connection. Nothing else in the schema changes.
 
-## 9. Open decisions
+## 9. Open decisions (Mark, one by one)
 
 1. **Manual close/reopen on `/admin`** — deviates from the schema doc ("no admin page flips
-   status by hand"). Needed to demo SOLD in 5 minutes without waiting for `closes_at`. Keep?
-2. **Shared DB, one demo**: everyone hits the same Supabase project, so a rehearsal leaves bids
-   behind. `npm run db:reset` (TRUNCATE + reseed) before the demo. OK?
+   status by hand"). With two auctions timed to close during the demo (§6) the poller does the
+   real closes; manual close/reopen becomes a rehearsal safety net. Keep, or rely on
+   *edit closes_at* only?
+2. **Rehearsal reset**: the server and DB are always on, so every rehearsal leaves bids,
+   notifications and SOLD results behind. Proposal: `npm run db:reset` (TRUNCATE + reseed from
+   `data/seed/*.json`) run once right before the demo, then re-time the two auctions on `/admin`.
 3. **Images**: hotlink Wikimedia (zero work, occasional 429s) vs. upload ~30 files to the
    Supabase `lots` bucket (30 min, reliable). Recommendation: hotlink for the demo, bucket later.
 4. **Bid amounts**: whole units of currency only (no cents, no increments table — #26).
-5. **Admin page is open** (no login exists, per the no-auth decision). Anyone with the URL can add
-   lots or close auctions. Fine for a laptop demo; #12 tracks access control. Cheapest hardening
-   if wanted: `ADMIN_CODE` env var checked on `/admin*`.
+5. **Admin behind the same access code**: the otter-birthday cookie gates `/admin` like every
+   other page, so anyone in the demo can add lots or close auctions. Acceptable for the demo
+   (#12 tracks real admin access), or add a second `ADMIN_CODE`?
+6. **Poller vs. live close**: the poller checks every 30 s, so a `closes_at` of 10:30:00 flips
+   between 10:30:00 and 10:30:30, and the audience sees it on their next page load (no realtime
+   push, #32). Acceptable, or shorten the interval to 5 s for the demo?
+7. **EC2 specifics** needed before step 7: instance/URL, who holds SSH, Node 20 present?, port
+   80/443 vs `:3000`, where `.env` (Supabase URL, `ACCESS_CODE`) lives. Not a design choice,
+   just inputs I need.
