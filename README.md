@@ -1,33 +1,34 @@
 # Real Dream Team
 
-Static site. Source lives in `src/` (`index.html`, `assets/css`, `assets/images`). Deployed to GitHub Pages on every push to `main` via `.github/workflows/pages.yml`
-(enable Pages with source "GitHub Actions" in repo Settings → Pages).
+Two things live here:
 
-Local preview: `python3 -m http.server 8080 -d src`
+1. **The auction app** (`auction-app/`) — the team's internal auction-interest
+   demo. **Live at <https://rdt-auction.marklovestech.com>.** Everything about it
+   is in [`auction-app/README.md`](auction-app/README.md): how to use it, how to
+   change it, how to run it locally, how to reset the data, how it's deployed.
+2. **The static website** (`src/`) — plain HTML/CSS, deployed to GitHub Pages on
+   every push to `main` (`.github/workflows/pages.yml`).
+   Local preview: `python3 -m http.server 8080 -d src`
 
-## Auction app (`auction-app/`)
+## The auction app in one minute
 
-A small internal app where team members follow upcoming auctions, favorite lots, and place bids,
-with notifications when new lots match their interests.
+- Go to <https://rdt-auction.marklovestech.com>, enter the site code (hint on
+  the page: your favorite otter's birthday, `YYYYMMDD`), pick your name.
+- Your **summary** shows notifications, lots that match your interests, and a
+  **Discover** row of five random open lots (fresh on every refresh).
+- Browse **auctions** and **lots**, ★ favorite lots, place **bids** (whole
+  numbers, must beat the current high bid). Being outbid puts a notification on
+  your summary; your **history** lists every bid and favorite with its status.
+- When an auction's close time passes (or an admin clicks *Close now*), the
+  highest bid on each lot wins: SOLD ribbon, hammer price, winner, a sound, and
+  Won/Lost notifications for everyone who bid.
+- **/admin** (second code) lets you add lots, change close times, close/reopen
+  auctions and ban/unban users.
 
-The database is **Supabase Postgres**. The schema lives in `auction-app/db/schema.sql` — 9 tables:
+## Design history
 
-- `auction_houses` — the auction houses we track (name, location, logo)
-- `users` — team members using the app (email, avatar, banned flag)
-- `preferences` — each user's categories, artists, and keywords of interest
-- `auctions` — upcoming, open, and closed auction events
-- `lots` — the individual items up for auction
-- `lot_images` — photos of lots, stored in Supabase Storage
-- `favorites` — lots a user has favorited
-- `bids` — bids placed on lots
-- `notifications` — pending and sent match notifications
-
-The app connects using the `AUCTION_DATABASE_URL` and `AUCTION_DATABASE_PASSWORD` environment
-variables. Images live in Supabase Storage buckets (`logos`, `avatars`, `lots`).
-
-Status: **V1 data model final; app code not started.**
-
-More detail:
-- [V1 design doc](docs/auction-app-v1-design.md)
-- [Schema reference](docs/auction-app-schema.md)
-- [Deferred bidding features (issues)](https://github.com/COG-GTM/realdreamteam/issues?q=label%3Adeferred-bidding)
+- [Build design](docs/auction-app-build-design.md) — the design the app was built
+  from, with every decision recorded (§8–§9).
+- [Schema reference](docs/auction-app-schema.md) · [Original V1 design](docs/auction-app-v1-design.md)
+- Deferred features are GitHub issues: per-lot "Going… Going… Gone" close (#38),
+  bid increments / cents (#40), category admin (#37).
