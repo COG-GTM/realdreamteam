@@ -198,4 +198,18 @@ describeHttp('error pages', (it) => {
     assert.equal(page.status, 200);
     assert.match(await page.text(), /You are <b>Dup<\/b>/);
   });
+
+  it('renders lot, auction and pane pages anonymously for a non-numeric ?u=', async () => {
+    const client = await signedIn();
+    const lot = await createLot({ title: 'Anon' });
+    for (const url of [
+      `/lots/${lot.id}?u=abc`,
+      `/auctions/${lot.auction_id}?u=abc`,
+      '/panes/feed?u=abc'
+    ]) {
+      const page = await client.get(url);
+      assert.equal(page.status, 200, url);
+      assert.doesNotMatch(await page.text(), /You are <b>/, url);
+    }
+  });
 });

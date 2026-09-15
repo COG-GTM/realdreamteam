@@ -20,12 +20,15 @@ const { SESSION, requireAccess, loadUser, requireAdmin } = require('./lib/gates'
 
 const app = express();
 app.set('trust proxy', 1);
-// Repeated keys (?u=1&u=1) keep their first value instead of becoming arrays.
+// Repeated keys (?u=1&u=1) keep their first value instead of becoming arrays,
+// and ?u= is dropped unless it is a plain integer id, so no route can pass
+// junk to a bigint column.
 app.set('query parser', (text) => {
   const parsed = querystring.parse(text);
   for (const key of Object.keys(parsed)) {
     if (Array.isArray(parsed[key])) parsed[key] = parsed[key][0];
   }
+  if ('u' in parsed && !/^\d{1,18}$/.test(parsed.u)) delete parsed.u;
   return parsed;
 });
 const cookieSecret = process.env.COOKIE_SECRET || 'auction-interest-demo';

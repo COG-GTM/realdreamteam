@@ -21,7 +21,8 @@ async function renderPage(res, title, view, data = {}) {
       userPath
     });
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error(error);
+    res.status(500).type('text').send('Something went wrong.');
   }
 }
 
