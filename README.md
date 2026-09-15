@@ -81,9 +81,7 @@ State lives only in Postgres — the Node process is stateless (the login cookie
 is signed, not stored), so it can be restarted at any time without losing
 anything. `npm run db:reset` wipes Postgres and reloads it from
 `data/seed/*.json`, which is how the demo is put back to a known
-state (see the deploy section below). Optional: a Slack
-webhook (`SLACK_WEBHOOK_URL`) mirrors notifications to a channel; unset in
-production.
+state (see the deploy section below).
 
 
 ## Using the app
@@ -192,7 +190,6 @@ repeatedly.
 - `ACCESS_CODE`: site-wide access code, default `20240312`.
 - `ADMIN_CODE`: admin access code, default `20250714`.
 - `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
-- `SLACK_WEBHOOK_URL`: optional Slack incoming-webhook URL.
 - `PORT`: HTTP port, default `3000`.
 - `COOKIE_SECRET`: secret used to sign access cookies, default `change-me`.
 
@@ -225,7 +222,7 @@ Optional activity files may also be supplied:
 - `bids.json`: `{house, house_ref, lot_number, user, amount, placed_at}`.
 - `favorites.json`: `{user, house, house_ref, lot_number}`.
 - `notifications.json`: `{user, house, house_ref, lot_number, kind, reason,
-  created_at, read_at, sent_at}`. Duplicate `(user, lot, kind)` rows are
+  created_at, read_at}`. Duplicate `(user, lot, kind)` rows are
   ignored.
 
 Unknown natural keys and invalid categories fail the transaction with a clear

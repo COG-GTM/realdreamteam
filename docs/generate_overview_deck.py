@@ -371,10 +371,7 @@ def slide_next(prs):
     ])
     card_text(s, M + w + gap, top, w, h, "3 \u00b7 Bring back the deferred v1 features", [
         ("Search and filters, pagination, lot edit/delete, and realtime updates instead of refresh "
-         "were all cut on purpose for the demo window.", {"space_after": 10}),
-        ("4 \u00b7 Slack notifications", {"size": 11, "bold": True, "space_after": 5}),
-        ("The in-app feed is the source of truth; the Slack webhook is wired but optional. "
-         "Turn it on for new-lot and outbid events once the channel is agreed.", {}),
+         "were all cut on purpose for the demo window.", {}),
     ])
     card_text(s, M, top + h + Inches(0.15), W - 2 * M, Inches(0.95), "What has to come with it", [
         ("Infrastructure details stay in the private \u201cRDT infrastructure access\u201d knowledge note and "
