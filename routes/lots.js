@@ -38,7 +38,7 @@ async function showLot(req, res, next) {
     const [imagesResult, bidsResult, favoriteResult] = await Promise.all([
       query('SELECT url, credit FROM lot_images WHERE lot_id = $1 ORDER BY position', [lot.id]),
       query(
-        `SELECT b.user_id, b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
+        `SELECT b.id AS bid_id, b.user_id, b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
          FROM bids b JOIN users u ON u.id = b.user_id
          WHERE b.lot_id = $1 ORDER BY b.placed_at DESC, b.id DESC`,
         [lot.id]

@@ -92,7 +92,7 @@ bidding happens), one or two `upcoming` (so the matcher has lots to notify about
 
 Bidding features deliberately deferred are tracked as GitHub issues under the
 [`deferred-bidding`](https://github.com/COG-GTM/realdreamteam/issues?q=label%3Adeferred-bidding)
-label: proxy/max bids, bid increments, reserves, room/phone/absentee bidding, bidder
+label: proxy/max bids, reserves, room/phone/absentee bidding, bidder
 registration, a separate closed-sale history table, realtime bid updates. Also still out:
 condition reports, provenance, viewing schedules, an artist entity table, saved searches.
 
