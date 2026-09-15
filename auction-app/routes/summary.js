@@ -56,7 +56,7 @@ router.get('/u/:userId/summary', async (req, res, next) => {
       hasPreferences: prefs !== null,
       matches,
       discover,
-      notifications: await listFeed(userId, 20),
+      notifications: await listFeed(userId),
       unread: await unreadCount(userId),
       flash: req.query.flash || '',
       formatUtc
