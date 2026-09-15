@@ -327,10 +327,22 @@
   },
   {
     "user": "Reilly",
-    "categories": [],
-    "artists": [],
+    "categories": [
+      "Contemporary Art",
+      "Modern British Art",
+      "Watches",
+      "Cars"
+    ],
+    "artists": [
+      "Andy Warhol",
+      "Rolex",
+      "Aston Martin"
+    ],
     "keywords": [
-      "tennis"
+      "tennis",
+      "racquets",
+      "penguins",
+      "trophies"
     ]
   },
   {
