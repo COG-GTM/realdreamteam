@@ -7,32 +7,77 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="/">AUCTION<span>INTEREST</span></a>
-    <nav>
-      <% if (user) { %>
-        <a href="/u/<%= user.id %>/summary">Summary</a>
-        <a href="/auctions?u=<%= user.id %>">Auctions</a>
-        <a href="/u/<%= user.id %>/history">History</a>
-        <a href="/u/<%= user.id %>/preferences">Preferences</a>
-      <% } else { %>
-        <a href="/auctions">Auctions</a>
-      <% } %>
-      <a href="/admin<%= user ? `?u=${user.id}` : '' %>">Admin</a>
-      <% if (user) { %>
-        <span class="user-switch">You are <b><%= user.name %></b> · <a href="/">switch</a></span>
-      <% } %>
-      <% if (typeof gate === 'undefined' || !gate) { %>
+  <% if (typeof gate !== 'undefined' && gate) { %>
+    <header class="site-header">
+      <a class="brand" href="/">AUCTION<span>INTEREST</span></a>
+    </header>
+    <main class="page">
+      <% if (typeof error !== 'undefined' && error) { %><div class="flash error"><%= error %></div><% } %>
+      <%- body %>
+    </main>
+  <% } else { %>
+    <div class="shell">
+      <aside class="sidenav">
+        <a class="brand" href="/">AUCTION<span>INTEREST</span></a>
+        <% if (user) { %>
+          <span class="user-switch">You are <b><%= user.name %></b> · <a href="/">switch</a></span>
+        <% } %>
+        <nav>
+          <% if (user) { %>
+            <a href="/u/<%= user.id %>/summary">Summary</a>
+            <a href="/auctions?u=<%= user.id %>">Auctions</a>
+            <a href="/u/<%= user.id %>/history">History</a>
+            <a href="/u/<%= user.id %>/preferences">Preferences</a>
+          <% } else { %>
+            <a href="/auctions">Auctions</a>
+          <% } %>
+          <a href="/admin<%= user ? `?u=${user.id}` : '' %>">Admin</a>
+        </nav>
         <form method="post" action="/signout" class="inline signout" title="Forget both codes in this browser">
           <button class="linklike" type="submit">Sign out</button>
         </form>
-      <% } %>
-    </nav>
-  </header>
-  <main class="page">
-    <% if (typeof error !== 'undefined' && error) { %><div class="flash error"><%= error %></div><% } %>
-    <%- body %>
-  </main>
+      </aside>
+      <main class="page">
+        <% if (typeof error !== 'undefined' && error) { %><div class="flash error"><%= error %></div><% } %>
+        <%- body %>
+      </main>
+      <aside class="panes">
+        <section class="pane" id="pane-auctions" data-src="/panes/auctions?u=<%= userId %>">
+          <%- include('partials/pane-auctions') %>
+        </section>
+        <section class="pane" id="pane-feed" data-src="/panes/feed?u=<%= userId %>">
+          <%- include('partials/pane-feed') %>
+        </section>
+      </aside>
+    </div>
+  <% } %>
   <footer class="site-footer">A small demo for collecting auction interest.</footer>
+  <% if (!(typeof gate !== 'undefined' && gate)) { %>
+    <script>
+      (() => {
+        const panes = document.querySelectorAll('.pane[data-src]');
+        let refreshing = false;
+        async function refresh() {
+          if (document.hidden || refreshing) return;
+          refreshing = true;
+          await Promise.all([...panes].map(async (pane) => {
+            const oldIds = pane.id === 'pane-feed'
+              ? new Set([...pane.querySelectorAll('.unread')].map((item) => item.dataset.id))
+              : null;
+            try {
+              const response = await fetch(pane.dataset.src, { credentials: 'same-origin' });
+              if (!response.ok) return;
+              pane.innerHTML = await response.text();
+              if (oldIds) pane.querySelectorAll('.unread').forEach((item) => {
+                if (!oldIds.has(item.dataset.id)) item.classList.add('fresh');
+              });
+            } catch {}
+          }));
+          refreshing = false;
+        }
+        setInterval(refresh, 3000);
+      })();
+    </script>
+  <% } %>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<h3 class="pane-title">Notifications
+  <% if (unread > 0) { %><span class="badge unread-badge"><%= unread %> unread</span><% } %>
+  <span class="live-dot" title="live"></span>
+</h3>
+<% if (!userId) { %>
+  <p class="pane-empty">Pick a user to see your feed.</p>
+<% } else if (notifications.length === 0) { %>
+  <p class="pane-empty">Nothing yet.</p>
+<% } else { %>
+  <ul class="pane-list feed-compact">
+    <% for (const n of notifications) { %>
+      <li class="feed-item<%= n.read_at ? '' : ' unread' %>" data-id="<%= n.id %>">
+        <span class="badge kind-<%= n.kind %>"><%= n.kind.replace(/_/g, ' ') %></span>
+        <a href="/lots/<%= n.lot_id %>?u=<%= userId %>"><%= n.lot_title %></a>
+        <span class="feed-reason"><%= n.reason %></span>
+        <time class="feed-time"><%= formatCentral(n.created_at) %></time>
+      </li>
+    <% } %>
+  </ul>
+  <% if (unread > 0) { %>
+    <form method="post" action="/u/<%= userId %>/notifications/read">
+      <button class="btn" type="submit">Mark all as read</button>
+    </form>
+  <% } %>
+  <% if (feedTotal > 8) { %>
+    <a class="pane-more" href="/u/<%= userId %>/summary">Show all (<%= feedTotal %>)</a>
+  <% } %>
+<% } %>

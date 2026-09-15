@@ -21,5 +21,6 @@ router.use(require('./auctions'));
 router.use(require('./lots'));
 router.use(require('./history'));
 router.use(require('./admin'));
+router.use(require('./panes'));
 
 module.exports = router;
