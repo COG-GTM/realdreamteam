@@ -9,7 +9,7 @@ const router = express.Router();
 
 // One row per lot in an open auction, with the first image and current high bid.
 const OPEN_LOTS_SQL = `
-  SELECT l.id, l.title, l.artist, l.category, l.description, l.currency,
+  SELECT l.id, l.lot_number, l.title, l.artist, l.category, l.description, l.currency,
          l.estimate_low, l.estimate_high, l.starting_bid,
          a.id AS auction_id, a.title AS auction_title,
          (SELECT url FROM lot_images WHERE lot_id = l.id ORDER BY position LIMIT 1) AS image_url,
