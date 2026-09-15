@@ -65,7 +65,16 @@ router.get('/u/:userId/summary', async (req, res, next) => {
 router.post('/u/:userId/notifications/read', async (req, res, next) => {
   try {
     await markAllRead(Number(req.params.userId));
-    res.redirect(req.get('Referer') || `/u/${req.params.userId}/summary`);
+    const id = req.params.userId;
+    const back = req.get('Referer') || '';
+    let destination = `/u/${id}/summary`;
+    if (back) {
+      try {
+        const url = new URL(back, `${req.protocol}://${req.get('host')}`);
+        if (url.host === req.get('host')) destination = url.pathname + url.search;
+      } catch {}
+    }
+    res.redirect(destination);
   } catch (error) {
     next(error);
   }

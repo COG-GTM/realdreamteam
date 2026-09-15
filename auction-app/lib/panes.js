@@ -13,20 +13,18 @@ async function paneData(userId) {
   const openPromise = query(OPEN_AUCTIONS_SQL);
   if (!userId) {
     const openAuctions = (await openPromise).rows;
-    return { openAuctions, notifications: [], unread: 0, feedTotal: 0 };
+    return { openAuctions, notifications: [], unread: 0 };
   }
 
-  const [openResult, notifications, unread, feedTotalResult] = await Promise.all([
+  const [openResult, notifications, unread] = await Promise.all([
     openPromise,
-    listFeed(userId, 8),
-    unreadCount(userId),
-    query('SELECT COUNT(*)::int AS count FROM notifications WHERE user_id = $1', [userId])
+    listFeed(userId),
+    unreadCount(userId)
   ]);
   return {
     openAuctions: openResult.rows,
     notifications,
-    unread,
-    feedTotal: feedTotalResult.rows[0].count
+    unread
   };
 }
 
