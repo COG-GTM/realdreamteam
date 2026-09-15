@@ -5845,20 +5845,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 30,
-    "title": "Cognition enamel pin set (5)",
+    "title": "Limited edition Cognition pin",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Set of five hard-enamel pins: the Cognition mark, a Devin head, a terminal prompt, a pull-request icon and a 'shipped it' banner. Rubber clutch backs, on original card.",
+    "description": "Limited-edition hard-enamel lapel pin of the Cognition hexagon mark, black with polished gold-tone edges, about 2 cm across. Made in a small run for early team members; rubber clutch back.",
     "currency": "USD",
-    "estimate_low": 40,
-    "estimate_high": 80,
+    "estimate_low": 25,
+    "estimate_high": 60,
     "starting_bid": 25,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-pin-set.jpg",
+        "url": "/images/lots/cognition-pin.jpg",
         "credit": "Cognition"
       }
     ],
@@ -5891,20 +5891,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 32,
-    "title": "Cognition vintage t-shirt, 2023 'Preview' edition",
+    "title": "Cognition vintage t-shirt, otter edition",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Heather-grey tee from the 2023 private preview, with the original pre-launch Cognition logotype. Size M, faded from washing, collar intact — a genuine piece of company archaeology.",
+    "description": "Charcoal-black tee from an early Cognition run: on the back, a sea otter floats on its back typing on a laptop above the line 'The world's first ott-onomous software engineer.' Lightly worn, print bright, collar intact — a genuine piece of company archaeology.",
     "currency": "USD",
-    "estimate_low": 60,
-    "estimate_high": 120,
-    "starting_bid": 40,
+    "estimate_low": 150,
+    "estimate_high": 300,
+    "starting_bid": 150,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-tee-preview.jpg",
+        "url": "/images/lots/cognition-tee-otter.jpg",
         "credit": "Cognition"
       }
     ],
