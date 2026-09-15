@@ -123,7 +123,7 @@ lib/poller.js        the 5 s status poller
 lib/categories.js    the default category seed/fallback list
 lib/notifications.js feed queries, unread count, mark-all-read
 public/styles.css    all styling; public/sold.mp3 the sale sound
-db/schema.sql        the 10 tables; db/db.js the pool, transactions and seed loader
+db/schema.sql        the 11 tables; db/db.js the pool, transactions and seed loader
 data/seed/*.json     the demo data (see "Seed contract")
 ```
 
@@ -131,6 +131,27 @@ Typical edits: change wording → the `.ejs` file for that page; change a rule
 (minimum bid, who gets notified) → the `lib/` file named for it; change the
 look → `public/styles.css`. Run `npm test` after touching `lib/`, `routes/` or
 `db/` (see "Testing").
+
+### Code size (as of 15 Sep 2026)
+
+Line counts on `main`, excluding images, audio and the pptx deck.
+
+| What | Lines | Notes |
+| --- | ---: | --- |
+| App JavaScript (Node) | 2,570 | `server.js` 119 · `routes/` 900 · `lib/` 1,185 · `db/` 364 |
+| Tests | 2,194 | 117 test cases; unit tests beside each `lib/` file, HTTP + integration tests in `test/` |
+| Templates (EJS) | 724 | 21 views, incl. ~50 lines of inline browser JS for the live panes and sale sound |
+| SQL | 381 | `db/schema.sql`, `db/reset.sql`, 7 migrations |
+| CSS | 1 file, 16 KB | `public/styles.css` (minified) |
+| Python | 397 | `docs/generate_overview_deck.py` builds the overview deck |
+| Seed data (JSON) | 15,207 | lots 6,028 · notifications 5,192 · bids 2,810 · favorites 485 · preferences 434 · users 142 · auctions 90 · auction houses 26 |
+| Docs (Markdown) | 854 | README 315 · build-design 251 · v1-design 184 · schema 104 |
+| Assets | 64 files, 2.9 MB | lot photos, 49 default avatar SVGs, `sold.mp3` |
+
+Largest source files: `routes/admin.js` 296, `db/db.js` 265, `lib/category-admin.js` 258,
+`lib/bids.js` 160, `lib/new-lot.js` 158, `routes/lots.js` 127, `lib/close.js` 104.
+Roughly 45% app code, 38% tests, 13% templates/SQL/CSS; the seed data is about
+2.7× the size of all the code.
 
 ## Testing
 
@@ -194,8 +215,10 @@ database.
 
 Before running `db:reset` against Supabase, apply every migration in
 `db/migrations/`; migrations `001-schema-review.sql`, `002-bigint-money.sql`,
-`003-decimal-money.sql`, `003-categories.sql`, `004-avatars.sql`, and
-`005-rename-stuffed-animals.sql` are required.
+`003-decimal-money.sql`, `003-categories.sql`, `004-avatars.sql`,
+`005-rename-stuffed-animals.sql`, and `006-simulation.sql` are required
+(`006-simulation.sql` adds shadow users, auction/lot lineage columns and the
+`activity` table).
 Money columns use `NUMERIC(16,2)` to support values up to 9,999,999,999,999.99.
 On an existing database,
 follow `004-avatars.sql` with `npm run db:avatars` to give every user a default icon.
