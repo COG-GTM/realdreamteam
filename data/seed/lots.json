@@ -6001,5 +6001,28 @@
       }
     ],
     "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 37,
+    "title": "Framed photograph: the Cognition $48B raise, September 2026",
+    "artist": "Cognition",
+    "category": "Design",
+    "description": "Framed colour photograph of the celebration cake from Cognition's $48 billion raise in September 2026: white buttercream, orange piping, the hexagon mark and Devin the otter at his laptop, with a pair of champagne glasses standing by. Printed and framed in black, about 40 x 30 cm.",
+    "currency": "USD",
+    "estimate_low": 100,
+    "estimate_high": 250,
+    "starting_bid": 100,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/cognition-48b-raise.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
   }
 ]
