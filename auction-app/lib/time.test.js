@@ -1,13 +1,24 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { formatUtc } = require('./time');
+const { formatCentral, toCentralInput, fromCentralInput } = require('./time');
 
-test('formats timestamps in UTC', () => {
-  assert.equal(formatUtc('2026-09-15T06:43:12.000Z'), '2026-09-15 06:43 UTC');
-  assert.equal(formatUtc(new Date('2026-01-01T23:59:00Z')), '2026-01-01 23:59 UTC');
+test('formats timestamps in US Central', () => {
+  assert.equal(formatCentral('2026-09-15T15:00:00.000Z'), '15 Sep 2026, 10:00 CDT');
+  assert.equal(formatCentral(new Date('2026-01-15T23:59:00Z')), '15 Jan 2026, 17:59 CST');
 });
 
 test('returns an empty string for missing or invalid values', () => {
-  assert.equal(formatUtc(null), '');
-  assert.equal(formatUtc('not a date'), '');
+  assert.equal(formatCentral(null), '');
+  assert.equal(formatCentral('not a date'), '');
+});
+
+test('toCentralInput renders Central wall-clock for datetime-local', () => {
+  assert.equal(toCentralInput('2026-09-15T15:00:00Z'), '2026-09-15T10:00');
+  assert.equal(toCentralInput(null), '');
+});
+
+test('fromCentralInput reads datetime-local text as US Central', () => {
+  assert.equal(fromCentralInput('2026-09-15T10:00').toISOString(), '2026-09-15T15:00:00.000Z');
+  assert.equal(fromCentralInput('2026-01-15T17:59').toISOString(), '2026-01-15T23:59:00.000Z');
+  assert.ok(Number.isNaN(fromCentralInput('garbage').getTime()));
 });

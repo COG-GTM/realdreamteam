@@ -3,7 +3,7 @@ const { query } = require('../db/db');
 const { renderPage } = require('./helpers');
 const { matchLot } = require('../lib/matching');
 const { unreadCount, listFeed, markAllRead } = require('../lib/notifications');
-const { formatUtc } = require('../lib/time');
+const { formatCentral } = require('../lib/time');
 
 const router = express.Router();
 
@@ -59,7 +59,7 @@ router.get('/u/:userId/summary', async (req, res, next) => {
       notifications: await listFeed(userId),
       unread: await unreadCount(userId),
       flash: req.query.flash || '',
-      formatUtc
+      formatCentral
     });
   } catch (error) {
     next(error);

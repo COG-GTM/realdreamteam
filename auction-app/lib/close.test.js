@@ -28,14 +28,19 @@ test('soldReason differs for winner and other bidders', () => {
   assert.equal(soldReason('Mark Porter', 55000, 'GBP', false), 'Sold to Mark Porter for £55,000 — better luck next time');
 });
 
-test('validateClosesAt reads datetime-local text as UTC', () => {
+test('validateClosesAt reads datetime-local text as US Central', () => {
   const result = validateClosesAt('2026-09-15T11:15', '2026-09-10T09:00:00Z');
+  assert.equal(result.value.toISOString(), '2026-09-15T16:15:00.000Z');
+});
+
+test('validateClosesAt keeps text with an explicit zone', () => {
+  const result = validateClosesAt('2026-09-15T11:15Z', '2026-09-10T09:00:00Z');
   assert.equal(result.value.toISOString(), '2026-09-15T11:15:00.000Z');
 });
 
 test('validateClosesAt rejects empty, garbage and times before the start', () => {
   assert.ok(validateClosesAt('', '2026-09-10T09:00:00Z').error);
   assert.ok(validateClosesAt('tomorrow', '2026-09-10T09:00:00Z').error);
-  assert.ok(validateClosesAt('2026-09-10T08:00', '2026-09-10T09:00:00Z').error);
-  assert.ok(validateClosesAt('2026-09-10T09:00', '2026-09-10T09:00:00Z').error);
+  assert.ok(validateClosesAt('2026-09-10T08:00', '2026-09-10T15:00:00Z').error);
+  assert.ok(validateClosesAt('2026-09-10T09:00', '2026-09-10T15:00:00Z').error);
 });

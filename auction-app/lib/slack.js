@@ -12,7 +12,7 @@ function messageFor(user, lot, auction) {
     ? `${money(lot.estimate_low, lot.currency)}–${money(lot.estimate_high, lot.currency)}`
     : 'estimate upon request';
   const date = new Date(auction.starts_at).toLocaleDateString('en-GB', {
-    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'
+    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'America/Chicago'
   });
   const baseUrl = process.env.APP_BASE_URL || 'http://localhost:3000';
   return `New lot for ${user.name}: "${lot.title}"${artist}\n` +

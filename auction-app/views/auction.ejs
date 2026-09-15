@@ -3,7 +3,7 @@
 <h1><%= auction.title %></h1>
 <p class="lede">
   <span class="pill <%= auction.status %>"><%= auction.status %></span>
-  <%= auction.format %> · starts <%= formatUtc(auction.starts_at) %><% if (auction.closes_at) { %> · closes <%= formatUtc(auction.closes_at) %><% } %>
+  <%= auction.format %> · starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · closes <%= formatCentral(auction.closes_at) %><% } %>
 </p>
 <% if (auction.source_url) { %><p><a class="btn" href="<%= auction.source_url %>">View at <%= auction.house_name %> →</a></p><% } %>
 

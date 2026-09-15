@@ -13,7 +13,7 @@
         <td><a href="<%= userPath(userId, '/lots/' + bid.lot_id) %>"><%= bid.title %></a></td>
         <td><%= formatMoney(bid.amount, bid.currency) %></td>
         <td><%= bid.high_bid != null ? formatMoney(bid.high_bid, bid.currency) : '—' %></td>
-        <td><%= formatUtc(bid.placed_at) %></td>
+        <td><%= formatCentral(bid.placed_at) %></td>
         <td><span class="status-<%= bid.state %>"><%= bid.state %></span></td>
       </tr>
     <% } %>
@@ -31,7 +31,7 @@
         <td><a href="<%= userPath(userId, '/lots/' + favorite.id) %>"><%= favorite.title %></a></td>
         <td><span class="pill <%= favorite.status %>"><%= favorite.status %></span></td>
         <td><%= favorite.high_bid != null ? formatMoney(favorite.high_bid, favorite.currency) : '—' %></td>
-        <td><%= formatUtc(favorite.created_at) %></td>
+        <td><%= formatCentral(favorite.created_at) %></td>
       </tr>
     <% } %>
   </table>
