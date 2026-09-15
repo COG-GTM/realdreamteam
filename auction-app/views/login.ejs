@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Real Dream Team Auction</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <div class="gate">
+        <h1>Real Dream Team Auction</h1>
+        <form method="post" action="/login">
+          <label for="code">Access code</label>
+          <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" autofocus required>
+          <input type="hidden" name="next" value="<%= next %>">
+          <button type="submit">Enter</button>
+        </form>
+      </div>
+      <p class="hint">Your favorite cuddly  otter's birthday 🎂 ISO 8601 basic format</p>
+      <% if (error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+    </main>
+  </body>
+</html>

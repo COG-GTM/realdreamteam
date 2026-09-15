@@ -18,6 +18,13 @@ are logged to the server console. Reset the seeded data with:
 npm run db:reset -- --yes
 ```
 
+### Access gate
+
+The app uses the default codes `20240312`, `03122024`, and `12032024` for its
+server-side access gate; configure the comma-separated `ACCESS_CODES` list or
+share a link with `?code=...` when needed. Set `SESSION_SECRET` to a stable
+secret so signed access cookies survive restarts.
+
 ## Tests
 
 Run the test suite with:
