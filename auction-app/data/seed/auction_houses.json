@@ -1,22 +1,14 @@
 [
   {
-    "id": 1,
     "name": "Sotheby's",
-    "website": "https://www.sothebys.com"
+    "location": "London",
+    "website": "https://www.sothebys.com",
+    "logo_url": null
   },
   {
-    "id": 2,
-    "name": "Christie's",
-    "website": "https://www.christies.com"
-  },
-  {
-    "id": 3,
     "name": "Phillips",
-    "website": "https://www.phillips.com"
-  },
-  {
-    "id": 4,
-    "name": "Bonhams",
-    "website": "https://www.bonhams.com"
+    "location": "Geneva",
+    "website": "https://www.phillips.com",
+    "logo_url": null
   }
 ]

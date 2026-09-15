@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> · Auction Interest</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">AUCTION<span>INTEREST</span></a>
+    <nav>
+      <% if (user) { %>
+        <a href="/u/<%= user.id %>/summary">Summary</a>
+        <a href="/auctions?u=<%= user.id %>">Auctions</a>
+        <a href="/u/<%= user.id %>/history">History</a>
+        <a href="/u/<%= user.id %>/preferences">Preferences</a>
+      <% } else { %>
+        <a href="/auctions">Auctions</a>
+      <% } %>
+      <a href="/admin<%= user ? `?u=${user.id}` : '' %>">Admin</a>
+      <% if (user) { %>
+        <span class="user-switch">You are <b><%= user.name %></b> · <a href="/">switch</a></span>
+      <% } %>
+    </nav>
+  </header>
+  <main class="page">
+    <% if (typeof error !== 'undefined' && error) { %><div class="flash error"><%= error %></div><% } %>
+    <%- body %>
+  </main>
+  <footer class="site-footer">A small demo for collecting auction interest.</footer>
+</body>
+</html>

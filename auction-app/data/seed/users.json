@@ -1,20 +1,17 @@
 [
-  { "id": 1, "name": "Mark Porter",
-    "preferences": { "categories": ["Contemporary Art"], "artists": ["Yayoi Kusama", "Banksy"],
-                     "keywords": ["blue"], "minPrice": 10000, "maxPrice": 250000 } },
-  { "id": 2, "name": "Christian Wencel",
-    "preferences": { "categories": ["Watches", "Cars"], "artists": [],
-                     "keywords": ["Porsche", "chronograph"], "minPrice": 20000, "maxPrice": 500000 } },
-  { "id": 3, "name": "Alex Chen",
-    "preferences": { "categories": ["Wine & Spirits"], "artists": [],
-                     "keywords": ["Bordeaux", "Macallan"], "minPrice": 1000, "maxPrice": 50000 } },
-  { "id": 4, "name": "Priya Patel",
-    "preferences": { "categories": ["Jewellery", "Contemporary Art"], "artists": ["David Hockney"],
-                     "keywords": ["diamond"], "minPrice": 5000, "maxPrice": 150000 } },
-  { "id": 5, "name": "Sam Okafor",
-    "preferences": { "categories": ["Photography", "Design"], "artists": ["Ansel Adams"],
-                     "keywords": ["Eames"], "minPrice": 500, "maxPrice": 30000 } },
-  { "id": 6, "name": "Jordan Lee",
-    "preferences": { "categories": ["Books & Manuscripts"], "artists": [],
-                     "keywords": ["first edition", "signed"], "minPrice": 1000, "maxPrice": 100000 } }
+  {
+    "name": "Mark Porter",
+    "email": "mark@example.com",
+    "avatar_url": null,
+    "preferences": {
+      "categories": ["Contemporary Art"],
+      "artists": ["Yayoi Kusama"],
+      "keywords": ["blue"]
+    }
+  },
+  {
+    "name": "Christian Wencel",
+    "email": "christian@example.com",
+    "avatar_url": null
+  }
 ]

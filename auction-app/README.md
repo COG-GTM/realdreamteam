@@ -1,0 +1,72 @@
+# Auction Interest Demo
+
+This is a small server-rendered auction demo. It uses Express, EJS, and a
+Postgres database. There is no client-side build step.
+
+## Run locally
+
+```sh
+cp .env.example .env
+npm install
+npm run db:reset
+npm start
+```
+
+Open <http://localhost:3000>. The default site code is `20240312`; the
+default admin code is `20250714`.
+
+For the local PostgreSQL 14 database used during development:
+
+```sh
+createdb -p 5433 rdt_local
+psql -p 5433 -d rdt_local -f db/schema.sql
+```
+
+Set `AUCTION_DATABASE_PASSWORD` in `.env` when the local PostgreSQL role
+requires a password. Do not point local verification at the shared Supabase
+database.
+
+## Reset
+
+`npm run db:reset` truncates the nine application tables, resets identity
+sequences, and loads the seed contract in one transaction. It is safe to run
+repeatedly.
+
+## Environment
+
+- `AUCTION_DATABASE_URL`: PostgreSQL connection string.
+- `AUCTION_DATABASE_PASSWORD`: password passed separately to `pg.Pool`.
+- `ACCESS_CODE`: site-wide access code, default `20240312`.
+- `ADMIN_CODE`: admin access code, default `20250714`.
+- `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
+- `SLACK_WEBHOOK_URL`: optional Slack incoming-webhook URL.
+- `PORT`: HTTP port, default `3000`.
+
+## Seed contract
+
+The data phase supplies these files in `data/seed/`:
+
+- `users.json`: an array of `{name, email, avatar_url, banned, preferences?}`.
+  A preference object has `categories`, `artists`, and `keywords` arrays.
+  A `preferences` row is created only when that property is present.
+- `auction_houses.json`: `{name, location, website, logo_url}` objects.
+- `auctions.json`: `{house, house_ref, title, location, format, starts_at,
+  closes_at, source_url}` objects. `house` is the exact house name and dates
+  are absolute ISO 8601 timestamps. The loader computes `status` from them.
+- `lots.json`: `{house, house_ref, lot_number, title, artist, category,
+  description, currency, estimate_low, estimate_high, starting_bid,
+  source_url, images}` objects. Each image is `{url, credit}` and is stored
+  in its array order.
+
+The loader uses natural keys rather than fixture IDs: users by `name`, houses
+by `name`, auctions by `(house, house_ref)`, and lots by
+`(house, house_ref, lot_number)`. PostgreSQL assigns all numeric IDs. Lot
+categories must be one of the values exported by `lib/categories.js`.
+
+Optional activity files may also be supplied:
+
+- `bids.json`: `{house, house_ref, lot_number, user, amount, placed_at}`.
+- `favorites.json`: `{user, house, house_ref, lot_number}`.
+
+Unknown natural keys and invalid categories fail the transaction with a clear
+error. This seed shape is the contract for the data-phase session.

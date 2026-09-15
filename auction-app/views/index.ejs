@@ -1,0 +1,13 @@
+<section class="hero intro">
+  <p class="eyebrow">PRIVATE SALE ROOM · 2026</p>
+  <h1>Who are you?</h1>
+  <p class="lede">Choose a profile to see the lots matched to your interests.</p>
+  <div class="user-grid">
+    <% users.forEach((person) => { %>
+      <a class="user-choice" href="/u/<%= person.id %>/summary">
+        <span class="avatar"><%= person.name.split(' ').map((part) => part[0]).join('') %></span>
+        <span><strong><%= person.name %></strong><small>Open personal summary →</small></span>
+      </a>
+    <% }) %>
+  </div>
+</section>

@@ -1,0 +1,122 @@
+[
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26001",
+    "lot_number": 1,
+    "title": "Untitled (Blue)",
+    "artist": "Yayoi Kusama",
+    "category": "Contemporary Art",
+    "description": "Acrylic on canvas, 2019, 130 × 162 cm.",
+    "currency": "GBP",
+    "estimate_low": 40000,
+    "estimate_high": 60000,
+    "starting_bid": 40000,
+    "source_url": "https://en.wikipedia.org/wiki/Yayoi_Kusama",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Enjambre_de_Luci%C3%A9rnagas_creaci%C3%B3n_de_Yayoi_Kusama_03.jpg/960px-Enjambre_de_Luci%C3%A9rnagas_creaci%C3%B3n_de_Yayoi_Kusama_03.jpg",
+        "credit": "CC BY-SA 4.0, Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26001",
+    "lot_number": 2,
+    "title": "Girl with Balloon (print)",
+    "artist": "Banksy",
+    "category": "Contemporary Art",
+    "description": "Screenprint in colours, 2004, 70 × 50 cm.",
+    "currency": "GBP",
+    "estimate_low": 120000,
+    "estimate_high": 180000,
+    "starting_bid": 120000,
+    "source_url": "https://en.wikipedia.org/wiki/Banksy",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_World_of_Banksy_2022%2C_Brussels.jpg/960px-The_World_of_Banksy_2022%2C_Brussels.jpg",
+        "credit": "CC BY-SA 2.0, Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26001",
+    "lot_number": 3,
+    "title": "Pool with Two Figures (study)",
+    "artist": "David Hockney",
+    "category": "Contemporary Art",
+    "description": "Acrylic on canvas, 1972, 213 × 305 cm.",
+    "currency": "GBP",
+    "estimate_low": 90000,
+    "estimate_high": 140000,
+    "starting_bid": 90000,
+    "source_url": "https://en.wikipedia.org/wiki/David_Hockney",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Swimming_pool_blue_water.jpg/960px-Swimming_pool_blue_water.jpg",
+        "credit": "CC BY-SA 4.0, Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "GE26001",
+    "lot_number": 1,
+    "title": "Rolex Daytona Chronograph ref. 6263",
+    "artist": "Rolex",
+    "category": "Watches",
+    "description": "Stainless steel chronograph, 1970s, 40 mm diameter.",
+    "currency": "CHF",
+    "estimate_low": 80000,
+    "estimate_high": 120000,
+    "starting_bid": 80000,
+    "source_url": "https://en.wikipedia.org/wiki/Rolex_Daytona",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Rolex_Daytona_Cosmograph.jpg",
+        "credit": "CC BY-SA 3.0, Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "GE26001",
+    "lot_number": 2,
+    "title": "Patek Philippe Nautilus 5711",
+    "artist": "Patek Philippe",
+    "category": "Watches",
+    "description": "Stainless steel automatic wristwatch, 2010, 40 mm diameter.",
+    "currency": "CHF",
+    "estimate_low": 60000,
+    "estimate_high": 90000,
+    "starting_bid": 60000,
+    "source_url": "https://en.wikipedia.org/wiki/Patek_Philippe",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Patek-Philippe-Nautilus-5711.jpg/960px-Patek-Philippe-Nautilus-5711.jpg",
+        "credit": "CC BY-SA 4.0, Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "house": "Phillips",
+    "house_ref": "GE26001",
+    "lot_number": 3,
+    "title": "1973 Porsche 911 Carrera RS 2.7",
+    "artist": "Porsche",
+    "category": "Cars",
+    "description": "Coupe automobile, 1973, 2.7 L engine.",
+    "currency": "CHF",
+    "estimate_low": 450000,
+    "estimate_high": 600000,
+    "starting_bid": 450000,
+    "source_url": "https://en.wikipedia.org/wiki/Porsche_911",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Porsche_911_Carrera_RS_2.7_%281972%29_Solitude_Revival_2022_1X7A0355.jpg/960px-Porsche_911_Carrera_RS_2.7_%281972%29_Solitude_Revival_2022_1X7A0355.jpg",
+        "credit": "CC BY-SA 4.0, Wikimedia Commons"
+      }
+    ]
+  }
+]
