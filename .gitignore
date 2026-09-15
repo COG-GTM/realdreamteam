@@ -1,0 +1,3 @@
+auction-app/data/app.db
+auction-app/node_modules
+auction-app/.env

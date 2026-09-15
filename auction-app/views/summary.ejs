@@ -1,0 +1,16 @@
+<section class="section-head split">
+  <div><p class="eyebrow">PERSONALIZED WATCHLIST</p><h1>Upcoming lots for you</h1><p class="lede">A short list shaped by your preferences.</p></div>
+  <a class="text-link" href="/u/<%= user.id %>/preferences">Edit preferences →</a>
+</section>
+<% if (!sales.length) { %><div class="panel empty">No matching lots yet. Try broadening your preferences.</div><% } %>
+<% sales.forEach((sale) => { %>
+  <section class="sale-section">
+    <div class="sale-heading">
+      <div><p class="eyebrow"><%= sale.auction_house %> · <%= sale.location %></p><h2><a href="/sales/<%= sale.id %>?u=<%= user.id %>"><%= sale.title %></a></h2><p><%= new Date(sale.starts_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) %> · <span class="badge <%= sale.status %>"><%= sale.status %></span></p></div>
+      <form method="post" action="/u/<%= user.id %>/sales/<%= sale.id %>/ticket"><button class="btn <%= sale.ticket ? 'booked' : '' %>"><%= sale.ticket ? 'Ticket booked ✓' : 'Book ticket' %></button></form>
+    </div>
+    <div class="card-grid">
+      <% sale.items.forEach((item) => { %><%- include('partials/item-card', { item, sale, user }) %><% }) %>
+    </div>
+  </section>
+<% }) %>

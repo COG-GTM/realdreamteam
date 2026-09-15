@@ -1,0 +1,19 @@
+<article class="card">
+  <div class="card-image">
+    <% if (item.source_url) { %><a href="<%= item.source_url %>" target="_blank" rel="noopener"><img src="<%= item.images[0]?.url %>" alt="<%= item.title %>"></a><a class="image-credit" href="<%= item.source_url %>" target="_blank" rel="noopener">Wikipedia ↗</a><% } else { %><img src="<%= item.images[0]?.url %>" alt="<%= item.title %>"><% } %>
+    <% if (sale.status === 'closed' && item.hammer_price) { %><span class="sold-ribbon">SOLD</span><% } %>
+  </div>
+  <div class="card-body">
+    <p class="lot-label">LOT <%= item.lot_number %></p>
+    <h3><a href="/items/<%= item.id %>?u=<%= user?.id || '' %>"><%= item.title %></a></h3>
+    <% if (item.artist) { %><p class="artist"><%= item.artist %></p><% } %>
+    <p class="estimate">Est. <%= formatMoney(item.estimate_low, item.currency) %> – <%= formatMoney(item.estimate_high, item.currency) %></p>
+    <% if (item.highBid) { %><p class="bid-line">High bid <strong><%= formatMoney(item.highBid.amount, item.currency) %></strong><small>by <%= item.highBid.name %> · <%= item.highBid.count %> bids</small></p><% } %>
+    <% if (item.reasons) { %><p class="matches">Matches: <%= item.reasons.join(' · ') %></p><% } %>
+    <div class="card-actions">
+      <% if (user) { %><form method="post" action="/u/<%= user.id %>/items/<%= item.id %>/favorite"><button class="btn <%= item.favorite ? 'liked' : '' %>">♥ <%= item.favorite ? 'Favorited' : 'Favorite' %></button></form><% } %>
+      <% if (sale.status === 'closed' && item.hammer_price && item.highBid) { %><p class="sold-text">SOLD to <%= item.highBid.name %> for <%= formatMoney(item.hammer_price, item.currency) %></p><% } else if (user && sale.status === 'open') { %><form class="bid-form" method="post" action="/u/<%= user.id %>/items/<%= item.id %>/bid"><input type="number" name="amount" placeholder="Your bid" min="<%= item.highBid ? item.highBid.amount + 1 : item.starting_bid || item.estimate_low %>" required><button class="btn primary">Bid</button></form><% } %>
+    </div>
+    <a class="lot-link" href="/items/<%= item.id %>?u=<%= user?.id || '' %>">View lot details →</a>
+  </div>
+</article>

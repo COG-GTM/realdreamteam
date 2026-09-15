@@ -1,0 +1,6 @@
+<section class="section-head"><p class="eyebrow">YOUR ACTIVITY</p><h1>History</h1><p class="lede">Favorites, bids, and tickets for <%= user.name %>.</p></section>
+<div class="history-columns">
+  <section class="panel"><p class="eyebrow">FAVORITES</p><h2><%= favorites.length %></h2><ul class="activity-list"><% favorites.forEach((favorite) => { %><li><a href="/items/<%= favorite.id %>?u=<%= user.id %>"><strong><%= favorite.title %></strong></a><small><%= favorite.sale_title %> · <%= new Date(favorite.created_at).toLocaleString('en-GB') %></small></li><% }) %></ul></section>
+  <section class="panel"><p class="eyebrow">BIDS</p><h2><%= bids.length %></h2><ul class="activity-list"><% bids.forEach((bid) => { %><li><a href="/items/<%= bid.item_id %>?u=<%= user.id %>"><strong><%= bid.title %></strong></a><small><%= formatMoney(bid.amount, bid.currency) %> · <%= bid.result %> · <%= new Date(bid.placed_at).toLocaleString('en-GB') %></small></li><% }) %></ul></section>
+  <section class="panel"><p class="eyebrow">TICKETS</p><h2><%= tickets.length %></h2><ul class="activity-list"><% tickets.forEach((ticket) => { %><li><strong><%= ticket.title %></strong><small><%= ticket.location %> · booked <%= new Date(ticket.booked_at).toLocaleString('en-GB') %></small></li><% }) %></ul></section>
+</div>

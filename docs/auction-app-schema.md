@@ -87,7 +87,7 @@ CREATE TABLE items (                         -- one lot
   estimate_high  INTEGER,
   starting_bid   INTEGER,                    -- first acceptable bid; defaults to estimate_low
   hammer_price   INTEGER,                    -- filled in when the sale is closed
-  source_url     TEXT,                       -- the lot page on the house's site
+  source_url     TEXT,                       -- Wikipedia article (demo) or the real lot page
   created_at     TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

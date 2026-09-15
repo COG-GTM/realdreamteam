@@ -87,7 +87,7 @@ Item shape:
   "title": "Untitled (Blue)", "artist": "Yayoi Kusama", "category": "Contemporary Art",
   "description": "Acrylic on canvas, 2019, 130 × 162 cm", "currency": "GBP",
   "estimateLow": 40000, "estimateHigh": 60000, "startingBid": 40000,
-  "sourceUrl": null,
+  "sourceUrl": "https://en.wikipedia.org/wiki/Yayoi_Kusama",
   "images": [{ "url": "https://upload.wikimedia.org/...",
                "credit": "CC BY-SA 4.0, Wikimedia Commons" }] }
 ```

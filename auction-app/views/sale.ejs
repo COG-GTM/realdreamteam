@@ -1,0 +1,2 @@
+<section class="section-head"><p class="eyebrow"><%= sale.auction_house %> · <%= sale.location %></p><h1><%= sale.title %></h1><p class="lede"><%= sale.sale_number %> · <%= new Date(sale.starts_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) %> · <span class="badge <%= sale.status %>"><%= sale.status %></span></p></section>
+<div class="card-grid"><% items.forEach((item) => { %><%- include('partials/item-card', { item, sale, user: userId ? { id: userId } : null }) %><% }) %></div>

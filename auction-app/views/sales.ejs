@@ -1,0 +1,9 @@
+<section class="section-head"><p class="eyebrow">AUCTION CALENDAR</p><h1>Sales</h1><p class="lede">Browse every sale and its auction house.</p></section>
+<div class="sales-list">
+  <% sales.forEach((sale) => { %>
+    <a class="sale-row panel" href="/sales/<%= sale.id %><%= userId ? `?u=${userId}` : '' %>">
+      <span><p class="eyebrow"><%= sale.auction_house %> · <%= sale.location %></p><h2><%= sale.title %></h2><p><%= new Date(sale.starts_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) %> · <%= sale.sale_type %> · Sale <%= sale.sale_number %></p></span>
+      <span class="badge <%= sale.status %>"><%= sale.status %></span>
+    </a>
+  <% }) %>
+</div>

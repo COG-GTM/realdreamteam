@@ -1,0 +1,15 @@
+<section class="detail-grid">
+  <div class="detail-image">
+    <% if (item.source_url) { %><a href="<%= item.source_url %>" target="_blank" rel="noopener"><img src="<%= item.images[0]?.url %>" alt="<%= item.title %>"></a><a class="image-credit" href="<%= item.source_url %>" target="_blank" rel="noopener">Wikipedia ↗</a><% } else { %><img src="<%= item.images[0]?.url %>" alt="<%= item.title %>"><% } %>
+    <% if (sale.status === 'closed') { %><span class="sold-ribbon">SOLD</span><% } %>
+  </div>
+  <div class="detail-copy">
+    <p class="eyebrow"><%= sale.title %> · Lot <%= item.lot_number %></p><h1><%= item.title %></h1><% if (item.artist) { %><p class="artist large"><%= item.artist %></p><% } %>
+    <p class="estimate large">Est. <%= formatMoney(item.estimate_low, item.currency) %> – <%= formatMoney(item.estimate_high, item.currency) %></p>
+    <p><%= item.description %></p>
+    <p class="muted">Category: <%= item.category %> · Currency: <%= item.currency %><br>Image credit: <%= item.images[0]?.credit || 'Not supplied' %></p>
+    <% if (sale.status === 'closed' && item.hammer_price && winner) { %><div class="sold-box">SOLD to <strong><%= winner.name %></strong> for <strong><%= formatMoney(item.hammer_price, item.currency) %></strong></div><% } %>
+    <% if (userId && sale.status === 'open') { %><div class="detail-actions"><form method="post" action="/u/<%= userId %>/items/<%= item.id %>/favorite"><button class="btn <%= item.favorite ? 'liked' : '' %>">♥ <%= item.favorite ? 'Favorited' : 'Favorite' %></button></form><form class="bid-form" method="post" action="/u/<%= userId %>/items/<%= item.id %>/bid"><input type="number" name="amount" placeholder="Your bid" min="<%= item.highBid ? item.highBid.amount + 1 : item.starting_bid || item.estimate_low %>" required><button class="btn primary">Place bid</button></form></div><% } %>
+  </div>
+</section>
+<section class="panel history-panel"><div class="section-head inline"><div><p class="eyebrow">LOT HISTORY</p><h2><%= bids.length %> bid<%= bids.length === 1 ? '' : 's' %></h2></div></div><table><thead><tr><th>Amount</th><th>Bidder</th><th>Time</th></tr></thead><tbody><% bids.forEach((bid) => { %><tr class="<%= item.highBid && item.highBid.user_id === bid.user_id && item.highBid.amount === bid.amount ? 'high-row' : '' %>"><td><strong><%= formatMoney(bid.amount, item.currency) %></strong></td><td><%= bid.name %> <% if (item.highBid && item.highBid.user_id === bid.user_id && item.highBid.amount === bid.amount) { %><span class="high-label">HIGH BIDDER</span><% } %></td><td><%= new Date(bid.placed_at).toLocaleString('en-GB') %></td></tr><% }) %></tbody></table></section>

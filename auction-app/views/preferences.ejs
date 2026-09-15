@@ -1,0 +1,22 @@
+<section class="section-head">
+  <p class="eyebrow">PROFILE SETTINGS</p>
+  <h1>Preferences</h1>
+  <p class="lede">Tell us what you want to hear about, <%= user.name %>.</p>
+</section>
+<form class="panel form-panel" method="post">
+  <fieldset>
+    <legend>Categories</legend>
+    <div class="check-grid">
+      <% categories.forEach((category) => { %>
+        <label><input type="checkbox" name="categories" value="<%= category %>" <%= user.preferences.categories.includes(category) ? 'checked' : '' %>><span><%= category %></span></label>
+      <% }) %>
+    </div>
+  </fieldset>
+  <div class="form-grid">
+    <label>Artists <input name="artists" value="<%= user.preferences.artists.join(', ') %>" placeholder="Yayoi Kusama, Banksy"></label>
+    <label>Keywords <input name="keywords" value="<%= user.preferences.keywords.join(', ') %>" placeholder="blue, signed"></label>
+    <label>Minimum price <input type="number" name="minPrice" value="<%= user.preferences.minPrice || '' %>"></label>
+    <label>Maximum price <input type="number" name="maxPrice" value="<%= user.preferences.maxPrice || '' %>"></label>
+  </div>
+  <button class="btn primary" type="submit">Save preferences</button>
+</form>
