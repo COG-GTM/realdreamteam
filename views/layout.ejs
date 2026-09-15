@@ -53,19 +53,27 @@
   <% if (!(typeof gate !== 'undefined' && gate)) { %>
     <script>
       (() => {
-        const panes = document.querySelectorAll('.pane[data-src]');
+        const panes = document.querySelectorAll('[data-src]');
         let refreshing = false;
+        // Leave a region alone while the user is typing in it.
+        function busy(pane) {
+          if (pane.contains(document.activeElement) && document.activeElement.matches('input,textarea,select')) return true;
+          return [...pane.querySelectorAll('input')].some((input) => input.value !== input.defaultValue);
+        }
         async function refresh() {
           if (document.hidden || refreshing) return;
           refreshing = true;
           await Promise.all([...panes].map(async (pane) => {
+            if (busy(pane)) return;
             const oldIds = pane.id === 'pane-feed'
               ? new Set([...pane.querySelectorAll('.unread')].map((item) => item.dataset.id))
               : null;
             try {
               const response = await fetch(pane.dataset.src, { credentials: 'same-origin' });
               if (!response.ok) return;
-              pane.innerHTML = await response.text();
+              const html = await response.text();
+              if (html === pane.innerHTML) return;
+              pane.innerHTML = html;
               if (oldIds) pane.querySelectorAll('.unread').forEach((item) => {
                 if (!oldIds.has(item.dataset.id)) item.classList.add('fresh');
               });
