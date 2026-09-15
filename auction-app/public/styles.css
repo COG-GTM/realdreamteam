@@ -40,3 +40,7 @@ form.inline{display:inline-flex;gap:6px;align-items:center;margin:0}.linklike{ba
 .gallery{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}.gallery figure{margin:0;max-width:340px}.gallery img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}.gallery figcaption{font-size:.72rem;margin-top:6px}
 .status-Winning{color:var(--accent)}.status-Won{color:var(--accent);font-weight:700}.status-Outbid{color:var(--red)}.status-Lost{color:var(--muted)}
 @media(max-width:850px){.lot-detail{flex-direction:column}}
+
+.feed-more{display:none}
+.feed.expanded .feed-more{display:flex}
+.feed-toggle{margin-top:10px}
