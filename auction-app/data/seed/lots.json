@@ -12,7 +12,6 @@
     "estimate_high": 150000,
     "starting_bid": 60000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Untitled_(Skull)",
     "images": [
       {
@@ -20,7 +19,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/1/11/Untitled-Head-Jean-Michel_Basquiat-1981.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -35,7 +35,6 @@
     "estimate_high": 400000,
     "starting_bid": 160000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Mr_and_Mrs_Clark_and_Percy",
     "images": [
       {
@@ -43,7 +42,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/7/77/Hockney.clark-percy.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -58,7 +58,6 @@
     "estimate_high": 350000,
     "starting_bid": 120000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/A_Bigger_Splash",
     "images": [
       {
@@ -66,7 +65,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/5/53/Hockney%2C_A_Bigger_Splash.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -81,7 +81,6 @@
     "estimate_high": 170000,
     "starting_bid": 53000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Saint_Louis_Art_Museum",
     "images": [
       {
@@ -89,7 +88,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/StLouisArtMuseum.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -104,7 +104,6 @@
     "estimate_high": 5000000,
     "starting_bid": 1600000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Boy_and_Dog_in_a_Johnnypump",
     "images": [
       {
@@ -112,7 +111,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/7/78/Boy-and-Dog-in-Johnnypump-1982.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -127,7 +127,6 @@
     "estimate_high": 2000000,
     "starting_bid": 920000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jeff_Koons",
     "images": [
       {
@@ -135,7 +134,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Jeff_Koons_01_%283x4_cropped%29.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -150,7 +150,6 @@
     "estimate_high": 3600000,
     "starting_bid": 1200000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/For_the_Love_of_God",
     "images": [
       {
@@ -158,7 +157,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Damien-Hirst-1_%282007%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -173,7 +173,6 @@
     "estimate_high": 3900000,
     "starting_bid": 1100000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Cloud_Gate",
     "images": [
       {
@@ -181,7 +180,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Anish_Kapoor_2017.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -196,7 +196,6 @@
     "estimate_high": 520000,
     "starting_bid": 190000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Crying_Girl",
     "images": [
       {
@@ -204,7 +203,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/7/72/Crying_Girl-Secret_Hearts.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -219,7 +219,6 @@
     "estimate_high": 2200000,
     "starting_bid": 880000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Portrait_of_an_Artist_(Pool_with_Two_Figures)",
     "images": [
       {
@@ -227,7 +226,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/a/a5/Hockney_Pool_Figures.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -242,7 +242,6 @@
     "estimate_high": 150000,
     "starting_bid": 50000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Balloon_Dog",
     "images": [
       {
@@ -250,7 +249,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/6/65/Balloon_Dog_%28Blue%29_by_Jeff_Koons%2C_The_Broad.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -265,7 +265,6 @@
     "estimate_high": 350000,
     "starting_bid": 110000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Gerhard_Richter",
     "images": [
       {
@@ -273,7 +272,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Gerhard_Richter%2C_Prague_%282017%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -288,7 +288,6 @@
     "estimate_high": 1600000,
     "starting_bid": 580000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Girl_with_Balloon",
     "images": [
       {
@@ -296,7 +295,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/7/77/Girl_with_balloon.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -311,7 +311,6 @@
     "estimate_high": 120000,
     "starting_bid": 42000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Love_Is_in_the_Bin",
     "images": [
       {
@@ -319,7 +318,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/f/fe/Love_is_in_the_Bin.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -334,7 +334,6 @@
     "estimate_high": 5600000,
     "starting_bid": 1900000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Gerhard_Richter",
     "images": [
       {
@@ -342,7 +341,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Gerhard_Richter%2C_Prague_%282017%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -357,7 +357,6 @@
     "estimate_high": 1400000,
     "starting_bid": 660000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Yayoi_Kusama",
     "images": [
       {
@@ -365,7 +364,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Yayoi_Kusama_in_2005.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -380,7 +380,6 @@
     "estimate_high": 5400000,
     "starting_bid": 2800000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Maman_(sculpture)",
     "images": [
       {
@@ -388,7 +387,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Giant_spider_strikes_again%21.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -403,7 +403,6 @@
     "estimate_high": 250000,
     "starting_bid": 74000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Banksy",
     "images": [
       {
@@ -411,7 +410,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/3/3f/Banksy-ps2.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -426,7 +426,6 @@
     "estimate_high": 72000,
     "starting_bid": 20000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Spider_(Bourgeois)",
     "images": [
       {
@@ -434,7 +433,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/MAM_-_Aranha_-_Louise_Bourgeois_-_Parque_do_Ibirapuera_-_panoramio.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -449,7 +449,6 @@
     "estimate_high": 2900000,
     "starting_bid": 890000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Hollywood_Africans",
     "images": [
       {
@@ -457,7 +456,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/5/5f/Hollywood-Africans-1983.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -472,7 +472,6 @@
     "estimate_high": 1300000,
     "starting_bid": 340000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Dustheads",
     "images": [
       {
@@ -480,7 +479,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/a/a7/Basquiat-Dustheads-1982.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -495,7 +495,6 @@
     "estimate_high": 260000,
     "starting_bid": 110000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Physical_Impossibility_of_Death_in_the_Mind_of_Someone_Living",
     "images": [
       {
@@ -503,7 +502,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/3/38/Hirst-Shark.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -518,7 +518,6 @@
     "estimate_high": 990000,
     "starting_bid": 320000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Devolution",
     "images": [
       {
@@ -526,7 +525,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Plenum_vid_BSPC_19_i_Mariehamn_pa_aland.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -541,7 +541,6 @@
     "estimate_high": 340000,
     "starting_bid": 130000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Whaam!",
     "images": [
       {
@@ -549,7 +548,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Aviacionavion.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Sotheby's",
@@ -564,7 +564,6 @@
     "estimate_high": 1300000,
     "starting_bid": 450000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Naoshima",
     "images": [
       {
@@ -572,7 +571,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Beachside_Torii%2C_Naoshima.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -587,7 +587,6 @@
     "estimate_high": 23000,
     "starting_bid": 9500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Patek_Philippe",
     "images": [
       {
@@ -595,7 +594,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Adrien_Philippe_1875.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -610,7 +610,6 @@
     "estimate_high": 2200000,
     "starting_bid": 690000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Dino_(marque)",
     "images": [
       {
@@ -618,7 +617,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Dino_badge.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -633,7 +633,6 @@
     "estimate_high": 3800000,
     "starting_bid": 1300000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ferrari_F40",
     "images": [
       {
@@ -641,7 +640,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/F40_Ferrari_20090509.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -656,7 +656,6 @@
     "estimate_high": 55000,
     "starting_bid": 23000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Van_Cleef_%26_Arpels",
     "images": [
       {
@@ -664,7 +663,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/P1040419_Paris_Ier_place_Vend%C3%B4me_immeubles_n%C2%B018_20_22_24_et_26_rwk.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -679,7 +679,6 @@
     "estimate_high": 270000,
     "starting_bid": 89000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Patek_Philippe_Calatrava",
     "images": [
       {
@@ -687,7 +686,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Calatrava1.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -702,7 +702,6 @@
     "estimate_high": 14000,
     "starting_bid": 4500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Tiffany_%26_Co.",
     "images": [
       {
@@ -710,7 +709,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Tiffany_%26_Co._flagship_store_%2853872772975%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -725,7 +725,6 @@
     "estimate_high": 400000,
     "starting_bid": 170000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Cartier_Tank",
     "images": [
       {
@@ -733,7 +732,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Cartier_Tank.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -748,7 +748,6 @@
     "estimate_high": 140000,
     "starting_bid": 39000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Porsche_959",
     "images": [
       {
@@ -756,7 +755,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Porsche_959_%E2%80%93_Frontansicht_%282%29%2C_21._M%C3%A4rz_2013%2C_D%C3%BCsseldorf.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -771,7 +771,6 @@
     "estimate_high": 4500000,
     "starting_bid": 2000000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Aston_Martin_DB5",
     "images": [
       {
@@ -779,7 +778,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Aston_Martin_DB5_%28Skyfall%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -794,7 +794,6 @@
     "estimate_high": 110000,
     "starting_bid": 39000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Aston_Martin_DB4_GT_Zagato",
     "images": [
       {
@@ -802,7 +801,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/1960_Aston_Martin_DB4_GT_Zagato_HCC24.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -817,7 +817,6 @@
     "estimate_high": 120000,
     "starting_bid": 52000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ferrari_Testarossa",
     "images": [
       {
@@ -825,7 +824,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Ferrari_Testarossa_IMG_3043.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -840,7 +840,6 @@
     "estimate_high": 35000,
     "starting_bid": 11000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Audemars_Piguet",
     "images": [
       {
@@ -848,7 +847,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Place_de_la_Fusterie-03.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -863,7 +863,6 @@
     "estimate_high": 74000,
     "starting_bid": 20000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Omega_Speedmaster",
     "images": [
       {
@@ -871,7 +870,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Vintage_Omega_Speedmaster_%22Pre-moon%22.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -886,7 +886,6 @@
     "estimate_high": 23000,
     "starting_bid": 6600,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Vacheron_Constantin",
     "images": [
       {
@@ -894,7 +893,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Fondation_de_la_Haute_Horlogerie_%28Kremlin_exhibition%29_by_shakko_22.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -909,7 +909,6 @@
     "estimate_high": 71000,
     "starting_bid": 28000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/A._Lange_%26_S%C3%B6hne",
     "images": [
       {
@@ -917,7 +916,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/A._Lange_%26_S%C3%B6hne_Stammhaus%2C_Glash%C3%BCtte_%286%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -932,7 +932,6 @@
     "estimate_high": 240000,
     "starting_bid": 82000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Rolex_Cosmograph_Daytona",
     "images": [
       {
@@ -940,7 +939,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Daytona116509.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -955,7 +955,6 @@
     "estimate_high": 20000,
     "starting_bid": 9700,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Bulgari",
     "images": [
       {
@@ -963,7 +962,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Roma%2C_Piazza_Nicosia%2C_20.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -978,7 +978,6 @@
     "estimate_high": 570000,
     "starting_bid": 210000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Harry_Winston,_Inc.",
     "images": [
       {
@@ -986,7 +985,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/HW_Headquarter.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -1001,7 +1001,6 @@
     "estimate_high": 630000,
     "starting_bid": 190000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Graff_(jewellers)",
     "images": [
       {
@@ -1009,7 +1008,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E5%8D%97%E5%B1%B1%E5%8D%80_Nanshan_%E6%B7%B1%E5%9C%B3%E7%81%A3_Shenzhen_Bay_%E8%90%AC%E8%B1%A1%E5%9F%8E_MixC_mall_Zone_A_%E8%8F%AF%E6%BD%A4%E5%A4%A7%E5%BB%88_China_Resources_Tower_shop_Graff_Diamond_May_2026_R12S_03_%28cropped%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -1024,7 +1024,6 @@
     "estimate_high": 530000,
     "starting_bid": 190000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Rolex_Submariner",
     "images": [
       {
@@ -1032,7 +1031,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Rolex-Submariner.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -1047,7 +1047,6 @@
     "estimate_high": 170000,
     "starting_bid": 53000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Porsche_356",
     "images": [
       {
@@ -1055,7 +1054,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/2007-07-08_Porsche_356_C_%2801_kl_ret%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -1070,7 +1070,6 @@
     "estimate_high": 4200000,
     "starting_bid": 1800000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Porsche_911_(classic)",
     "images": [
       {
@@ -1078,7 +1077,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -1093,7 +1093,6 @@
     "estimate_high": 550000,
     "starting_bid": 230000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Mercedes-Benz_300_SL",
     "images": [
       {
@@ -1101,7 +1100,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Fox_Classic_Car_Collection%2C_2008_%2802%29.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -1116,7 +1116,6 @@
     "estimate_high": 5200000,
     "starting_bid": 2300000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ferrari_250_GTO",
     "images": [
       {
@@ -1124,7 +1123,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/1962_Ferrari_250_GTO_SP25.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1139,7 +1139,6 @@
     "estimate_high": 530000,
     "starting_bid": 220000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Woman_III",
     "images": [
       {
@@ -1147,7 +1146,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/e/e7/Woman3.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1162,7 +1162,6 @@
     "estimate_high": 32000,
     "starting_bid": 14000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Moonrise,_Hernandez,_New_Mexico",
     "images": [
       {
@@ -1170,7 +1169,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Moonrise%2C_Hernandez%2C_New_Mexico_%28cropped%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1185,7 +1185,6 @@
     "estimate_high": 460000,
     "starting_bid": 150000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Eight_Elvises",
     "images": [
       {
@@ -1193,7 +1192,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/b/be/Eight_Elvises.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1208,7 +1208,6 @@
     "estimate_high": 4400000,
     "starting_bid": 1800000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Three_Studies_of_Lucian_Freud",
     "images": [
       {
@@ -1216,7 +1215,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/3/31/Three_Studies_of_Lucian_Freud.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1231,7 +1231,6 @@
     "estimate_high": 3500000,
     "starting_bid": 1100000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jasper_Johns",
     "images": [
       {
@@ -1239,7 +1238,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Jasper_Johns%2C_Medal_of_Freedom%2C_2011.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1254,7 +1254,6 @@
     "estimate_high": 220000,
     "starting_bid": 74000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/99_Cent_II_Diptychon",
     "images": [
       {
@@ -1262,7 +1261,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/b/bc/99_cent_II%2C_diptychon_-_Photo_courtesy_of_Sotheby%27s.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1277,7 +1277,6 @@
     "estimate_high": 2400000,
     "starting_bid": 810000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Black_Fire_I",
     "images": [
       {
@@ -1285,7 +1284,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/7/79/Black_Fire_I.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1300,7 +1300,6 @@
     "estimate_high": 170000,
     "starting_bid": 61000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Card_Players",
     "images": [
       {
@@ -1308,7 +1307,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Les_Joueurs_de_cartes%2C_par_Paul_C%C3%A9zanne.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1323,7 +1323,6 @@
     "estimate_high": 5900000,
     "starting_bid": 2500000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Suprematist_Composition",
     "images": [
       {
@@ -1331,7 +1330,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Suprematist_Composition_-_Kazimir_Malevich.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1346,7 +1346,6 @@
     "estimate_high": 73000,
     "starting_bid": 28000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Untitled_96",
     "images": [
       {
@@ -1354,7 +1353,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/6/65/Cindy_Sherman%27s_photo_Untitled_96.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1369,7 +1369,6 @@
     "estimate_high": 13000,
     "starting_bid": 4900,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Tetons_and_the_Snake_River",
     "images": [
       {
@@ -1377,7 +1376,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Adams_The_Tetons_and_the_Snake_River.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1392,7 +1392,6 @@
     "estimate_high": 140000,
     "starting_bid": 58000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jasper_Johns",
     "images": [
       {
@@ -1400,7 +1399,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Jasper_Johns%2C_Medal_of_Freedom%2C_2011.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1415,7 +1415,6 @@
     "estimate_high": 63000,
     "starting_bid": 25000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Campbell%27s_Soup_Cans",
     "images": [
       {
@@ -1423,7 +1422,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Campbell%27s_Soup_Cans_by_Andy_Warhol.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1438,7 +1438,6 @@
     "estimate_high": 6000,
     "starting_bid": 2700,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ansel_Adams",
     "images": [
       {
@@ -1446,7 +1445,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Ansel_Adams_and_camera.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1461,7 +1461,6 @@
     "estimate_high": 6600000,
     "starting_bid": 1900000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Roy_Lichtenstein",
     "images": [
       {
@@ -1469,7 +1468,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Roy_Lichtenstein%2C_painter_1969_%28cropped%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1484,7 +1484,6 @@
     "estimate_high": 1200000,
     "starting_bid": 400000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Barnett_Newman",
     "images": [
       {
@@ -1492,7 +1491,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Newman_Barnett.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1507,7 +1507,6 @@
     "estimate_high": 1500000,
     "starting_bid": 590000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Number_17A",
     "images": [
       {
@@ -1515,7 +1514,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Death_and_Fire_%281940%29_-_Paul_Klee_%28Zentrum_Paul_Klee%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1530,7 +1530,6 @@
     "estimate_high": 520000,
     "starting_bid": 200000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Masterpiece_(Lichtenstein)",
     "images": [
       {
@@ -1538,7 +1537,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/5/53/Masteripiece.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1553,7 +1553,6 @@
     "estimate_high": 7000,
     "starting_bid": 2400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Identical_Twins,_Roselle,_New_Jersey,_1967",
     "images": [
       {
@@ -1561,7 +1560,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/c/ca/Identical_Twins%2C_Roselle%2C_New_Jersey%2C_1967.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1576,7 +1576,6 @@
     "estimate_high": 91000,
     "starting_bid": 39000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Silver_Car_Crash_(Double_Disaster)",
     "images": [
       {
@@ -1584,7 +1583,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/2/2d/Silver_Car_Crash_by_Andy_Warhol_%281963%29.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1599,7 +1599,6 @@
     "estimate_high": 17000,
     "starting_bid": 7500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Rhein_II",
     "images": [
       {
@@ -1607,7 +1606,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/a/aa/Rhein_II.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1622,7 +1622,6 @@
     "estimate_high": 300000,
     "starting_bid": 93000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Migrant_Mother",
     "images": [
       {
@@ -1630,7 +1629,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Lange-MigrantMother02.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1645,7 +1645,6 @@
     "estimate_high": 23000,
     "starting_bid": 11000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Untitled_Film_Stills",
     "images": [
       {
@@ -1653,7 +1652,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/7/79/Untitled_Film_Still_21_%28Cindy_Sherman_photograph%29.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1668,7 +1668,6 @@
     "estimate_high": 7700000,
     "starting_bid": 2900000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Interchange_(de_Kooning)",
     "images": [
       {
@@ -1676,7 +1675,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/5/5f/Photo_of_Interchanged_by_Willem_de_Kooning.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1691,7 +1691,6 @@
     "estimate_high": 140000,
     "starting_bid": 48000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Child_with_Toy_Hand_Grenade_in_Central_Park",
     "images": [
       {
@@ -1699,7 +1698,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/9/97/Childwithhandgrenadedianearbus.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1714,7 +1714,6 @@
     "estimate_high": 93000,
     "starting_bid": 37000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/No._6_(Violet,_Green_and_Red)",
     "images": [
       {
@@ -1722,7 +1721,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/0/03/No._6_%28Violet%2C_Green_and_Red%29.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1737,7 +1737,6 @@
     "estimate_high": 94000,
     "starting_bid": 31000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Orange,_Red,_Yellow",
     "images": [
       {
@@ -1745,7 +1744,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/9/97/Orange%2C_Red%2C_Yellow.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1760,7 +1760,6 @@
     "estimate_high": 600000,
     "starting_bid": 210000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/No._5,_1948",
     "images": [
       {
@@ -1768,7 +1767,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/4/4a/No._5%2C_1948.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1783,7 +1783,6 @@
     "estimate_high": 72000,
     "starting_bid": 33000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Green_Car_Crash",
     "images": [
       {
@@ -1791,7 +1790,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/0/06/Green_Car_Crash_by_Andy_Warhol_%281963%29.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -1806,7 +1806,6 @@
     "estimate_high": 3300000,
     "starting_bid": 1200000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Shot_Marilyns",
     "images": [
       {
@@ -1814,7 +1813,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/0/0c/Andy_Warhol_Shot_Marilyns_1964.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1829,7 +1829,6 @@
     "estimate_high": 52000,
     "starting_bid": 16000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Apple_Lisa",
     "images": [
       {
@@ -1837,7 +1836,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Apple-lisa-1.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1852,7 +1852,6 @@
     "estimate_high": 120000,
     "starting_bid": 51000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jaguar_E-Type",
     "images": [
       {
@@ -1860,7 +1859,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Jaguar_E-Type_Series_1_3.8_Litre_1961.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1875,7 +1875,6 @@
     "estimate_high": 2800,
     "starting_bid": 1200,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Apple_I",
     "images": [
       {
@@ -1883,7 +1882,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/CopsonApple1_2k_cropped.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1898,7 +1898,6 @@
     "estimate_high": 2500,
     "starting_bid": 1100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Commodore_PET",
     "images": [
       {
@@ -1906,7 +1905,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Commodore_2001_Series-IMG_0448b.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1921,7 +1921,6 @@
     "estimate_high": 2000000,
     "starting_bid": 850000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Lamborghini_Countach",
     "images": [
       {
@@ -1929,7 +1928,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Lamborghini_Countach_-_Flickr_-_exfordy_%282%29_%28cropped-2%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1944,7 +1944,6 @@
     "estimate_high": 6200000,
     "starting_bid": 2800000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jaguar_D-Type",
     "images": [
       {
@@ -1952,7 +1951,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Paris_-_Retromobile_2013_-_Jaguar_D_Type_-_1955_-_106.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1967,7 +1967,6 @@
     "estimate_high": 3400,
     "starting_bid": 1100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Winnipeg_(bear)",
     "images": [
       {
@@ -1975,7 +1974,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Harry_Colebourne_and_Winnie.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -1990,7 +1990,6 @@
     "estimate_high": 440000,
     "starting_bid": 220000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/McLaren_F1",
     "images": [
       {
@@ -1998,7 +1997,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/1996_McLaren_F1_Chassis_No_63_6.1_Front.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2013,7 +2013,6 @@
     "estimate_high": 3700,
     "starting_bid": 1500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/IBM_Selectric",
     "images": [
       {
@@ -2021,7 +2020,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/db/IBM_Selectric_I_%284%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2036,7 +2036,6 @@
     "estimate_high": 21000,
     "starting_bid": 7100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Steiff",
     "images": [
       {
@@ -2044,7 +2043,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Steiffmargarete.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2059,7 +2059,6 @@
     "estimate_high": 38000,
     "starting_bid": 12000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Twentieth_Anniversary_Macintosh",
     "images": [
       {
@@ -2067,7 +2066,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Apple_Museum_%28Prague%29_20th_Anniversary_Mac_%281997%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2082,7 +2082,6 @@
     "estimate_high": 9500,
     "starting_bid": 2700,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Teddy_bear",
     "images": [
       {
@@ -2090,7 +2089,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Teddy_bear_early_1900s_-_Smithsonian_Museum_of_Natural_History.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2105,7 +2105,6 @@
     "estimate_high": 410000,
     "starting_bid": 170000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/AC_Cobra",
     "images": [
       {
@@ -2113,7 +2112,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Shelby_AC_427_Cobra_vl_blue.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2128,7 +2128,6 @@
     "estimate_high": 1300,
     "starting_bid": 420,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Merrythought",
     "images": [
       {
@@ -2136,7 +2135,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Merrythought_Ironbridge_2011.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2151,7 +2151,6 @@
     "estimate_high": 5700,
     "starting_bid": 2500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Cray-1",
     "images": [
       {
@@ -2159,7 +2158,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Science_Museum_20180227_132902_%2849362732462%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2174,7 +2174,6 @@
     "estimate_high": 100000,
     "starting_bid": 54000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Mercedes-Benz_300_SLR",
     "images": [
       {
@@ -2182,7 +2181,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Mercedes-Benz_300_SLR_1955.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2197,7 +2197,6 @@
     "estimate_high": 2800,
     "starting_bid": 1300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Rowland_Ward",
     "images": [
       {
@@ -2205,7 +2204,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Rowland_Ward_Portrait.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2220,7 +2220,6 @@
     "estimate_high": 14000,
     "starting_bid": 5100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Steiff",
     "images": [
       {
@@ -2228,7 +2227,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Steiffmargarete.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2243,7 +2243,6 @@
     "estimate_high": 110000,
     "starting_bid": 38000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/IBM_Personal_Computer",
     "images": [
       {
@@ -2251,7 +2250,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/IBM_Personal_Computer_badge_recreation.svg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2266,7 +2266,6 @@
     "estimate_high": 35000,
     "starting_bid": 10000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Commodore_64",
     "images": [
       {
@@ -2274,7 +2273,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Commodore-64-Computer-FL.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2289,7 +2289,6 @@
     "estimate_high": 1300,
     "starting_bid": 470,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Apple_II",
     "images": [
       {
@@ -2297,7 +2296,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Apple_II-IMG_7064.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2312,7 +2312,6 @@
     "estimate_high": 50000,
     "starting_bid": 20000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Amiga_1000",
     "images": [
       {
@@ -2320,7 +2319,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Amiga_1000DP.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2335,7 +2335,6 @@
     "estimate_high": 2300000,
     "starting_bid": 910000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Lamborghini_Miura",
     "images": [
       {
@@ -2343,7 +2342,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/1971_Lamborghini_Miura_P400_SV.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2358,7 +2358,6 @@
     "estimate_high": 790000,
     "starting_bid": 250000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Bugatti_Type_57",
     "images": [
       {
@@ -2366,7 +2365,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Bugatti_Type_57_Atalante_1936.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2381,7 +2381,6 @@
     "estimate_high": 36000,
     "starting_bid": 13000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Macintosh_128K",
     "images": [
       {
@@ -2389,7 +2388,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Computer_macintosh_128k%2C_1984_%28all_about_Apple_onlus%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -2404,7 +2404,6 @@
     "estimate_high": 260000,
     "starting_bid": 110000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/IBM_5100",
     "images": [
       {
@@ -2412,7 +2411,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/IBM_5100_-_MfK_Bern.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2427,7 +2427,6 @@
     "estimate_high": 26000,
     "starting_bid": 11000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Eames_Lounge_Chair",
     "images": [
       {
@@ -2435,7 +2434,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Eameslounch.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2450,7 +2450,6 @@
     "estimate_high": 150000,
     "starting_bid": 66000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/First_Folio",
     "images": [
       {
@@ -2458,7 +2457,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/William_Shakespeare_-_First_Folio_1623.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2473,7 +2473,6 @@
     "estimate_high": 220000,
     "starting_bid": 71000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Hobbit",
     "images": [
       {
@@ -2481,7 +2480,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/3/30/Hobbit_cover.JPG",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2496,7 +2496,6 @@
     "estimate_high": 7400,
     "starting_bid": 2900,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Paddington_Bear",
     "images": [
       {
@@ -2504,7 +2503,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Paddington_Bear%2C_all_alone_%2850285504591%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2519,7 +2519,6 @@
     "estimate_high": 2200,
     "starting_bid": 600,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/ZX_Spectrum",
     "images": [
       {
@@ -2527,7 +2526,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/ZXSpectrum48k.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2542,7 +2542,6 @@
     "estimate_high": 11000,
     "starting_bid": 4500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Sooty",
     "images": [
       {
@@ -2550,7 +2549,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Sooty_Logo_%281996-present%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2565,7 +2565,6 @@
     "estimate_high": 4700,
     "starting_bid": 1800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Codex_Leicester",
     "images": [
       {
@@ -2573,7 +2572,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Vinci_-_Hammer_2A.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2588,7 +2588,6 @@
     "estimate_high": 1400,
     "starting_bid": 550,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Teddy_bear",
     "images": [
       {
@@ -2596,7 +2595,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Teddy_bear_early_1900s_-_Smithsonian_Museum_of_Natural_History.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2611,7 +2611,6 @@
     "estimate_high": 20000,
     "starting_bid": 8000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Xerox_Alto",
     "images": [
       {
@@ -2619,7 +2618,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Xero_Alto_Computer.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2634,7 +2634,6 @@
     "estimate_high": 75000,
     "starting_bid": 21000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/ZX81",
     "images": [
       {
@@ -2642,7 +2641,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Sinclair-ZX81.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2657,7 +2657,6 @@
     "estimate_high": 320000,
     "starting_bid": 100000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Xerox_Star",
     "images": [
       {
@@ -2665,7 +2664,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Xerox_Star_8010_%282%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2680,7 +2680,6 @@
     "estimate_high": 11000,
     "starting_bid": 5000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Superleggera",
     "images": [
       {
@@ -2688,7 +2687,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Aston_Martin_Superleggera.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2703,7 +2703,6 @@
     "estimate_high": 150000,
     "starting_bid": 41000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Great_Gatsby",
     "images": [
       {
@@ -2711,7 +2710,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2726,7 +2726,6 @@
     "estimate_high": 11000,
     "starting_bid": 5000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/On_the_Origin_of_Species",
     "images": [
       {
@@ -2734,7 +2733,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Origin_of_Species_title_page.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2749,7 +2749,6 @@
     "estimate_high": 14000,
     "starting_bid": 4900,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Hans_Wegner",
     "images": [
       {
@@ -2757,7 +2756,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Aarhus_ratusz_fragment.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2772,7 +2772,6 @@
     "estimate_high": 300000,
     "starting_bid": 84000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica",
     "images": [
       {
@@ -2780,7 +2779,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Newton%27s_Principia_title_page.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2795,7 +2795,6 @@
     "estimate_high": 27000,
     "starting_bid": 14000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Casino_Royale_(novel)",
     "images": [
       {
@@ -2803,7 +2802,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/a/a9/CasinoRoyaleCover.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2818,7 +2818,6 @@
     "estimate_high": 500,
     "starting_bid": 180,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jellycat",
     "images": [
       {
@@ -2826,7 +2825,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Jellycat_text_logo_2024.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2841,7 +2841,6 @@
     "estimate_high": 210000,
     "starting_bid": 79000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Goldfinger_(novel)",
     "images": [
       {
@@ -2849,7 +2848,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/1957_Aston_Martin_DB_Mk_III_fr.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2864,7 +2864,6 @@
     "estimate_high": 3700,
     "starting_bid": 1100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Atari_2600",
     "images": [
       {
@@ -2872,7 +2871,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Atari-2600-Wood-4Sw-Set.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2887,7 +2887,6 @@
     "estimate_high": 5600,
     "starting_bid": 1600,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Gutenberg_Bible",
     "images": [
       {
@@ -2895,7 +2894,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2910,7 +2910,6 @@
     "estimate_high": 3300,
     "starting_bid": 1500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Walter_Potter",
     "images": [
       {
@@ -2918,7 +2917,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/WalterPotter.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2933,7 +2933,6 @@
     "estimate_high": 40000,
     "starting_bid": 17000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Finn_Juhl",
     "images": [
       {
@@ -2941,7 +2940,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Finn_Juhl.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2956,7 +2956,6 @@
     "estimate_high": 200000,
     "starting_bid": 65000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jean_Prouv%C3%A9",
     "images": [
       {
@@ -2964,7 +2963,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jean_Prouv%C3%A9_%281981%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -2979,7 +2979,6 @@
     "estimate_high": 2600,
     "starting_bid": 1200,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings",
     "images": [
       {
@@ -2987,7 +2986,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Beowulf_eotenas_ylfe_orcneas.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3002,7 +3002,6 @@
     "estimate_high": 3700,
     "starting_bid": 1600,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Atari_8-bit_computers",
     "images": [
       {
@@ -3010,7 +3009,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Atari-800-Computer-FL.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3025,7 +3025,6 @@
     "estimate_high": 8200,
     "starting_bid": 2800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/NeXT_Computer",
     "images": [
       {
@@ -3033,7 +3032,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/First_Web_Server.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3048,7 +3048,6 @@
     "estimate_high": 190000,
     "starting_bid": 68000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Emma_(novel)",
     "images": [
       {
@@ -3056,7 +3055,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/EmmaTitlePage.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3071,7 +3071,6 @@
     "estimate_high": 5600,
     "starting_bid": 2100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Cray-2",
     "images": [
       {
@@ -3079,7 +3078,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/CRAY-2_IMG_8915-8913-8912a.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3094,7 +3094,6 @@
     "estimate_high": 10000,
     "starting_bid": 5400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Deyrolle",
     "images": [
       {
@@ -3102,7 +3101,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Deyrolle%2C_46_Rue_du_Bac%2C_75007_Paris_2013.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3117,7 +3117,6 @@
     "estimate_high": 17000,
     "starting_bid": 5800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/George_Nakashima",
     "images": [
       {
@@ -3125,7 +3124,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/George-Nakashima-UW-Graduate-1929.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3140,7 +3140,6 @@
     "estimate_high": 55000,
     "starting_bid": 19000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone",
     "images": [
       {
@@ -3148,7 +3147,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Harry_Potter_Platform_Kings_Cross.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3163,7 +3163,6 @@
     "estimate_high": 5900,
     "starting_bid": 2200,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Charlotte_Perriand",
     "images": [
       {
@@ -3171,7 +3170,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/CASSINA_-_Nuage_Charlotte_Perriand.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3186,7 +3186,6 @@
     "estimate_high": 41000,
     "starting_bid": 15000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
     "images": [
       {
@@ -3194,7 +3193,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/PrideAndPrejudiceTitlePage.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3209,7 +3209,6 @@
     "estimate_high": 590000,
     "starting_bid": 210000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/A_Christmas_Carol",
     "images": [
       {
@@ -3217,7 +3216,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Charles_Dickens-A_Christmas_Carol-Cloth-First_Edition_1843.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3232,7 +3232,6 @@
     "estimate_high": 26000,
     "starting_bid": 8700,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Enigma_machine",
     "images": [
       {
@@ -3240,7 +3239,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Enigma_%28crittografia%29_-_Museo_scienza_e_tecnologia_Milano.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3255,7 +3255,6 @@
     "estimate_high": 3100,
     "starting_bid": 1000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Barcelona_chair",
     "images": [
       {
@@ -3263,7 +3262,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Ngv_design%2C_ludwig_mies_van_der_rohe_%26_co%2C_barcelona_chair.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3278,7 +3278,6 @@
     "estimate_high": 560000,
     "starting_bid": 210000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Altair_8800",
     "images": [
       {
@@ -3286,7 +3285,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Altair_8800_Computer.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Phillips",
@@ -3301,7 +3301,6 @@
     "estimate_high": 320000,
     "starting_bid": 120000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Osborne_1",
     "images": [
       {
@@ -3309,7 +3308,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Osborne_1_open.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3324,7 +3324,6 @@
     "estimate_high": 130000,
     "starting_bid": 63000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Egg_(chair)",
     "images": [
       {
@@ -3332,7 +3331,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/The_Egg_Chair.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3347,7 +3347,6 @@
     "estimate_high": 6800,
     "starting_bid": 2300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Magna_Carta",
     "images": [
       {
@@ -3355,7 +3354,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Magna_Carta_%28British_Library_Cotton_MS_Augustus_II.106%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3370,7 +3370,6 @@
     "estimate_high": 120000,
     "starting_bid": 48000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Noguchi_table",
     "images": [
       {
@@ -3378,7 +3377,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Isamu_Noguchi%2C_Coffee_table%2C_1959_%285646039032%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3393,7 +3393,6 @@
     "estimate_high": 6300,
     "starting_bid": 2100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Yamazaki_distillery",
     "images": [
       {
@@ -3401,7 +3400,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/YamazakiDistillery_01.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3416,7 +3416,6 @@
     "estimate_high": 45000,
     "starting_bid": 17000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Tale_of_Peter_Rabbit",
     "images": [
       {
@@ -3424,7 +3423,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Peter_Rabbit_first_edition_1902a.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3439,7 +3439,6 @@
     "estimate_high": 2200,
     "starting_bid": 870,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Margaux",
     "images": [
       {
@@ -3447,7 +3446,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Margaux_exterior.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3462,7 +3462,6 @@
     "estimate_high": 17000,
     "starting_bid": 5900,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Catcher_in_the_Rye",
     "images": [
       {
@@ -3470,7 +3469,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/The_Catcher_in_the_Rye_%281951%2C_first_edition_cover%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3485,7 +3485,6 @@
     "estimate_high": 2600,
     "starting_bid": 970,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_P%C3%A9trus",
     "images": [
       {
@@ -3493,7 +3492,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/P%C3%A9trus_%28ch%C3%A2teau%29_02.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3508,7 +3508,6 @@
     "estimate_high": 30000,
     "starting_bid": 14000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Tulip_chair",
     "images": [
       {
@@ -3516,7 +3515,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/e/e7/Tulip_med.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3531,7 +3531,6 @@
     "estimate_high": 30000,
     "starting_bid": 12000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Macallan_distillery",
     "images": [
       {
@@ -3539,7 +3538,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/The_Macallan_malt_whisky_Distillery_-_geograph.org.uk_-_112253.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3554,7 +3554,6 @@
     "estimate_high": 14000,
     "starting_bid": 4800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Dom_P%C3%A9rignon",
     "images": [
       {
@@ -3562,7 +3561,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_-_Dom_P%C3%A9rignon.svg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3577,7 +3577,6 @@
     "estimate_high": 420000,
     "starting_bid": 150000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Winnie-the-Pooh",
     "images": [
       {
@@ -3585,7 +3584,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Pooh_Shepard1928.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3600,7 +3600,6 @@
     "estimate_high": 8400,
     "starting_bid": 3200,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Wassily_chair",
     "images": [
       {
@@ -3608,7 +3607,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Bauhaus_Chair_Breuer.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3623,7 +3623,6 @@
     "estimate_high": 1600,
     "starting_bid": 560,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Tenuta_San_Guido",
     "images": [
       {
@@ -3631,7 +3630,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Sassicaia_crop.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3646,7 +3646,6 @@
     "estimate_high": 17000,
     "starting_bid": 6700,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Nineteen_Eighty-Four",
     "images": [
       {
@@ -3654,7 +3653,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/1984_first_edition_cover.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3669,7 +3669,6 @@
     "estimate_high": 210000,
     "starting_bid": 84000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Treasure_Island",
     "images": [
       {
@@ -3677,7 +3676,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Treasure_Island_%28title_page%2C_1883%29.webp",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3692,7 +3692,6 @@
     "estimate_high": 6400,
     "starting_bid": 2400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Jane_Eyre",
     "images": [
       {
@@ -3700,7 +3699,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Jane_Eyre_title_page.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3715,7 +3715,6 @@
     "estimate_high": 48000,
     "starting_bid": 14000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Wonderful_Wizard_of_Oz",
     "images": [
       {
@@ -3723,7 +3722,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/The_Wonderful_Wizard_of_Oz%2C_006.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3738,7 +3738,6 @@
     "estimate_high": 2300,
     "starting_bid": 950,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Don_Quixote",
     "images": [
       {
@@ -3746,7 +3745,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Title_page_first_edition_Don_Quijote.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3761,7 +3761,6 @@
     "estimate_high": 83000,
     "starting_bid": 23000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland",
     "images": [
       {
@@ -3769,7 +3768,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Alice%27s_Adventures_in_Wonderland_cover_%281865%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3784,7 +3784,6 @@
     "estimate_high": 23000,
     "starting_bid": 10000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Nuremberg_Chronicle",
     "images": [
       {
@@ -3792,7 +3791,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Nuremberg_chronicles_-_Nuremberga.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3807,7 +3807,6 @@
     "estimate_high": 90000,
     "starting_bid": 25000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Sun_Also_Rises",
     "images": [
       {
@@ -3815,7 +3814,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/The_Sun_Also_Rises_%281st_ed._cover%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3830,7 +3830,6 @@
     "estimate_high": 210000,
     "starting_bid": 58000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/To_Kill_a_Mockingbird",
     "images": [
       {
@@ -3838,7 +3837,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3853,7 +3853,6 @@
     "estimate_high": 3300,
     "starting_bid": 1500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_P%C3%A9trus",
     "images": [
       {
@@ -3861,7 +3860,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/P%C3%A9trus_%28ch%C3%A2teau%29_02.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3876,7 +3876,6 @@
     "estimate_high": 2500,
     "starting_bid": 800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Latour",
     "images": [
       {
@@ -3884,7 +3883,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Ch%C3%A2teau_La_Tour.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3899,7 +3899,6 @@
     "estimate_high": 10000,
     "starting_bid": 3300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Brave_New_World",
     "images": [
       {
@@ -3907,7 +3906,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Book_collection.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3922,7 +3922,6 @@
     "estimate_high": 24000,
     "starting_bid": 11000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Margaux",
     "images": [
       {
@@ -3930,7 +3929,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Margaux_exterior.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3945,7 +3945,6 @@
     "estimate_high": 4800,
     "starting_bid": 2500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_d%27Yquem",
     "images": [
       {
@@ -3953,7 +3952,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Yquem_73.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3968,7 +3968,6 @@
     "estimate_high": 97000,
     "starting_bid": 43000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Animal_Farm",
     "images": [
       {
@@ -3976,7 +3975,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Animal_Farm_-_1st_edition.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -3991,7 +3991,6 @@
     "estimate_high": 400000,
     "starting_bid": 160000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Wuthering_Heights",
     "images": [
       {
@@ -3999,7 +3998,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Houghton_Lowell_1238.5_%28A%29_-_Wuthering_Heights%2C_1847.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4014,7 +4014,6 @@
     "estimate_high": 3700,
     "starting_bid": 1400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Peter_Pan_(play_and_novel)",
     "images": [
       {
@@ -4022,7 +4021,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Peter-pan-play-announcement.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4037,7 +4037,6 @@
     "estimate_high": 8100,
     "starting_bid": 3400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Leaves_of_Grass",
     "images": [
       {
@@ -4045,7 +4044,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Walt_Whitman%2C_steel_engraving%2C_July_1854.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4060,7 +4060,6 @@
     "estimate_high": 48000,
     "starting_bid": 18000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Penfolds",
     "images": [
       {
@@ -4068,7 +4067,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Penfolds_Magill_20190626_155121.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4083,7 +4083,6 @@
     "estimate_high": 3200,
     "starting_bid": 1300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Mouton_Rothschild",
     "images": [
       {
@@ -4091,7 +4090,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Jardin_de_Ch%C3%A2teau_de_Mouton-Rothschild%2C_Pauillac._2012.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4106,7 +4106,6 @@
     "estimate_high": 27000,
     "starting_bid": 10000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Book_of_Kells",
     "images": [
       {
@@ -4114,7 +4113,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/KellsFol032vChristEnthroned.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4129,7 +4129,6 @@
     "estimate_high": 5800,
     "starting_bid": 2100,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Dracula",
     "images": [
       {
@@ -4137,7 +4136,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Dracula-First-Edition-1897.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4152,7 +4152,6 @@
     "estimate_high": 64000,
     "starting_bid": 19000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Lafite_Rothschild",
     "images": [
       {
@@ -4160,7 +4159,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Ch%C3%A2teau_Lafite-Rothschild.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4175,7 +4175,6 @@
     "estimate_high": 62000,
     "starting_bid": 22000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Champagne_wine_region",
     "images": [
       {
@@ -4183,7 +4182,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Vignobles_champagne.svg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4198,7 +4198,6 @@
     "estimate_high": 5000,
     "starting_bid": 1500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Domaine_de_la_Roman%C3%A9e-Conti",
     "images": [
       {
@@ -4206,7 +4205,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Vosne-Roman%C3%A9e%2C_le_Domaine_de_la_Roman%C3%A9e-Conti.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4221,7 +4221,6 @@
     "estimate_high": 4800,
     "starting_bid": 2300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Oakville_AVA",
     "images": [
       {
@@ -4229,7 +4228,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/TTB_Map_Napa_Valley_AVA.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4244,7 +4244,6 @@
     "estimate_high": 83000,
     "starting_bid": 37000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ulysses_(novel)",
     "images": [
       {
@@ -4252,7 +4251,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/JoyceUlysses2.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4267,7 +4267,6 @@
     "estimate_high": 5300,
     "starting_bid": 1800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Moby-Dick",
     "images": [
       {
@@ -4275,7 +4274,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Moby-Dick_FE_title_page.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4290,7 +4290,6 @@
     "estimate_high": 7200,
     "starting_bid": 2500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Frankenstein",
     "images": [
       {
@@ -4298,7 +4297,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Christie%27s_auction_scan_of_Frankenstein_1818.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4313,7 +4313,6 @@
     "estimate_high": 7400,
     "starting_bid": 3300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Domaine_de_la_Roman%C3%A9e-Conti",
     "images": [
       {
@@ -4321,7 +4320,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Vosne-Roman%C3%A9e%2C_le_Domaine_de_la_Roman%C3%A9e-Conti.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4336,7 +4336,6 @@
     "estimate_high": 22000,
     "starting_bid": 7800,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/The_Birds_of_America",
     "images": [
       {
@@ -4344,7 +4343,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Audubon_Birds_of_America.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4359,7 +4359,6 @@
     "estimate_high": 3600,
     "starting_bid": 1300,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Bowmore_distillery",
     "images": [
       {
@@ -4367,7 +4366,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Morrison_Bowmore%2C_Islay.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4382,7 +4382,6 @@
     "estimate_high": 13000,
     "starting_bid": 6400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Haut-Brion",
     "images": [
       {
@@ -4390,7 +4389,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Pessac_Ch%C3%A2teau_Haut-Brion.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -4405,7 +4405,6 @@
     "estimate_high": 38000,
     "starting_bid": 12000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_Lafite_Rothschild",
     "images": [
       {
@@ -4413,7 +4412,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Ch%C3%A2teau_Lafite-Rothschild.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -4427,8 +4427,7 @@
     "estimate_low": 39000,
     "estimate_high": 76000,
     "starting_bid": 25000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 33000,
     "source_url": "https://en.wikipedia.org/wiki/Winged_Figure",
     "images": [
       {
@@ -4436,7 +4435,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Barbara_Hepworth_Winged_Figure_1963.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "De'Anna"
   },
   {
     "house": "Bonhams",
@@ -4450,8 +4450,7 @@
     "estimate_low": 9800,
     "estimate_high": 19000,
     "starting_bid": 5100,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 5400,
     "source_url": "https://en.wikipedia.org/wiki/The_Menin_Road_(painting)",
     "images": [
       {
@@ -4459,7 +4458,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/The_Menin_Road.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Reilly"
   },
   {
     "house": "Bonhams",
@@ -4473,8 +4473,7 @@
     "estimate_low": 16000,
     "estimate_high": 24000,
     "starting_bid": 9800,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 12000,
     "source_url": "https://en.wikipedia.org/wiki/Reclining_Figure_1969%E2%80%9370",
     "images": [
       {
@@ -4482,7 +4481,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Henry_Moore-Reclining_Figure-Tel_Aviv_Museum_of_Art.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Graham"
   },
   {
     "house": "Bonhams",
@@ -4497,7 +4497,6 @@
     "estimate_high": 190000,
     "starting_bid": 64000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Swan_upping",
     "images": [
       {
@@ -4505,7 +4504,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Queen%27s_Swan_Uppers.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -4519,8 +4519,7 @@
     "estimate_low": 440000,
     "estimate_high": 860000,
     "starting_bid": 260000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 300000,
     "source_url": "https://en.wikipedia.org/wiki/Rock_Drill_(Jacob_Epstein)",
     "images": [
       {
@@ -4528,7 +4527,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Rock_Drill_by_Jacob_Epstein.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "MarkP"
   },
   {
     "house": "Bonhams",
@@ -4543,7 +4543,6 @@
     "estimate_high": 150000,
     "starting_bid": 71000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Head_VI",
     "images": [
       {
@@ -4551,7 +4550,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/After_the_Bath%2C_Woman_drying_herself_-_Edgar_Degas_-_National_Gallery.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -4565,8 +4565,7 @@
     "estimate_low": 62000,
     "estimate_high": 110000,
     "starting_bid": 33000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 40000,
     "source_url": "https://en.wikipedia.org/wiki/L._S._Lowry",
     "images": [
       {
@@ -4574,7 +4573,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/117_Station_Road%2C_Pendlebury.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Matthew"
   },
   {
     "house": "Bonhams",
@@ -4588,8 +4588,7 @@
     "estimate_low": 89000,
     "estimate_high": 160000,
     "starting_bid": 54000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 57000,
     "source_url": "https://en.wikipedia.org/wiki/Totes_Meer",
     "images": [
       {
@@ -4597,7 +4596,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Totes_Meer_%28Dead_Sea%29_1940-1_Paul_Nash.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Kenji"
   },
   {
     "house": "Bonhams",
@@ -4611,8 +4611,7 @@
     "estimate_low": 320000,
     "estimate_high": 480000,
     "starting_bid": 200000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 220000,
     "source_url": "https://en.wikipedia.org/wiki/Henry_Moore",
     "images": [
       {
@@ -4620,7 +4619,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Henry_Moore_in_workshop_Allan_Warren_%28cropped%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Tanja"
   },
   {
     "house": "Bonhams",
@@ -4634,8 +4634,7 @@
     "estimate_low": 24000,
     "estimate_high": 45000,
     "starting_bid": 14000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 18000,
     "source_url": "https://en.wikipedia.org/wiki/Gassed_(painting)",
     "images": [
       {
@@ -4643,7 +4642,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/John_Singer_Sargent_-_Gassed_%281919%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Kenji"
   },
   {
     "house": "Bonhams",
@@ -4657,8 +4657,7 @@
     "estimate_low": 240000,
     "estimate_high": 380000,
     "starting_bid": 170000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 180000,
     "source_url": "https://en.wikipedia.org/wiki/Lucian_Freud",
     "images": [
       {
@@ -4666,7 +4665,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/LucienFreud.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Abigail"
   },
   {
     "house": "Bonhams",
@@ -4680,8 +4680,7 @@
     "estimate_low": 14000,
     "estimate_high": 21000,
     "starting_bid": 9000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 15000,
     "source_url": "https://en.wikipedia.org/wiki/Painting_1946",
     "images": [
       {
@@ -4689,7 +4688,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/4/44/Painting_1946.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": "Graham"
   },
   {
     "house": "Bonhams",
@@ -4703,8 +4703,7 @@
     "estimate_low": 190000,
     "estimate_high": 320000,
     "starting_bid": 120000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 170000,
     "source_url": "https://en.wikipedia.org/wiki/Battle_of_Britain_(painting)",
     "images": [
       {
@@ -4712,7 +4711,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Battle_of_Britain_%28Paul_Nash%29.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Abigail"
   },
   {
     "house": "Bonhams",
@@ -4727,7 +4727,6 @@
     "estimate_high": 430000,
     "starting_bid": 200000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Mark_Gertler_(artist)",
     "images": [
       {
@@ -4735,7 +4734,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Mark_Gertler%2C_by_Mark_Gertler.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -4749,8 +4749,7 @@
     "estimate_low": 25000,
     "estimate_high": 47000,
     "starting_bid": 15000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 17000,
     "source_url": "https://en.wikipedia.org/wiki/Whitechapel_Boys",
     "images": [
       {
@@ -4758,7 +4757,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Brockhaus_and_Efron_Jewish_Encyclopedia_e2_505-0.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Daisuke"
   },
   {
     "house": "Bonhams",
@@ -4772,8 +4772,7 @@
     "estimate_low": 33000,
     "estimate_high": 54000,
     "starting_bid": 23000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 25000,
     "source_url": "https://en.wikipedia.org/wiki/Oval_with_Points",
     "images": [
       {
@@ -4781,7 +4780,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Oval_with_Points.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Lisa"
   },
   {
     "house": "Bonhams",
@@ -4795,8 +4795,7 @@
     "estimate_low": 20000,
     "estimate_high": 34000,
     "starting_bid": 13000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 16000,
     "source_url": "https://en.wikipedia.org/wiki/Lucian_Freud",
     "images": [
       {
@@ -4804,7 +4803,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/LucienFreud.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Daisuke"
   },
   {
     "house": "Bonhams",
@@ -4818,8 +4818,7 @@
     "estimate_low": 46000,
     "estimate_high": 65000,
     "starting_bid": 33000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 46000,
     "source_url": "https://en.wikipedia.org/wiki/Study_after_Vel%C3%A1zquez%27s_Portrait_of_Pope_Innocent_X",
     "images": [
       {
@@ -4827,7 +4826,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Eisenstein_Potemkin_2.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Matthew"
   },
   {
     "house": "Bonhams",
@@ -4842,7 +4842,6 @@
     "estimate_high": 220000,
     "starting_bid": 100000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Large_Two_Forms",
     "images": [
       {
@@ -4850,7 +4849,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Grange_Park_Henry_Moore%27s_Large_Two_Forms_2023.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -4864,8 +4864,7 @@
     "estimate_low": 10000,
     "estimate_high": 15000,
     "starting_bid": 6600,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 8700,
     "source_url": "https://en.wikipedia.org/wiki/Wyndham_Lewis",
     "images": [
       {
@@ -4873,7 +4872,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Wyndham_Lewis_photo_by_George_Charles_Beresford_1913.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "MarkK"
   },
   {
     "house": "Bonhams",
@@ -4887,8 +4887,7 @@
     "estimate_low": 570000,
     "estimate_high": 1100000,
     "starting_bid": 290000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 400000,
     "source_url": "https://en.wikipedia.org/wiki/Coming_from_the_Mill",
     "images": [
       {
@@ -4896,7 +4895,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/1/1f/Coming_from_the_Mill.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": "Stephen"
   },
   {
     "house": "Bonhams",
@@ -4910,8 +4910,7 @@
     "estimate_low": 160000,
     "estimate_high": 250000,
     "starting_bid": 84000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 104000,
     "source_url": "https://en.wikipedia.org/wiki/Barbara_Hepworth",
     "images": [
       {
@@ -4919,7 +4918,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Barbara_Hepworth_%281966%29_by_Erling_Mandelmann.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Mateo"
   },
   {
     "house": "Bonhams",
@@ -4933,8 +4933,7 @@
     "estimate_low": 320000,
     "estimate_high": 480000,
     "starting_bid": 200000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 320000,
     "source_url": "https://en.wikipedia.org/wiki/Going_to_the_Match",
     "images": [
       {
@@ -4942,7 +4941,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Going_to_Work_-_L_S_Lowry_%28detail%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Charlie"
   },
   {
     "house": "Bonhams",
@@ -4956,8 +4956,7 @@
     "estimate_low": 29000,
     "estimate_high": 46000,
     "starting_bid": 18000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 20000,
     "source_url": "https://en.wikipedia.org/wiki/Jacob_Epstein",
     "images": [
       {
@@ -4965,7 +4964,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Jacob_Epstein_photo_by_George_Charles_Beresford_1921.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Albert"
   },
   {
     "house": "Bonhams",
@@ -4980,7 +4980,6 @@
     "estimate_high": 37000,
     "starting_bid": 14000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Stanley_Spencer",
     "images": [
       {
@@ -4988,7 +4987,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/b/b0/Hepworth-preece-spencer.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -5002,8 +5002,7 @@
     "estimate_low": 130000,
     "estimate_high": 210000,
     "starting_bid": 87000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 100000,
     "source_url": "https://en.wikipedia.org/wiki/Ennui_(Sickert)",
     "images": [
       {
@@ -5011,7 +5010,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Sickert%2C_Ennui.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Charlie"
   },
   {
     "house": "Bonhams",
@@ -5025,8 +5025,7 @@
     "estimate_low": 37000,
     "estimate_high": 71000,
     "starting_bid": 25000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 36000,
     "source_url": "https://en.wikipedia.org/wiki/We_Are_Making_a_New_World",
     "images": [
       {
@@ -5034,7 +5033,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Nash%2C_Paul_-_We_are_Making_a_New_World_-_Google_Art_Project.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Matthew"
   },
   {
     "house": "Bonhams",
@@ -5048,8 +5048,7 @@
     "estimate_low": 81000,
     "estimate_high": 120000,
     "starting_bid": 56000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 75000,
     "source_url": "https://en.wikipedia.org/wiki/Knife_Edge_Two_Piece_1962%E2%80%9365",
     "images": [
       {
@@ -5057,7 +5056,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Knife_Edge_Two_Piece_-_Henry_Moore.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Abi"
   },
   {
     "house": "Bonhams",
@@ -5071,8 +5071,7 @@
     "estimate_low": 410000,
     "estimate_high": 600000,
     "starting_bid": 300000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 410000,
     "source_url": "https://en.wikipedia.org/wiki/Family_Group_(Moore)",
     "images": [
       {
@@ -5080,7 +5079,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Henry_Moore%2C_Family_Group_%281950%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Graham"
   },
   {
     "house": "Bonhams",
@@ -5094,8 +5094,7 @@
     "estimate_low": 180000,
     "estimate_high": 330000,
     "starting_bid": 100000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 110000,
     "source_url": "https://en.wikipedia.org/wiki/Pelagos",
     "images": [
       {
@@ -5103,7 +5102,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Ancient_Regions_Peloponnese.png",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Christian"
   },
   {
     "house": "Bonhams",
@@ -5117,8 +5117,7 @@
     "estimate_low": 16000,
     "estimate_high": 26000,
     "starting_bid": 10000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 13000,
     "source_url": "https://en.wikipedia.org/wiki/The_Mud_Bath",
     "images": [
       {
@@ -5126,7 +5125,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/5/50/Bomberg%2C_The_Mud_Bath.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": "Mateo"
   },
   {
     "house": "Bonhams",
@@ -5140,8 +5140,7 @@
     "estimate_low": 330000,
     "estimate_high": 470000,
     "starting_bid": 180000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 210000,
     "source_url": "https://en.wikipedia.org/wiki/Cookham",
     "images": [
       {
@@ -5149,7 +5148,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Cookham_church%2Cberkshire.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Abi"
   },
   {
     "house": "Bonhams",
@@ -5164,7 +5164,6 @@
     "estimate_high": 55000,
     "starting_bid": 20000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Triptych,_May%E2%80%93June_1973",
     "images": [
       {
@@ -5172,7 +5171,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/D%C3%BCrer_Melancholia_I.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Bonhams",
@@ -5186,8 +5186,7 @@
     "estimate_low": 19000,
     "estimate_high": 32000,
     "starting_bid": 12000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 13000,
     "source_url": "https://en.wikipedia.org/wiki/Paul_Nash_(artist)",
     "images": [
       {
@@ -5195,7 +5194,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Paul_Nash_in_1922.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Christian"
   },
   {
     "house": "Bonhams",
@@ -5209,8 +5209,7 @@
     "estimate_low": 270000,
     "estimate_high": 440000,
     "starting_bid": 140000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 150000,
     "source_url": "https://en.wikipedia.org/wiki/Benefits_Supervisor_Sleeping",
     "images": [
       {
@@ -5218,7 +5217,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/9/95/Benefits_Supervisor_Sleeping.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": "Nouf"
   },
   {
     "house": "Bonhams",
@@ -5232,8 +5232,7 @@
     "estimate_low": 540000,
     "estimate_high": 890000,
     "starting_bid": 330000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 480000,
     "source_url": "https://en.wikipedia.org/wiki/Walker_Art_Gallery",
     "images": [
       {
@@ -5241,7 +5240,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Walker_Art_Gallery%2C_Liverpool_161009.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "De'Anna"
   },
   {
     "house": "Bonhams",
@@ -5255,8 +5255,7 @@
     "estimate_low": 68000,
     "estimate_high": 120000,
     "starting_bid": 44000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 55000,
     "source_url": "https://en.wikipedia.org/wiki/Port_Glasgow",
     "images": [
       {
@@ -5264,7 +5263,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Port_Glasgow.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Jonny"
   },
   {
     "house": "Bonhams",
@@ -5278,8 +5278,7 @@
     "estimate_low": 130000,
     "estimate_high": 180000,
     "starting_bid": 86000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 110000,
     "source_url": "https://en.wikipedia.org/wiki/Walker_Art_Gallery",
     "images": [
       {
@@ -5287,7 +5286,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Walker_Art_Gallery%2C_Liverpool_161009.JPG",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Lisa"
   },
   {
     "house": "Bonhams",
@@ -5301,8 +5301,7 @@
     "estimate_low": 750000,
     "estimate_high": 1300000,
     "starting_bid": 540000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 780000,
     "source_url": "https://en.wikipedia.org/wiki/Piccadilly_Circus",
     "images": [
       {
@@ -5310,7 +5309,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Kenji"
   },
   {
     "house": "Bonhams",
@@ -5325,7 +5325,6 @@
     "estimate_high": 580000,
     "starting_bid": 150000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Three_Studies_for_Figures_at_the_Base_of_a_Crucifixion",
     "images": [
       {
@@ -5333,7 +5332,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Eisenstein_Potemkin_2.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -5347,8 +5347,7 @@
     "estimate_low": 110000,
     "estimate_high": 170000,
     "starting_bid": 60000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 78000,
     "source_url": "https://en.wikipedia.org/wiki/Andreas_Gursky",
     "images": [
       {
@@ -5356,7 +5355,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Gursky-andreas-010313-2.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Sean"
   },
   {
     "house": "Christie's",
@@ -5370,8 +5370,7 @@
     "estimate_low": 140000,
     "estimate_high": 250000,
     "starting_bid": 79000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 90000,
     "source_url": "https://en.wikipedia.org/wiki/Edward_Weston",
     "images": [
       {
@@ -5379,7 +5378,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Young_Edward_Weston_with_a_camera.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Abi"
   },
   {
     "house": "Christie's",
@@ -5393,8 +5393,7 @@
     "estimate_low": 5100,
     "estimate_high": 10000,
     "starting_bid": 2700,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 2900,
     "source_url": "https://en.wikipedia.org/wiki/Richard_Avedon",
     "images": [
       {
@@ -5402,7 +5401,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Richard_Avedon_2004.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Reilly"
   },
   {
     "house": "Christie's",
@@ -5417,7 +5417,6 @@
     "estimate_high": 11000,
     "starting_bid": 4500,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Dal%C3%AD_Atomicus",
     "images": [
       {
@@ -5425,7 +5424,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Dal%C3%AD_Atomicus_%28final_version%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -5440,7 +5440,6 @@
     "estimate_high": 96000,
     "starting_bid": 37000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Raising_the_Flag_on_Iwo_Jima",
     "images": [
       {
@@ -5448,7 +5447,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Raising_the_Flag_on_Iwo_Jima%2C_larger_-_edit1.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -5462,8 +5462,7 @@
     "estimate_low": 25000,
     "estimate_high": 45000,
     "starting_bid": 18000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 27000,
     "source_url": "https://en.wikipedia.org/wiki/The_Steerage",
     "images": [
       {
@@ -5471,7 +5470,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Alfred_Stieglitz_-_The_Steerage_-_Google_Art_Project.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Reilly"
   },
   {
     "house": "Christie's",
@@ -5485,8 +5485,7 @@
     "estimate_low": 100000,
     "estimate_high": 140000,
     "starting_bid": 53000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 64000,
     "source_url": "https://en.wikipedia.org/wiki/Lunch_atop_a_Skyscraper",
     "images": [
       {
@@ -5494,7 +5493,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Lunch_atop_a_Skyscraper_-_Charles_Clyde_Ebbets.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Travis"
   },
   {
     "house": "Christie's",
@@ -5508,8 +5508,7 @@
     "estimate_low": 13000,
     "estimate_high": 23000,
     "starting_bid": 6700,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 8300,
     "source_url": "https://en.wikipedia.org/wiki/V-J_Day_in_Times_Square",
     "images": [
       {
@@ -5517,7 +5516,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Eisenstaedt_signing_%22VJ_day%22_print_on_August_23%2C_1995_at_his_Menemsha_cabin_on_Martha%27s_Vineyard_%28cropped%29.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "MarkP"
   },
   {
     "house": "Christie's",
@@ -5531,8 +5531,7 @@
     "estimate_low": 140000,
     "estimate_high": 240000,
     "starting_bid": 85000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 100000,
     "source_url": "https://en.wikipedia.org/wiki/Robert_Doisneau",
     "images": [
       {
@@ -5540,7 +5539,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Robert_Doisneau_photographed_by_Bracha_L._Ettinger_in_his_studio_in_Montrouge%2C_1992.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Travis"
   },
   {
     "house": "Christie's",
@@ -5554,8 +5554,7 @@
     "estimate_low": 54000,
     "estimate_high": 77000,
     "starting_bid": 40000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 44000,
     "source_url": "https://en.wikipedia.org/wiki/Yousuf_Karsh",
     "images": [
       {
@@ -5563,7 +5562,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Yousuf_Karsh_1958.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Grace"
   },
   {
     "house": "Christie's",
@@ -5578,7 +5578,6 @@
     "estimate_high": 230000,
     "starting_bid": 100000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Noire_et_Blanche",
     "images": [
       {
@@ -5586,7 +5585,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/a/ab/Noire_et_Blanche.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -5601,7 +5601,6 @@
     "estimate_high": 170000,
     "starting_bid": 89000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Behind_the_Gare_Saint-Lazare",
     "images": [
       {
@@ -5609,7 +5608,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/8/85/Henri_Cartier-Bresson_-_Behind_the_Gare_Saint-Lazare%2C_1932.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -5623,8 +5623,7 @@
     "estimate_low": 110000,
     "estimate_high": 200000,
     "starting_bid": 76000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 93000,
     "source_url": "https://en.wikipedia.org/wiki/Edward_Steichen",
     "images": [
       {
@@ -5632,7 +5631,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Edward_Steichen.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Nouf"
   },
   {
     "house": "Christie's",
@@ -5646,8 +5646,7 @@
     "estimate_low": 23000,
     "estimate_high": 37000,
     "starting_bid": 12000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 13000,
     "source_url": "https://en.wikipedia.org/wiki/Pepper_No._30",
     "images": [
       {
@@ -5655,7 +5654,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Pepper_No._30.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": "Tanja"
   },
   {
     "house": "Christie's",
@@ -5670,7 +5670,6 @@
     "estimate_high": 240000,
     "starting_bid": 80000,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Guerrillero_Heroico",
     "images": [
       {
@@ -5678,7 +5677,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Che_Guevara_-_Guerrillero_Heroico_by_Alberto_Korda.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   },
   {
     "house": "Christie's",
@@ -5692,8 +5692,7 @@
     "estimate_low": 6600,
     "estimate_high": 9800,
     "starting_bid": 4500,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 4900,
     "source_url": "https://en.wikipedia.org/wiki/Afghan_Girl",
     "images": [
       {
@@ -5701,7 +5700,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Sharbat_Gula.jpg",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": "Kenji"
   },
   {
     "house": "Christie's",
@@ -5715,8 +5715,7 @@
     "estimate_low": 28000,
     "estimate_high": 47000,
     "starting_bid": 18000,
-    "hammer_price": null,
-    "winner_user_id": null,
+    "hammer_price": 23000,
     "source_url": "https://en.wikipedia.org/wiki/Le_Violon_d%27Ingres",
     "images": [
       {
@@ -5724,7 +5723,8 @@
         "url": "https://upload.wikimedia.org/wikipedia/en/9/93/Le_Violon_d%27Ingres.png",
         "credit": "Wikipedia (fair use)"
       }
-    ]
+    ],
+    "winner": "Jonny"
   },
   {
     "house": "Christie's",
@@ -5739,7 +5739,6 @@
     "estimate_high": 14000,
     "starting_bid": 5400,
     "hammer_price": null,
-    "winner_user_id": null,
     "source_url": "https://en.wikipedia.org/wiki/Chicago_Board_of_Trade_Building",
     "images": [
       {
@@ -5747,6 +5746,7 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Chicago_Board_Of_Trade_Building.jpg",
         "credit": "Wikimedia Commons"
       }
-    ]
+    ],
+    "winner": null
   }
 ]
