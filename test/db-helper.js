@@ -117,10 +117,12 @@ async function createAuction(fields = {}) {
 async function createLot(fields = {}) {
   const auctionId = fields.auction_id || (await createAuction()).id;
   const result = await db.query(
-    `INSERT INTO lots (auction_id, lot_number, title, artist, category, description, currency, starting_bid)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+    `INSERT INTO lots (auction_id, lot_number, title, artist, category, description, currency, estimate_low, estimate_high, starting_bid)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
     [auctionId, fields.lot_number || 1, fields.title || 'Untitled', fields.artist || null,
       fields.category || 'Contemporary Art', fields.description || null, fields.currency || 'USD',
+      fields.estimate_low === undefined ? null : fields.estimate_low,
+      fields.estimate_high === undefined ? null : fields.estimate_high,
       fields.starting_bid === undefined ? null : fields.starting_bid]
   );
   return result.rows[0];

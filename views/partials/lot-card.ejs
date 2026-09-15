@@ -20,17 +20,17 @@
     <h3><a href="<%= lotHref %>"><%= lot.title %></a><% if (lot.favorited) { %> <span class="fav" title="Favorited">♥</span><% } %></h3>
     <% if (lot.artist) { %><p class="lot-card-artist"><%= lot.artist %></p><% } %>
     <% if (lot.estimate_low || lot.estimate_high) { %>
-      <p class="lot-card-meta">Estimate <%= lot.currency %> <%= Number(lot.estimate_low || 0).toLocaleString('en-US') %>–<%= Number(lot.estimate_high || 0).toLocaleString('en-US') %></p>
+      <p class="lot-card-meta">Estimate <%= formatMoney(lot.estimate_low, lot.currency) %>–<%= formatMoney(lot.estimate_high, lot.currency) %></p>
     <% } %>
     <p class="lot-card-bid">
       <% if (lot.status === 'closed' && lot.hammer_price) { %>
-        Sold for <b><%= lot.currency %> <%= Number(lot.hammer_price).toLocaleString('en-US') %></b><% if (lot.winner_name) { %> to <%= lot.winner_name %><% } %>
+        Sold for <b><%= formatMoney(lot.hammer_price, lot.currency) %></b><% if (lot.winner_name) { %> to <%= lot.winner_name %><% } %>
       <% } else if (lot.status === 'closed') { %>
         Unsold
       <% } else if (lot.current_bid) { %>
-        Current bid <b><%= lot.currency %> <%= Number(lot.current_bid).toLocaleString('en-US') %></b><% if (lot.high_bidder) { %> by <%= lot.high_bidder %><% } %>
+        Current bid <b><%= formatMoney(lot.current_bid, lot.currency) %></b><% if (lot.high_bidder) { %> by <%= lot.high_bidder %><% } %>
       <% } else if (lot.starting_bid) { %>
-        Starting bid <b><%= lot.currency %> <%= Number(lot.starting_bid).toLocaleString('en-US') %></b>
+        Starting bid <b><%= formatMoney(lot.starting_bid, lot.currency) %></b>
       <% } else { %>
         No bids yet
       <% } %>

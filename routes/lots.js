@@ -2,7 +2,7 @@ const express = require('express');
 const { query, withTransaction } = require('../db/db');
 const { renderPage, flashUrl } = require('./helpers');
 const { formatCentral, formatMoney, userPath } = require('../lib/format');
-const { placeBid } = require('../lib/bids');
+const { placeBid, bidIncrement, nextBid, maxBid, INCREMENTS } = require('../lib/bids');
 const { pickWinner } = require('../lib/close');
 
 const router = express.Router();
@@ -38,7 +38,7 @@ async function showLot(req, res, next) {
     const [imagesResult, bidsResult, favoriteResult] = await Promise.all([
       query('SELECT url, credit FROM lot_images WHERE lot_id = $1 ORDER BY position', [lot.id]),
       query(
-        `SELECT b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
+        `SELECT b.user_id, b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
          FROM bids b JOIN users u ON u.id = b.user_id
          WHERE b.lot_id = $1 ORDER BY b.placed_at DESC, b.id DESC`,
         [lot.id]
@@ -50,6 +50,11 @@ async function showLot(req, res, next) {
 
     const bids = bidsResult.rows;
     const highBid = pickWinner(bids);
+    const bidInfo = {
+      highBid: highBid ? Number(highBid.amount) : null,
+      startingBid: lot.starting_bid == null ? null : Number(lot.starting_bid),
+      estimateLow: lot.estimate_low == null ? null : Number(lot.estimate_low)
+    };
 
     renderPage(res, lot.title, 'lot', {
       userId,
@@ -57,6 +62,11 @@ async function showLot(req, res, next) {
       images: imagesResult.rows,
       bids,
       highBid,
+      nextBid: nextBid(bidInfo),
+      maxBid: maxBid(bidInfo),
+      increment: bidIncrement(bidInfo.highBid ?? bidInfo.startingBid ?? bidInfo.estimateLow ?? 0),
+      INCREMENTS,
+      isHighBidder: Boolean(highBid && userId && Number(highBid.user_id) === Number(userId)),
       favorited: favoriteResult.rows.length > 0,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,
@@ -78,7 +88,10 @@ async function postBid(req, res, next) {
     if (!result.ok) {
       return res.redirect(flashUrl(target, result.error, true));
     }
-    res.redirect(flashUrl(target, 'Bid placed!', false));
+    const message = result.rounded
+      ? `Bid placed at ${formatMoney(result.amount, '')} (rounded down to the nearest bid step).`
+      : 'Bid placed!';
+    res.redirect(flashUrl(target, message, false));
   } catch (error) {
     next(error);
   }

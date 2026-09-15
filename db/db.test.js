@@ -70,8 +70,9 @@ test('seed data references resolve', () => {
   }
 });
 
-test('seed bids are positive whole numbers', () => {
+test('seed bids are positive amounts', () => {
   for (const bid of seedFiles().bids) {
-    assert.ok(Number.isInteger(bid.amount) && bid.amount > 0, `bid by ${bid.user} on lot ${bid.lot_number}: ${bid.amount}`);
+    assert.ok(Number.isFinite(Number(bid.amount)) && Number(bid.amount) > 0,
+      `bid by ${bid.user} on lot ${bid.lot_number}: ${bid.amount}`);
   }
 });

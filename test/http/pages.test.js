@@ -37,7 +37,7 @@ describeHttp('lot pages', (it) => {
     assert.match(location(low), /\?flash=.*&error=1$/);
     assert.deepEqual((await rows('SELECT amount FROM bids WHERE lot_id = $1', [lot.id])).map((row) => Number(row.amount)), [120]);
     const flashed = await client.get(location(low));
-    assert.match(await flashed.text(), /must be higher than the current high bid of 120/);
+    assert.match(await flashed.text(), /at least 130 \(current high bid 120 \+ 10 step\)/);
   });
 
   it('toggles a favorite and returns to the referer', async () => {

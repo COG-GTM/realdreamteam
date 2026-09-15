@@ -46,11 +46,37 @@
 
     <% if (lot.auction_status === 'open' && userId) { %>
       <form class="bid-form" method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/bid') %>">
-        <input name="amount" inputmode="numeric" placeholder="Your bid">
-        <button class="btn primary" type="submit">Bid</button>
+        <input name="amount" inputmode="decimal" placeholder="Your bid" value="<%= nextBid != null ? nextBid : '' %>">
+        <button class="btn primary" type="submit" <%= isHighBidder ? 'disabled' : '' %>>Bid</button>
       </form>
-      <p class="muted"><% if (highBid) { %>Bid more than <%= formatMoney(highBid.amount, lot.currency) %>.<% } else if (lot.starting_bid != null) { %>Minimum bid <%= formatMoney(lot.starting_bid, lot.currency) %>.<% } %></p>
+      <p class="muted"><% if (nextBid != null) { %>Next bid <b><%= formatMoney(nextBid, lot.currency) %></b> · steps of <%= formatMoney(increment, lot.currency) %> · max <%= formatMoney(maxBid, lot.currency) %><% } else { %>Minimum bid 1<% } %></p>
+      <% if (isHighBidder) { %><p class="muted">You are the high bidder.</p><% } %>
     <% } %>
+
+    <button type="button" class="linklike" id="bidding-rules-link">Bidding rules</button>
+    <dialog id="bidding-rules">
+      <h2>Bidding rules</h2>
+      <ul>
+        <li>Amounts may include cents/pence (two decimals).</li>
+        <li>A bid must beat the current price by at least one step (table below).</li>
+        <li>Amounts between steps are rounded down to the nearest step.</li>
+        <li>A single bid can't exceed 1.1× the current price (2× under 100), but you can always bid at least 3 steps up.</li>
+        <li>The high bidder can't raise their own bid.</li>
+        <li>Bids are final.</li>
+        <li>The first bid on a lot must be at least the starting bid (or low estimate).</li>
+      </ul>
+      <table class="table">
+        <tr><th>Current price</th><th>Step</th></tr>
+        <% let lowerBound = 0; for (const [upperBound, step] of INCREMENTS) { %>
+          <tr class="<%= step === increment ? 'current-step' : '' %>">
+            <td><%= formatMoney(lowerBound, lot.currency) %><%= upperBound === Infinity ? '+' : '– ' + formatMoney(upperBound - 1, lot.currency) %></td>
+            <td><%= formatMoney(step, lot.currency) %></td>
+          </tr>
+          <% lowerBound = upperBound; %>
+        <% } %>
+      </table>
+      <button type="button" class="btn" id="bidding-rules-close">Close</button>
+    </dialog>
 
     <% if (userId) { %>
       <form method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/favorite') %>">
@@ -74,6 +100,21 @@
 
 <audio id="sold-sound" src="/sold.mp3"></audio>
 <script>
+  var rulesLink = document.getElementById('bidding-rules-link');
+  var rulesDialog = document.getElementById('bidding-rules');
+  var rulesClose = document.getElementById('bidding-rules-close');
+  if (rulesLink && rulesDialog) rulesLink.addEventListener('click', function () { rulesDialog.showModal(); });
+  if (rulesClose && rulesDialog) rulesClose.addEventListener('click', function () { rulesDialog.close(); });
+  var bidForm = document.querySelector('.bid-form');
+  if (bidForm) {
+    bidForm.addEventListener('submit', function () {
+      var amount = Number(bidForm.elements.amount.value);
+      var estimateHigh = <%= lot.estimate_high == null ? 'null' : Number(lot.estimate_high) %>;
+      if (amount >= 1000000 || (estimateHigh && amount >= 10 * estimateHigh)) {
+        return window.confirm('You are bidding ' + amount + ' — is that right?');
+      }
+    });
+  }
   if (document.querySelector('.sold-banner') && location.search.indexOf('justClosed=1') !== -1) {
     var sound = document.getElementById('sold-sound');
     if (sound) sound.play().catch(function () {});
