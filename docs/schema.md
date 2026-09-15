@@ -2,7 +2,7 @@
 
 Status: **final** (agreed table by table with Mark, 2026-09-15) and **applied to the Supabase
 Postgres database**. The DDL with every table and column comment is
-[`auction-app/db/schema.sql`](../auction-app/db/schema.sql); this page explains it.
+[`db/schema.sql`](../db/schema.sql); this page explains it.
 
 Guiding rule: **simple enough for non-technical teammates to read and edit.** Nine tables,
 integer ids everywhere, no application code until this model is stable.
@@ -67,7 +67,7 @@ Logos, avatars, and lot photos live in Supabase Storage buckets `logos`, `avatar
 
 ## Seed data (to do)
 
-The seed files under `auction-app/data/seed/` still have the v2 shape and must be regenerated.
+The seed files under `data/seed/` still have the v2 shape and must be regenerated.
 When we do, dates are **relative to now** so the demo works whenever it runs: one auction
 already `closed` (with hammer prices and winners for the history page), one `open` (where
 bidding happens), one or two `upcoming` (so the matcher has lots to notify about).
