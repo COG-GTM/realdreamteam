@@ -17,7 +17,7 @@ one template.
 
 | Page | What you do there |
 |---|---|
-| `/enter` | Enter the site code once; a cookie remembers you for 30 days. |
+| `/enter` | Enter the site code; you are remembered until you close the browser. |
 | `/` | Pick your name. Everything after this is under `/u/<your id>/…`. |
 | **Summary** `/u/:id/summary` | Your home page. **Notifications** (new matching lots, outbid, sold — unread ones are highlighted; *Mark all read* clears the badge). **Matches your interests** — open lots matching your preferences, each with a chip saying *why* it matched. **Discover** — five random open lots you haven't bid on or favorited, different on every refresh (*Shuffle*). Everyone gets Discover, even with no preferences. |
 | **Preferences** `/u/:id/preferences` | Tick categories (fixed list, see `lib/categories.js`), type artists and keywords (comma-separated). Optional — it only sharpens Matches. |

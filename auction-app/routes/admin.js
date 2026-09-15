@@ -24,8 +24,7 @@ router.post('/admin/enter', (req, res) => {
   }
   res.cookie('rdt_admin', '1', {
     signed: true,
-    httpOnly: true,
-    maxAge: 30 * 24 * 60 * 60 * 1000
+    httpOnly: true
   });
   res.redirect('/admin');
 });
