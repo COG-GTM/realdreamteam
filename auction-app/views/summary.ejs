@@ -1,1 +1,65 @@
-<%- include('coming-soon') %>
+<%- include('partials/flash') %>
+
+<section class="summary-block">
+  <div class="summary-heading">
+    <h2>Notifications
+      <% if (unread > 0) { %><span class="badge unread-badge"><%= unread %> unread</span><% } %>
+    </h2>
+    <% if (unread > 0) { %>
+      <form method="post" action="/u/<%= userId %>/notifications/read">
+        <button class="btn" type="submit">Mark all as read</button>
+      </form>
+    <% } %>
+  </div>
+  <% if (notifications.length === 0) { %>
+    <p class="empty-state">Nothing yet. When a new lot matches your interests, someone outbids you, or a lot you bid on sells, it shows up here.</p>
+  <% } else { %>
+    <ul class="feed">
+      <% for (const n of notifications) { %>
+        <li class="feed-item<%= n.read_at ? '' : ' unread' %>">
+          <span class="badge kind-<%= n.kind %>"><%= n.kind.replace('_', ' ') %></span>
+          <span class="feed-text">
+            <a href="/lots/<%= n.lot_id %>?u=<%= userId %>"><%= n.lot_title %></a>
+            <span class="feed-reason"><%= n.reason %></span>
+          </span>
+          <time class="feed-time"><%= formatUtc(n.created_at) %></time>
+        </li>
+      <% } %>
+    </ul>
+  <% } %>
+</section>
+
+<section class="summary-block">
+  <div class="summary-heading">
+    <h2>Matches your interests</h2>
+    <a class="btn" href="/u/<%= userId %>/preferences">Edit preferences</a>
+  </div>
+  <% if (matches.length === 0) { %>
+    <p class="empty-state">
+      <% if (hasPreferences) { %>No open lots match your preferences right now. <% } %>
+      <a class="invite" href="/u/<%= userId %>/preferences">Tell us what you like →</a>
+    </p>
+  <% } else { %>
+    <div class="lot-grid">
+      <% for (const lot of matches) { %>
+        <%- include('partials/lot-card', { lot, userId, reasons: lot.reasons }) %>
+      <% } %>
+    </div>
+  <% } %>
+</section>
+
+<section class="summary-block">
+  <div class="summary-heading">
+    <h2>Discover</h2>
+    <a class="btn" href="/u/<%= userId %>/summary">Shuffle</a>
+  </div>
+  <% if (discover.length === 0) { %>
+    <p class="empty-state">No open lots left to discover — you have already bid on or favorited everything.</p>
+  <% } else { %>
+    <div class="lot-grid">
+      <% for (const lot of discover) { %>
+        <%- include('partials/lot-card', { lot, userId }) %>
+      <% } %>
+    </div>
+  <% } %>
+</section>

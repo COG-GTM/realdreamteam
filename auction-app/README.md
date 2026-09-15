@@ -26,6 +26,17 @@ Set `AUCTION_DATABASE_PASSWORD` in `.env` when the local PostgreSQL role
 requires a password. Do not point local verification at the shared Supabase
 database.
 
+### Safety
+
+Some environments pre-inject the shared Supabase connection variables. The
+application loads `.env` with override enabled, so the values in `.env` win.
+`db:reset` refuses remote database hosts unless you explicitly confirm the
+operation. Before a deliberate remote reset, use:
+
+```sh
+ALLOW_REMOTE_RESET=1 npm run db:reset
+```
+
 ## Reset
 
 `npm run db:reset` truncates the nine application tables, resets identity
