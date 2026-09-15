@@ -6024,5 +6024,28 @@
       }
     ],
     "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 38,
+    "title": "Framed vintage print: Devin coding in San Francisco by the Bay Bridge, 2026",
+    "artist": "Cognition",
+    "category": "Design",
+    "description": "Framed vintage-style print of Devin the otter coding on a laptop among golden poppies at the water's edge, with the Bay Bridge stretching across a bright blue San Francisco Bay. 2026, giclée on archival paper, black frame, about 60 x 35 cm.",
+    "currency": "USD",
+    "estimate_low": 200,
+    "estimate_high": 500,
+    "starting_bid": 200,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/devin-bay-bridge-print.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
   }
 ]
