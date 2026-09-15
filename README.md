@@ -93,7 +93,7 @@ state (see the deploy section below).
 | **Summary** `/u/:id/summary` | Your home page. **Matches your interests** — open lots matching your preferences, each with a chip saying *why* it matched. **Discover** — five random open lots you haven't bid on or favorited, different on every refresh (*Shuffle*). Everyone gets Discover, even with no preferences. |
 | **Preferences** `/u/:id/preferences` | Tick categories (fixed list, see `lib/categories.js`), type artists and keywords (comma-separated). Optional — it only sharpens Matches. |
 | **Auctions** `/u/:id/auctions` | All auctions grouped Open / Upcoming / Closed, with lot counts. Click through to the auction's lots. |
-| **Lot** `/u/:id/lots/:lotId` | Images, estimate, link to the source page, ★ favorite toggle, the bid form and the full bid history (newest first). Bids use units of the lot's currency, up to two decimals, and must beat the current high bid (or meet the starting bid on the first bid). You can bid again after being outbid. Closed lots show SOLD, hammer price and winner (the `sold.mp3` sound plays on `/admin` right after Close now). |
+| **Lot** `/u/:id/lots/:lotId` | Images, estimate, link to the source page, ★ favorite toggle, the bid form and the full bid history (newest first). Bids use units of the lot's currency, up to two decimals, stored in `NUMERIC(16,2)`, and must beat the current high bid (or meet the starting bid on the first bid). You can bid again after being outbid. Closed lots show SOLD, hammer price and winner (the `sold.mp3` sound plays on `/admin` right after Close now). |
 | **History** `/u/:id/history` | Every bid you've placed with its state — Winning / Outbid / Won / Lost — and your favorites. |
 | **Admin** `/admin` | Table of auctions with editable close time (US Central), *Close now* / *Reopen*; add a lot to any auction (matching users get a notification); ban / unban users (banned users can't bid, nothing is deleted) |
 
@@ -195,6 +195,7 @@ database.
 Before running `db:reset` against Supabase, apply every migration in
 `db/migrations/`; migrations `001-schema-review.sql`, `002-bigint-money.sql`,
 `003-decimal-money.sql`, `003-categories.sql`, and `004-avatars.sql` are required.
+Money columns use `NUMERIC(16,2)` to support values up to 9,999,999,999,999.99.
 On an existing database,
 follow `004-avatars.sql` with `npm run db:avatars` to give every user a default icon.
 

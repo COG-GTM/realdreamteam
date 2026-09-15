@@ -98,10 +98,10 @@ CREATE TABLE lots (
   category       TEXT NOT NULL,
   description    TEXT,
   currency       CHAR(3) NOT NULL DEFAULT 'USD',
-  estimate_low   NUMERIC(14,2),
-  estimate_high  NUMERIC(14,2),
-  starting_bid   NUMERIC(14,2),
-  hammer_price   NUMERIC(14,2) CHECK (hammer_price > 0),
+  estimate_low   NUMERIC(16,2),
+  estimate_high  NUMERIC(16,2),
+  starting_bid   NUMERIC(16,2),
+  hammer_price   NUMERIC(16,2) CHECK (hammer_price > 0),
   winner_user_id BIGINT REFERENCES users(id),
   source_url     TEXT,
   created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -159,7 +159,7 @@ CREATE TABLE bids (
   id        BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   lot_id    BIGINT  NOT NULL REFERENCES lots(id)  ON DELETE CASCADE,
   user_id   BIGINT  NOT NULL REFERENCES users(id),
-  amount    NUMERIC(14,2) NOT NULL CHECK (amount > 0),
+  amount    NUMERIC(16,2) NOT NULL CHECK (amount > 0),
   placed_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 

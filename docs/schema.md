@@ -44,6 +44,8 @@ so we use plain words:
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.
 
+Money columns use `NUMERIC(16,2)` to support values up to 9,999,999,999,999.99.
+
 Categories are the source of truth for the selectable list, while lots and preferences
 continue to store category names as text. Inactive categories remain available to users
 who already follow them, marked as retired, until they choose otherwise.
