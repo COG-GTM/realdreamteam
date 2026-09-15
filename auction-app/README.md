@@ -82,3 +82,31 @@ Optional activity files may also be supplied:
 
 Unknown natural keys and invalid categories fail the transaction with a clear
 error. This seed shape is the contract for the data-phase session.
+
+## Deploy (EC2)
+
+The production demo runs on `3.76.162.103` from
+`/opt/rdt/realdreamteam/auction-app`, using the shared Supabase PostgreSQL
+database. The `rdt-auction.service` systemd unit runs the app as the `ubuntu`
+user with its settings in the mode-600 `.env` file.
+
+To update the checkout on the server:
+
+```sh
+cd /opt/rdt/realdreamteam
+git pull
+cd auction-app
+npm ci --omit=dev
+sudo systemctl restart rdt-auction
+```
+
+Check the service and recent logs with:
+
+```sh
+sudo systemctl status rdt-auction
+journalctl -u rdt-auction -n 50 --no-pager
+```
+
+HTTP port 80 is redirected to the app's port 3000 by the persistent
+`rdt-auction-port80.service` systemd unit. Do not run `db:reset` on the
+production host.
