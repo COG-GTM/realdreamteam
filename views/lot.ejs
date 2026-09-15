@@ -54,7 +54,7 @@
       <table class="table">
         <tr><th>Current price</th><th>Step</th></tr>
         <% let lowerBound = 0; for (const [upperBound, step] of INCREMENTS) { %>
-          <tr class="<%= step === increment ? 'current-step' : '' %>">
+          <tr data-step="<%= step %>" class="<%= step === increment ? 'current-step' : '' %>">
             <td><%= formatMoney(lowerBound, lot.currency) %><%= upperBound === Infinity ? '+' : ' – under ' + formatMoney(upperBound, lot.currency) %></td>
             <td><%= formatMoney(step, lot.currency) %></td>
           </tr>
@@ -98,6 +98,15 @@
       }
     }
   });
+  // Keep the highlighted rules row in step with the live bid panel.
+  var bidding = document.getElementById('lot-bidding');
+  if (bidding && rulesDialog) new MutationObserver(function () {
+    var status = bidding.querySelector('[data-increment]');
+    if (!status) return;
+    rulesDialog.querySelectorAll('tr[data-step]').forEach(function (row) {
+      row.classList.toggle('current-step', row.dataset.step === status.dataset.increment);
+    });
+  }).observe(bidding, { childList: true });
   if (document.querySelector('.sold-banner') && location.search.indexOf('justClosed=1') !== -1) {
     var sound = document.getElementById('sold-sound');
     if (sound) sound.play().catch(function () {});

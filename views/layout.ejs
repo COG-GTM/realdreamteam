@@ -76,7 +76,7 @@
               const response = await fetch(pane.dataset.src, { credentials: 'same-origin' });
               if (!response.ok) return;
               const html = await response.text();
-              if (html === pane.innerHTML) return;
+              if (html === pane.innerHTML || busy(pane)) return;
               pane.innerHTML = html;
               if (oldIds) pane.querySelectorAll(itemSelector).forEach((item) => {
                 if (!oldIds.has(item.dataset.id)) item.classList.add('fresh');

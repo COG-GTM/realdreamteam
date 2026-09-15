@@ -5,7 +5,7 @@
 <% } else { %>
   <p>No bids yet.</p>
 <% } %>
-<p class="muted"><%= bids.length %> bid<%= bids.length === 1 ? '' : 's' %></p>
+<p class="muted" data-increment="<%= increment %>"><%= bids.length %> bid<%= bids.length === 1 ? '' : 's' %></p>
 
 <% if (lot.auction_status === 'open' && userId) { %>
   <form class="bid-form" method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/bid') %>">
