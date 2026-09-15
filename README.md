@@ -129,8 +129,45 @@ data/seed/*.json     the demo data (see "Seed contract")
 
 Typical edits: change wording → the `.ejs` file for that page; change a rule
 (minimum bid, who gets notified) → the `lib/` file named for it; change the
-look → `public/styles.css`. Run `npm test` (`node --test`) after touching
-`lib/`.
+look → `public/styles.css`. Run `npm test` after touching `lib/`, `routes/` or
+`db/` (see "Testing").
+
+## Testing
+
+Tests use Node's built-in `node:test` runner; there are no test dependencies.
+
+```sh
+npm test               # everything: unit + database + HTTP
+npm run test:unit      # pure-function tests only, no database needed (< 1 s)
+npm run test:integration
+```
+
+Three tiers:
+
+```
+lib/*.test.js, db/db.test.js, routes/helpers.test.js
+                     unit tests next to the module they cover; no I/O
+test/integration/    lib/ modules that talk to PostgreSQL (bids, close, new-lot,
+                     category-admin, notifications, panes, poller, seed loader)
+test/http/           the real Express app on an ephemeral port, driven with
+                     fetch: gates, cookies, rate limits, pages, redirects
+```
+
+The database and HTTP tiers need a dedicated test database, named by
+`AUCTION_TEST_DATABASE_URL` (default `postgres://postgres@localhost:5433/rdt_test`).
+They truncate every table before each case, so never point it at `rdt_local`
+or Supabase. When the test database is unreachable those cases are reported
+as `# SKIP no test database (...)` instead of failing, so `npm test` is safe
+anywhere. To create it:
+
+```sh
+createdb -p 5433 rdt_test
+psql -p 5433 -d rdt_test -f db/schema.sql
+```
+
+`test/db-helper.js` holds the fixtures (`createAuction`, `createLot`,
+`createBid`, …) and `test/http-helper.js` a tiny cookie-keeping `Client`; add
+new cases with `describeDb` / `describeHttp` from those files.
 
 ## Run locally
 
@@ -187,6 +224,9 @@ repeatedly.
 
 - `AUCTION_DATABASE_URL`: PostgreSQL connection string.
 - `AUCTION_DATABASE_PASSWORD`: password passed separately to `pg.Pool`.
+- `AUCTION_TEST_DATABASE_URL`: database used instead of `AUCTION_DATABASE_URL`
+  when `NODE_ENV=test` (the test runner sets this); default
+  `postgres://postgres@localhost:5433/rdt_test`.
 - `ACCESS_CODE`: site-wide access code, default `20240312`.
 - `ADMIN_CODE`: admin access code, default `20250714`.
 - `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
