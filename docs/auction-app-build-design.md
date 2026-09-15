@@ -206,54 +206,12 @@ sale — matches MarkP (artist + category) and Reilly/Hitomi (category), so seve
 Steps 3–6 are independent once 1–2 land; sequential is fine for one builder. Each step = one PR
 (`feature:` / `bug:` commits), screenshots on each.
 
-## 8. Schema review findings (Mark's DB session, 2026-09-15) — decisions (Mark, one by one)
-
-| # | Finding | Decision |
-|---|---|---|
-| 1 | Seed/poller use string ids (`lot-101`) but schema ids are `BIGINT IDENTITY` | **Natural keys.** Seed files reference auctions by `(house, house_ref)` and lots by `(house_ref, lot_number)`; the DB assigns ids, the loader looks them up. No `OVERRIDING SYSTEM VALUE`. |
-| 2 | `notifications UNIQUE(user_id, lot_id)` blocks an "outbid" notice after a "new lot" notice | **Notifications become an in-app feed** on the web frontend (new lot, outbid, sold), Slack optional. Schema: add `kind TEXT NOT NULL` (`new_lot` / `outbid` / `sold`), `read_at TIMESTAMPTZ`, unique becomes `(user_id, lot_id, kind)`. |
-| 3 | Users without a `preferences` row match nothing | **The app never invents preferences** (the data phase populates them). Summary = "Matches your interests" + "Discover" (5 random open lots not yet bid/favorited, re-drawn per refresh), both always shown. Durable for any number of users and a changing catalogue. |
-| 4 | Missing `CHECK (closes_at > starts_at)`, `hammer_price > 0`, winner-has-a-bid | Add the **two CHECKs**. No trigger for winner-has-a-bid (cross-table, needs a trigger; `close` derives winner from bids anyway). |
-| 5 | Free-text categories → casing drift breaks matching | **Fixed list of 11** in `lib/categories.js` (see §4), dropdown + checkboxes, case-insensitive matching. Admin add/drop categories: **#37**. |
-| 6 | Deleting a user with bids/wins fails (no `ON DELETE`) | **Intentional — governance.** Users are never deleted; `banned` instead. No change. |
-| 7 | Comment says timed auctions "lots close individually" but close is auction-level | **V1 = silent auction**: all lots stay open until the auction closes, winners announced then. Fix the comment. Per-lot close after inactivity with Going… Going… Gone: **#38**. |
-
-Schema changes from this table — #2 (`kind`, `read_at`, new unique), #4 (two CHECKs), #7
-(comment) — are one small `schema.sql` PR plus the matching `ALTER`s on the live Supabase DB,
-owned by the DB session since it holds the connection. Nothing else in the schema changes.
-
-## 9. Decisions on the open points (Mark, 2026-09-15)
-
-1. **Manual Close now / Reopen on `/admin`** — **keep both.** The poller does the real closes at
-   `closes_at`; the buttons are the rehearsal safety net.
-2. **Rehearsal reset** — **yes.** The seed files (`data/seed/*.json`, produced by the data
-   session) are the single source of truth; `npm run db:reset` = TRUNCATE every table + reload
-   from seed, in one transaction, runnable any number of times (before a demo, after a buggy
-   rehearsal, between demos). Run it when nobody is bidding; anything added by hand that must
-   survive goes into the seed files first.
-3. **Images** — **Supabase Storage bucket `lots`.** The real dataset has 200–300 images, too
-   many to hotlink from Wikimedia reliably. The data session uploads them; `lot_images.url` is
-   the public bucket URL; `source_url` still links to Wikipedia.
-4. **Bid amounts** — **whole units only**, any amount strictly above the current high bid.
-   Minimum steps and cents later: #40 (with #26).
-5. **Admin access** — **second code.** `/admin*` asks for `ADMIN_CODE` (default `20250714`,
-   hint: *"The day Cognition signed the definitive agreement to acquire Windsurf (agentic IDE),
-   ISO 8601 basic format…"*), separate cookie. The site-wide `ACCESS_CODE` (`20240312`) shows
-   the hint *"Your favorite otter's birthday in ISO 8601 basic format…"*. Real roles: #12.
-6. **Poller interval** — **5 s** (`POLL_SECONDS` env, default 5). Closes appear on the next page
-   load; realtime push is #32.
-7. **EC2 / secrets** — provided as org secrets: `AUCTION_DATABASE_URL`,
-   `AUCTION_DATABASE_PASSWORD`, `RDT_EC2_SSH_KEY`. Devin deploys in step 7 (systemd unit, `.env`
-   on the box). EC2 host details: see §10.2 and the "RDT infrastructure access" knowledge note.
-
-No open decisions remain; the design is ready for Mark's sign-off, then step 1 of §7.
-
-## 10. Build process — sessions and infrastructure (Mark, 2026-09-15)
+## 8. Build process — sessions and infrastructure 
 
 The build is split across Devin sessions, one per concern. This section is the index of those
 sessions and of the infrastructure they share, collected from the "Links and References" session.
 
-### 10.1 Sessions
+### 8.1 Sessions
 
 | Session | Link |
 |---|---|
@@ -266,7 +224,7 @@ sessions and of the infrastructure they share, collected from the "Links and Ref
 | RDT-Security | https://app.devin.ai/sessions/26ffca78071c4df0be84df380f9be03b |
 | Links and References (this index) | https://app.devin.ai/sessions/dffb7ddf86af4c018beba279c2f13c77 |
 
-### 10.2 Infrastructure
+### 8.2 Infrastructure
 
 > **Connection details are not in this repo.** The repository is public, so hosts, IPs, users
 > and ports for the database and the EC2 box live in the private Devin knowledge note
