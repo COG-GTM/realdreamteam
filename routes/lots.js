@@ -12,11 +12,9 @@ function userIdFrom(req) {
   return req.params.userId || req.query.u || '';
 }
 
-async function showLot(req, res, next) {
-  try {
-    const userId = userIdFrom(req);
-    const lotResult = await query(
-      `SELECT l.*, a.title AS auction_title, a.status AS auction_status, a.format,
+async function loadLot(lotId) {
+  const lotResult = await query(
+    `SELECT l.*, a.title AS auction_title, a.status AS auction_status, a.format,
               a.starts_at, a.closes_at, h.name AS house_name,
               w.name AS winner_name, w.avatar_url AS winner_avatar_url,
               w.avatar_data IS NOT NULL AS winner_has_upload
@@ -25,9 +23,50 @@ async function showLot(req, res, next) {
        JOIN auction_houses h ON h.id = a.auction_house_id
        LEFT JOIN users w ON w.id = l.winner_user_id
        WHERE l.id = $1`,
-      [req.params.lotId]
-    );
-    const lot = lotResult.rows[0];
+    [lotId]
+  );
+  return lotResult.rows[0] || null;
+}
+
+// Everything the bid panel and bid history need; shared by the full page and
+// the live-refresh partials.
+async function biddingData(lot, userId) {
+  const bidsResult = await query(
+    `SELECT b.id AS bid_id, b.user_id, b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
+     FROM bids b JOIN users u ON u.id = b.user_id
+     WHERE b.lot_id = $1 ORDER BY b.placed_at DESC, b.id DESC`,
+    [lot.id]
+  );
+  const bids = bidsResult.rows;
+  const highBid = pickWinner(bids);
+  const bidInfo = {
+    highBid: highBid ? Number(highBid.amount) : null,
+    startingBid: lot.starting_bid == null ? null : Number(lot.starting_bid),
+    estimateLow: lot.estimate_low == null ? null : Number(lot.estimate_low)
+  };
+  return {
+    userId,
+    lot,
+    bids,
+    highBid,
+    nextBid: nextBid(bidInfo),
+    maxBid: maxBid(bidInfo),
+    increment: bidIncrement(bidInfo.highBid ?? bidInfo.startingBid ?? bidInfo.estimateLow ?? 0),
+    isHighBidder: Boolean(highBid && userId && Number(highBid.user_id) === Number(userId)),
+    formatCentral,
+    formatMoney,
+    userPath
+  };
+}
+
+function livePathFor(lot, userId) {
+  return (part) => `/panes/lots/${lot.id}/${part}${userId ? `?u=${userId}` : ''}`;
+}
+
+async function showLot(req, res, next) {
+  try {
+    const userId = userIdFrom(req);
+    const lot = await loadLot(req.params.lotId);
     if (!lot) {
       res.status(404);
       return renderPage(res, 'Not found', 'coming-soon', {
@@ -36,48 +75,42 @@ async function showLot(req, res, next) {
       });
     }
 
-    const [imagesResult, bidsResult, favoriteResult] = await Promise.all([
+    const [imagesResult, favoriteResult, bidding] = await Promise.all([
       query('SELECT url, credit FROM lot_images WHERE lot_id = $1 ORDER BY position', [lot.id]),
-      query(
-        `SELECT b.id AS bid_id, b.user_id, b.amount, b.placed_at, u.id, u.name, u.avatar_url, u.avatar_data IS NOT NULL AS has_upload
-         FROM bids b JOIN users u ON u.id = b.user_id
-         WHERE b.lot_id = $1 ORDER BY b.placed_at DESC, b.id DESC`,
-        [lot.id]
-      ),
       userId
         ? query('SELECT 1 FROM favorites WHERE user_id = $1 AND lot_id = $2', [userId, lot.id])
-        : Promise.resolve({ rows: [] })
+        : Promise.resolve({ rows: [] }),
+      biddingData(lot, userId)
     ]);
 
-    const bids = bidsResult.rows;
-    const highBid = pickWinner(bids);
-    const bidInfo = {
-      highBid: highBid ? Number(highBid.amount) : null,
-      startingBid: lot.starting_bid == null ? null : Number(lot.starting_bid),
-      estimateLow: lot.estimate_low == null ? null : Number(lot.estimate_low)
-    };
-
     renderPage(res, lot.title, 'lot', {
-      userId,
-      lot,
+      ...bidding,
       images: imagesResult.rows,
-      bids,
-      highBid,
-      nextBid: nextBid(bidInfo),
-      maxBid: maxBid(bidInfo),
-      increment: bidIncrement(bidInfo.highBid ?? bidInfo.startingBid ?? bidInfo.estimateLow ?? 0),
       INCREMENTS,
-      isHighBidder: Boolean(highBid && userId && Number(highBid.user_id) === Number(userId)),
       favorited: favoriteResult.rows.length > 0,
+      livePath: livePathFor(lot, userId),
       flash: req.query.flash || null,
-      error: req.query.error ? req.query.flash : null,
-      formatCentral,
-      formatMoney,
-      userPath
+      error: req.query.error ? req.query.flash : null
     });
   } catch (error) {
     next(error);
   }
+}
+
+// Polled by the lot page (see layout.ejs) so the price, bid form and history
+// follow other bidders without a reload.
+function livePartial(view) {
+  return async (req, res, next) => {
+    try {
+      const lot = await loadLot(req.params.lotId);
+      if (!lot) return res.sendStatus(404);
+      const data = await biddingData(lot, req.query.u || '');
+      res.set('Cache-Control', 'no-store');
+      res.render(view, data);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 async function postBid(req, res, next) {
@@ -123,6 +156,8 @@ async function postFavorite(req, res, next) {
 
 router.get('/u/:userId/lots/:lotId', showLot);
 router.get('/lots/:lotId', showLot);
+router.get('/panes/lots/:lotId/bidding', livePartial('partials/lot-bidding'));
+router.get('/panes/lots/:lotId/history', livePartial('partials/lot-history'));
 router.post('/u/:userId/lots/:lotId/bid', postBid);
 router.post('/u/:userId/lots/:lotId/favorite', postFavorite);
 

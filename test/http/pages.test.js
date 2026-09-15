@@ -41,6 +41,39 @@ describeHttp('lot pages', (it) => {
     assert.match(await flashed.text(), /at least 130 \(current high bid 120 \+ 10 step\)/);
   });
 
+  it('serves live bidding and history partials that follow other bidders', async () => {
+    const client = await signedIn();
+    const user = await createUser({ name: 'Watcher' });
+    const rival = await createUser({ name: 'Rival' });
+    const lot = await createLot({ starting_bid: 100 });
+
+    const page = await client.get(`/u/${user.id}/lots/${lot.id}`);
+    const html = await page.text();
+    assert.match(html, new RegExp(`id="lot-bidding" data-src="/panes/lots/${lot.id}/bidding\\?u=${user.id}"`));
+    assert.match(html, new RegExp(`id="lot-history" data-src="/panes/lots/${lot.id}/history\\?u=${user.id}"`));
+
+    await client.post(`/u/${rival.id}/lots/${lot.id}/bid`, { amount: '120' });
+
+    const bidding = await client.get(`/panes/lots/${lot.id}/bidding?u=${user.id}`);
+    assert.equal(bidding.status, 200);
+    assert.equal(bidding.headers.get('cache-control'), 'no-store');
+    const biddingHtml = await bidding.text();
+    assert.match(biddingHtml, /Current high bid <b>[^<]*120[^<]*<\/b>/);
+    assert.match(biddingHtml, /Rival/);
+    assert.match(biddingHtml, /class="bid-form"/);
+    assert.doesNotMatch(biddingHtml, /You are the high bidder/);
+    assert.doesNotMatch(biddingHtml, /<html/, 'partial, not a full page');
+
+    const asRival = await (await client.get(`/panes/lots/${lot.id}/bidding?u=${rival.id}`)).text();
+    assert.match(asRival, /You are the high bidder/);
+
+    const history = await client.get(`/panes/lots/${lot.id}/history?u=${user.id}`);
+    assert.equal(history.status, 200);
+    assert.match(await history.text(), /<td class="bidder">[\s\S]*Rival/);
+
+    assert.equal((await client.get(`/panes/lots/999999/bidding?u=${user.id}`)).status, 404);
+  });
+
   it('toggles a favorite and returns to the referer', async () => {
     const client = await signedIn();
     const user = await createUser();
