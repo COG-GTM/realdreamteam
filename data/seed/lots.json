@@ -5776,20 +5776,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 27,
-    "title": "Devin plush, classic blue",
+    "title": "Devin plushie",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Soft plush figure of Devin, the AI software engineer, in the classic Cognition blue. Approximately 30 cm tall, with embroidered eyes and a stitched Cognition wordmark on the back. From the first production run handed out at the 2024 launch.",
+    "description": "Plush Devin, the Cognition otter, in soft caramel fur with embroidered whiskers, holding a grey laptop with a stitched Cognition wordmark. About 25 cm seated. Excellent condition. Cat not included.",
     "currency": "USD",
-    "estimate_low": 120,
-    "estimate_high": 250,
-    "starting_bid": 80,
+    "estimate_low": 25,
+    "estimate_high": 75,
+    "starting_bid": 25,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/devin-plush-blue.jpg",
+        "url": "/images/lots/devin-plush.jpg",
         "credit": "Cognition"
       }
     ],
