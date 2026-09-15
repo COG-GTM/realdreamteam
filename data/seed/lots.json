@@ -5978,5 +5978,28 @@
       }
     ],
     "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 36,
+    "title": "The original Devin shroud",
+    "artist": "Cognition",
+    "category": "Toys and Clothes",
+    "description": "The original printed cloth banner of Devin, the otter at a laptop, that hangs over the Engineering team in Cognition's San Francisco office. It has watched every deploy, incident and late-night refactor since the early days. Sold with hanging clips; the buyer must arrange a replacement to keep morale intact.",
+    "currency": "USD",
+    "estimate_low": 1000000,
+    "estimate_high": 2000000,
+    "starting_bid": 1000000,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/devin-shroud-sf.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
   }
 ]
