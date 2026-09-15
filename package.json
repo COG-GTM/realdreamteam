@@ -12,13 +12,15 @@
     "test:unit": "node --test lib/ db/ routes/",
     "test:integration": "node --test test/",
     "db:reset": "node db/reset.js",
-    "db:check": "node db/check.js"
+    "db:check": "node db/check.js",
+    "db:avatars": "node db/assign-avatars.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.2",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "multer": "2.3.0",
     "pg": "^8.16.3"
   }
 }

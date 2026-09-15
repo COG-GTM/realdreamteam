@@ -27,7 +27,8 @@ router.get('/u/:userId/preferences', async (req, res, next) => {
       userId: req.params.userId,
       categories: preferenceCategories,
       prefs,
-      flash: req.query.flash || ''
+      flash: req.query.flash || '',
+      error: req.query.error || ''
     });
   } catch (error) {
     next(error);

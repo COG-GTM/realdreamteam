@@ -20,7 +20,7 @@
       <aside class="sidenav">
         <a class="brand" href="/">AUCTION<span>INTEREST</span></a>
         <% if (user) { %>
-          <span class="user-switch">You are <b><%= user.name %></b> · <a href="/">switch</a></span>
+          <span class="user-switch"><%- include('partials/avatar', { person: user, size: 'sm' }) %> You are <b><%= user.name %></b> · <a href="/">switch</a></span>
         <% } %>
         <nav>
           <% if (user) { %>

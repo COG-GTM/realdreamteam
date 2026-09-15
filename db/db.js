@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Pool } = require('pg');
 const { categories } = require('../lib/categories');
+const { pickDefaultAvatar, defaultAvatarUsage } = require('../lib/avatars');
 
 // Tests run against a separate database so they can truncate freely.
 const databaseUrl = process.env.NODE_ENV === 'test'
@@ -93,11 +94,14 @@ async function seedAll(client) {
     );
   }
 
+  const avatarUsage = await defaultAvatarUsage(client);
   for (const user of data.users) {
+    const avatarUrl = user.avatar_url || pickDefaultAvatar(user.name, avatarUsage);
+    avatarUsage.set(avatarUrl, (avatarUsage.get(avatarUrl) || 0) + 1);
     const result = await client.query(
       `INSERT INTO users (name, email, avatar_url, banned)
        VALUES ($1, $2, $3, $4) RETURNING id`,
-      [user.name, user.email || null, user.avatar_url || null, user.banned || false]
+      [user.name, user.email || null, avatarUrl, user.banned || false]
     );
     const userId = result.rows[0].id;
     userIds.set(user.name, userId);

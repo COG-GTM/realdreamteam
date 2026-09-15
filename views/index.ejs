@@ -5,7 +5,7 @@
   <div class="user-grid">
     <% users.forEach((person) => { %>
       <a class="user-choice" href="/u/<%= person.id %>/summary">
-        <span class="avatar"><%= person.name.split(' ').map((part) => part[0]).join('') %></span>
+        <%- include('partials/avatar', { person }) %>
         <span><strong><%= person.name %></strong><small>Open personal summary →</small></span>
       </a>
     <% }) %>

@@ -31,7 +31,7 @@ so we use plain words:
 | Table | One row is… | Key columns |
 |---|---|---|
 | `auction_houses` | Sotheby's, Christie's, Phillips, Bonhams | `name`, `location`, `website`, `logo_url` |
-| `users` | a demo account (no login) | `name`, `email`, `avatar_url`, `banned` |
+| `users` | a demo account (no login) | `name`, `email`, `avatar_url`, `avatar_data`, `avatar_mime`, `banned` |
 | `preferences` | one user's interests (1:1 with users) | `categories[]`, `artists[]`, `keywords[]` — empty array = any |
 | `categories` | an admin-managed lot category | `name`, `position`, `active`, `created_at` |
 | `auctions` | an auction run by one house | `house_ref`, `title`, `location`, `format` (live/timed), `status` (upcoming/open/closed), `starts_at`, `closes_at`, `source_url` |
@@ -67,8 +67,11 @@ who already follow them, marked as retired, until they choose otherwise.
 
 ## Files and images
 
-Logos, avatars, and lot photos live in Supabase Storage buckets `logos`, `avatars`, and
-`lots`; the tables store the public URLs.
+Logos and lot photos live in Supabase Storage buckets `logos` and `lots`; the tables
+store the public URLs. Avatars are different: `users.avatar_url` points at a default
+icon committed under `public/avatars/defaults/`, and a user-uploaded picture is stored
+in `users.avatar_data`/`avatar_mime` (BYTEA, max 2 MB) and served at `/avatars/:userId`,
+so no state lives on the app host.
 
 ## Seed data (to do)
 

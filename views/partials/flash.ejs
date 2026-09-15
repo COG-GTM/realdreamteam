@@ -1,2 +1,1 @@
-<% if (typeof error !== 'undefined' && error) { %><div class="flash error"><%= error %></div><% } %>
-<% if (typeof flash !== 'undefined' && flash) { %><div class="flash success"><%= flash %></div><% } %>
+<% if (typeof flash !== 'undefined' && flash && !(typeof error !== 'undefined' && error)) { %><div class="flash success"><%= flash %></div><% } %>
