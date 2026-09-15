@@ -5798,29 +5798,6 @@
   {
     "house": "Sotheby's",
     "house_ref": "L26021",
-    "lot_number": 28,
-    "title": "Devin plush, limited holiday edition",
-    "artist": "Cognition",
-    "category": "Toys and Clothes",
-    "description": "Limited holiday-edition Devin plush wearing a knitted scarf, one of a small run made for the Cognition team. Tag intact, never squeezed in anger during an outage.",
-    "currency": "USD",
-    "estimate_low": 200,
-    "estimate_high": 400,
-    "starting_bid": 140,
-    "hammer_price": null,
-    "source_url": "https://cognition.ai",
-    "images": [
-      {
-        "position": 1,
-        "url": "/images/lots/devin-plush-holiday.jpg",
-        "credit": "Cognition"
-      }
-    ],
-    "winner": null
-  },
-  {
-    "house": "Sotheby's",
-    "house_ref": "L26021",
     "lot_number": 29,
     "title": "Big Devin, San Francisco office, 2026",
     "artist": "Cognition",
@@ -5905,29 +5882,6 @@
       {
         "position": 1,
         "url": "/images/lots/cognition-tee-otter.jpg",
-        "credit": "Cognition"
-      }
-    ],
-    "winner": null
-  },
-  {
-    "house": "Sotheby's",
-    "house_ref": "L26021",
-    "lot_number": 33,
-    "title": "Cognition vintage t-shirt, 'It Compiles'",
-    "artist": "Cognition",
-    "category": "Toys and Clothes",
-    "description": "Black tee with the internal 'It Compiles' slogan printed across the back and a small Devin icon on the front. Size XL, one of a batch printed for an early hackathon.",
-    "currency": "USD",
-    "estimate_low": 50,
-    "estimate_high": 100,
-    "starting_bid": 35,
-    "hammer_price": null,
-    "source_url": "https://cognition.ai",
-    "images": [
-      {
-        "position": 1,
-        "url": "/images/lots/cognition-tee-it-compiles.jpg",
         "credit": "Cognition"
       }
     ],
