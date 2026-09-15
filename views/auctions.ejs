@@ -11,8 +11,13 @@
     <% } %>
     <% for (const auction of groups[key]) { %>
       <a class="auction-card" href="<%= userPath(userId, '/auctions/' + auction.id) %>">
+        <% const houseSlug = String(auction.house_name || '').toLowerCase().replace(/[^a-z0-9]+/g, ''); %>
         <div>
-          <p class="eyebrow"><%= auction.house_name %></p>
+          <p class="eyebrow house-row">
+            <img class="house-logo small" src="/logos/<%= houseSlug %>.svg" alt="<%= auction.house_name %>" data-fallback="/logos/<%= houseSlug %>.png"
+                 onerror="if (this.dataset.fallback) { this.src = this.dataset.fallback; this.dataset.fallback = ''; } else { this.hidden = true; this.nextElementSibling.hidden = false; }">
+            <span hidden><%= auction.house_name %></span>
+          </p>
           <h3><%= auction.title %></h3>
           <p class="muted"><%= auction.location || '' %> · <%= auction.format %> · <%= auction.lot_count %> lot<%= auction.lot_count === 1 ? '' : 's' %></p>
           <p class="muted">Starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · Closes <%= formatCentral(auction.closes_at) %><% } %></p>
