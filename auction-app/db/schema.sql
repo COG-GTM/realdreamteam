@@ -68,10 +68,11 @@ CREATE TABLE auctions (
   starts_at        TIMESTAMPTZ NOT NULL,
   closes_at        TIMESTAMPTZ,
   source_url       TEXT,
-  UNIQUE (auction_house_id, house_ref)
+  UNIQUE (auction_house_id, house_ref),
+  CHECK (closes_at IS NULL OR closes_at > starts_at)
 );
 
-COMMENT ON TABLE  auctions                  IS 'A scheduled auction event run by one house: a set of lots offered together. Live = one evening in a room; timed = online, lots close individually. Status is flipped automatically by the poller from starts_at / closes_at.';
+COMMENT ON TABLE  auctions                  IS 'A scheduled auction event run by one house: a set of lots offered together. Live = one evening in a room; timed = online over several days. Either way every lot stays open until the auction closes (silent-auction model; per-lot close is #38). Status is flipped automatically by the poller from starts_at / closes_at.';
 COMMENT ON COLUMN auctions.id               IS 'Surrogate integer key.';
 COMMENT ON COLUMN auctions.auction_house_id IS 'House running the auction.';
 COMMENT ON COLUMN auctions.house_ref        IS 'The house''s own public reference for this auction, e.g. "N12270". Unique per house.';
@@ -96,7 +97,7 @@ CREATE TABLE lots (
   estimate_low   INTEGER,
   estimate_high  INTEGER,
   starting_bid   INTEGER,
-  hammer_price   INTEGER,
+  hammer_price   INTEGER CHECK (hammer_price > 0),
   winner_user_id BIGINT REFERENCES users(id),
   source_url     TEXT,
   created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -170,19 +171,23 @@ CREATE TABLE notifications (
   id         BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   user_id    BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   lot_id     BIGINT NOT NULL REFERENCES lots(id)  ON DELETE CASCADE,
+  kind       TEXT   NOT NULL CHECK (kind IN ('new_lot', 'outbid', 'sold')),
   reason     TEXT   NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  read_at    TIMESTAMPTZ,
   sent_at    TIMESTAMPTZ,
-  UNIQUE (user_id, lot_id)
+  UNIQUE (user_id, lot_id, kind)
 );
 
-COMMENT ON TABLE  notifications            IS 'One row per (user, lot) the matcher decided to tell the user about. The poller delivers unsent rows to Slack and stamps sent_at. Never notify twice for the same lot.';
+COMMENT ON TABLE  notifications            IS 'In-app feed: one row per (user, lot, kind). Shown on the summary (unread badge) and history pages. Optional Slack delivery of unsent rows stamps sent_at. One notification of each kind per lot per user.';
 COMMENT ON COLUMN notifications.id         IS 'Surrogate integer key.';
 COMMENT ON COLUMN notifications.user_id    IS 'Recipient.';
-COMMENT ON COLUMN notifications.lot_id     IS 'Lot that matched.';
-COMMENT ON COLUMN notifications.reason     IS 'Human-readable why, e.g. "artist: David Hockney" or "outbid on lot 221". Shown in the message.';
-COMMENT ON COLUMN notifications.created_at IS 'When the match was found.';
-COMMENT ON COLUMN notifications.sent_at    IS 'When delivered to Slack. NULL = pending.';
+COMMENT ON COLUMN notifications.lot_id     IS 'Lot concerned.';
+COMMENT ON COLUMN notifications.kind       IS 'new_lot = matched preferences; outbid = someone beat your high bid; sold = auction closed, result for a lot you bid on.';
+COMMENT ON COLUMN notifications.reason     IS 'Human-readable text, e.g. "artist: David Hockney", "outbid by Christian at 5,500", "Sold to Mark for 55,000".';
+COMMENT ON COLUMN notifications.created_at IS 'When the event happened.';
+COMMENT ON COLUMN notifications.read_at    IS 'When the user saw it in the feed. NULL = unread (counts toward the badge).';
+COMMENT ON COLUMN notifications.sent_at    IS 'When delivered to Slack, if configured. NULL = not sent.';
 
 -- ---------------------------------------------------------------- dropped from v2
 -- tickets            : everyone may bid in any open auction; no reservation needed.
