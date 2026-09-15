@@ -59,10 +59,10 @@ describeDb('placeBid', (it) => {
     const bob = await createUser({ name: 'Bob' });
     const lot = await createLot({ title: 'Blue Painting' });
     await createBid(lot.id, ann.id, 500);
-    await placeBid({ userId: bob.id, lotId: lot.id, amount: '600' });
+    await placeBid({ userId: bob.id, lotId: lot.id, amount: '525' });
     const [note] = await notificationsFor(ann.id);
     assert.equal(note.kind, 'outbid');
-    assert.equal(note.reason, 'Bob bid 600 on "Blue Painting"');
+    assert.equal(note.reason, 'Bob bid 525 on "Blue Painting"');
     assert.equal(note.read_at, null);
     assert.deepEqual(await notificationsFor(bob.id), []);
   });
@@ -72,13 +72,13 @@ describeDb('placeBid', (it) => {
     const bob = await createUser({ name: 'Bob' });
     const lot = await createLot();
     await createBid(lot.id, ann.id, 500);
-    await placeBid({ userId: bob.id, lotId: lot.id, amount: '600' });
+    await placeBid({ userId: bob.id, lotId: lot.id, amount: '525' });
     await helper.db.query('UPDATE notifications SET read_at = now()');
-    await placeBid({ userId: ann.id, lotId: lot.id, amount: '700' });
-    await placeBid({ userId: bob.id, lotId: lot.id, amount: '800' });
+    await placeBid({ userId: ann.id, lotId: lot.id, amount: '550' });
+    await placeBid({ userId: bob.id, lotId: lot.id, amount: '575' });
     const notes = await notificationsFor(ann.id);
     assert.equal(notes.length, 1);
-    assert.equal(notes[0].reason, 'Bob bid 800 on "Untitled"');
+    assert.equal(notes[0].reason, 'Bob bid 575 on "Untitled"');
     assert.equal(notes[0].read_at, null, 'refreshed notification is unread again');
   });
 

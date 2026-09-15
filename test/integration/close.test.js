@@ -19,7 +19,7 @@ describeDb('closeAuction', (it) => {
 
     assert.deepEqual(await closeAuction(auction.id), { closed: true, lotsSold: 1, lotsUnsold: 0 });
 
-    assert.deepEqual(await lotRow(lot.id), { hammer_price: '1500', winner_user_id: String(bob.id) });
+    assert.deepEqual(await lotRow(lot.id), { hammer_price: '1500.00', winner_user_id: String(bob.id) });
     assert.equal((await rows('SELECT status FROM auctions WHERE id = $1', [auction.id]))[0].status, 'closed');
     assert.deepEqual((await notificationsFor(bob.id)).map((note) => [note.kind, note.reason]),
       [['sold', 'Sold to Bob for £1,500 — congratulations!']]);

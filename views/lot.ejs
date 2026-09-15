@@ -69,7 +69,7 @@
         <tr><th>Current price</th><th>Step</th></tr>
         <% let lowerBound = 0; for (const [upperBound, step] of INCREMENTS) { %>
           <tr class="<%= step === increment ? 'current-step' : '' %>">
-            <td><%= formatMoney(lowerBound, lot.currency) %><%= upperBound === Infinity ? '+' : '– ' + formatMoney(upperBound - 1, lot.currency) %></td>
+            <td><%= formatMoney(lowerBound, lot.currency) %><%= upperBound === Infinity ? '+' : ' – under ' + formatMoney(upperBound, lot.currency) %></td>
             <td><%= formatMoney(step, lot.currency) %></td>
           </tr>
           <% lowerBound = upperBound; %>
@@ -107,11 +107,15 @@
   if (rulesClose && rulesDialog) rulesClose.addEventListener('click', function () { rulesDialog.close(); });
   var bidForm = document.querySelector('.bid-form');
   if (bidForm) {
-    bidForm.addEventListener('submit', function () {
-      var amount = Number(bidForm.elements.amount.value);
+    bidForm.addEventListener('submit', function (event) {
+      var amountText = bidForm.elements.amount.value.replace(/,/g, '');
+      var amount = Number(amountText);
       var estimateHigh = <%= lot.estimate_high == null ? 'null' : Number(lot.estimate_high) %>;
       if (amount >= 1000000 || (estimateHigh && amount >= 10 * estimateHigh)) {
-        return window.confirm('You are bidding ' + amount + ' — is that right?');
+        var formattedAmount = amount.toLocaleString('en-US', { maximumFractionDigits: 2 });
+        if (!window.confirm('You are bidding ' + formattedAmount + ' — is that right?')) {
+          event.preventDefault();
+        }
       }
     });
   }
