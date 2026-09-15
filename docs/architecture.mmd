@@ -1,6 +1,6 @@
 flowchart LR
     U["Team members<br/>(any browser)"]
-    subgraph EC2["EC2 instance 3.76.162.103 &nbsp;·&nbsp; rdt-auction.marklovestech.com (DNS at IONOS)"]
+    subgraph EC2["EC2 instance (Elastic IP) &nbsp;·&nbsp; rdt-auction.marklovestech.com (DNS at IONOS)"]
         direction LR
         C["Caddy<br/>ports 80/443<br/>Let's Encrypt TLS"]
         N["Node.js 20 · Express · EJS<br/>systemd: rdt-auction<br/>+ 5 s poller"]

@@ -39,7 +39,7 @@ Three moving parts, all always on:
 ```mermaid
 flowchart LR
     U["Team members<br/>(any browser)"]
-    subgraph EC2["EC2 instance 3.76.162.103 &nbsp;·&nbsp; rdt-auction.marklovestech.com (DNS at IONOS)"]
+    subgraph EC2["EC2 instance (Elastic IP) &nbsp;·&nbsp; rdt-auction.marklovestech.com (DNS at IONOS)"]
         direction LR
         C["Caddy<br/>ports 80/443<br/>Let's Encrypt TLS"]
         N["Node.js 20 · Express · EJS<br/>systemd: rdt-auction<br/>+ 5 s poller"]
@@ -71,7 +71,7 @@ layer) → the browser fetches lot images straight from Wikimedia.
 | App | EC2, `rdt-auction.service` | serves pages, validates bids, runs the 5 s poller | systemd (auto-restart on boot/crash) |
 | TLS / front door | EC2, Caddy `/etc/caddy/Caddyfile` | HTTPS, HTTP→HTTPS redirect, reverse proxy | Caddy (certificate renews itself) |
 | Database | Supabase (hosted Postgres) | all state: users, lots, bids, notifications | Supabase; connection via `AUCTION_DATABASE_URL` in the box's `.env` |
-| DNS | IONOS | `rdt-auction.marklovestech.com` → `3.76.162.103` | IONOS |
+| DNS | IONOS | `rdt-auction.marklovestech.com` → EC2 Elastic IP | IONOS |
 
 State lives only in Postgres — the Node process is stateless (the login cookie
 is signed, not stored), so it can be restarted at any time without losing
