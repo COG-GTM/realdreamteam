@@ -6,21 +6,21 @@ session; everything else is a default chosen for simplicity and can be changed b
 ## Goals for v1
 
 - A non-technical team member can run it with two commands and understand every file.
-- One deployable thing. No build step, no separate services, no cloud database.
+- One deployable thing. No build step, no separate services; the only external dependency is the Supabase Postgres database.
 - Every feature from the original plan is present in its simplest form.
 
 ## Decisions
 
 | Topic | Decision | Why |
 |---|---|---|
-| Stack | **Decided:** Node + Express, SQLite, server-rendered HTML (EJS templates) | Plain files, no compiler, `npm start` and it runs |
+| Stack | **Decided:** Node + Express, server-rendered HTML (EJS templates) | Plain files, no compiler, `npm start` and it runs |
 | Auth | **Decided:** no login — pick your name from a dropdown of seeded users | Removes passwords, sessions, email |
-| Auction data | Seeded JSON fixtures (`data/seed/*.json`) loaded into SQLite on first start — **the seed files already exist in `auction-app/data/seed/`** | Editable in any text editor |
-| Triggering a "new item" | An `/admin` page with an "Add item to event" form | Deterministic demo of the notification flow |
-| Ingestion / scheduler | A `setInterval` inside the app that re-reads `data/seed/items.json` every 30s and inserts any item IDs it hasn't seen | No cron, no queue; editing the JSON file *is* the auction site publishing a lot |
-| Matching | Plain function: item matches if category or artist is in the user's list, price within range, or a keyword appears in the title | Readable in one screen |
+| Auction data | Seeded JSON fixtures (`data/seed/*.json`) loaded into Postgres on first start — **seed files still need regenerating to the new schema, with dates relative to "now"** | Editable in any text editor |
+| Triggering a "new lot" | An `/admin` page with an "Add lot to auction" form | Deterministic demo of the notification flow |
+| Ingestion / scheduler | A `setInterval` inside the app that re-reads `data/seed/lots.json` every 30s and inserts any lot IDs it hasn't seen | No cron, no queue; editing the JSON file *is* the auction site publishing a lot |
+| Matching | Plain function: lot matches if category or artist is in the user's list, or a keyword appears in the title | Readable in one screen |
 | Slack | Single incoming webhook URL from `.env`; one channel, message names the user | No bot token, no OAuth, no user-ID mapping |
-| Database | SQLite file `data/app.db`, created automatically; delete it to reset | Zero setup |
+| Database | **Decided:** Supabase Postgres; schema in `db/schema.sql` (already applied to the Supabase project). App connects via `AUCTION_DATABASE_URL` / `AUCTION_DATABASE_PASSWORD` | Shared, real database; no local file to manage |
 | Styling | One `public/styles.css`; no framework | Same approach as this site |
 | Demo hosting | **Decided:** run locally on the presenter's laptop (`npm start`). GitHub Pages only serves the static site in `src/` and cannot run Node | Zero deploy risk for the demo |
 | Location in repo | **Decided:** `auction-app/` at the repo root, next to `src/` (the existing static site). The Pages workflow only uploads `src/`, so the app is never published as static files | Keeps the two things separate |
@@ -29,29 +29,29 @@ session; everything else is a default chosen for simplicity and can be changed b
 
 ```
 auction-app/
-  package.json          # express, ejs, better-sqlite3, dotenv
+  package.json          # express, ejs, pg, dotenv
   server.js             # starts Express, runs seed, starts poller
   .env.example          # SLACK_WEBHOOK_URL=  APP_BASE_URL=http://localhost:3000
   db/
     schema.sql          # CREATE TABLE statements (below)
-    db.js               # open SQLite (PRAGMA foreign_keys = ON), run schema, seed if empty
+    db.js               # connect to Postgres (pg), seed if empty
   data/
     seed/users.json
     seed/auction_houses.json
-    seed/sales.json
-    seed/items.json     # edit this to "publish" new lots; each lot has an images array
+    seed/auctions.json
+    seed/lots.json      # edit this to "publish" new lots; each lot has an images array
   lib/
-    matching.js         # matchesPreferences(item, prefs) -> boolean
-    slack.js            # notifyNewItem(user, item, sale)
-    poller.js           # every 30s: read items.json, insert new, notify matches
+    matching.js         # matchesPreferences(lot, prefs) -> boolean
+    slack.js            # notifyNewLot(user, lot, auction)
+    poller.js           # every 30s: read lots.json, insert new, notify matches
   routes/
     index.js            # mounts every router below; GET / pick user
     preferences.js      # GET/POST /u/:userId/preferences
     summary.js          # GET /u/:userId/summary
     history.js          # GET /u/:userId/history
-    sales.js           # GET /sales, GET /sales/:id, POST .../tickets
-    items.js            # GET /items/:id, POST .../favorite, POST .../bid
-    admin.js            # GET/POST /admin/items
+    auctions.js         # GET /auctions, GET /auctions/:id
+    lots.js             # GET /lots/:id, POST .../favorite, POST .../bid
+    admin.js            # GET/POST /admin/lots
   views/                # one .ejs per route above + layout.ejs
   public/styles.css
 ```
@@ -67,24 +67,25 @@ only fill in their own file and view.
 
 Schema lives in [`auction-app-schema.md`](auction-app-schema.md).
 
-`db/db.js` runs `PRAGMA foreign_keys = ON` on every connection; SQLite ignores the
-`REFERENCES` clauses otherwise.
 
 ## Seed data (`auction-app/data/seed/`)
 
-The mock data is already written — milestone 1 just loads it:
+Seed files are generated and loaded on first start — the planned content:
 
 | File | Contents |
 |---|---|
 | `users.json` | 6 team members, each with pre-filled `preferences` so the summary page is non-empty on first run |
 | `auction_houses.json` | 4 auction houses with IDs, names, and website roots |
-| `sales.json` | 3 upcoming sales: London (art), Geneva (watches & cars), New York (wine, books, design) |
-| `items.json` | 18 lots across those sales; each has an `images` array with Wikimedia Commons credits |
+| `auctions.json` | 3 auctions: London (art), Geneva (watches & cars), New York (wine, books, design) — one closed, one open, one or two upcoming, with `starts_at`/`closes_at` relative to seed time |
+| `lots.json` | 18 lots across those auctions; each has an `images` array with Wikimedia Commons credits |
 
-Item shape:
+> Note: the seed files still need regenerating to the new schema shape (renamed tables/columns,
+> dates relative to "now"). The table above describes the intended content.
+
+Lot shape:
 
 ```json
-{ "id": "lot-101", "saleId": "ev-2026-10-london", "lotNumber": 1,
+{ "id": "lot-101", "auctionId": "ev-2026-10-london", "lotNumber": 1,
   "title": "Untitled (Blue)", "artist": "Yayoi Kusama", "category": "Contemporary Art",
   "description": "Acrylic on canvas, 2019, 130 × 162 cm", "currency": "GBP",
   "estimateLow": 40000, "estimateHigh": 60000, "startingBid": 40000,
@@ -96,17 +97,17 @@ Item shape:
 Categories used (drive the preferences checkboxes): Contemporary Art, Photography, Watches,
 Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts.
 
-Adding an object to `items.json` (or using `/admin`) is how the team triggers a Slack notification.
+Adding an object to `lots.json` (or using `/admin`) is how the team triggers a Slack notification.
 
 ## Demo golden path (must work)
 
 1. Open `http://localhost:3000`, pick **Mark Porter**.
-2. Summary shows Kusama / Banksy lots from the London sale already matched.
-3. Open `/admin/items`, add a lot: title "Pumpkin (Blue)", artist "Yayoi Kusama", category
-   "Contemporary Art", 50,000–70,000, sale London.
+2. Summary shows Kusama / Banksy lots from the London auction already matched.
+3. Open `/admin/lots`, add a lot: title "Pumpkin (Blue)", artist "Yayoi Kusama", category
+   "Contemporary Art", 50,000–70,000, auction London.
 4. Slack channel (or the console, if no webhook) shows "New lot for Mark Porter …".
-5. Back on the summary, Favorite it, then Bid 55,000. Book a ticket for the London sale.
-6. Open `/u/1/history`: the favorite, the $55,000 bid and the ticket are listed.
+5. Back on the summary, Favorite it, then Bid 55,000.
+6. Open `/u/1/history`: the favorite and the $55,000 bid are listed.
 
 Everything else is nice-to-have for the demo.
 
@@ -115,31 +116,34 @@ Everything else is nice-to-have for the demo.
 | URL | What the user sees |
 |---|---|
 | `/` | "Who are you?" dropdown → redirects to `/u/:id/summary` |
-| `/u/:id/preferences` | Form: categories (checkboxes), artists (text, comma-separated), keywords, price range |
-| `/u/:id/summary` | "Upcoming lots for you": matching items grouped by sale, with Favorite / Bid / Book ticket buttons |
-| `/u/:id/history` | "Your activity": three lists — lots you favorited, bids you placed (amount, time, whether you're still the high bidder), tickets you booked — newest first. Read-only; data comes from `favorites`, `bids`, `tickets` |
-| `/sales` , `/sales/:id` | All upcoming sales and their lots |
-| `/items/:id` | Lot detail, current high bid, bid form |
-| `/admin/items` | Form to add a lot to a sale (the demo trigger) |
+| `/u/:id/preferences` | Form: categories (checkboxes), artists (text, comma-separated), keywords |
+| `/u/:id/summary` | "Upcoming lots for you": matching lots grouped by auction, with Favorite / Bid buttons |
+| `/u/:id/history` | "Your activity": two lists — lots you favorited, bids you placed (amount, time, whether you're still the high bidder) — newest first. Read-only; data comes from `favorites`, `bids` |
+| `/auctions` , `/auctions/:id` | All upcoming and open auctions and their lots |
+| `/lots/:id` | Lot detail, current high bid, bid form |
+| `/admin/lots` | Form to add a lot to an auction (the demo trigger) |
 
 ## Poller and notifications
 
 Every 30s `lib/poller.js`:
 
-1. Reads `items.json`, inserts rows whose `id` is not yet in `items`.
-2. For each new item and each user whose preferences match, inserts a `notifications` row
+1. Reads `lots.json`, inserts rows whose `id` is not yet in `lots`.
+2. For each new lot and each user whose preferences match, inserts a `notifications` row
    with `sent_at = NULL` in the same transaction.
 3. Selects all `notifications WHERE sent_at IS NULL`, posts each to Slack, and sets `sent_at`
    on success. A failed post stays `NULL` and is retried on the next tick.
 
-The `/admin/items` form does steps 2–3 immediately after inserting.
+The poller also flips each auction's status (`upcoming`/`open`/`closed`) from `starts_at`/`closes_at`
+on every tick — there is no manual admin open/close.
+
+The `/admin/lots` form does steps 2–3 immediately after inserting.
 
 ## Slack message
 
 ```
 New lot for Mark Porter: "Untitled (Blue)" by Yayoi Kusama
 Contemporary Art · est. $40,000–$60,000 · London, 12 Oct 2026
-https://<APP_BASE_URL>/items/lot-101
+https://<APP_BASE_URL>/lots/lot-101
 ```
 
 Sent via `POST SLACK_WEBHOOK_URL` with `{ "text": "..." }`. Links are built from
@@ -159,8 +163,8 @@ npm start                 # http://localhost:3000
 1. `package.json`, `server.js`, `db/`, seed files, `/` page, stub files for every router and
    `lib/` module, all mounted in `routes/index.js` — one PR, lands first.
 2. Preferences page + `lib/matching.js` + summary page.
-3. Sales/items pages with Favorite / Bid / Book ticket, plus the history page.
-4. `lib/poller.js` + `lib/slack.js` + `/admin/items`.
+3. Auctions/lots pages with Favorite / Bid, plus the history page.
+4. `lib/poller.js` + `lib/slack.js` + `/admin/lots`.
 5. README (run-locally instructions). No deploy step for the demo; a hosted target is tracked in #10.
 
 Each step is one PR on its own branch. Steps 2–4 can be built in parallel once step 1 is merged.
@@ -168,7 +172,10 @@ Each step is one PR on its own branch. Steps 2–4 can be built in parallel once
 ## Deliberately left out of v1
 
 Real login, per-user Slack DMs, scraping a real auction site, a separate mock service, a
-frontend framework, Postgres, background job queues, tests beyond `lib/matching.js`.
+frontend framework, background job queues, tests beyond `lib/matching.js`, manual admin
+open/close of auctions (automatic via `starts_at`/`closes_at`). Other deferred bidding
+features are tracked in the
+[deferred-bidding issues](https://github.com/COG-GTM/realdreamteam/issues?q=label%3Adeferred-bidding).
 
 ## Mockup
 
