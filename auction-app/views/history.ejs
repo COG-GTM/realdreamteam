@@ -1,1 +1,38 @@
-<%- include('coming-soon') %>
+<% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash success"><%= flash %></div><% } %>
+<p class="eyebrow">History</p>
+<h1>My history</h1>
+
+<h2 class="section-heading">My bids</h2>
+<% if (bids.length === 0) { %>
+  <p class="lede">No bids yet.</p>
+<% } else { %>
+  <table class="table">
+    <tr><th>Lot</th><th>My bid</th><th>High bid</th><th>Placed</th><th>Status</th></tr>
+    <% for (const bid of bids) { %>
+      <tr>
+        <td><a href="<%= userPath(userId, '/lots/' + bid.lot_id) %>"><%= bid.title %></a></td>
+        <td><%= formatMoney(bid.amount, bid.currency) %></td>
+        <td><%= bid.high_bid != null ? formatMoney(bid.high_bid, bid.currency) : '—' %></td>
+        <td><%= formatUtc(bid.placed_at) %></td>
+        <td><span class="status-<%= bid.state %>"><%= bid.state %></span></td>
+      </tr>
+    <% } %>
+  </table>
+<% } %>
+
+<h2 class="section-heading">My favorites</h2>
+<% if (favorites.length === 0) { %>
+  <p class="lede">No favorites yet.</p>
+<% } else { %>
+  <table class="table">
+    <tr><th>Lot</th><th>Auction status</th><th>High bid</th><th>Favorited</th></tr>
+    <% for (const favorite of favorites) { %>
+      <tr>
+        <td><a href="<%= userPath(userId, '/lots/' + favorite.id) %>"><%= favorite.title %></a></td>
+        <td><span class="pill <%= favorite.status %>"><%= favorite.status %></span></td>
+        <td><%= favorite.high_bid != null ? formatMoney(favorite.high_bid, favorite.currency) : '—' %></td>
+        <td><%= formatUtc(favorite.created_at) %></td>
+      </tr>
+    <% } %>
+  </table>
+<% } %>

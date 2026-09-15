@@ -1,11 +1,13 @@
 <%#
   Lot card. Expects `lot` (id, title, artist, category, currency, estimate_low,
-  estimate_high, starting_bid, image_url, current_bid — the last five are optional)
+  estimate_high, starting_bid, image_url, current_bid, high_bidder, favorited,
+  status, hammer_price, winner_name — everything after currency is optional)
   and `userId`. Pass an optional `reasons` array to show why the lot matched.
 %>
 <% const cardReasons = typeof reasons !== 'undefined' && Array.isArray(reasons) ? reasons : []; %>
 <% const lotHref = `/lots/${lot.id}${userId ? `?u=${userId}` : ''}`; %>
 <article class="lot-card">
+  <% if (lot.status === 'closed' && lot.hammer_price) { %><span class="sold-ribbon">SOLD</span><% } %>
   <a class="lot-card-image" href="<%= lotHref %>">
     <% if (lot.image_url) { %>
       <img src="<%= lot.image_url %>" alt="<%= lot.title %>" loading="lazy">
@@ -15,14 +17,18 @@
   </a>
   <div class="lot-card-body">
     <p class="eyebrow"><%= lot.category %></p>
-    <h3><a href="<%= lotHref %>"><%= lot.title %></a></h3>
+    <h3><a href="<%= lotHref %>"><%= lot.title %></a><% if (lot.favorited) { %> <span class="fav" title="Favorited">♥</span><% } %></h3>
     <% if (lot.artist) { %><p class="lot-card-artist"><%= lot.artist %></p><% } %>
     <% if (lot.estimate_low || lot.estimate_high) { %>
       <p class="lot-card-meta">Estimate <%= lot.currency %> <%= Number(lot.estimate_low || 0).toLocaleString('en-US') %>–<%= Number(lot.estimate_high || 0).toLocaleString('en-US') %></p>
     <% } %>
     <p class="lot-card-bid">
-      <% if (lot.current_bid) { %>
-        Current bid <b><%= lot.currency %> <%= Number(lot.current_bid).toLocaleString('en-US') %></b>
+      <% if (lot.status === 'closed' && lot.hammer_price) { %>
+        Sold for <b><%= lot.currency %> <%= Number(lot.hammer_price).toLocaleString('en-US') %></b><% if (lot.winner_name) { %> to <%= lot.winner_name %><% } %>
+      <% } else if (lot.status === 'closed') { %>
+        Unsold
+      <% } else if (lot.current_bid) { %>
+        Current bid <b><%= lot.currency %> <%= Number(lot.current_bid).toLocaleString('en-US') %></b><% if (lot.high_bidder) { %> by <%= lot.high_bidder %><% } %>
       <% } else if (lot.starting_bid) { %>
         Starting bid <b><%= lot.currency %> <%= Number(lot.starting_bid).toLocaleString('en-US') %></b>
       <% } else { %>

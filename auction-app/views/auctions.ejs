@@ -1,1 +1,24 @@
-<%- include('coming-soon') %>
+<% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash success"><%= flash %></div><% } %>
+<p class="eyebrow">Auctions</p>
+<h1>Browse auctions</h1>
+
+<% const sections = [['open', 'Open now'], ['upcoming', 'Upcoming'], ['closed', 'Closed']]; %>
+<% for (const [key, label] of sections) { %>
+  <section class="auction-section">
+    <h2 class="section-heading"><%= label %></h2>
+    <% if (groups[key].length === 0) { %>
+      <p class="lede">None right now.</p>
+    <% } %>
+    <% for (const auction of groups[key]) { %>
+      <a class="auction-card" href="<%= userPath(userId, '/auctions/' + auction.id) %>">
+        <div>
+          <p class="eyebrow"><%= auction.house_name %></p>
+          <h3><%= auction.title %></h3>
+          <p class="muted"><%= auction.location || '' %> · <%= auction.format %> · <%= auction.lot_count %> lot<%= auction.lot_count === 1 ? '' : 's' %></p>
+          <p class="muted">Starts <%= formatUtc(auction.starts_at) %><% if (auction.closes_at) { %> · Closes <%= formatUtc(auction.closes_at) %><% } %></p>
+        </div>
+        <span class="pill <%= auction.status %>"><%= auction.status %></span>
+      </a>
+    <% } %>
+  </section>
+<% } %>
