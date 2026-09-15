@@ -7,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const path = require('node:path');
+const querystring = require('node:querystring');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const { seedIfEmpty } = require('./db/db');
@@ -19,6 +20,14 @@ const { SESSION, requireAccess, loadUser, requireAdmin } = require('./lib/gates'
 
 const app = express();
 app.set('trust proxy', 1);
+// Repeated keys (?u=1&u=1) keep their first value instead of becoming arrays.
+app.set('query parser', (text) => {
+  const parsed = querystring.parse(text);
+  for (const key of Object.keys(parsed)) {
+    if (Array.isArray(parsed[key])) parsed[key] = parsed[key][0];
+  }
+  return parsed;
+});
 const cookieSecret = process.env.COOKIE_SECRET || 'auction-interest-demo';
 const accessLimiter = gateLimiter();
 
@@ -71,6 +80,24 @@ app.use(loadUser());
 app.use(requireAdmin);
 
 app.use(routes);
+
+app.use((req, res) => {
+  res.status(404);
+  renderPage(res, 'Not found', 'error', {
+    status: 404,
+    message: 'There is nothing at this address. It may have been withdrawn from sale.'
+  });
+});
+
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(500);
+  renderPage(res, 'Something went wrong', 'error', {
+    status: 500,
+    message: 'The sale room hit an unexpected error. Please try again in a moment.'
+  });
+});
 
 async function boot() {
   await seedIfEmpty();
