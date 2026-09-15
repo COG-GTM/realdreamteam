@@ -71,12 +71,18 @@ router.get('/admin', async (req, res, next) => {
     const users = (await query(
       `SELECT u.id, u.name, u.email, u.banned,
               (SELECT COUNT(*)::int FROM bids b WHERE b.user_id = u.id) AS bid_count
-       FROM users u ORDER BY u.name`
+       FROM users u WHERE u.shadow = false ORDER BY u.name`
+    )).rows;
+    const shadowUsers = (await query(
+      `SELECT u.id, u.name, u.email, u.banned,
+              (SELECT COUNT(*)::int FROM bids b WHERE b.user_id = u.id) AS bid_count
+       FROM users u WHERE u.shadow = true ORDER BY u.name`
     )).rows;
     const categoryRows = await listCategories();
     renderPage(res, 'Admin', 'admin', {
       auctions,
       users,
+      shadowUsers,
       categories: categoryRows.filter((category) => category.active).map((category) => category.name),
       flash: req.query.flash || '',
       error: req.query.error || '',

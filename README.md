@@ -272,6 +272,12 @@ Optional activity files may also be supplied:
 - `notifications.json`: `{user, house, house_ref, lot_number, kind, reason,
   created_at, read_at}`. Duplicate `(user, lot, kind)` rows are
   ignored.
+- `shadow_users.json`: `{name, email?, avatar_url?, banned?, persona,
+  preferences}` objects — simulated bidders, loaded with `shadow = true` so
+  they are hidden from the profile picker and never receive notifications.
+  `persona` is simulator tuning `{budget, aggression, sniper, activity}`;
+  `preferences` (`{categories, artists, keywords}`) always produces a
+  preferences row.
 
 Unknown natural keys and invalid categories fail the transaction with a clear
 error. This seed shape is the contract for the data-phase session.

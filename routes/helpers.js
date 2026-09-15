@@ -1,5 +1,6 @@
 const { formatCentral, userPath } = require('../lib/format');
 const { paneData } = require('../lib/panes');
+const { describeActivity, relativeTime } = require('../lib/activity');
 
 async function renderPage(res, title, view, data = {}) {
   try {
@@ -18,7 +19,9 @@ async function renderPage(res, title, view, data = {}) {
       user: res.locals.user || null,
       userId: res.locals.userId || '',
       formatCentral,
-      userPath
+      userPath,
+      describeActivity,
+      relativeTime
     });
   } catch (error) {
     res.status(500).send(error.message);

@@ -1,6 +1,6 @@
 -- Real Dream Team — Auction Interest App
 -- V1 data model, Postgres (Supabase). Agreed table-by-table with Mark, 2026-09-15.
--- 10 tables. Applied to the Supabase project on 2026-09-15. Explained in docs/schema.md.
+-- 11 tables. Applied to the Supabase project on 2026-09-15. Explained in docs/schema.md.
 
 -- ---------------------------------------------------------------- enums
 CREATE TYPE auction_format AS ENUM ('live', 'timed');
@@ -31,6 +31,8 @@ CREATE TABLE users (
   avatar_data BYTEA,
   avatar_mime TEXT,
   banned     BOOLEAN NOT NULL DEFAULT false,
+  shadow     BOOLEAN NOT NULL DEFAULT false,
+  persona    JSONB,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -42,6 +44,8 @@ COMMENT ON COLUMN users.avatar_url IS 'App-relative path of the default icon ass
 COMMENT ON COLUMN users.avatar_data IS 'Bytes of a picture the user uploaded (PNG/JPEG/WebP/GIF, max 2 MB). NULL = use avatar_url.';
 COMMENT ON COLUMN users.avatar_mime IS 'MIME type of avatar_data.';
 COMMENT ON COLUMN users.banned     IS 'True if the user is blocked from bidding and favoriting. Default false.';
+COMMENT ON COLUMN users.shadow     IS 'True for simulated bidders. Hidden from the profile picker and admin user list; never receives notification rows, but appears in bid histories and as a winner.';
+COMMENT ON COLUMN users.persona    IS 'Simulator tuning {budget, aggression, sniper, activity}. NULL for real users.';
 COMMENT ON COLUMN users.created_at IS 'When the account was created.';
 
 -- ---------------------------------------------------------------- 3. preferences
@@ -72,6 +76,7 @@ CREATE TABLE auctions (
   starts_at        TIMESTAMPTZ NOT NULL,
   closes_at        TIMESTAMPTZ,
   source_url       TEXT,
+  cloned_from_auction_id BIGINT REFERENCES auctions(id),
   UNIQUE (auction_house_id, house_ref),
   CHECK (closes_at IS NULL OR closes_at > starts_at)
 );
@@ -87,6 +92,7 @@ COMMENT ON COLUMN auctions.status           IS 'upcoming -> open (bidding accept
 COMMENT ON COLUMN auctions.starts_at        IS 'When bidding opens (UTC).';
 COMMENT ON COLUMN auctions.closes_at        IS 'When bidding stops. NULL until known.';
 COMMENT ON COLUMN auctions.source_url       IS 'The auction page on the house''s website.';
+COMMENT ON COLUMN auctions.cloned_from_auction_id IS 'The closed auction this one was cloned forward from. NULL = original auction.';
 
 -- ---------------------------------------------------------------- 5. lots
 CREATE TABLE lots (
@@ -104,6 +110,7 @@ CREATE TABLE lots (
   hammer_price   NUMERIC(16,2) CHECK (hammer_price > 0),
   winner_user_id BIGINT REFERENCES users(id),
   source_url     TEXT,
+  reoffered_from_lot_id BIGINT REFERENCES lots(id),
   created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (auction_id, lot_number),
   CHECK (estimate_low IS NULL OR estimate_high IS NULL OR estimate_low <= estimate_high)
@@ -124,6 +131,7 @@ COMMENT ON COLUMN lots.starting_bid   IS 'First acceptable bid. NULL = use estim
 COMMENT ON COLUMN lots.hammer_price   IS 'Final price once the auction is closed. NULL = not yet sold / unsold.';
 COMMENT ON COLUMN lots.winner_user_id IS 'User whose bid won, set at close. NULL = unsold or not yet closed.';
 COMMENT ON COLUMN lots.source_url     IS 'The lot page on the house''s website.';
+COMMENT ON COLUMN lots.reoffered_from_lot_id IS 'The earlier lot this one re-offers in a cloned auction. NULL = first offering.';
 COMMENT ON COLUMN lots.created_at     IS 'When the lot was ingested.';
 
 -- ---------------------------------------------------------------- 6. lot_images
@@ -191,7 +199,31 @@ COMMENT ON COLUMN notifications.reason     IS 'Human-readable text, e.g. "artist
 COMMENT ON COLUMN notifications.created_at IS 'When the event happened.';
 COMMENT ON COLUMN notifications.read_at    IS 'When the user saw it in the feed. NULL = unread (counts toward the badge).';
 
--- ---------------------------------------------------------------- 10. categories
+-- ---------------------------------------------------------------- 10. activity
+CREATE TABLE activity (
+  id            BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  kind          TEXT NOT NULL CHECK (kind IN ('bid', 'favorite', 'new_lot', 'reoffered', 'opened', 'closed', 'sold')),
+  actor_user_id BIGINT REFERENCES users(id)    ON DELETE CASCADE,
+  lot_id        BIGINT REFERENCES lots(id)     ON DELETE CASCADE,
+  auction_id    BIGINT REFERENCES auctions(id) ON DELETE CASCADE,
+  amount        NUMERIC(16,2),
+  detail        TEXT,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX activity_created_at_idx ON activity (created_at DESC);
+
+COMMENT ON TABLE  activity                IS 'Site-wide event log behind the Live pane: every bid, favorite, new lot, auction open/close and sale. Append-only.';
+COMMENT ON COLUMN activity.id             IS 'Surrogate integer key.';
+COMMENT ON COLUMN activity.kind           IS 'bid | favorite | new_lot | reoffered | opened | closed | sold.';
+COMMENT ON COLUMN activity.actor_user_id  IS 'Who did it. NULL for system events (opened, closed, new_lot).';
+COMMENT ON COLUMN activity.lot_id         IS 'Lot concerned. NULL for auction-level events.';
+COMMENT ON COLUMN activity.auction_id     IS 'Auction concerned.';
+COMMENT ON COLUMN activity.amount         IS 'Money involved (bid amount, hammer price). NULL otherwise.';
+COMMENT ON COLUMN activity.detail         IS 'Extra context, e.g. "outbid Mark".';
+COMMENT ON COLUMN activity.created_at     IS 'When the event happened (UTC).';
+
+-- ---------------------------------------------------------------- 11. categories
 CREATE TABLE categories (
   id         BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name       TEXT NOT NULL,

@@ -100,4 +100,29 @@
       <% } %>
     </tbody>
   </table>
+
+  <% if (shadowUsers.length) { %>
+    <details class="shadow-users">
+      <summary><%= shadowUsers.length %> simulated bidders</summary>
+      <table class="admin-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Bids</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <% for (const person of shadowUsers) { %>
+            <tr>
+              <td><b><%= person.name %></b></td>
+              <td><%= person.email || '—' %></td>
+              <td><%= person.bid_count %></td>
+              <td><span class="pill <%= person.banned ? 'closed' : 'open' %>"><%= person.banned ? 'banned' : 'active' %></span></td>
+              <td>
+                <form method="post" action="/admin/users/<%= person.id %>/ban" class="inline">
+                  <input type="hidden" name="u" value="<%= u %>">
+                  <button class="btn <%= person.banned ? '' : 'danger' %>" type="submit"><%= person.banned ? 'Unban' : 'Ban' %></button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </details>
+  <% } %>
 </section>
