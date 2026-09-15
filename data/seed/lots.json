@@ -5868,20 +5868,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 31,
-    "title": "Cognition team jacket, black, size L",
+    "title": "Cognition denim jacket",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Black lightweight bomber jacket with an embroidered Cognition wordmark on the chest and 'Devin' on the left sleeve. Issued to early team members; size L, lightly worn.",
+    "description": "Black denim chore jacket with patch pockets and a Cognition pyramid-mark button and collar pin. Issued to the team; lightly worn.",
     "currency": "USD",
-    "estimate_low": 150,
-    "estimate_high": 300,
-    "starting_bid": 100,
+    "estimate_low": 250,
+    "estimate_high": 500,
+    "starting_bid": 250,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-jacket.jpg",
+        "url": "/images/lots/cognition-denim-jacket.jpg",
         "credit": "Cognition"
       }
     ],
