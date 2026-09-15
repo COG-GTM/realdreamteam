@@ -1,14 +1,9 @@
 # Real Dream Team
 
-Two things live here:
-
-1. **The auction app** (`auction-app/`) — the team's internal auction-interest
-   demo. **Live at <https://rdt-auction.marklovestech.com>.** Everything about it
-   is in [`auction-app/README.md`](auction-app/README.md): how to use it, how to
-   change it, how to run it locally, how to reset the data, how it's deployed.
-2. **The static website** (`src/`) — plain HTML/CSS, deployed to GitHub Pages on
-   every push to `main` (`.github/workflows/pages.yml`).
-   Local preview: `python3 -m http.server 8080 -d src`
+The team's internal auction-interest app (`auction-app/`). **Live at
+<https://rdt-auction.marklovestech.com>.** Everything about it is in
+[`auction-app/README.md`](auction-app/README.md): how to use it, how to change
+it, how to run it locally, how to reset the data, how it's deployed.
 
 ## The auction app in one minute
 
@@ -77,10 +72,6 @@ anything. `npm run db:reset` wipes Postgres and reloads it from
 state (see the deploy section of `auction-app/README.md`). Optional: a Slack
 webhook (`SLACK_WEBHOOK_URL`) mirrors notifications to a channel; unset in
 production.
-
-Not part of the auction app: `src/` is the original static landing page,
-deployed separately to GitHub Pages by `.github/workflows/pages.yml`. Nothing
-at `rdt-auction.marklovestech.com` uses it.
 
 ## Design history
 
