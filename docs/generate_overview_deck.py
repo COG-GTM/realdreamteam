@@ -253,7 +253,7 @@ def slide_product(prs):
     r.text = "Open the app \u2192"
     r.font.name, r.font.size, r.font.bold, r.font.color.rgb = SANS, Pt(10), True, WHITE
     add_text(s, M + Inches(1.85), Inches(4.47), Inches(2.3), Inches(0.25),
-             ["auction-app/ \u00b7 npm start"], size=8, color=MUTED, font=MONO)
+             ["npm start"], size=8, color=MUTED, font=MONO)
     img_left = M + col_w + Inches(0.3)
     img_w = W - M - img_left
     picture_fit(s, MOCKUP, img_left, top, img_w, Inches(3.65))
