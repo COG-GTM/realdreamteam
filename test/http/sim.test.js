@@ -30,12 +30,13 @@ describeHttp('simulation admin', (it) => {
   });
 
   it('a re-offered lot page shows the "Previously offered" line', async () => {
+    const user = await createUser();
     const client = await signedIn();
     const previous = await createLot({ title: 'Earlier Edition', estimate_low: 1000 });
     const reoffered = await createLot({ title: 'Earlier Edition' });
     await db.query('UPDATE lots SET reoffered_from_lot_id = $2 WHERE id = $1', [reoffered.id, previous.id]);
 
-    const page = await client.get(`/lots/${reoffered.id}`);
+    const page = await client.get(`/lots/${reoffered.id}?u=${user.id}`);
     assert.equal(page.status, 200);
     const html = await page.text();
     assert.match(html, /Previously offered in/);
