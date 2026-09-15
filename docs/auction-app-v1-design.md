@@ -20,7 +20,7 @@ session; everything else is a default chosen for simplicity and can be changed b
 | Ingestion / scheduler | A `setInterval` inside the app that re-reads `data/seed/items.json` every 30s and inserts any item IDs it hasn't seen | No cron, no queue; editing the JSON file *is* the auction site publishing a lot |
 | Matching | Plain function: item matches if category or artist is in the user's list, price within range, or a keyword appears in the title | Readable in one screen |
 | Slack | Single incoming webhook URL from `.env`; one channel, message names the user | No bot token, no OAuth, no user-ID mapping |
-| Database | Supabase Postgres, configured with `AUCTION_DATABASE_URL` | Durable hosted storage |
+| Database | Supabase Postgres, configured with non-secret `AUCTION_DATABASE_URL` and secret `AUCTION_DATABASE_PASSWORD` | Durable hosted storage |
 | Styling | One `public/styles.css`; no framework | Same approach as this site |
 | Demo hosting | **Decided:** run locally on the presenter's laptop (`npm start`). GitHub Pages only serves the static site in `src/` and cannot run Node | Zero deploy risk for the demo |
 | Location in repo | **Decided:** `auction-app/` at the repo root, next to `src/` (the existing static site). The Pages workflow only uploads `src/`, so the app is never published as static files | Keeps the two things separate |
@@ -31,7 +31,7 @@ session; everything else is a default chosen for simplicity and can be changed b
 auction-app/
   package.json          # express, ejs, pg, dotenv
   server.js             # starts Express, runs seed, starts poller
-  .env.example          # SLACK_WEBHOOK_URL=  APP_BASE_URL=http://localhost:3000
+  .env.example          # AUCTION_DATABASE_URL=  AUCTION_DATABASE_PASSWORD=  SLACK_WEBHOOK_URL=  APP_BASE_URL=http://localhost:3000
   db/
     schema.sql          # CREATE TABLE statements (below)
     db.js               # connect to Supabase Postgres, run schema, seed if empty
@@ -192,10 +192,15 @@ console instead so the app runs without Slack.
 ## Running it
 
 ```
-cp .env.example .env      # set AUCTION_DATABASE_URL and optionally paste a Slack webhook URL
+cp .env.example .env      # set AUCTION_DATABASE_URL and AUCTION_DATABASE_PASSWORD
 npm install
 npm start                 # http://localhost:3000
 ```
+
+`AUCTION_DATABASE_URL` is the non-secret connection string and
+`AUCTION_DATABASE_PASSWORD` is the database secret. Use the Supabase pooler
+host shown in `.env.example`; the direct `db.<project>.supabase.co` host is
+IPv6-only and may be unreachable from many networks.
 
 Reset the seeded data with `npm run db:reset -- --yes`.
 

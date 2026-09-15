@@ -12,13 +12,31 @@ if (!databaseUrl) {
   throw new Error(message);
 }
 
-const databaseHost = new URL(databaseUrl).hostname;
-const pool = new Pool({
-  connectionString: databaseUrl,
+const parsedDatabaseUrl = new URL(databaseUrl);
+const databasePassword = process.env.AUCTION_DATABASE_PASSWORD || undefined;
+if (!parsedDatabaseUrl.password && !databasePassword) {
+  const message = 'AUCTION_DATABASE_PASSWORD must be set when the database URL has no password';
+  console.error(message);
+  throw new Error(message);
+}
+
+const databaseHost = parsedDatabaseUrl.hostname;
+const poolConfig = {
+  connectionString: databasePassword ? undefined : databaseUrl,
+  password: databasePassword,
   ssl: databaseHost === 'localhost' || databaseHost === '127.0.0.1'
     ? false
     : { rejectUnauthorized: false }
-});
+};
+
+if (databasePassword) {
+  poolConfig.user = decodeURIComponent(parsedDatabaseUrl.username);
+  poolConfig.host = parsedDatabaseUrl.hostname;
+  poolConfig.port = parsedDatabaseUrl.port || undefined;
+  poolConfig.database = decodeURIComponent(parsedDatabaseUrl.pathname.slice(1));
+}
+
+const pool = new Pool(poolConfig);
 
 function query(text, params) {
   return pool.query(text, params);
