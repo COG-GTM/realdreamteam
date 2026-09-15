@@ -91,10 +91,12 @@ error. This seed shape is the contract for the data-phase session.
 
 ## Deploy (EC2)
 
-The production demo runs on `3.76.162.103` from
+The production demo runs on the `rdt-auction` EC2 host (address, SSH user and
+access details are in the private Devin knowledge note "RDT infrastructure
+access"; the SSH key is the `RDT_EC2_SSH_KEY` secret) from
 `/opt/rdt/realdreamteam/auction-app`, using the shared Supabase PostgreSQL
-database. The `rdt-auction.service` systemd unit runs the app as the `ubuntu`
-user with its settings in the mode-600 `.env` file.
+database. The `rdt-auction.service` systemd unit runs the app with its settings
+in the mode-600 `.env` file.
 
 To update the checkout on the server:
 
