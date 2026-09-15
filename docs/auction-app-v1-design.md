@@ -48,6 +48,7 @@ auction-app/
     index.js            # mounts every router below; GET / pick user
     preferences.js      # GET/POST /u/:userId/preferences
     summary.js          # GET /u/:userId/summary
+    history.js          # GET /u/:userId/history
     sales.js           # GET /sales, GET /sales/:id, POST .../tickets
     items.js            # GET /items/:id, POST .../favorite, POST .../bid
     admin.js            # GET/POST /admin/items
@@ -105,6 +106,7 @@ Adding an object to `items.json` (or using `/admin`) is how the team triggers a 
    "Contemporary Art", 50,000–70,000, sale London.
 4. Slack channel (or the console, if no webhook) shows "New lot for Mark Porter …".
 5. Back on the summary, Favorite it, then Bid 55,000. Book a ticket for the London sale.
+6. Open `/u/1/history`: the favorite, the $55,000 bid and the ticket are listed.
 
 Everything else is nice-to-have for the demo.
 
@@ -115,6 +117,7 @@ Everything else is nice-to-have for the demo.
 | `/` | "Who are you?" dropdown → redirects to `/u/:id/summary` |
 | `/u/:id/preferences` | Form: categories (checkboxes), artists (text, comma-separated), keywords, price range |
 | `/u/:id/summary` | "Upcoming lots for you": matching items grouped by sale, with Favorite / Bid / Book ticket buttons |
+| `/u/:id/history` | "Your activity": three lists — lots you favorited, bids you placed (amount, time, whether you're still the high bidder), tickets you booked — newest first. Read-only; data comes from `favorites`, `bids`, `tickets` |
 | `/sales` , `/sales/:id` | All upcoming sales and their lots |
 | `/items/:id` | Lot detail, current high bid, bid form |
 | `/admin/items` | Form to add a lot to a sale (the demo trigger) |
@@ -156,7 +159,7 @@ npm start                 # http://localhost:3000
 1. `package.json`, `server.js`, `db/`, seed files, `/` page, stub files for every router and
    `lib/` module, all mounted in `routes/index.js` — one PR, lands first.
 2. Preferences page + `lib/matching.js` + summary page.
-3. Sales/items pages with Favorite / Bid / Book ticket.
+3. Sales/items pages with Favorite / Bid / Book ticket, plus the history page.
 4. `lib/poller.js` + `lib/slack.js` + `/admin/items`.
 5. README (run-locally instructions). No deploy step for the demo; a hosted target is tracked in #10.
 
@@ -166,3 +169,9 @@ Each step is one PR on its own branch. Steps 2–4 can be built in parallel once
 
 Real login, per-user Slack DMs, scraping a real auction site, a separate mock service, a
 frontend framework, Postgres, background job queues, tests beyond `lib/matching.js`.
+
+## Mockup
+
+Static mockup of `/u/:id/summary` after the golden path: [`docs/mockup-summary.html`](mockup-summary.html) (open it in a browser). Builders should copy its layout and CSS into `views/summary.ejs` and `public/styles.css`.
+
+![Summary page mockup](mockup-summary.png)
