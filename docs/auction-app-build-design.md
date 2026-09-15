@@ -15,15 +15,19 @@ no build step, no client-side framework. ~6 dependencies.
 
 ## 2. What the demo must show (the story)
 
-1. Pick a user (no login). Their **summary** already shows matching lots.
-2. **Preferences** — change an interest, the summary changes.
+1. Pick a user (no login). Their **summary** shows lots matching their interests plus a
+   **Discover** row of 5 random open lots — so a brand-new user always has something to bid on.
+2. **Preferences** — change an interest, the matches change.
 3. **Browse** auctions → lot detail: images (link to Wikipedia), estimates, current bid, bid history.
 4. **Two tabs, two users** bid on the same lot; rejected low bid; high bidder flips.
-5. **Admin adds a lot** → Slack (or console) alert to every matching user within seconds.
-6. **History** — favorites, bids (won / outbid / leading), notifications received.
-7. **Auction closes** → lot shows *SOLD to Christian for £55,000*, "SOLD!" sound.
+5. **Admin adds a lot** → every matching user sees it in their **in-app notification feed**
+   (unread badge) on next page load; Slack webhook is an optional extra.
+6. **Outbid** → the previous high bidder gets an "outbid on …" notification in the feed.
+7. **History** — favorites, bids (won / outbid / leading), notifications received.
+8. **Auction closes** (silent-auction model: all lots stay open until then) → lot shows
+   *SOLD to Christian for £55,000*, "SOLD!" sound, feed tells every bidder the result.
 
-Everything below exists only to make those seven beats work.
+Everything below exists only to make those eight beats work.
 
 ## 3. Pages
 
@@ -33,17 +37,18 @@ so buttons know who is acting.
 
 | # | URL | Shows | Actions |
 |---|---|---|---|
-| 1 | `GET /` | User picker: avatar + name cards for the 6 seeded users | click → `/u/:id/summary` |
-| 2 | `GET /u/:id/summary` | "Lots for you": matching lots grouped by auction (open first, then upcoming, then closed), each card = thumbnail, title, artist, estimate, current bid + bidder, **why it matched** ("artist · keyword *blue*"), ♥ state, SOLD ribbon if closed | ♥ toggle, quick bid |
-| 3 | `GET/POST /u/:id/preferences` | Checkbox grid of the 8 categories; artists and keywords as comma-separated text | save → back to summary |
+| 1 | `GET /` | User picker: avatar + name cards for every user | click → `/u/:id/summary` |
+| 2 | `GET /u/:id/summary` | **Notifications** feed (unread first, badge count) · **Matches your interests**: lots matching preferences, grouped by auction, each card = thumbnail, title, artist, estimate, current bid + bidder, **why it matched** ("artist · keyword *blue*"), ♥ state, SOLD ribbon if closed · **Discover**: 5 random open lots the user hasn't bid on or favorited, re-drawn on every refresh | ♥ toggle, quick bid, mark feed read |
+| 3 | `GET/POST /u/:id/preferences` | Checkbox grid of the 11 categories (`lib/categories.js`); artists and keywords as comma-separated text. Optional — no row means "no interests yet", Discover still fills the page | save → back to summary |
 | 4 | `GET /auctions?u=` | All auctions as cards: house logo, title, location, live/timed, status pill, starts/closes, lot count | open |
 | 5 | `GET /auctions/:id?u=` | Auction header + every lot as card (same card partial as summary) | ♥, bid |
 | 6 | `GET /lots/:id?u=` | Lot detail: image gallery (each image links to `source_url`), description, estimate, starting bid, **current bid / high bidder / bid count**, full bid history table (who, amount, when), SOLD banner + winner when closed | ♥, bid form (with min-bid hint) |
 | 7 | `POST /u/:id/lots/:lotId/favorite` | — | toggle ♥ |
 | 8 | `POST /u/:id/lots/:lotId/bid` | — | validate, insert; error → `?error=` flash |
-| 9 | `GET /u/:id/history` | Three lists newest first: **Bids** (amount, lot, status: *leading / outbid / won / lost*), **Favorites**, **Notifications** (what we told you and when) | — |
-| 10 | `GET /admin?u=` | "Publish a lot" form (auction, lot no., title, artist, category, currency, estimates, starting bid, image URL, Wikipedia URL, description) + list of auctions with **Close now / Reopen** buttons | add lot, close, reopen |
-| 11 | `POST /admin/lots` | — | insert lot + image, run matching, create notifications, deliver |
+| 9 | `GET /u/:id/history` | Three lists newest first: **Bids** (amount, lot, status: *leading / outbid / won / lost*), **Favorites**, **Notifications** (full feed, read and unread) | — |
+| 10 | `GET /admin?u=` | "Publish a lot" form (auction, lot no., title, artist, category dropdown, currency, estimates, starting bid, image URL, Wikipedia URL, description) + list of auctions with **Close now / Reopen** buttons | add lot, close, reopen |
+| 11 | `POST /admin/lots` | — | insert lot + image, run matching, create `new_lot` notifications |
+| 13 | `POST /u/:id/notifications/read` | — | set `read_at` on the user's unread rows |
 | 12 | `POST /admin/auctions/:id/close` · `/reopen` | — | close: status=closed, set `hammer_price`/`winner_user_id` from high bid; reopen: revert. Redirect to `/admin?sold=:id` which plays `sold.mp3` |
 
 Left out on purpose (v1): search/filter, pagination, edit/delete lot, user editing, tickets,
@@ -55,19 +60,29 @@ absentee bids, realtime push (refresh the page).
   `amount > MAX(bids.amount)` (or `≥ starting_bid ?? estimate_low` when no bids). Insert in a
   transaction. Error message tells the user the minimum.
 - **Matching** (`lib/matching.js`): category ∈ prefs.categories ∨ artist ∈ prefs.artists ∨ any
-  keyword appears (case-insensitive) in title or description. Returns the reasons so the summary
-  can print them. Pure function, unit-tested.
-- **Notifications**: on new lot (admin or poller) → one `notifications` row per matching user
-  (`reason` = the match reasons). Deliver rows with `sent_at IS NULL`; Slack webhook if
-  `SLACK_WEBHOOK_URL` set, else `console.log('[slack] …')`. Stamp `sent_at` only on success.
+  keyword appears in title or description — all comparisons case-insensitive. Returns the reasons
+  so the summary can print them. Pure function, unit-tested. A user with no `preferences` row
+  simply has no matches (LEFT JOIN, never seeded).
+- **Discover**: `SELECT … FROM lots JOIN auctions … WHERE status='open' AND lot NOT IN (user's
+  bids ∪ favorites) ORDER BY random() LIMIT 5`. Works for any number of users and any catalogue.
+- **Categories**: fixed list in `lib/categories.js` (11): Contemporary Art, Modern British Art,
+  Photography, Watches, Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts, Stuffed
+  Animals, Miscellaneous IT Items. Admin add/drop of categories is #37.
+- **Notifications** are an **in-app feed** (`notifications` table + `kind` + `read_at`):
+  - `new_lot`: on new lot (admin or poller) → one row per matching user, `reason` = match reasons.
+  - `outbid`: on accepted bid → one row for the previous high bidder (if different user).
+  - `sold`: on auction close → one row per bidder on each sold lot ("Sold to X for Y").
+  Unique on `(user_id, lot_id, kind)`. Shown on summary (unread badge) and history. Slack webhook
+  delivery of unsent rows stays as an optional extra when `SLACK_WEBHOOK_URL` is set.
 - **Auction status**: poller flips `upcoming→open→closed` from `starts_at`/`closes_at` every
   30 s **and** admin can force close/reopen (needed for a 5-minute demo; the schema doc says
   no manual flip — this is the one deliberate deviation, see §9).
 - **Close** sets `lots.hammer_price = MAX(amount)`, `winner_user_id = high bidder` for every
   lot with bids; lots without bids stay unsold.
-- **Seeding**: on start, if `auction_houses` is empty, load `data/seed/*.json`. Every seed row
-  carries a fixed integer `id` (inserted with `OVERRIDING SYSTEM VALUE`) so JSON can reference
-  `auction_id: 2` and `/u/1` is always Mark. Dates in seed are **relative offsets** (`"starts_in_hours": -48`) resolved at seed time, so the demo always
+- **Seeding**: on start, if `auction_houses` is empty, load `data/seed/*.json`. Seed rows use
+  **natural keys**, not ids: auctions by `(house name, house_ref)`, lots by `(house_ref,
+  lot_number)`, users by `name`; the DB assigns ids and the loader resolves references by lookup.
+  Dates in seed are **relative offsets** (`"starts_in_hours": -48`) resolved at seed time, so the demo always
   has one closed, one open, one upcoming auction whenever it's run.
 
 ## 5. Files
@@ -88,12 +103,16 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 `views/*`, `styles.css`, `matching.js` + tests, `poller.js`, `slack.js`, close/SOLD flow,
 `sold.mp3`, architecture diagrams.
 
-## 6. Demo data (the "rich" part) — please review
+## 6. Demo data (the "rich" part) — shape only
+
+> **Decision (Mark):** demo data is generated in a **separate phase by a separate session**, and
+> `preferences` are never pre-populated. What follows is the *shape and volume* the app should be
+> built to handle, not the content. Nothing below is seeded by the app builder except the schema.
 
 Goal: every page is full on first load, every beat in §2 has pre-existing data to point at,
 and nothing looks like a fixture.
 
-**Users (6)** — the team, with avatars (Supabase `avatars` bucket or Gravatar-style placeholders)
+**Users (6 in the example, unbounded in practice)** — the team, with avatars (Supabase `avatars` bucket or Gravatar-style placeholders)
 and *distinct, overlapping* interests so one new lot alerts 2–3 people:
 
 | User | Categories | Artists | Keywords |
@@ -105,8 +124,8 @@ and *distinct, overlapping* interests so one new lot alerts 2–3 people:
 | Aisha Rahman | Jewellery, Books & Manuscripts | Cartier | first edition |
 | Tom Becker | Cars, Design | Porsche | 1960s |
 
-Every user gets a `preferences` row (empty arrays = "any" would match everything, so all six have
-real interests).
+Users may or may not have preferences — Discover covers the ones who don't. Many more than 6
+users must work.
 
 **Auction houses (4)**: Sotheby's, Christie's, Phillips, Bonhams — with real logo URLs and websites.
 
@@ -130,47 +149,45 @@ catalogue note, realistic estimates in the auction's currency (GBP/CHF/USD/EUR).
 - Closed auctions: every lot has 2–4 bids and `hammer_price` + `winner_user_id` set; Mark won one,
   Christian won one, Mark lost one to Priya.
 - ~12 favorites spread across users.
-- ~10 notifications already `sent_at` (so the history "Notifications" list is non-empty).
+- ~10 notifications of mixed `kind`, some `read_at` set (so the feed shows a badge and history).
 
 **Demo trigger lot** (not seeded; typed live on `/admin`): "Pumpkin (Blue)", Yayoi Kusama,
 Contemporary Art, GBP 50,000–70,000, London sale — matches Mark (artist + keyword) **and**
 Priya (artist), so two alerts fire.
 
-Questions for you: (a) real names for the 4 extra users or keep the placeholders? (b) is 5
-auctions / 30 lots the right size, or is 3 / 18 enough? (c) Slack: do you want a real webhook for
-tomorrow, or is the console fallback fine?
+Content questions (names, exact volume) go to the data-phase session, not this doc.
 
 ## 7. Build plan (< 12 h, one builder + Devin)
 
 | Step | Hours | Deliverable |
 |---|---|---|
 | 1 | 1.5 | Scaffold (#19): pg pool, seed loader with relative dates, layout, user picker, all stubs mounted. `npm start` works against Supabase |
-| 2 | 1.5 | Seed data: 6 users, 5 auctions, ~30 lots + images, bids/favorites/notifications |
-| 3 | 1.5 | Summary + preferences + `matching.js` (+ tests) |
+| 2 | 1.5 | Seed loader (natural keys, relative dates) + a *minimal* smoke dataset (2 users, 1 auction, 3 lots) so the app runs; real demo data is the separate data phase |
+| 3 | 1.5 | Summary (feed + matches + Discover) + preferences + `matching.js` (+ tests) |
 | 4 | 2 | Auctions, auction, lot detail; favorite + bid with validation |
 | 5 | 1 | History page |
-| 6 | 1.5 | Admin add-lot, poller, Slack/console delivery, close/reopen + SOLD + sound |
+| 6 | 1.5 | Admin add-lot, poller, `new_lot`/`outbid`/`sold` feed rows, optional Slack, close/reopen + SOLD + sound |
 | 7 | 1 | README, `db/reset.sql`, full click-through recording, fix-ups |
 | | **10** | buffer 2 h |
 
 Steps 3–6 are independent once 1–2 land; sequential is fine for one builder. Each step = one PR
 (`feature:` / `bug:` commits), screenshots on each.
 
-## 8. Schema review findings (Mark's DB session, 2026-09-15) — decisions
+## 8. Schema review findings (Mark's DB session, 2026-09-15) — decisions (Mark, one by one)
 
-| # | Finding | Valid? | Decision |
-|---|---|---|---|
-| 1 | Seed/poller use string ids (`lot-101`) but schema ids are `BIGINT IDENTITY` | **Yes** | Seed JSON carries fixed integer `id`s, inserted with `INSERT … OVERRIDING SYSTEM VALUE`; the poller inserts lots from `lots.json` whose `id` is not present. Slack links become `/lots/12`. `/u/1` is always Mark. Seed files regenerated (§6). |
-| 2 | `notifications UNIQUE(user_id, lot_id)` blocks an "outbid" notice after a "new lot" notice | **Yes** | V1 sends **new-lot notifications only** (outbid was never in this design). Fix the column comment in `schema.sql`; outbid notifications tracked with realtime updates (#32). No DB change. |
-| 3 | Users without a `preferences` row match nothing; seed files are still v2 shape | **Yes** | Seed a `preferences` row for all 6 users **and** the app `LEFT JOIN`s with `COALESCE(categories,'{}')` so a user without a row still renders. Seed files regenerated. |
-| 4 | Missing `CHECK (closes_at > starts_at)`, `hammer_price > 0`, winner-has-a-bid | Partly | Add `CHECK (closes_at > starts_at)` (cheap, catches seed typos). The other two stay app-enforced (`close` derives both from the bids table, so they can't disagree). |
-| 5 | Free-text categories → casing drift breaks matching | **Yes** | One list in `lib/categories.js` (the 8 categories) drives the admin dropdown and the preferences checkboxes; matching compares case-insensitively. No CHECK constraint (awkward on `TEXT[]`). |
-| 6 | Deleting a user with bids/wins fails (no `ON DELETE`) | Not a bug | Intentional audit trail. We never delete users; "reset" = `banned` or the full `db/reset.sql` TRUNCATE. |
-| 7 | Comment says timed auctions "lots close individually" but close is auction-level | **Yes** (comment) | Reword the comment: timed = online over several days, closes as a whole; per-lot close times deferred. |
+| # | Finding | Decision |
+|---|---|---|
+| 1 | Seed/poller use string ids (`lot-101`) but schema ids are `BIGINT IDENTITY` | **Natural keys.** Seed files reference auctions by `(house, house_ref)` and lots by `(house_ref, lot_number)`; the DB assigns ids, the loader looks them up. No `OVERRIDING SYSTEM VALUE`. |
+| 2 | `notifications UNIQUE(user_id, lot_id)` blocks an "outbid" notice after a "new lot" notice | **Notifications become an in-app feed** on the web frontend (new lot, outbid, sold), Slack optional. Schema: add `kind TEXT NOT NULL` (`new_lot` / `outbid` / `sold`), `read_at TIMESTAMPTZ`, unique becomes `(user_id, lot_id, kind)`. |
+| 3 | Users without a `preferences` row match nothing | **Never pre-populate preferences.** Summary = "Matches your interests" (if any prefs) + "Discover" (5 random open lots not yet bid/favorited, re-drawn per refresh). Durable for any number of users and a changing catalogue. |
+| 4 | Missing `CHECK (closes_at > starts_at)`, `hammer_price > 0`, winner-has-a-bid | Add the **two CHECKs**. No trigger for winner-has-a-bid (cross-table, needs a trigger; `close` derives winner from bids anyway). |
+| 5 | Free-text categories → casing drift breaks matching | **Fixed list of 11** in `lib/categories.js` (see §4), dropdown + checkboxes, case-insensitive matching. Admin add/drop categories: **#37**. |
+| 6 | Deleting a user with bids/wins fails (no `ON DELETE`) | **Intentional — governance.** Users are never deleted; `banned` instead. No change. |
+| 7 | Comment says timed auctions "lots close individually" but close is auction-level | **V1 = silent auction**: all lots stay open until the auction closes, winners announced then. Fix the comment. Per-lot close after inactivity with Going… Going… Gone: **#38**. |
 
-Schema changes from this table (comments for #2/#7, CHECK for #4) are a small `schema.sql` PR
-plus `ALTER`/`COMMENT` on the live Supabase DB — owned by the DB session, since it has the
-connection. Nothing else in the schema changes.
+Schema changes from this table — #2 (`kind`, `read_at`, new unique), #4 (two CHECKs), #7
+(comment) — are one small `schema.sql` PR plus the matching `ALTER`s on the live Supabase DB,
+owned by the DB session since it holds the connection. Nothing else in the schema changes.
 
 ## 9. Open decisions
 
