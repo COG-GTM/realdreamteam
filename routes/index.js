@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
     const result = await query(
-      'SELECT id, name, avatar_url, avatar_data IS NOT NULL AS has_upload FROM users WHERE banned = false ORDER BY name'
+      'SELECT id, name, avatar_url, avatar_data IS NOT NULL AS has_upload FROM users WHERE banned = false AND shadow = false ORDER BY name'
     );
     renderPage(res, 'Choose a profile', 'index', { users: result.rows });
   } catch (error) {

@@ -3,6 +3,7 @@ const { query, withTransaction } = require('../db/db');
 const { renderPage, flashUrl } = require('./helpers');
 const { formatCentral, formatMoney, userPath } = require('../lib/format');
 const { placeBid, bidIncrement, nextBid, maxBid, INCREMENTS } = require('../lib/bids');
+const { logActivity } = require('../lib/activity');
 const { pickWinner } = require('../lib/close');
 
 const router = express.Router();
@@ -144,6 +145,7 @@ async function postFavorite(req, res, next) {
           'INSERT INTO favorites (user_id, lot_id) VALUES ($1, $2)',
           [userId, lotId]
         );
+        await logActivity(client, { kind: 'favorite', actorUserId: userId, lotId });
       }
     });
     res.redirect(req.get('referer') || userPath(userId, `/lots/${lotId}`));

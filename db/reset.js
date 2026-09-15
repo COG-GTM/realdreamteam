@@ -38,7 +38,7 @@ async function main() {
       throw new Error(`Category integrity check failed: ${report.unmatchedLots.length} unmatched lots, ${report.unmatchedPreferences.length} unmatched preferences.`);
     }
   });
-  const tables = ['auction_houses', 'users', 'preferences', 'categories', 'auctions', 'lots', 'lot_images', 'favorites', 'bids', 'notifications'];
+  const tables = ['auction_houses', 'users', 'preferences', 'categories', 'auctions', 'lots', 'lot_images', 'favorites', 'bids', 'notifications', 'activity'];
   const counts = [];
   for (const table of tables) {
     const result = await pool.query(`SELECT COUNT(*)::int AS count FROM ${table}`);

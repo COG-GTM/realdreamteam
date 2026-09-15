@@ -54,7 +54,8 @@ function seedFiles() {
     bids: read('bids.json', true),
     favorites: read('favorites.json', true),
     preferences: read('preferences.json', true),
-    notifications: read('notifications.json', true)
+    notifications: read('notifications.json', true),
+    shadowUsers: read('shadow_users.json', true)
   };
 }
 
@@ -117,6 +118,31 @@ async function seedAll(client) {
         ]
       );
     }
+  }
+
+  // Simulated bidders (data/seed/shadow_users.json, optional): same rows as
+  // normal users plus shadow=true and a persona for the simulator.
+  for (const user of data.shadowUsers) {
+    const avatarUrl = user.avatar_url || pickDefaultAvatar(user.name, avatarUsage);
+    avatarUsage.set(avatarUrl, (avatarUsage.get(avatarUrl) || 0) + 1);
+    const result = await client.query(
+      `INSERT INTO users (name, email, avatar_url, banned, shadow, persona)
+       VALUES ($1, $2, $3, $4, true, $5) RETURNING id`,
+      [user.name, user.email || null, avatarUrl, user.banned || false,
+        user.persona ? JSON.stringify(user.persona) : null]
+    );
+    const userId = result.rows[0].id;
+    userIds.set(user.name, userId);
+    await client.query(
+      `INSERT INTO preferences (user_id, categories, artists, keywords)
+       VALUES ($1, $2, $3, $4)`,
+      [
+        userId,
+        (user.preferences && user.preferences.categories) || [],
+        (user.preferences && user.preferences.artists) || [],
+        (user.preferences && user.preferences.keywords) || []
+      ]
+    );
   }
 
   for (const preferences of data.preferences) {

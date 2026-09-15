@@ -8,6 +8,7 @@ const {
   deleteCategory, usageCounts, candidateLots, moveLots
 } = require('../lib/category-admin');
 const { closeAuction, validateClosesAt } = require('../lib/close');
+const { logActivity } = require('../lib/activity');
 const { formatCentral, toCentralInput } = require('../lib/time');
 const { gateCookieOptions } = require('../lib/cookies');
 const { gateLimiter } = require('../lib/rate-limit');
@@ -71,12 +72,18 @@ router.get('/admin', async (req, res, next) => {
     const users = (await query(
       `SELECT u.id, u.name, u.email, u.banned,
               (SELECT COUNT(*)::int FROM bids b WHERE b.user_id = u.id) AS bid_count
-       FROM users u ORDER BY u.name`
+       FROM users u WHERE u.shadow = false ORDER BY u.name`
+    )).rows;
+    const shadowUsers = (await query(
+      `SELECT u.id, u.name, u.email, u.banned,
+              (SELECT COUNT(*)::int FROM bids b WHERE b.user_id = u.id) AS bid_count
+       FROM users u WHERE u.shadow = true ORDER BY u.name`
     )).rows;
     const categoryRows = await listCategories();
     renderPage(res, 'Admin', 'admin', {
       auctions,
       users,
+      shadowUsers,
       categories: categoryRows.filter((category) => category.active).map((category) => category.name),
       flash: req.query.flash || '',
       error: req.query.error || '',
@@ -272,6 +279,7 @@ router.post('/admin/auctions/:id/reopen', async (req, res, next) => {
         'UPDATE lots SET hammer_price = NULL, winner_user_id = NULL WHERE auction_id = $1',
         [auction.id]
       );
+      await logActivity(client, { kind: 'reopened', auctionId: auction.id });
       return true;
     });
     if (!reopened) return res.redirect(adminUrl(req, { error: 'That auction is not closed.' }));

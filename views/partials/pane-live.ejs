@@ -1,0 +1,14 @@
+<h3 class="pane-title">Live <span class="live-dot" title="live"></span></h3>
+<% if (!liveActivity || liveActivity.length === 0) { %>
+  <p class="pane-empty">Nothing yet.</p>
+<% } else { %>
+  <ul class="pane-list feed-compact live-compact">
+    <% for (const item of liveActivity) { %>
+      <li class="feed-item live-item live-<%= item.kind %>" data-id="<%= item.id %>">
+        <a href="<%= userPath(userId, item.lot_id ? `/lots/${item.lot_id}` : `/auctions/${item.auction_id}`) %>"><%= describeActivity(item) %></a>
+        <time class="feed-time"><%= relativeTime(item.created_at) %></time>
+        <% if (item.detail) { %><span class="feed-reason"><%= item.detail %></span><% } %>
+      </li>
+    <% } %>
+  </ul>
+<% } %>
