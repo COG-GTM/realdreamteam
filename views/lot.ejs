@@ -1,43 +1,60 @@
 <% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash success"><%= flash %></div><% } %>
-<p class="eyebrow"><a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.house_name %> · <%= lot.auction_title %></a></p>
-<h1><%= lot.title %></h1>
+<% const hero = images[0]; const extraImages = images.slice(1); %>
+
+<header class="lot-head">
+  <p class="eyebrow lot-eyebrow"><% if (lot.lot_number != null) { %>Lot <%= lot.lot_number %> · <% } %><a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.auction_title %></a> · <%= lot.house_name %></p>
+  <h1 class="lot-title"><%= lot.title %></h1>
+  <p class="lot-artist"><% if (lot.artist) { %><span class="lot-artist-name"><%= lot.artist %></span><% } %><% if (lot.artist && lot.category) { %> · <% } %><% if (lot.category) { %><span class="lot-medium"><%= lot.category %></span><% } %></p>
+</header>
 
 <% if (lot.auction_status === 'closed') { %>
   <% if (lot.hammer_price != null) { %>
-    <div class="sold-banner"><% if (lot.winner_name) { %><%- include('partials/avatar', { person: { id: lot.winner_user_id, name: lot.winner_name, avatar_url: lot.winner_avatar_url, has_upload: lot.winner_has_upload }, size: 'sm' }) %> <% } %>SOLD — Sold to <%= lot.winner_name || 'a bidder' %> for <%= formatMoney(lot.hammer_price, lot.currency) %></div>
+    <div class="sold-banner lot-sold"><% if (lot.winner_name) { %><%- include('partials/avatar', { person: { id: lot.winner_user_id, name: lot.winner_name, avatar_url: lot.winner_avatar_url, has_upload: lot.winner_has_upload }, size: 'sm' }) %> <% } %>SOLD — Sold to <%= lot.winner_name || 'a bidder' %> for <%= formatMoney(lot.hammer_price, lot.currency) %></div>
   <% } else { %>
-    <div class="sold-banner">Unsold</div>
+    <div class="sold-banner lot-sold unsold">Unsold</div>
   <% } %>
 <% } %>
 
-<% if (images.length > 0) { %>
-  <div class="gallery">
-    <% for (const image of images) { %>
-      <figure>
-        <a href="<%= lot.source_url || image.url %>"><img src="<%= image.url %>" alt="<%= lot.title %>"></a>
-        <% if (image.credit) { %><figcaption class="muted"><%= image.credit %></figcaption><% } %>
-      </figure>
-    <% } %>
-  </div>
+<% if (hero) { %>
+  <figure class="lot-hero">
+    <a class="lot-hero-mat" href="<%= lot.source_url || hero.url %>"><img src="<%= hero.url %>" alt="<%= lot.title %>"></a>
+    <% if (hero.credit) { %><figcaption class="muted lot-credit"><%= hero.credit %></figcaption><% } %>
+  </figure>
+  <% if (extraImages.length > 0) { %>
+    <div class="gallery lot-thumbs">
+      <% for (const image of extraImages) { %>
+        <figure>
+          <a href="<%= lot.source_url || image.url %>"><img src="<%= image.url %>" alt="<%= lot.title %>"></a>
+          <% if (image.credit) { %><figcaption class="muted"><%= image.credit %></figcaption><% } %>
+        </figure>
+      <% } %>
+    </div>
+  <% } %>
 <% } %>
 
-<div class="lot-detail">
-  <div>
-    <% if (lot.artist) { %><p class="muted"><%= lot.artist %></p><% } %>
-    <p class="muted"><%= lot.category %></p>
-    <% if (lot.description) { %><p><%= lot.description %></p><% } %>
-    <% if (lot.estimate_low != null || lot.estimate_high != null) { %>
-      <p class="muted">Estimate <%= formatMoney(lot.estimate_low, lot.currency) %> – <%= formatMoney(lot.estimate_high, lot.currency) %></p>
-    <% } %>
-    <% if (lot.starting_bid != null) { %><p class="muted">Starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p><% } %>
+<div class="lot-detail lot-columns">
+  <div class="lot-body">
+    <% if (lot.description) { %><p class="lot-description"><%= lot.description %></p><% } %>
+    <dl class="lot-facts">
+      <% if (lot.artist) { %><div><dt>Artist</dt><dd><%= lot.artist %></dd></div><% } %>
+      <% if (lot.category) { %><div><dt>Category</dt><dd><%= lot.category %></dd></div><% } %>
+      <% if (lot.lot_number != null) { %><div><dt>Lot</dt><dd><%= lot.lot_number %></dd></div><% } %>
+      <div><dt>Auction</dt><dd><a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.auction_title %></a></dd></div>
+      <div><dt>House</dt><dd><%= lot.house_name %></dd></div>
+    </dl>
     <% if (lot.source_url) { %><p><a class="btn" href="<%= lot.source_url %>">View on Wikipedia/source →</a></p><% } %>
-    <p class="muted"><%= lot.house_name %> · <a href="<%= userPath(userId, '/auctions/' + lot.auction_id) %>"><%= lot.auction_title %></a> · <span class="pill <%= lot.auction_status %>"><%= lot.auction_status %></span></p>
     <% if (previouslyOffered) { %>
       <p class="muted"><small>Previously offered in <a href="<%= userPath(userId, '/lots/' + previouslyOffered.id) %>"><%= previouslyOffered.auction_title %></a><% if (previouslyOffered.closes_at) { %> (<%= formatCentral(previouslyOffered.closes_at) %>)<% } %> — <%= previouslyOffered.hammer_price != null ? `sold for ${formatMoney(previouslyOffered.hammer_price, previouslyOffered.currency)}` : 'unsold' %></small></p>
     <% } %>
   </div>
 
-  <div class="bid-panel">
+  <aside class="bid-panel lot-bid-panel">
+    <p class="lot-panel-status"><span class="pill <%= lot.auction_status %>"><%= lot.auction_status %></span></p>
+    <% if (lot.estimate_low != null || lot.estimate_high != null) { %>
+      <p class="lot-estimate"><span class="lot-facts-label">Estimate</span><%= formatMoney(lot.estimate_low, lot.currency) %> – <%= formatMoney(lot.estimate_high, lot.currency) %></p>
+    <% } %>
+    <% if (lot.starting_bid != null) { %><p class="muted lot-starting">Starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p><% } %>
+
     <div id="lot-bidding" data-src="<%= livePath('bidding') %>">
       <%- include('partials/lot-bidding') %>
     </div>
@@ -72,7 +89,7 @@
         <button class="btn" type="submit"><%= favorited ? '♥ Favorited' : '♡ Favorite' %></button>
       </form>
     <% } %>
-  </div>
+  </aside>
 </div>
 
 <h2 class="section-heading">Bid history</h2>

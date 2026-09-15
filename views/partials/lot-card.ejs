@@ -1,22 +1,26 @@
 <%#
   Lot card. Expects `lot` (id, title, artist, category, currency, estimate_low,
   estimate_high, starting_bid, image_url, current_bid, high_bidder, favorited,
-  status, hammer_price, winner_name — everything after currency is optional)
-  and `userId`. Pass an optional `reasons` array to show why the lot matched.
+  status, hammer_price, winner_name, lot_number — everything after currency is
+  optional) and `userId`. Pass an optional `reasons` array to show why the lot
+  matched.
 %>
 <% const cardReasons = typeof reasons !== 'undefined' && Array.isArray(reasons) ? reasons : []; %>
 <% const lotHref = `/lots/${lot.id}${userId ? `?u=${userId}` : ''}`; %>
+<% const lotLabel = lot.lot_number != null ? `Lot ${lot.lot_number}` : `№ ${lot.id}`; %>
 <article class="lot-card">
   <% if (lot.status === 'closed' && lot.hammer_price) { %><span class="sold-ribbon">SOLD</span><% } %>
-  <a class="lot-card-image" href="<%= lotHref %>">
+  <a class="lot-card-image<%= lot.image_url ? '' : ' is-empty' %>" href="<%= lotHref %>" data-lot="<%= lotLabel %>">
     <% if (lot.image_url) { %>
-      <img src="<%= lot.image_url %>" alt="<%= lot.title %>" loading="lazy">
-    <% } else { %>
-      <span class="lot-card-placeholder">No image</span>
+      <img class="lot-card-backdrop" src="<%= lot.image_url %>" alt="" aria-hidden="true" width="400" height="300" loading="lazy" decoding="async">
+      <img src="<%= lot.image_url %>" alt="<%= lot.title %>" width="400" height="300" loading="lazy" decoding="async"
+           onload="if(this.naturalHeight>this.naturalWidth*.85)this.classList.add('is-tall')"
+           onerror="this.parentNode.classList.add('is-empty');this.remove()">
     <% } %>
+    <span class="lot-card-placeholder" aria-hidden="true"><%= lotLabel %></span>
   </a>
   <div class="lot-card-body">
-    <p class="eyebrow"><%= lot.category %></p>
+    <p class="lot-card-number"><span><%= lotLabel %></span><span><%= lot.category %></span></p>
     <h3><a href="<%= lotHref %>"><%= lot.title %></a><% if (lot.favorited) { %> <span class="fav" title="Favorited">♥</span><% } %></h3>
     <% if (lot.artist) { %><p class="lot-card-artist"><%= lot.artist %></p><% } %>
     <% if (lot.estimate_low || lot.estimate_high) { %>

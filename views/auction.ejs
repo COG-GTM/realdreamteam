@@ -1,11 +1,24 @@
 <% if (typeof flash !== 'undefined' && flash && !error) { %><div class="flash success"><%= flash %></div><% } %>
-<p class="eyebrow"><%= auction.house_name %><% if (auction.location) { %> · <%= auction.location %><% } %></p>
-<h1><%= auction.title %></h1>
-<% if (season) { %><p class="muted"><small>Season <%= season %> — a new edition of this sale.</small></p><% } %>
-<p class="lede">
-  <span class="pill <%= auction.status %>"><%= auction.status %></span>
-  <%= auction.format %> · starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · closes <%= formatCentral(auction.closes_at) %><% } %><% if (auction.ends_soon) { %> · <span class="ends-soon" data-closes-at="<%= new Date(auction.closes_at).toISOString() %>"></span><% } %>
-</p>
+<% const houseSlug = String(auction.house_name || '').toLowerCase().replace(/[^a-z0-9]+/g, ''); %>
+<% const saleCity = auction.location || auction.house_location || ''; %>
+<header class="sale-head">
+  <div class="sale-title">
+    <span class="house-mark">
+      <img class="house-logo" src="/logos/<%= houseSlug %>.svg" alt="<%= auction.house_name %>" data-fallback="/logos/<%= houseSlug %>.png"
+           onerror="if (this.dataset.fallback) { this.src = this.dataset.fallback; this.dataset.fallback = ''; } else { this.hidden = true; this.nextElementSibling.hidden = false; }">
+      <span class="house-wordmark" hidden><%= auction.house_name %></span>
+    </span>
+    <h1><%= auction.title %></h1>
+  </div>
+  <p class="sale-meta">
+    <% if (saleCity) { %><span class="sale-city"><%= saleCity %></span><span class="sale-dot">·</span><% } %>
+    <% if (auction.closes_at) { %><span>closes <%= formatCentral(auction.closes_at) %></span><% } else { %><span>starts <%= formatCentral(auction.starts_at) %></span><% } %><% if (auction.ends_soon) { %> <span class="sale-dot">·</span> <span class="ends-soon" data-closes-at="<%= new Date(auction.closes_at).toISOString() %>"></span><% } %>
+    <span class="sale-dot">·</span>
+    <span class="pill <%= auction.status %>"><%= auction.status %></span>
+  </p>
+  <% if (season) { %><p class="muted"><small>Season <%= season %> — a new edition of this sale.</small></p><% } %>
+  <p class="lede sale-sub"><%= auction.format %> sale · starts <%= formatCentral(auction.starts_at) %></p>
+</header>
 <% if (auction.source_url) { %><p><a class="btn" href="<%= auction.source_url %>">View at <%= auction.house_name %> →</a></p><% } %>
 
 <div class="lot-grid">
