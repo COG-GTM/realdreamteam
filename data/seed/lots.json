@@ -6070,5 +6070,28 @@
       }
     ],
     "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 40,
+    "title": "Cognition Labs Creatine, limited edition 2025, set of ten",
+    "artist": "Cognition",
+    "category": "Miscellaneous IT Items",
+    "description": "Ten sealed 300 g (10.58 oz) tubs of Cognition Labs creatine monohydrate, limited edition 2025, each labelled with a flexing Devin the otter and the promise of more PRs on git and SOTA on SWE-bench. Sold as a set of ten. These statements have not been evaluated by anyone.",
+    "currency": "USD",
+    "estimate_low": 200,
+    "estimate_high": 400,
+    "starting_bid": 200,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/cognition-creatine.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
   }
 ]
