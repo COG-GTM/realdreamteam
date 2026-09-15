@@ -1,7 +1,61 @@
-# Auction Interest Demo
+# Real Dream Team auction app
 
-This is a small server-rendered auction demo. It uses Express, EJS, and a
-Postgres database. There is no client-side build step.
+An internal "silent auction" site for the team: everyone follows auctions,
+favorites lots, bids against each other and gets notified when they are outbid
+or when a lot that matches their interests appears. Lots stay open until their
+auction closes; then the highest bid wins.
+
+**Live:** <https://rdt-auction.marklovestech.com> · site code hint on the page
+(your favorite otter's birthday, `YYYYMMDD`) · admin at `/admin` (second code,
+hint on the page).
+
+Plain Node.js 20 + Express + EJS templates + hand-written SQL against Supabase
+Postgres. No build step, no framework magic — every page is one route file and
+one template.
+
+## Using the app
+
+| Page | What you do there |
+|---|---|
+| `/enter` | Enter the site code once; a cookie remembers you for 30 days. |
+| `/` | Pick your name. Everything after this is under `/u/<your id>/…`. |
+| **Summary** `/u/:id/summary` | Your home page. **Notifications** (new matching lots, outbid, sold — unread ones are highlighted; *Mark all read* clears the badge). **Matches your interests** — open lots matching your preferences, each with a chip saying *why* it matched. **Discover** — five random open lots you haven't bid on or favorited, different on every refresh (*Shuffle*). Everyone gets Discover, even with no preferences. |
+| **Preferences** `/u/:id/preferences` | Tick categories (fixed list, see `lib/categories.js`), type artists and keywords (comma-separated). Optional — it only sharpens Matches. |
+| **Auctions** `/u/:id/auctions` | All auctions grouped Open / Upcoming / Closed, with lot and bid counts. Click through to the auction's lots. |
+| **Lot** `/u/:id/lots/:lotId` | Images, estimate, link to the source page, ★ favorite toggle, the bid form and the full bid history (newest first). Bids are whole numbers and must beat the current high bid (or meet the starting bid on the first bid). You can bid again after being outbid. Closed lots show SOLD, hammer price and winner (and play `sold.mp3`). |
+| **History** `/u/:id/history` | Every bid you've placed with its state — Winning / Outbid / Won / Lost — and your favorites. |
+| **Admin** `/admin` | Table of auctions with editable close time (UTC), *Close now* / *Reopen*; add a lot to any auction (matching users get a notification); ban / unban users (banned users can't bid, nothing is deleted). |
+
+How closing works: a poller runs every `POLL_SECONDS` (5 s). It flips
+`upcoming` auctions to `open` when `starts_at` passes and closes `open`
+auctions when `closes_at` passes. Closing an auction (poller or *Close now*)
+takes the highest bid on each lot (earliest bid wins a tie), sets hammer price
+and winner, and sends a `sold` notification to every bidder. *Reopen* clears
+the results but keeps all bids, and pushes `closes_at` forward if it is in the
+past.
+
+## Changing the app
+
+```
+server.js            starts Express, mounts routes, starts the poller
+routes/*.js          one file per page: summary, preferences, auctions, lots, history, admin
+views/*.ejs          the matching HTML template for each page; partials/lot-card.ejs is the lot tile
+lib/matching.js      "does this lot match these preferences?" (category | artist | keyword)
+lib/bids.js          bid validation + placing a bid (transaction, row lock, outbid notification)
+lib/close.js         close / reopen an auction, pick winners, sold notifications
+lib/new-lot.js       admin add-lot validation + new_lot notifications
+lib/poller.js        the 5 s status poller
+lib/categories.js    the fixed category list (edit here to add one)
+lib/notifications.js feed queries, unread count, mark-all-read
+public/styles.css    all styling; public/sold.mp3 the sale sound
+db/schema.sql        the 9 tables; db/db.js the pool, transactions and seed loader
+data/seed/*.json     the demo data (see "Seed contract")
+```
+
+Typical edits: change wording → the `.ejs` file for that page; change a rule
+(minimum bid, who gets notified) → the `lib/` file named for it; change the
+look → `public/styles.css`. Run `npm test` (`node --test`) after touching
+`lib/`.
 
 ## Run locally
 
@@ -115,6 +169,7 @@ sudo systemctl status rdt-auction
 journalctl -u rdt-auction -n 50 --no-pager
 ```
 
-HTTP port 80 is redirected to the app's port 3000 by the persistent
-`rdt-auction-port80.service` systemd unit. Do not run `db:reset` on the
+Caddy (`/etc/caddy/Caddyfile`) terminates TLS for
+<https://rdt-auction.marklovestech.com> (Let's Encrypt, auto-renew) and
+proxies to `:3000`; DNS A record at IONOS. Do not run `db:reset` on the
 production host.
