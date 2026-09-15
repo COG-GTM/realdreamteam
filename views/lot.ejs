@@ -4,7 +4,7 @@
 
 <% if (lot.auction_status === 'closed') { %>
   <% if (lot.hammer_price != null) { %>
-    <div class="sold-banner">SOLD — Sold to <%= lot.winner_name || 'a bidder' %> for <%= formatMoney(lot.hammer_price, lot.currency) %></div>
+    <div class="sold-banner"><% if (lot.winner_name) { %><%- include('partials/avatar', { person: { id: lot.winner_user_id, name: lot.winner_name, avatar_url: lot.winner_avatar_url, has_upload: lot.winner_has_upload }, size: 'sm' }) %> <% } %>SOLD — Sold to <%= lot.winner_name || 'a bidder' %> for <%= formatMoney(lot.hammer_price, lot.currency) %></div>
   <% } else { %>
     <div class="sold-banner">Unsold</div>
   <% } %>
@@ -36,7 +36,7 @@
 
   <div class="bid-panel">
     <% if (highBid) { %>
-      <p>Current high bid <b><%= formatMoney(highBid.amount, lot.currency) %></b> by <%= highBid.name %></p>
+      <p>Current high bid <b><%= formatMoney(highBid.amount, lot.currency) %></b> by <%- include('partials/avatar', { person: highBid, size: 'sm' }) %> <%= highBid.name %></p>
     <% } else if (lot.starting_bid != null) { %>
       <p>No bids yet — starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p>
     <% } else { %>
@@ -67,7 +67,7 @@
   <table class="table">
     <tr><th>Bidder</th><th>Amount</th><th>Time</th></tr>
     <% for (const bid of bids) { %>
-      <tr><td><%= bid.name %></td><td><%= formatMoney(bid.amount, lot.currency) %></td><td><%= formatCentral(bid.placed_at) %></td></tr>
+      <tr><td class="bidder"><%- include('partials/avatar', { person: bid, size: 'sm' }) %> <%= bid.name %></td><td><%= formatMoney(bid.amount, lot.currency) %></td><td><%= formatCentral(bid.placed_at) %></td></tr>
     <% } %>
   </table>
 <% } %>

@@ -1,6 +1,24 @@
 <%- include('partials/flash') %>
 
 <section class="summary-block">
+  <p class="eyebrow">Profile picture</p>
+  <h2>How you appear</h2>
+  <div class="avatar-form">
+    <%- include('partials/avatar', { person: user, size: 'lg' }) %>
+    <form method="post" action="/u/<%= userId %>/avatar" enctype="multipart/form-data" class="prefs-actions">
+      <input type="file" name="avatar" accept="image/png,image/jpeg,image/webp,image/gif" required>
+      <button class="btn primary" type="submit">Upload picture</button>
+    </form>
+    <% if (user.has_upload) { %>
+      <form method="post" action="/u/<%= userId %>/avatar/reset">
+        <button class="btn" type="submit">Reset to default</button>
+      </form>
+    <% } %>
+  </div>
+  <p class="lede">PNG, JPEG, WebP or GIF, up to 2 MB. Without an upload you keep your assigned icon.</p>
+</section>
+
+<section class="summary-block">
   <p class="eyebrow">Preferences</p>
   <h2>What are you looking for?</h2>
   <p class="lede">A lot matches when it hits any category, artist, or keyword you list. Keywords are checked against lot titles and descriptions.</p>

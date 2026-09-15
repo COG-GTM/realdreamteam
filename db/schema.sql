@@ -28,6 +28,8 @@ CREATE TABLE users (
   name       TEXT NOT NULL,
   email      TEXT UNIQUE,
   avatar_url TEXT,
+  avatar_data BYTEA,
+  avatar_mime TEXT,
   banned     BOOLEAN NOT NULL DEFAULT false,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -36,7 +38,9 @@ COMMENT ON TABLE  users            IS 'People using the app: they set preference
 COMMENT ON COLUMN users.id         IS 'Surrogate integer key.';
 COMMENT ON COLUMN users.name       IS 'Display name.';
 COMMENT ON COLUMN users.email      IS 'Contact email. Optional, unique when present.';
-COMMENT ON COLUMN users.avatar_url IS 'Public URL of the profile picture in the Supabase Storage "avatars" bucket. Optional.';
+COMMENT ON COLUMN users.avatar_url IS 'App-relative path of the default icon assigned at account creation, e.g. /avatars/defaults/otter.svg. Shown unless avatar_data is set.';
+COMMENT ON COLUMN users.avatar_data IS 'Bytes of a picture the user uploaded (PNG/JPEG/WebP/GIF, max 2 MB). NULL = use avatar_url.';
+COMMENT ON COLUMN users.avatar_mime IS 'MIME type of avatar_data.';
 COMMENT ON COLUMN users.banned     IS 'True if the user is blocked from bidding and favoriting. Default false.';
 COMMENT ON COLUMN users.created_at IS 'When the account was created.';
 

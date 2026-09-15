@@ -75,7 +75,7 @@ app.use(async (req, res, next) => {
     const match = req.path.match(/^\/u\/(\d+)/);
     const userId = match ? match[1] : req.query.u;
     res.locals.user = userId
-      ? (await query('SELECT id, name, avatar_url FROM users WHERE id = $1', [userId])).rows[0] || null
+      ? (await query('SELECT id, name, avatar_url, avatar_data IS NOT NULL AS has_upload FROM users WHERE id = $1', [userId])).rows[0] || null
       : null;
     res.locals.userId = userId || '';
     next();

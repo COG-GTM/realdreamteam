@@ -157,7 +157,8 @@ database.
 
 Before running `db:reset` against Supabase, apply every migration in
 `db/migrations/`; migrations `001-schema-review.sql`, `002-bigint-money.sql`,
-and `003-categories.sql` are required.
+`003-categories.sql`, and `004-avatars.sql` are required. On an existing database,
+follow `004-avatars.sql` with `npm run db:avatars` to give every user a default icon.
 
 ### Safety
 
@@ -197,7 +198,11 @@ repeatedly.
 
 The data phase supplies these files in `data/seed/`:
 
-- `users.json`: an array of `{name, email, avatar_url, banned, preferences?}`.
+- `users.json`: an array of `{name, email, avatar_url?, banned, preferences?}`.
+  When `avatar_url` is omitted the loader assigns a default icon from
+  `public/avatars/defaults/` (Noto Emoji, Apache 2.0): animals, places and objects,
+  least-used first so everyone gets a distinct one. Uploaded pictures are stored in
+  `users.avatar_data` (BYTEA) and served at `/avatars/:userId`.
   A preference object has `categories`, `artists`, and `keywords` arrays.
   A `preferences` row is created only when that property is present.
 - `preferences.json`: `{user, categories, artists, keywords}` objects for
