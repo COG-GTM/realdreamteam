@@ -3,7 +3,10 @@ const path = require('node:path');
 const { Pool } = require('pg');
 const { categories } = require('../lib/categories');
 
-const databaseUrl = process.env.AUCTION_DATABASE_URL;
+// Tests run against a separate database so they can truncate freely.
+const databaseUrl = process.env.NODE_ENV === 'test'
+  ? process.env.AUCTION_TEST_DATABASE_URL
+  : process.env.AUCTION_DATABASE_URL;
 const database = databaseUrl ? new URL(databaseUrl) : null;
 const pool = new Pool({
   host: database ? database.hostname : undefined,
@@ -255,4 +258,4 @@ async function seedIfEmpty() {
   return true;
 }
 
-module.exports = { pool, query, withTransaction, seedIfEmpty, seedAll, findOne };
+module.exports = { pool, query, withTransaction, seedIfEmpty, seedAll, seedFiles, statusFor, findOne };

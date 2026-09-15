@@ -9,12 +9,13 @@ if (process.env.NODE_ENV === 'production') {
 const path = require('node:path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { query, seedIfEmpty } = require('./db/db');
+const { seedIfEmpty } = require('./db/db');
 const routes = require('./routes');
 const { renderPage } = require('./routes/helpers');
 const { start } = require('./lib/poller');
 const { gateCookieOptions } = require('./lib/cookies');
 const { gateLimiter } = require('./lib/rate-limit');
+const { SESSION, requireAccess, loadUser, requireAdmin } = require('./lib/gates');
 
 const app = express();
 app.set('trust proxy', 1);
@@ -55,7 +56,7 @@ app.post('/enter', accessLimiter, (req, res) => {
       hint: "Your favorite otter's birthday in ISO 8601 basic format…"
     });
   }
-  res.cookie('rdt_access', 'session', gateCookieOptions());
+  res.cookie('rdt_access', SESSION, gateCookieOptions());
   res.redirect('/');
 });
 
@@ -65,30 +66,9 @@ app.post('/signout', (req, res) => {
   res.redirect('/enter');
 });
 
-app.use((req, res, next) => {
-  if (req.signedCookies.rdt_access === 'session') return next();
-  res.redirect('/enter');
-});
-
-app.use(async (req, res, next) => {
-  try {
-    const match = req.path.match(/^\/u\/(\d+)/);
-    const userId = match ? match[1] : req.query.u;
-    res.locals.user = userId
-      ? (await query('SELECT id, name, avatar_url FROM users WHERE id = $1', [userId])).rows[0] || null
-      : null;
-    res.locals.userId = userId || '';
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.use((req, res, next) => {
-  if (!req.path.startsWith('/admin') || req.path === '/admin/enter') return next();
-  if (req.signedCookies.rdt_admin === 'session') return next();
-  res.redirect(`/admin/enter${req.query.u ? `?u=${encodeURIComponent(req.query.u)}` : ''}`);
-});
+app.use(requireAccess);
+app.use(loadUser());
+app.use(requireAdmin);
 
 app.use(routes);
 

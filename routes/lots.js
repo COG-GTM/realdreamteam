@@ -1,17 +1,14 @@
 const express = require('express');
 const { query, withTransaction } = require('../db/db');
-const { renderPage } = require('./helpers');
+const { renderPage, flashUrl } = require('./helpers');
 const { formatCentral, formatMoney, userPath } = require('../lib/format');
 const { placeBid } = require('../lib/bids');
+const { pickWinner } = require('../lib/close');
 
 const router = express.Router();
 
 function userIdFrom(req) {
   return req.params.userId || req.query.u || '';
-}
-
-function flashUrl(path, message, isError) {
-  return `${path}?flash=${encodeURIComponent(message)}${isError ? '&error=1' : ''}`;
 }
 
 async function showLot(req, res, next) {
@@ -51,11 +48,7 @@ async function showLot(req, res, next) {
     ]);
 
     const bids = bidsResult.rows;
-    // bids are newest first, so on equal amounts the earliest bid wins (same rule as lib/close.js)
-    let highBid = null;
-    for (const bid of bids) {
-      if (!highBid || Number(bid.amount) >= Number(highBid.amount)) highBid = bid;
-    }
+    const highBid = pickWinner(bids);
 
     renderPage(res, lot.title, 'lot', {
       userId,

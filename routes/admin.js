@@ -1,6 +1,6 @@
 const express = require('express');
 const { query, withTransaction } = require('../db/db');
-const { renderPage } = require('./helpers');
+const { renderPage, adminUrl, categoryUrl } = require('./helpers');
 const { listCategories } = require('../lib/categories');
 const { createLot } = require('../lib/new-lot');
 const {
@@ -11,6 +11,7 @@ const { closeAuction, validateClosesAt } = require('../lib/close');
 const { formatCentral, toCentralInput } = require('../lib/time');
 const { gateCookieOptions } = require('../lib/cookies');
 const { gateLimiter } = require('../lib/rate-limit');
+const { SESSION } = require('../lib/gates');
 
 const router = express.Router();
 const adminLimiter = gateLimiter();
@@ -48,33 +49,10 @@ router.post('/admin/enter', adminLimiter, (req, res) => {
       u: req.body.u || ''
     });
   }
-  res.cookie('rdt_admin', 'session', gateCookieOptions());
+  res.cookie('rdt_admin', SESSION, gateCookieOptions());
   const userId = String(req.body.u || '');
   res.redirect(`/admin${/^\d+$/.test(userId) ? `?u=${userId}` : ''}`);
 });
-
-// Builds "/admin?flash=...&u=..." so the user in the nav is kept.
-function adminUrl(req, params = {}) {
-  const search = new URLSearchParams();
-  const userId = req.body.u || req.query.u;
-  if (userId) search.set('u', userId);
-  for (const [key, value] of Object.entries(params)) {
-    if (value) search.set(key, value);
-  }
-  const text = search.toString();
-  return text ? `/admin?${text}` : '/admin';
-}
-
-function categoryUrl(req, path, params = {}) {
-  const search = new URLSearchParams();
-  const userId = req.body.u || req.query.u;
-  if (userId) search.set('u', userId);
-  for (const [key, value] of Object.entries(params)) {
-    if (value !== undefined && value !== '') search.set(key, value);
-  }
-  const text = search.toString();
-  return `${path}${text ? `?${text}` : ''}`;
-}
 
 router.param('id', (req, res, next, id) => {
   if (!/^\d+$/.test(id)) return res.status(404).send('Not found');

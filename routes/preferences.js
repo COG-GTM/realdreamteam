@@ -2,22 +2,9 @@ const express = require('express');
 const { query, withTransaction } = require('../db/db');
 const { renderPage } = require('./helpers');
 const { listCategories, canonicalName } = require('../lib/categories');
+const { splitList, asArray } = require('../lib/preferences');
 
 const router = express.Router();
-
-// "Yayoi Kusama, Banksy , ," -> ['Yayoi Kusama', 'Banksy']
-function splitList(text) {
-  return String(text || '')
-    .split(',')
-    .map((part) => part.trim())
-    .filter((part) => part.length > 0);
-}
-
-// Checkboxes arrive as a string (one ticked) or an array (several ticked).
-function asArray(value) {
-  if (value === undefined) return [];
-  return Array.isArray(value) ? value : [value];
-}
 
 router.get('/u/:userId/preferences', async (req, res, next) => {
   try {
