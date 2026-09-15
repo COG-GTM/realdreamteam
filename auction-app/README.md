@@ -41,6 +41,7 @@ repeatedly.
 - `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
 - `SLACK_WEBHOOK_URL`: optional Slack incoming-webhook URL.
 - `PORT`: HTTP port, default `3000`.
+- `COOKIE_SECRET`: secret used to sign access cookies, default `change-me`.
 
 ## Seed contract
 
