@@ -29,7 +29,7 @@ VALUES
   ('Wine & Spirits', 7),
   ('Design', 8),
   ('Books & Manuscripts', 9),
-  ('Stuffed Animals', 10),
+  ('Toys and Clothes', 10),
   ('Miscellaneous IT Items', 11)
 ON CONFLICT ((lower(name))) DO NOTHING;
 
