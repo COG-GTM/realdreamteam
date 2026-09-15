@@ -375,7 +375,7 @@
     "house_ref": "UK050326",
     "lot_number": 18,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T11:30:00Z",
     "read_at": "2026-09-13T04:47:40Z"
   },
@@ -1005,7 +1005,7 @@
     "house_ref": "30412",
     "lot_number": 10,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-07T13:12:00Z",
     "read_at": null
   },
@@ -1135,7 +1135,7 @@
     "house_ref": "UK050326",
     "lot_number": 4,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T11:40:00Z",
     "read_at": "2026-09-13T09:01:09Z"
   },
@@ -2225,7 +2225,7 @@
     "house_ref": "30412",
     "lot_number": 17,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-07T12:30:00Z",
     "read_at": null
   },
@@ -2235,7 +2235,7 @@
     "house_ref": "30412",
     "lot_number": 10,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-07T12:56:00Z",
     "read_at": null
   },
@@ -2325,7 +2325,7 @@
     "house_ref": "UK050326",
     "lot_number": 6,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T11:03:00Z",
     "read_at": "2026-09-13T12:50:14Z"
   },
@@ -2565,7 +2565,7 @@
     "house_ref": "30412",
     "lot_number": 18,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-07T13:21:00Z",
     "read_at": "2026-09-07T15:27:32Z"
   },
@@ -2725,7 +2725,7 @@
     "house_ref": "UK050326",
     "lot_number": 8,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals · artist: Gund",
+    "reason": "category: Toys and Clothes · artist: Gund",
     "created_at": "2026-09-12T11:59:00Z",
     "read_at": null
   },
@@ -4065,7 +4065,7 @@
     "house_ref": "UK050326",
     "lot_number": 30,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T10:42:00Z",
     "read_at": "2026-09-13T07:03:54Z"
   },
@@ -4075,7 +4075,7 @@
     "house_ref": "UK050326",
     "lot_number": 8,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T11:15:00Z",
     "read_at": "2026-09-12T15:46:10Z"
   },
@@ -4515,7 +4515,7 @@
     "house_ref": "UK050326",
     "lot_number": 6,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T10:30:00Z",
     "read_at": "2026-09-13T10:09:33Z"
   },
@@ -4585,7 +4585,7 @@
     "house_ref": "30412",
     "lot_number": 17,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-07T12:14:00Z",
     "read_at": "2026-09-07T18:53:28Z"
   },
@@ -4595,7 +4595,7 @@
     "house_ref": "30412",
     "lot_number": 18,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-07T13:27:00Z",
     "read_at": null
   },
@@ -4645,7 +4645,7 @@
     "house_ref": "UK050326",
     "lot_number": 30,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T10:12:00Z",
     "read_at": null
   },
@@ -4655,7 +4655,7 @@
     "house_ref": "UK050326",
     "lot_number": 22,
     "kind": "new_lot",
-    "reason": "category: Stuffed Animals",
+    "reason": "category: Toys and Clothes",
     "created_at": "2026-09-12T12:00:00Z",
     "read_at": "2026-09-12T20:00:33Z"
   },

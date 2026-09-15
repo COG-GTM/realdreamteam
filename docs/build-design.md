@@ -82,8 +82,8 @@ absentee bids, realtime push (refresh the page).
 - **Poller** runs every `POLL_SECONDS` (default 5): closes auctions whose `closes_at` has passed
   (hammer/winner per lot, `sold` feed rows) and ingests new lots from the mock feed.
 - **Categories**: fixed list in `lib/categories.js` (11): Contemporary Art, Modern British Art,
-  Photography, Watches, Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts, Stuffed
-  Animals, Miscellaneous IT Items. Admin add/drop of categories is #37.
+  Photography, Watches, Cars, Jewellery, Wine & Spirits, Design, Books & Manuscripts, Toys and
+  Clothes, Miscellaneous IT Items. Admin add/drop of categories is #37.
 - **Notifications** are an **in-app feed** (`notifications` table + `kind` + `read_at`):
   - `new_lot`: on new lot (admin or poller) → one row per matching user, `reason` = match reasons.
   - `outbid`: on accepted bid → one row for the previous high bidder (if different user). A user
@@ -142,7 +142,7 @@ Reused from the closed #24 branch (already written, only needs renames + async `
   (`America/Chicago`) — issue #45.
 - `lot_images` rows are embedded in each lot as `images[]` (`position`, `url`, `credit`);
   `lots.winner_user_id` is expressed as `winner` (user name). The loader maps both.
-- Every cross-reference was validated: all 8 auctions resolve to a house, all 250 lots to an
+- Every cross-reference was validated: all 8 auctions resolve to a house, all 262 lots to an
   auction, every bid/favorite/notification/winner to an existing user and lot.
 
 ### 6.2 Tables
@@ -151,9 +151,9 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 |---|---:|---|
 | `auction_houses.json` | 4 | Sotheby's (New York), Christie's, Phillips, Bonhams (London). `website` + `logo_url`: Sotheby's/Christie's/Bonhams hotlink the logo from their own sites; Phillips has none online, so Mark's image is committed as `public/logos/phillips.png` → `/logos/phillips.png`. |
 | `users.json` | 28 | The Cognition team as supplied by Mark (first name + email). Two "Mark"s disambiguated as **MarkK** (mark.kosoy@) and **MarkP** (mark@). `banned=false` for all. `avatar_url` = Gravatar by md5(email) with identicon fallback (`?d=identicon&s=200`); real local avatars are issue #42. |
-| `preferences.json` | 26 | **No price range** — Mark dropped budget filtering for good (no issue). 2–4 categories per user from the fixed list, 2–3 researched artists/makers matching those categories (e.g. Rolex/Lange for Watches, Château Margaux/DRC for Wine, Steiff/Merrythought for Stuffed Animals, Commodore/Cray for IT), 0–4 deliberately fun keywords (penguins, blenders, volcanoes, tacos…). **Matthew and Nouf have no row** to exercise Discover-only. MarkP: Contemporary Art, Photography, Cars, Watches · Banksy, Diane Arbus, Marc Chagall, Claude Monet · toaster, llamas, robots. Reilly: Contemporary/Modern British Art, Watches, Cars · Warhol, Rolex, Aston Martin · tennis, racquets, penguins, trophies. |
+| `preferences.json` | 26 | **No price range** — Mark dropped budget filtering for good (no issue). 2–4 categories per user from the fixed list, 2–3 researched artists/makers matching those categories (e.g. Rolex/Lange for Watches, Château Margaux/DRC for Wine, Steiff/Merrythought for Toys and Clothes, Commodore/Cray for IT), 0–4 deliberately fun keywords (penguins, blenders, volcanoes, tacos…). **Matthew and Nouf have no row** to exercise Discover-only. MarkP: Contemporary Art, Photography, Cars, Watches · Banksy, Diane Arbus, Marc Chagall, Claude Monet · toaster, llamas, robots. Reilly: Contemporary/Modern British Art, Watches, Cars · Warhol, Rolex, Aston Martin · tennis, racquets, penguins, trophies. |
 | `auctions.json` | 8 | The 6 from the original plan plus 2 Mark asked for so that **four auctions close live on 15 Sep at staggered Central times** (see below). Each has `house_ref` (natural key), `format`, `status`, `source_url`. |
-| `lots.json` | 250 | Mark set minimums per category; agreed split: Contemporary Art 45, Modern British Art 40, Photography 28, Watches 8, Cars 18, Jewellery 6, Wine & Spirits 20, Design 12, Books & Manuscripts 38, Stuffed Animals 12, Miscellaneous IT Items 23. Every lot: real image (Wikimedia Commons or Wikipedia fair-use, credited), Wikipedia `source_url`, catalogue-style description, estimates + `starting_bid` (≈50–75 % of low estimate) in the auction's currency (GBP/CHF/USD/EUR). Per auction: 25 / 24 / 30 / 26 / 39 / 48 / 40 / 18. ~40 subjects have no dedicated Wikipedia page, so their image/link is the closest page (artist, model line); ~25 % of images are fair-use — fine internally, not for public deployment. |
+| `lots.json` | 262 | Mark set minimums per category; agreed split: Contemporary Art 45, Modern British Art 40, Photography 28, Watches 8, Cars 18, Jewellery 6, Wine & Spirits 20, Design 16, Books & Manuscripts 38, Toys and Clothes 19, Miscellaneous IT Items 24. Every lot: real image (Wikimedia Commons or Wikipedia fair-use, credited), Wikipedia `source_url`, catalogue-style description, estimates + `starting_bid` (≈50–75 % of low estimate) in the auction's currency (GBP/CHF/USD/EUR). Per auction: 25 / 24 / 30 / 37 / 39 / 48 / 40 / 18. ~40 subjects have no dedicated Wikipedia page, so their image/link is the closest page (artist, model line); ~25 % of images are fair-use — fine internally, not for public deployment. |
 | `bids.json` | 350 | Closed auctions: 0–5 bids per lot (45 of 58 lots sold, 13 unsold). Open auctions: ~40 % of lots have 1–4 bids so far. First bid = `starting_bid`, each next bid +4–12 % (rounded), `placed_at` strictly increasing and inside the auction window (open ones up to ~now). All 28 users bid. **MarkP: 23 bids — leading on 9 open lots, outbid on 6.** No bids on the upcoming auction. |
 | `lots.json` (closed) | 45 | `hammer_price` = highest bid, `winner` = that bidder, derived from `bids.json`; unsold lots keep both null. Sold lots are history only — a lot belongs to one auction and is never re-listed. |
 | `favorites.json` | 66 | 1–4 per user (MarkP 4), mostly lots matching the user's prefs plus one off-interest each, on open/upcoming lots. |
