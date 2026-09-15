@@ -15,13 +15,13 @@ describeHttp('lot pages', (it) => {
     const bidder = await createUser({ name: 'Bea Bidder' });
     const lot = await createLot({ title: 'Blue Canvas', starting_bid: 100 });
     await createBid(lot.id, bidder.id, 150);
-    const page = await client.get(`/lots/${lot.id}`);
+    const page = await client.get(`/lots/${lot.id}?u=${bidder.id}`);
     assert.equal(page.status, 200);
     const html = await page.text();
     assert.match(html, /Blue Canvas/);
     assert.match(html, /Bea Bidder/);
     assert.match(html, /150/);
-    const missing = await client.get('/lots/999999');
+    const missing = await client.get(`/lots/999999?u=${bidder.id}`);
     assert.equal(missing.status, 404);
     assert.match(await missing.text(), /That lot does not exist/);
   });
@@ -39,6 +39,39 @@ describeHttp('lot pages', (it) => {
     assert.deepEqual((await rows('SELECT amount FROM bids WHERE lot_id = $1', [lot.id])).map((row) => Number(row.amount)), [120]);
     const flashed = await client.get(location(low));
     assert.match(await flashed.text(), /at least 130 \(current high bid 120 \+ 10 step\)/);
+  });
+
+  it('serves live bidding and history partials that follow other bidders', async () => {
+    const client = await signedIn();
+    const user = await createUser({ name: 'Watcher' });
+    const rival = await createUser({ name: 'Rival' });
+    const lot = await createLot({ starting_bid: 100 });
+
+    const page = await client.get(`/u/${user.id}/lots/${lot.id}`);
+    const html = await page.text();
+    assert.match(html, new RegExp(`id="lot-bidding" data-src="/panes/lots/${lot.id}/bidding\\?u=${user.id}"`));
+    assert.match(html, new RegExp(`id="lot-history" data-src="/panes/lots/${lot.id}/history\\?u=${user.id}"`));
+
+    await client.post(`/u/${rival.id}/lots/${lot.id}/bid`, { amount: '120' });
+
+    const bidding = await client.get(`/panes/lots/${lot.id}/bidding?u=${user.id}`);
+    assert.equal(bidding.status, 200);
+    assert.equal(bidding.headers.get('cache-control'), 'no-store');
+    const biddingHtml = await bidding.text();
+    assert.match(biddingHtml, /Current high bid <b>[^<]*120[^<]*<\/b>/);
+    assert.match(biddingHtml, /Rival/);
+    assert.match(biddingHtml, /class="bid-form"/);
+    assert.doesNotMatch(biddingHtml, /You are the high bidder/);
+    assert.doesNotMatch(biddingHtml, /<html/, 'partial, not a full page');
+
+    const asRival = await (await client.get(`/panes/lots/${lot.id}/bidding?u=${rival.id}`)).text();
+    assert.match(asRival, /You are the high bidder/);
+
+    const history = await client.get(`/panes/lots/${lot.id}/history?u=${user.id}`);
+    assert.equal(history.status, 200);
+    assert.match(await history.text(), /<td class="bidder">[\s\S]*Rival/);
+
+    assert.equal((await client.get(`/panes/lots/999999/bidding?u=${user.id}`)).status, 404);
   });
 
   it('toggles a favorite and returns to the referer', async () => {
@@ -75,15 +108,15 @@ describeHttp('preferences', (it) => {
     assert.match(await page.text(), /Kusama, Hockney/);
   });
 
-  it('returns 404 for an unknown user', async () => {
+  it('sends an unknown user back to the picker', async () => {
     const client = await signedIn();
-    assert.equal((await client.get('/u/999999/preferences')).status, 404);
-    assert.equal((await client.post('/u/999999/preferences', { artists: 'x' })).status, 404);
+    assert.equal(location(await client.get('/u/999999/preferences')), '/');
+    assert.equal(location(await client.post('/u/999999/preferences', { artists: 'x' })), '/');
   });
 });
 
 describeHttp('page smoke tests', (it) => {
-  it('summary shows matches for the user\'s preferences and 404s for unknown users', async () => {
+  it('summary shows matches for the user\'s preferences and sends unknown users to the picker', async () => {
     const client = await signedIn();
     await createCategory('Watches');
     const user = await createUser({ name: 'Wendy' });
@@ -92,18 +125,19 @@ describeHttp('page smoke tests', (it) => {
     const page = await client.get(`/u/${user.id}/summary`);
     assert.equal(page.status, 200);
     assert.match(await page.text(), /Steel Chronograph/);
-    assert.equal((await client.get('/u/999999/summary')).status, 404);
+    assert.equal(location(await client.get('/u/999999/summary')), '/');
   });
 
   it('auctions list and detail render, unknown auction 404s', async () => {
     const client = await signedIn();
+    const user = await createUser({ name: 'Visitor' });
     const auction = await createAuction({ title: 'Spring Sale' });
     await createLot({ auction_id: auction.id, title: 'Lot One' });
-    assert.match(await (await client.get('/auctions')).text(), /Spring Sale/);
-    const detail = await client.get(`/auctions/${auction.id}`);
+    assert.match(await (await client.get(`/auctions?u=${user.id}`)).text(), /Spring Sale/);
+    const detail = await client.get(`/auctions/${auction.id}?u=${user.id}`);
     assert.equal(detail.status, 200);
     assert.match(await detail.text(), /Lot One/);
-    assert.equal((await client.get('/auctions/999999')).status, 404);
+    assert.equal((await client.get(`/auctions/999999?u=${user.id}`)).status, 404);
   });
 
   it('history lists bids with their state and marking notifications read redirects', async () => {
@@ -140,6 +174,10 @@ describeHttp('page smoke tests', (it) => {
     assert.equal(auctions.headers.get('cache-control'), 'no-store');
     assert.match(await auctions.text(), /Pane Sale/);
     assert.equal((await client.get(`/panes/feed?u=${user.id}`)).status, 200);
+    const fromPicker = await client.get('/panes/live?u=');
+    assert.equal(fromPicker.status, 200, 'the picker page polls panes with an empty ?u=');
+    assert.doesNotMatch(await fromPicker.text(), /<html/, 'partial, not a redirected full page');
+    assert.equal((await client.get('/admin/enter')).status, 200, 'admin gate is reachable without a user');
   });
 
   it('admin dashboard renders and admin actions redirect with flashes', async () => {
@@ -178,13 +216,14 @@ describeHttp('page smoke tests', (it) => {
 describeHttp('error pages', (it) => {
   it('renders a styled 404 for unknown routes and a 500 without a stack trace', async () => {
     const client = await signedIn();
-    const missing = await client.get('/no/such/page');
+    const user = await createUser({ name: 'Lost' });
+    const missing = await client.get(`/no/such/page?u=${user.id}`);
     assert.equal(missing.status, 404);
     const missingHtml = await missing.text();
     assert.match(missingHtml, /Not found/);
     assert.match(missingHtml, /class="shell"/);
 
-    const broken = await client.get('/lots/not-a-number');
+    const broken = await client.get(`/lots/not-a-number?u=${user.id}`);
     assert.equal(broken.status, 500);
     const brokenHtml = await broken.text();
     assert.match(brokenHtml, /Something went wrong/);
@@ -200,17 +239,14 @@ describeHttp('error pages', (it) => {
     assert.match(await page.text(), /You are <b>Dup<\/b>/);
   });
 
-  it('renders lot, auction and pane pages anonymously for a non-numeric ?u=', async () => {
+  it('sends lot and auction pages with a non-numeric ?u= to the picker, panes render anonymously', async () => {
     const client = await signedIn();
     const lot = await createLot({ title: 'Anon' });
-    for (const url of [
-      `/lots/${lot.id}?u=abc`,
-      `/auctions/${lot.auction_id}?u=abc`,
-      '/panes/feed?u=abc'
-    ]) {
-      const page = await client.get(url);
-      assert.equal(page.status, 200, url);
-      assert.doesNotMatch(await page.text(), /You are <b>/, url);
+    for (const url of [`/lots/${lot.id}?u=abc`, `/auctions/${lot.auction_id}?u=abc`]) {
+      assert.equal(location(await client.get(url)), '/', url);
     }
+    const pane = await client.get('/panes/feed?u=abc');
+    assert.equal(pane.status, 200);
+    assert.doesNotMatch(await pane.text(), /You are <b>/);
   });
 });

@@ -38,23 +38,9 @@
   </div>
 
   <div class="bid-panel">
-    <% if (highBid) { %>
-      <p>Current high bid <b><%= formatMoney(highBid.amount, lot.currency) %></b> by <%- include('partials/avatar', { person: highBid, size: 'sm' }) %> <%= highBid.name %></p>
-    <% } else if (lot.starting_bid != null) { %>
-      <p>No bids yet — starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p>
-    <% } else { %>
-      <p>No bids yet.</p>
-    <% } %>
-    <p class="muted"><%= bids.length %> bid<%= bids.length === 1 ? '' : 's' %></p>
-
-    <% if (lot.auction_status === 'open' && userId) { %>
-      <form class="bid-form" method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/bid') %>">
-        <input name="amount" inputmode="decimal" placeholder="Your bid" value="<%= nextBid != null ? nextBid : '' %>">
-        <button class="btn primary" type="submit" <%= isHighBidder ? 'disabled' : '' %>>Bid</button>
-      </form>
-      <p class="muted"><% if (nextBid != null) { %>Next bid <b><%= formatMoney(nextBid, lot.currency) %></b> · steps of <%= formatMoney(increment, lot.currency) %> · max <%= formatMoney(maxBid, lot.currency) %><% } else { %>Minimum bid 1<% } %></p>
-      <% if (isHighBidder) { %><p class="muted">You are the high bidder.</p><% } %>
-    <% } %>
+    <div id="lot-bidding" data-src="<%= livePath('bidding') %>">
+      <%- include('partials/lot-bidding') %>
+    </div>
 
     <button type="button" class="linklike" id="bidding-rules-link">Bidding rules</button>
     <dialog id="bidding-rules">
@@ -71,7 +57,7 @@
       <table class="table">
         <tr><th>Current price</th><th>Step</th></tr>
         <% let lowerBound = 0; for (const [upperBound, step] of INCREMENTS) { %>
-          <tr class="<%= step === increment ? 'current-step' : '' %>">
+          <tr data-step="<%= step %>" class="<%= step === increment ? 'current-step' : '' %>">
             <td><%= formatMoney(lowerBound, lot.currency) %><%= upperBound === Infinity ? '+' : ' – under ' + formatMoney(upperBound, lot.currency) %></td>
             <td><%= formatMoney(step, lot.currency) %></td>
           </tr>
@@ -90,16 +76,9 @@
 </div>
 
 <h2 class="section-heading">Bid history</h2>
-<% if (bids.length === 0) { %>
-  <p class="lede">No bids yet.</p>
-<% } else { %>
-  <table class="table">
-    <tr><th>Bidder</th><th>Amount</th><th>Time</th></tr>
-    <% for (const bid of bids) { %>
-      <tr><td class="bidder"><%- include('partials/avatar', { person: bid, size: 'sm' }) %> <%= bid.name %></td><td><%= formatMoney(bid.amount, lot.currency) %></td><td><%= formatCentral(bid.placed_at) %></td></tr>
-    <% } %>
-  </table>
-<% } %>
+<div id="lot-history" data-src="<%= livePath('history') %>">
+  <%- include('partials/lot-history') %>
+</div>
 
 <audio id="sold-sound" src="/sold.mp3"></audio>
 <script>
@@ -108,20 +87,29 @@
   var rulesClose = document.getElementById('bidding-rules-close');
   if (rulesLink && rulesDialog) rulesLink.addEventListener('click', function () { rulesDialog.showModal(); });
   if (rulesClose && rulesDialog) rulesClose.addEventListener('click', function () { rulesDialog.close(); });
-  var bidForm = document.querySelector('.bid-form');
-  if (bidForm) {
-    bidForm.addEventListener('submit', function (event) {
-      var amountText = bidForm.elements.amount.value.replace(/,/g, '');
-      var amount = Number(amountText);
-      var estimateHigh = <%= lot.estimate_high == null ? 'null' : Number(lot.estimate_high) %>;
-      if (amount >= 1000000 || (estimateHigh && amount >= 10 * estimateHigh)) {
-        var formattedAmount = amount.toLocaleString('en-US', { maximumFractionDigits: 2 });
-        if (!window.confirm('You are bidding ' + formattedAmount + ' — is that right?')) {
-          event.preventDefault();
-        }
+  // Delegated: the bid form lives inside a live-refreshed region and is replaced wholesale.
+  document.addEventListener('submit', function (event) {
+    var bidForm = event.target.closest('.bid-form');
+    if (!bidForm) return;
+    var amountText = bidForm.elements.amount.value.replace(/,/g, '');
+    var amount = Number(amountText);
+    var estimateHigh = <%= lot.estimate_high == null ? 'null' : Number(lot.estimate_high) %>;
+    if (amount >= 1000000 || (estimateHigh && amount >= 10 * estimateHigh)) {
+      var formattedAmount = amount.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      if (!window.confirm('You are bidding ' + formattedAmount + ' — is that right?')) {
+        event.preventDefault();
       }
+    }
+  });
+  // Keep the highlighted rules row in step with the live bid panel.
+  var bidding = document.getElementById('lot-bidding');
+  if (bidding && rulesDialog) new MutationObserver(function () {
+    var status = bidding.querySelector('[data-increment]');
+    if (!status) return;
+    rulesDialog.querySelectorAll('tr[data-step]').forEach(function (row) {
+      row.classList.toggle('current-step', row.dataset.step === status.dataset.increment);
     });
-  }
+  }).observe(bidding, { childList: true });
   if (document.querySelector('.sold-banner') && location.search.indexOf('justClosed=1') !== -1) {
     var sound = document.getElementById('sold-sound');
     if (sound) sound.play().catch(function () {});

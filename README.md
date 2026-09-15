@@ -273,9 +273,22 @@ favorite and respond to outbids so the site feels busy while someone is
 looking at it. It only acts while at least one browser is polling the panes
 (presence = the existing 3 s `/panes/*` poll), caps itself at 300 actions an
 hour, and serialises across processes with a Postgres advisory lock. The
-`/admin` page has a Simulation box: on/off, run-one-action-now, and a
-"wake for 10 min" button for demos. Design and rationale:
-[`docs/simulation-design.md`](docs/simulation-design.md).
+`/admin` page has a Simulation box: on/off, run-one-action-now, "wake for
+10 min" for demos, and "Clone next auction now" for the recycler. Design and
+rationale: [`docs/simulation-design.md`](docs/simulation-design.md).
+
+**Production rollout**
+
+1. Apply `db/migrations/006-simulation.sql` on the Supabase database (it is
+   idempotent — safe alongside `db/schema.sql`).
+2. Deploy with `SIM_ENABLED=true` (default) and, if desired, tune
+   `SIM_MIN_SECONDS` / `SIM_MAX_SECONDS` (tick jitter, 5–30 s),
+   `SIM_IDLE_SECONDS` (presence window, 90 s),
+   `SIM_MIN_OPEN_AUCTIONS` / `SIM_MIN_UPCOMING_AUCTIONS` (recycler floors).
+3. Control it live from `/admin`: toggle on/off, run a single action, wake it
+   for 10 minutes, or force a clone-forward.
+4. To switch it off entirely without a deploy, set `SIM_ENABLED=false` and
+   restart — the loop never starts and the admin box shows it disabled.
 
 ## Seed contract
 

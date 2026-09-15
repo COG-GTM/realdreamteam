@@ -15,7 +15,7 @@
           <p class="eyebrow"><%= auction.house_name %></p>
           <h3><%= auction.title %></h3>
           <p class="muted"><%= auction.location || '' %> · <%= auction.format %> · <%= auction.lot_count %> lot<%= auction.lot_count === 1 ? '' : 's' %></p>
-          <p class="muted">Starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · Closes <%= formatCentral(auction.closes_at) %><% } %></p>
+          <p class="muted">Starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · Closes <%= formatCentral(auction.closes_at) %><% } %><% if (auction.ends_soon) { %> · <span class="ends-soon" data-closes-at="<%= new Date(auction.closes_at).toISOString() %>"></span><% } %></p>
         </div>
         <span class="pill <%= auction.status %>"><%= auction.status %></span>
       </a>

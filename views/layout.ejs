@@ -56,7 +56,7 @@
   <% if (!(typeof gate !== 'undefined' && gate)) { %>
     <script>
       (() => {
-        const panes = document.querySelectorAll('.pane[data-src]');
+        const panes = document.querySelectorAll('[data-src]');
         const panesAside = document.querySelector('.panes');
         let refreshing = false;
         let lastInput = Date.now();
@@ -76,6 +76,11 @@
             }
           }, { passive: true });
         }
+        // Leave a region alone while the user is typing in it.
+        function busy(pane) {
+          if (pane.contains(document.activeElement) && document.activeElement.matches('input,textarea,select')) return true;
+          return [...pane.querySelectorAll('input')].some((input) => input.value !== input.defaultValue);
+        }
         async function refresh() {
           if (document.hidden || refreshing) return;
           if (Date.now() - lastInput > IDLE_LIMIT) {
@@ -88,6 +93,7 @@
           }
           refreshing = true;
           await Promise.all([...panes].map(async (pane) => {
+            if (busy(pane)) return;
             const itemSelector = pane.id === 'pane-live' ? '.live-item' : '.unread';
             const oldIds = (pane.id === 'pane-feed' || pane.id === 'pane-live')
               ? new Set([...pane.querySelectorAll(itemSelector)].map((item) => item.dataset.id))
@@ -95,7 +101,9 @@
             try {
               const response = await fetch(pane.dataset.src, { credentials: 'same-origin' });
               if (!response.ok) return;
-              pane.innerHTML = await response.text();
+              const html = await response.text();
+              if (html === pane.innerHTML || busy(pane)) return;
+              pane.innerHTML = html;
               if (oldIds) pane.querySelectorAll(itemSelector).forEach((item) => {
                 if (!oldIds.has(item.dataset.id)) item.classList.add('fresh');
               });
@@ -104,6 +112,24 @@
           refreshing = false;
         }
         setInterval(refresh, 3000);
+
+        // "Ends in 42 min" countdowns on open auctions closing within 24 h.
+        const endsNodes = document.querySelectorAll('.ends-soon[data-closes-at]');
+        if (endsNodes.length) {
+          const tickEnds = () => {
+            const now = Date.now();
+            for (const node of endsNodes) {
+              const left = new Date(node.dataset.closesAt) - now;
+              if (left <= 0) { node.textContent = 'Ends soon'; continue; }
+              const mins = Math.ceil(left / 60000);
+              node.textContent = mins >= 60
+                ? `Ends in ${Math.floor(mins / 60)} h ${mins % 60} min`
+                : `Ends in ${mins} min`;
+            }
+          };
+          tickEnds();
+          setInterval(tickEnds, 1000);
+        }
       })();
     </script>
   <% } %>

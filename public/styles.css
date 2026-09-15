@@ -61,3 +61,5 @@ dialog#bidding-rules{background:var(--panel);color:var(--text);border:1px solid 
 .sim-box p{margin:0 0 8px;font-size:.86rem}
 .sim-actions-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .sim-log{list-style:none;margin:8px 0 0;padding:8px 0 0;border-top:1px solid var(--line);display:grid;gap:4px;font-size:.8rem}
+.ends-soon{color:var(--accent);font-weight:600}
+.lot-card-stats{margin:0}

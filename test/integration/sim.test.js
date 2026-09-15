@@ -4,7 +4,7 @@ const { runTick, resetDirector } = require('../../lib/sim/director');
 const { placeBid } = require('../../lib/bids');
 const presence = require('../../lib/sim/presence');
 
-const { describeDb, db, createUser, createLot, createAuction, createBid, setPreferences, rows, notificationsFor } = helper;
+const { describeDb, db, createUser, createLot, createAuction, createCategory, createBid, setPreferences, rows, notificationsFor } = helper;
 
 async function makeShadow(name, persona = { budget: 1.5, aggression: 0.8, sniper: false, activity: 1 }) {
   const user = await createUser({ name });
@@ -96,6 +96,53 @@ describeDb('sim director', (it) => {
     assert.equal(Number(favResult.lotId), Number(lot.id));
     const favorites = await rows('SELECT COUNT(*)::int AS count FROM favorites WHERE lot_id = $1 AND user_id = $2', [lot.id, shadow.id]);
     assert.equal(favorites[0].count, 1);
+  });
+
+  it('a publish_lot tick lists a bank lot and notifies matching humans', async () => {
+    presence.reset();
+    resetDirector();
+    const human = await createUser({ name: 'Watcher' });
+    await createCategory('Contemporary Art');
+    await setPreferences(human.id, { categories: ['Contemporary Art'] });
+    const auction = await createAuction({ status: 'open' });
+    await createLot({ auction_id: auction.id, lot_number: 1 });
+    const rng = {
+      ...forcedRng(),
+      weighted: (entries) => {
+        const found = entries.find((entry) => entry.value === 'publish_lot');
+        return found ? found.value : (entries.length ? entries[0].value : null);
+      }
+    };
+
+    const result = await runTick({ rng, now: new Date(), presence, log: silent });
+    assert.equal(result.action, 'publish_lot');
+    const lot = (await rows('SELECT * FROM lots WHERE id = $1', [result.lotId]))[0];
+    assert.equal(Number(lot.auction_id), Number(auction.id));
+    assert.equal(lot.lot_number, 2);
+    assert.equal(lot.title, 'Untitled (Skull)'); // first unseen seed lot
+    assert.equal((await rows("SELECT kind FROM activity WHERE kind = 'new_lot' AND lot_id = $1", [lot.id])).length, 1);
+    assert.equal((await notificationsFor(human.id)).filter((n) => n.kind === 'new_lot').length, 1);
+  });
+
+  it('a close_early tick closes an auction inside its last 30 minutes', async () => {
+    presence.reset();
+    resetDirector();
+    const winner = await createUser({ name: 'Winner' });
+    const auction = await createAuction({ status: 'open', closes_at: new Date(Date.now() + 10 * 60 * 1000) });
+    const lot = await createLot({ auction_id: auction.id, starting_bid: 100 });
+    await createBid(lot.id, winner.id, 120);
+    const rng = {
+      ...forcedRng(),
+      weighted: (entries) => {
+        const found = entries.find((entry) => entry.value === 'close_early');
+        return found ? found.value : (entries.length ? entries[0].value : null);
+      }
+    };
+
+    const result = await runTick({ rng, now: new Date(), presence, log: silent });
+    assert.equal(result.action, 'close_early');
+    assert.equal((await rows('SELECT status FROM auctions WHERE id = $1', [auction.id]))[0].status, 'closed');
+    assert.equal((await rows("SELECT kind FROM activity WHERE kind = 'sold'")).length, 1);
   });
 
   it('a human outbidding a shadow produces no notification for the shadow', async () => {

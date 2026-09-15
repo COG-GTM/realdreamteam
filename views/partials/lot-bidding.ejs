@@ -1,0 +1,17 @@
+<% if (highBid) { %>
+  <p>Current high bid <b><%= formatMoney(highBid.amount, lot.currency) %></b> by <%- include('avatar', { person: highBid, size: 'sm' }) %> <%= highBid.name %></p>
+<% } else if (lot.starting_bid != null) { %>
+  <p>No bids yet — starting bid <%= formatMoney(lot.starting_bid, lot.currency) %></p>
+<% } else { %>
+  <p>No bids yet.</p>
+<% } %>
+<p class="muted" data-increment="<%= increment %>"><%= bids.length %> bid<%= bids.length === 1 ? '' : 's' %> · <%= lot.watch_count || 0 %> watching</p>
+
+<% if (lot.auction_status === 'open' && userId) { %>
+  <form class="bid-form" method="post" action="<%= userPath(userId, '/lots/' + lot.id + '/bid') %>">
+    <input name="amount" inputmode="decimal" placeholder="Your bid" value="<%= nextBid != null ? nextBid : '' %>">
+    <button class="btn primary" type="submit" <%= isHighBidder ? 'disabled' : '' %>>Bid</button>
+  </form>
+  <p class="muted"><% if (nextBid != null) { %>Next bid <b><%= formatMoney(nextBid, lot.currency) %></b> · steps of <%= formatMoney(increment, lot.currency) %> · max <%= formatMoney(maxBid, lot.currency) %><% } else { %>Minimum bid 1<% } %></p>
+  <% if (isHighBidder) { %><p class="muted">You are the high bidder.</p><% } %>
+<% } %>

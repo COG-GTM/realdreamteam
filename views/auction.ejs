@@ -4,7 +4,7 @@
 <% if (season) { %><p class="muted"><small>Season <%= season %> — a new edition of this sale.</small></p><% } %>
 <p class="lede">
   <span class="pill <%= auction.status %>"><%= auction.status %></span>
-  <%= auction.format %> · starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · closes <%= formatCentral(auction.closes_at) %><% } %>
+  <%= auction.format %> · starts <%= formatCentral(auction.starts_at) %><% if (auction.closes_at) { %> · closes <%= formatCentral(auction.closes_at) %><% } %><% if (auction.ends_soon) { %> · <span class="ends-soon" data-closes-at="<%= new Date(auction.closes_at).toISOString() %>"></span><% } %>
 </p>
 <% if (auction.source_url) { %><p><a class="btn" href="<%= auction.source_url %>">View at <%= auction.house_name %> →</a></p><% } %>
 

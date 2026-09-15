@@ -1,8 +1,22 @@
 # "Living Auction House" — simulation design
 
-Status: **proposal, awaiting Mark's decisions (§10)**. Builds on
+Status: **implemented (PRs #97, #98, #100, and this PR)**. Builds on
 [`build-design.md`](build-design.md) and the frozen schema in
 [`schema.md`](schema.md); nothing here changes how a real user bids.
+
+What differs from the plan:
+
+- `respond_outbid` picks one beaten-shadow candidate via `rng.pick` and then
+  applies the aggression gate, rather than iterating all candidates.
+- Sniper personas are ineligible on auctions with `closes_at IS NULL` (there is
+  no "last 10%" to wait for).
+- The fairness throttle (`lastShadowOutbid`) and the 300-actions/hour cap live
+  in process memory, not in the database — they reset on restart.
+- `unsell` is not implemented (sold lots re-offer via cloning instead).
+- The wake-up burst is skipped if an action ran in the last 10 minutes.
+- `publish_lot` (weight 8) and `close_early` (weight 2) are implemented;
+  `new_lot` as a distinct sim action is covered by `publish_lot` going through
+  the `createLot` seam.
 
 ## 1. Goal
 
