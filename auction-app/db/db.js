@@ -224,8 +224,8 @@ async function seedAll(client) {
     if (!userId) throw new Error(`Unknown notification user "${notification.user}"`);
     await client.query(
       `INSERT INTO notifications
-       (user_id, lot_id, kind, reason, created_at, read_at, sent_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       (user_id, lot_id, kind, reason, created_at, read_at)
+       VALUES ($1, $2, $3, $4, $5, $6)
        ON CONFLICT (user_id, lot_id, kind) DO NOTHING`,
       [
         userId,
@@ -233,8 +233,7 @@ async function seedAll(client) {
         notification.kind,
         notification.reason,
         notification.created_at || new Date().toISOString(),
-        notification.read_at || null,
-        notification.sent_at || null
+        notification.read_at || null
       ]
     );
   }

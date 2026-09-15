@@ -26,7 +26,7 @@ no build step, no client-side framework. ~6 dependencies.
 3. **Browse** auctions → lot detail: images (link to Wikipedia), estimates, current bid, bid history.
 4. **Two tabs, two users** bid on the same lot; rejected low bid; high bidder flips.
 5. **Admin adds a lot** → every matching user sees it in their **in-app notification feed**
-   (unread badge) on next page load; Slack webhook is an optional extra.
+   (unread badge) on next page load.
 6. **Outbid** → the previous high bidder gets an "outbid on …" notification in the feed.
 7. **History** — favorites, bids (won / outbid / leading), notifications received.
 8. **Auction closes** (silent-auction model: all lots stay open until then) → lot shows
@@ -91,8 +91,7 @@ absentee bids, realtime push (refresh the page).
     lot_id, kind) DO UPDATE SET reason=…, created_at=now(), read_at=NULL` — the feed shows the
     latest loss as unread again; the bid history table keeps the full sequence.
   - `sold`: on auction close → one row per bidder on each sold lot ("Sold to X for Y").
-  Unique on `(user_id, lot_id, kind)`. Shown on summary (unread badge) and history. Slack webhook
-  delivery of unsent rows stays as an optional extra when `SLACK_WEBHOOK_URL` is set.
+  Unique on `(user_id, lot_id, kind)`. Shown on summary (unread badge) and history.
 - **Auction status**: poller flips `upcoming→open→closed` from `starts_at`/`closes_at` every
   30 s **and** admin can force close/reopen (needed for a 5-minute demo; the schema doc says
   no manual flip — this is the one deliberate deviation, see §9). The poller only flips
@@ -116,7 +115,7 @@ auction-app/
   package.json  server.js  .env.example  README.md
   db/schema.sql (frozen)  db/db.js (pool, query, seedIfEmpty)  db/reset.sql (TRUNCATE all, for re-demo)
   data/seed/{auction_houses,users,preferences,auctions,lots,bids,favorites,notifications}.json
-  lib/matching.js (+ .test.js)  lib/slack.js  lib/poller.js
+  lib/matching.js (+ .test.js)  lib/poller.js
   routes/index.js  routes/{summary,preferences,auctions,lots,history,admin}.js
   views/layout.ejs  views/{index,summary,preferences,auctions,auction,lot,history,admin}.ejs
   views/partials/lot-card.ejs  views/partials/flash.ejs
@@ -124,7 +123,7 @@ auction-app/
 ```
 
 Reused from the closed #24 branch (already written, only needs renames + async `pg`):
-`views/*`, `styles.css`, `matching.js` + tests, `poller.js`, `slack.js`, close/SOLD flow,
+`views/*`, `styles.css`, `matching.js` + tests, `poller.js`, close/SOLD flow,
 `sold.mp3`, architecture diagrams.
 
 ## 6. Demo data — what was built (data session, 2026-09-15)
@@ -159,7 +158,7 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 | `bids.json` | 350 | Closed auctions: 0–5 bids per lot (45 of 58 lots sold, 13 unsold). Open auctions: ~40 % of lots have 1–4 bids so far. First bid = `starting_bid`, each next bid +4–12 % (rounded), `placed_at` strictly increasing and inside the auction window (open ones up to ~now). All 28 users bid. **MarkP: 23 bids — leading on 9 open lots, outbid on 6.** No bids on the upcoming auction. |
 | `lots.json` (closed) | 45 | `hammer_price` = highest bid, `winner` = that bidder, derived from `bids.json`; unsold lots keep both null. Sold lots are history only — a lot belongs to one auction and is never re-listed. |
 | `favorites.json` | 66 | 1–4 per user (MarkP 4), mostly lots matching the user's prefs plus one off-interest each, on open/upcoming lots. |
-| `notifications.json` | 519 | Derived, not invented: 150 `new_lot` (open/upcoming lots matching prefs; `reason` lists the match, e.g. `category: Watches · artist: Rolex`), 221 `outbid` (every bidder beaten by a later bid, `reason` = who/how much), 148 `sold` (every bidder on a sold closed lot). 223 unread (`read_at` null); `sent_at` null everywhere. MarkP: 14 / 12 / 8, 13 unread. |
+| `notifications.json` | 519 | Derived, not invented: 150 `new_lot` (open/upcoming lots matching prefs; `reason` lists the match, e.g. `category: Watches · artist: Rolex`), 221 `outbid` (every bidder beaten by a later bid, `reason` = who/how much), 148 `sold` (every bidder on a sold closed lot). 223 unread (`read_at` null). MarkP: 14 / 12 / 8, 13 unread. |
 
 ### 6.3 Auctions
 
@@ -199,7 +198,7 @@ sale — matches MarkP (artist + category) and Reilly/Hitomi (category), so seve
 | 3 | 1.5 | Summary (feed + matches + Discover) + preferences + `matching.js` (+ tests) |
 | 4 | 2 | Auctions, auction, lot detail; favorite + bid with validation |
 | 5 | 1 | History page |
-| 6 | 1.5 | Admin add-lot, edit `closes_at`, poller, `new_lot`/`outbid`/`sold` feed rows, optional Slack, close/reopen + SOLD + sound |
+| 6 | 1.5 | Admin add-lot, edit `closes_at`, poller, `new_lot`/`outbid`/`sold` feed rows, close/reopen + SOLD + sound |
 | 7 | 1 | README, `db/reset.sql`, EC2 deploy (`systemd` unit, `.env`, public URL), full click-through recording |
 | | **10** | buffer 2 h |
 

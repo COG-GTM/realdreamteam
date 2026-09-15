@@ -1,10 +1,9 @@
 // Adding a lot from the admin page: validate the form, insert the lot and its
 // image, and create a new_lot notification for every user whose preferences
-// match. Slack gets a summary line when a webhook is configured.
+// match.
 const { withTransaction } = require('../db/db');
 const { isCategory, categories } = require('./categories');
 const { matchReasons } = require('./matching');
-const { notify } = require('./slack');
 
 function text(value) {
   return String(value ?? '').trim();
@@ -107,8 +106,6 @@ async function createLot(fields) {
     return { lot, auction, matched };
   });
 
-  const who = result.matched.length ? `matches ${result.matched.join(', ')}` : 'no preference matches';
-  await notify(`New lot "${result.lot.title}" added to ${result.auction.title} — ${who}.`);
   return { lot: result.lot, notified: result.matched.length };
 }
 

@@ -1,6 +1,7 @@
 # Auction Interest App — v1 Design (Proposal)
 
-Status: proposal for team review. Decisions marked **Decided** were confirmed in the design
+Status: historical proposal. The Slack integration described below was later dropped;
+notifications are in-app only (see `docs/auction-app-schema.md`). Decisions marked **Decided** were confirmed in the design
 session; everything else is a default chosen for simplicity and can be changed before build starts.
 
 ## Goals for v1

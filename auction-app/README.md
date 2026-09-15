@@ -112,7 +112,6 @@ repeatedly.
 - `ACCESS_CODE`: site-wide access code, default `20240312`.
 - `ADMIN_CODE`: admin access code, default `20250714`.
 - `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
-- `SLACK_WEBHOOK_URL`: optional Slack incoming-webhook URL.
 - `PORT`: HTTP port, default `3000`.
 - `COOKIE_SECRET`: secret used to sign access cookies, default `change-me`.
 
@@ -145,7 +144,7 @@ Optional activity files may also be supplied:
 - `bids.json`: `{house, house_ref, lot_number, user, amount, placed_at}`.
 - `favorites.json`: `{user, house, house_ref, lot_number}`.
 - `notifications.json`: `{user, house, house_ref, lot_number, kind, reason,
-  created_at, read_at, sent_at}`. Duplicate `(user, lot, kind)` rows are
+  created_at, read_at}`. Duplicate `(user, lot, kind)` rows are
   ignored.
 
 Unknown natural keys and invalid categories fail the transaction with a clear

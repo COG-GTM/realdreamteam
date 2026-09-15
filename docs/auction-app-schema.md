@@ -38,7 +38,7 @@ so we use plain words:
 | `lot_images` | one photo of a lot, ordered | `position` (1 = thumbnail), `url`, `credit` |
 | `favorites` | user ♥ lot | `created_at` |
 | `bids` | one bid, append-only | `lot_id`, `user_id`, `amount`, `placed_at` |
-| `notifications` | in-app feed row: one per (user, lot, kind) | `kind` (`new_lot` / `outbid` / `sold`), `reason`, `created_at`, `read_at` (NULL = unread), `sent_at` (Slack, optional) |
+| `notifications` | in-app feed row: one per (user, lot, kind) | `kind` (`new_lot` / `outbid` / `sold`), `reason`, `created_at`, `read_at` (NULL = unread) |
 
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.
@@ -56,7 +56,7 @@ shows the same explanations.
 - **Matching** = a lot hits any of the user's `categories`, `artists`, or `keywords`
   (keywords checked against title and description). No price filtering.
 - **Notify once per kind.** `notifications` is unique on (user, lot, kind); the feed shows rows
-  with `read_at IS NULL` as unread. Optional Slack delivery stamps `sent_at`.
+  with `read_at IS NULL` as unread.
 - **Silent-auction close.** Every lot stays open until its auction closes; winners announced then
   (per-lot inactivity close is #38). `closes_at > starts_at` and `hammer_price > 0` are CHECKed.
 
@@ -76,7 +76,6 @@ bidding happens), one or two `upcoming` (so the matcher has lots to notify about
 
 - `tickets` — no reservation needed to bid; everyone may take part in every auction.
 - `preferences.min_price / max_price` — no budget filtering in V1.
-- `users.slack_user_id` — notifications go to one Slack channel.
 - Explicit indexes — primary keys and UNIQUE constraints are enough at demo scale.
 
 ## Left out on purpose

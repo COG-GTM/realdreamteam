@@ -175,11 +175,10 @@ CREATE TABLE notifications (
   reason     TEXT   NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   read_at    TIMESTAMPTZ,
-  sent_at    TIMESTAMPTZ,
   UNIQUE (user_id, lot_id, kind)
 );
 
-COMMENT ON TABLE  notifications            IS 'In-app feed: one row per (user, lot, kind). Shown on the summary (unread badge) and history pages. Optional Slack delivery of unsent rows stamps sent_at. One notification of each kind per lot per user.';
+COMMENT ON TABLE  notifications            IS 'In-app feed: one row per (user, lot, kind). Shown on the summary (unread badge) and history pages. One notification of each kind per lot per user.';
 COMMENT ON COLUMN notifications.id         IS 'Surrogate integer key.';
 COMMENT ON COLUMN notifications.user_id    IS 'Recipient.';
 COMMENT ON COLUMN notifications.lot_id     IS 'Lot concerned.';
@@ -187,12 +186,10 @@ COMMENT ON COLUMN notifications.kind       IS 'new_lot = matched preferences; ou
 COMMENT ON COLUMN notifications.reason     IS 'Human-readable text, e.g. "artist: David Hockney", "outbid by Christian at 5,500", "Sold to Mark for 55,000".';
 COMMENT ON COLUMN notifications.created_at IS 'When the event happened.';
 COMMENT ON COLUMN notifications.read_at    IS 'When the user saw it in the feed. NULL = unread (counts toward the badge).';
-COMMENT ON COLUMN notifications.sent_at    IS 'When delivered to Slack, if configured. NULL = not sent.';
 
 -- ---------------------------------------------------------------- dropped from v2
 -- tickets            : everyone may bid in any open auction; no reservation needed.
 -- preferences.min/max_price : no budget filtering in V1.
--- users.slack_user_id: removed.
 -- sales / events / items / likes : renamed to auctions / lots / favorites.
 
 -- ---------------------------------------------------------------- notes for later
