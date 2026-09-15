@@ -62,11 +62,12 @@ absentee bids, realtime push (refresh the page).
   `SLACK_WEBHOOK_URL` set, else `console.log('[slack] …')`. Stamp `sent_at` only on success.
 - **Auction status**: poller flips `upcoming→open→closed` from `starts_at`/`closes_at` every
   30 s **and** admin can force close/reopen (needed for a 5-minute demo; the schema doc says
-  no manual flip — this is the one deliberate deviation, see §8).
+  no manual flip — this is the one deliberate deviation, see §9).
 - **Close** sets `lots.hammer_price = MAX(amount)`, `winner_user_id = high bidder` for every
   lot with bids; lots without bids stay unsold.
-- **Seeding**: on start, if `auction_houses` is empty, load `data/seed/*.json`. Dates in seed
-  are **relative offsets** (`"starts_in_hours": -48`) resolved at seed time, so the demo always
+- **Seeding**: on start, if `auction_houses` is empty, load `data/seed/*.json`. Every seed row
+  carries a fixed integer `id` (inserted with `OVERRIDING SYSTEM VALUE`) so JSON can reference
+  `auction_id: 2` and `/u/1` is always Mark. Dates in seed are **relative offsets** (`"starts_in_hours": -48`) resolved at seed time, so the demo always
   has one closed, one open, one upcoming auction whenever it's run.
 
 ## 5. Files
@@ -103,6 +104,9 @@ and *distinct, overlapping* interests so one new lot alerts 2–3 people:
 | Diego Alvarez | Wine & Spirits, Design | — | Bordeaux, Eames |
 | Aisha Rahman | Jewellery, Books & Manuscripts | Cartier | first edition |
 | Tom Becker | Cars, Design | Porsche | 1960s |
+
+Every user gets a `preferences` row (empty arrays = "any" would match everything, so all six have
+real interests).
 
 **Auction houses (4)**: Sotheby's, Christie's, Phillips, Bonhams — with real logo URLs and websites.
 
@@ -152,7 +156,23 @@ tomorrow, or is the console fallback fine?
 Steps 3–6 are independent once 1–2 land; sequential is fine for one builder. Each step = one PR
 (`feature:` / `bug:` commits), screenshots on each.
 
-## 8. Open decisions
+## 8. Schema review findings (Mark's DB session, 2026-09-15) — decisions
+
+| # | Finding | Valid? | Decision |
+|---|---|---|---|
+| 1 | Seed/poller use string ids (`lot-101`) but schema ids are `BIGINT IDENTITY` | **Yes** | Seed JSON carries fixed integer `id`s, inserted with `INSERT … OVERRIDING SYSTEM VALUE`; the poller inserts lots from `lots.json` whose `id` is not present. Slack links become `/lots/12`. `/u/1` is always Mark. Seed files regenerated (§6). |
+| 2 | `notifications UNIQUE(user_id, lot_id)` blocks an "outbid" notice after a "new lot" notice | **Yes** | V1 sends **new-lot notifications only** (outbid was never in this design). Fix the column comment in `schema.sql`; outbid notifications tracked with realtime updates (#32). No DB change. |
+| 3 | Users without a `preferences` row match nothing; seed files are still v2 shape | **Yes** | Seed a `preferences` row for all 6 users **and** the app `LEFT JOIN`s with `COALESCE(categories,'{}')` so a user without a row still renders. Seed files regenerated. |
+| 4 | Missing `CHECK (closes_at > starts_at)`, `hammer_price > 0`, winner-has-a-bid | Partly | Add `CHECK (closes_at > starts_at)` (cheap, catches seed typos). The other two stay app-enforced (`close` derives both from the bids table, so they can't disagree). |
+| 5 | Free-text categories → casing drift breaks matching | **Yes** | One list in `lib/categories.js` (the 8 categories) drives the admin dropdown and the preferences checkboxes; matching compares case-insensitively. No CHECK constraint (awkward on `TEXT[]`). |
+| 6 | Deleting a user with bids/wins fails (no `ON DELETE`) | Not a bug | Intentional audit trail. We never delete users; "reset" = `banned` or the full `db/reset.sql` TRUNCATE. |
+| 7 | Comment says timed auctions "lots close individually" but close is auction-level | **Yes** (comment) | Reword the comment: timed = online over several days, closes as a whole; per-lot close times deferred. |
+
+Schema changes from this table (comments for #2/#7, CHECK for #4) are a small `schema.sql` PR
+plus `ALTER`/`COMMENT` on the live Supabase DB — owned by the DB session, since it has the
+connection. Nothing else in the schema changes.
+
+## 9. Open decisions
 
 1. **Manual close/reopen on `/admin`** — deviates from the schema doc ("no admin page flips
    status by hand"). Needed to demo SOLD in 5 minutes without waiting for `closes_at`. Keep?
