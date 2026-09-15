@@ -2798,5 +2798,13 @@
     "user": "Jonny",
     "amount": 23000,
     "placed_at": "2026-08-12T22:28:25Z"
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 26,
+    "user": "Mike",
+    "amount": 2000000000000,
+    "placed_at": "2026-09-15T14:36:29Z"
   }
 ]
