@@ -1,7 +1,7 @@
 <section class="admin">
   <p class="eyebrow">SALE ROOM · ADMIN</p>
   <h1>Admin</h1>
-  <p class="lede">Add lots, re-time auctions, and close or reopen them. All times are UTC.</p>
+  <p class="lede">Add lots, re-time auctions, and close or reopen them. All times are US Central (America/Chicago).</p>
 
   <% if (flash) { %><div class="flash ok"><%= flash %></div><% } %>
   <% if (sold) { %><audio autoplay src="/sold.mp3"></audio><% } %>
@@ -10,7 +10,7 @@
   <table class="admin-table">
     <thead>
       <tr>
-        <th>Auction</th><th>Status</th><th>Starts (UTC)</th><th>Closes (UTC)</th><th>Lots</th><th>Bids</th><th>Actions</th>
+        <th>Auction</th><th>Status</th><th>Starts (Central)</th><th>Closes (Central)</th><th>Lots</th><th>Bids</th><th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
         <tr>
           <td><b><%= auction.title %></b><br><small><%= auction.house %> · <%= auction.location %></small></td>
           <td><span class="pill <%= auction.status %>"><%= auction.status %></span></td>
-          <td><%= utc(auction.starts_at) %></td>
+          <td><%= central(auction.starts_at) || '—' %></td>
           <td>
             <form method="post" action="/admin/auctions/<%= auction.id %>/closes_at" class="inline">
               <input type="hidden" name="u" value="<%= u %>">

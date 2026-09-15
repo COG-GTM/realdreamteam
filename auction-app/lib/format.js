@@ -1,4 +1,4 @@
-const { formatUtc } = require('./time');
+const { formatCentral } = require('./time');
 
 function formatMoney(amount, currency) {
   if (amount == null) return '';
@@ -9,4 +9,4 @@ function userPath(userId, suffix) {
   return userId ? `/u/${userId}${suffix}` : suffix;
 }
 
-module.exports = { formatUtc, formatMoney, userPath };
+module.exports = { formatCentral, formatMoney, userPath };

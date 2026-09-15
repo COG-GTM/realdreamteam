@@ -4,6 +4,7 @@ const { renderPage } = require('./helpers');
 const { categories } = require('../lib/categories');
 const { createLot } = require('../lib/new-lot');
 const { closeAuction, validateClosesAt } = require('../lib/close');
+const { formatCentral, toCentralInput } = require('../lib/time');
 
 const router = express.Router();
 
@@ -42,15 +43,6 @@ function adminUrl(req, params = {}) {
   return text ? `/admin?${text}` : '/admin';
 }
 
-// "2026-09-15T10:30:00.000Z" -> "2026-09-15T10:30" for the datetime-local input.
-function forInput(date) {
-  return date ? new Date(date).toISOString().slice(0, 16) : '';
-}
-
-function utc(date) {
-  return date ? new Date(date).toISOString().replace('T', ' ').slice(0, 16) + ' UTC' : '—';
-}
-
 router.param('id', (req, res, next, id) => {
   if (!/^\d+$/.test(id)) return res.status(404).send('Not found');
   next();
@@ -77,8 +69,8 @@ router.get('/admin', async (req, res, next) => {
       flash: req.query.flash || '',
       error: req.query.error || '',
       sold: req.query.sold || '',
-      forInput,
-      utc,
+      forInput: toCentralInput,
+      central: formatCentral,
       u: req.query.u || ''
     });
   } catch (error) {
@@ -109,7 +101,7 @@ router.post('/admin/auctions/:id/closes_at', async (req, res, next) => {
     } catch (dbError) {
       return res.redirect(adminUrl(req, { error: `Could not save time: ${dbError.message}` }));
     }
-    res.redirect(adminUrl(req, { flash: `Close time saved: ${utc(checked.value)}` }));
+    res.redirect(adminUrl(req, { flash: `Close time saved: ${formatCentral(checked.value)}` }));
   } catch (error) {
     next(error);
   }

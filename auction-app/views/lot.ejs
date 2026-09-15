@@ -67,7 +67,7 @@
   <table class="table">
     <tr><th>Bidder</th><th>Amount</th><th>Time</th></tr>
     <% for (const bid of bids) { %>
-      <tr><td><%= bid.name %></td><td><%= formatMoney(bid.amount, lot.currency) %></td><td><%= formatUtc(bid.placed_at) %></td></tr>
+      <tr><td><%= bid.name %></td><td><%= formatMoney(bid.amount, lot.currency) %></td><td><%= formatCentral(bid.placed_at) %></td></tr>
     <% } %>
   </table>
 <% } %>

@@ -3,6 +3,7 @@
 // button and by the poller when closes_at passes.
 const { withTransaction } = require('../db/db');
 const { money } = require('./slack');
+const { fromCentralInput } = require('./time');
 
 // Highest amount wins; on a tie the earliest bid wins. Returns null when there
 // are no bids. Pure, so it is unit-tested without a database.
@@ -26,12 +27,11 @@ function soldReason(winnerName, price, currency, isWinner) {
 }
 
 // Turns the admin's closes_at text into a Date. Returns { value } or { error }.
-// The text is read as UTC when it has no explicit zone (the form is labelled UTC).
+// Text without an explicit zone is read as US Central (the form is labelled Central).
 function validateClosesAt(text, startsAt) {
   const raw = String(text || '').trim();
   if (!raw) return { error: 'Close time is required.' };
-  const withZone = /(Z|[+-]\d{2}:?\d{2})$/.test(raw) ? raw : `${raw}Z`;
-  const value = new Date(withZone);
+  const value = /(Z|[+-]\d{2}:?\d{2})$/.test(raw) ? new Date(raw) : fromCentralInput(raw);
   if (Number.isNaN(value.getTime())) return { error: 'Close time must be a valid date and time.' };
   if (startsAt && value <= new Date(startsAt)) return { error: 'Close time must be after the start time.' };
   return { value };

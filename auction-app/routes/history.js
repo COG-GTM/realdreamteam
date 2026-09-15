@@ -1,7 +1,7 @@
 const express = require('express');
 const { query } = require('../db/db');
 const { renderPage } = require('./helpers');
-const { formatUtc, formatMoney, userPath } = require('../lib/format');
+const { formatCentral, formatMoney, userPath } = require('../lib/format');
 
 const router = express.Router();
 
@@ -37,7 +37,7 @@ router.get('/u/:userId/history', async (req, res, next) => {
       favorites: favoritesResult.rows,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,
-      formatUtc,
+      formatCentral,
       formatMoney,
       userPath
     });

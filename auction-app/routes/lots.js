@@ -1,7 +1,7 @@
 const express = require('express');
 const { query, withTransaction } = require('../db/db');
 const { renderPage } = require('./helpers');
-const { formatUtc, formatMoney, userPath } = require('../lib/format');
+const { formatCentral, formatMoney, userPath } = require('../lib/format');
 const { placeBid } = require('../lib/bids');
 
 const router = express.Router();
@@ -66,7 +66,7 @@ async function showLot(req, res, next) {
       favorited: favoriteResult.rows.length > 0,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,
-      formatUtc,
+      formatCentral,
       formatMoney,
       userPath
     });

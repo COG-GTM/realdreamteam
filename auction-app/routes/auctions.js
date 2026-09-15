@@ -1,7 +1,7 @@
 const express = require('express');
 const { query } = require('../db/db');
 const { renderPage } = require('./helpers');
-const { formatUtc, formatMoney, userPath } = require('../lib/format');
+const { formatCentral, formatMoney, userPath } = require('../lib/format');
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ async function listAuctions(req, res, next) {
       groups,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,
-      formatUtc,
+      formatCentral,
       userPath
     });
   } catch (error) {
@@ -72,7 +72,7 @@ async function showAuction(req, res, next) {
       lots: lotsResult.rows,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,
-      formatUtc,
+      formatCentral,
       formatMoney,
       userPath
     });
