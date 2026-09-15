@@ -8,7 +8,8 @@ describeDb('placeBid', (it) => {
   it('records a first bid at or above the starting bid', async () => {
     const user = await createUser();
     const lot = await createLot({ starting_bid: 100 });
-    assert.deepEqual(await placeBid({ userId: user.id, lotId: lot.id, amount: '100' }), { ok: true });
+    assert.deepEqual(await placeBid({ userId: user.id, lotId: lot.id, amount: '100' }),
+      { ok: true, amount: 100, rounded: false });
     const bids = await rows('SELECT user_id, amount FROM bids WHERE lot_id = $1', [lot.id]);
     assert.equal(bids.length, 1);
     assert.equal(Number(bids[0].amount), 100);
@@ -24,14 +25,33 @@ describeDb('placeBid', (it) => {
     assert.equal((await rows('SELECT 1 FROM bids')).length, 0);
   });
 
-  it('requires a higher amount than the current high bid', async () => {
+  it('uses the low estimate as the opening bid anchor', async () => {
+    const user = await createUser();
+    const lot = await createLot({ estimate_low: 100 });
+    assert.deepEqual(await placeBid({ userId: user.id, lotId: lot.id, amount: '120' }),
+      { ok: true, amount: 120, rounded: false });
+  });
+
+  it('stores and increments decimal bids exactly', async () => {
+    const [ann, bob] = [await createUser(), await createUser()];
+    const lot = await createLot({ starting_bid: '12.00' });
+    assert.deepEqual(await placeBid({ userId: ann.id, lotId: lot.id, amount: '12.00' }),
+      { ok: true, amount: 12, rounded: false });
+    assert.deepEqual(await placeBid({ userId: bob.id, lotId: lot.id, amount: '12.50' }),
+      { ok: true, amount: 12.5, rounded: false });
+    const bids = await rows('SELECT amount FROM bids WHERE lot_id = $1 ORDER BY amount', [lot.id]);
+    assert.deepEqual(bids.map((bid) => Number(bid.amount)), [12, 12.5]);
+  });
+
+  it('requires the next increment above the current high bid', async () => {
     const [ann, bob] = [await createUser(), await createUser()];
     const lot = await createLot();
     await createBid(lot.id, ann.id, 500);
     const equal = await placeBid({ userId: bob.id, lotId: lot.id, amount: '500' });
     assert.equal(equal.ok, false);
-    assert.match(equal.error, /higher than the current high bid of 500/);
-    assert.deepEqual(await placeBid({ userId: bob.id, lotId: lot.id, amount: '501' }), { ok: true });
+    assert.match(equal.error, /at least 525 \(current high bid 500 \+ 25 step\)/);
+    assert.deepEqual(await placeBid({ userId: bob.id, lotId: lot.id, amount: '525' }),
+      { ok: true, amount: 525, rounded: false });
   });
 
   it('notifies the previous high bidder that they were outbid', async () => {
@@ -39,10 +59,10 @@ describeDb('placeBid', (it) => {
     const bob = await createUser({ name: 'Bob' });
     const lot = await createLot({ title: 'Blue Painting' });
     await createBid(lot.id, ann.id, 500);
-    await placeBid({ userId: bob.id, lotId: lot.id, amount: '600' });
+    await placeBid({ userId: bob.id, lotId: lot.id, amount: '525' });
     const [note] = await notificationsFor(ann.id);
     assert.equal(note.kind, 'outbid');
-    assert.equal(note.reason, 'Bob bid 600 on "Blue Painting"');
+    assert.equal(note.reason, 'Bob bid 525 on "Blue Painting"');
     assert.equal(note.read_at, null);
     assert.deepEqual(await notificationsFor(bob.id), []);
   });
@@ -52,21 +72,23 @@ describeDb('placeBid', (it) => {
     const bob = await createUser({ name: 'Bob' });
     const lot = await createLot();
     await createBid(lot.id, ann.id, 500);
-    await placeBid({ userId: bob.id, lotId: lot.id, amount: '600' });
+    await placeBid({ userId: bob.id, lotId: lot.id, amount: '525' });
     await helper.db.query('UPDATE notifications SET read_at = now()');
-    await placeBid({ userId: ann.id, lotId: lot.id, amount: '700' });
-    await placeBid({ userId: bob.id, lotId: lot.id, amount: '800' });
+    await placeBid({ userId: ann.id, lotId: lot.id, amount: '550' });
+    await placeBid({ userId: bob.id, lotId: lot.id, amount: '575' });
     const notes = await notificationsFor(ann.id);
     assert.equal(notes.length, 1);
-    assert.equal(notes[0].reason, 'Bob bid 800 on "Untitled"');
+    assert.equal(notes[0].reason, 'Bob bid 575 on "Untitled"');
     assert.equal(notes[0].read_at, null, 'refreshed notification is unread again');
   });
 
-  it('does not notify a bidder who raises their own high bid', async () => {
+  it('rejects a bid from the current high bidder', async () => {
     const ann = await createUser();
     const lot = await createLot();
     await createBid(lot.id, ann.id, 500);
-    assert.deepEqual(await placeBid({ userId: ann.id, lotId: lot.id, amount: '600' }), { ok: true });
+    assert.deepEqual(await placeBid({ userId: ann.id, lotId: lot.id, amount: '600' }),
+      { ok: false, error: 'You are already the high bidder.' });
+    assert.equal((await rows('SELECT 1 FROM bids WHERE lot_id = $1', [lot.id])).length, 1);
     assert.deepEqual(await notificationsFor(ann.id), []);
   });
 

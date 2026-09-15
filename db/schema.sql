@@ -98,10 +98,10 @@ CREATE TABLE lots (
   category       TEXT NOT NULL,
   description    TEXT,
   currency       CHAR(3) NOT NULL DEFAULT 'USD',
-  estimate_low   BIGINT,
-  estimate_high  BIGINT,
-  starting_bid   BIGINT,
-  hammer_price   BIGINT CHECK (hammer_price > 0),
+  estimate_low   NUMERIC(16,2),
+  estimate_high  NUMERIC(16,2),
+  starting_bid   NUMERIC(16,2),
+  hammer_price   NUMERIC(16,2) CHECK (hammer_price > 0),
   winner_user_id BIGINT REFERENCES users(id),
   source_url     TEXT,
   created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -118,7 +118,7 @@ COMMENT ON COLUMN lots.artist         IS 'Artist or maker. NULL for wine, cars, 
 COMMENT ON COLUMN lots.category       IS 'Category used for matching, e.g. "Contemporary Art".';
 COMMENT ON COLUMN lots.description    IS 'Medium, dimensions, year - one paragraph.';
 COMMENT ON COLUMN lots.currency       IS 'ISO 4217 code for all money columns on this row, e.g. USD, GBP.';
-COMMENT ON COLUMN lots.estimate_low   IS 'Low estimate in whole currency units. NULL = "estimate upon request".';
+COMMENT ON COLUMN lots.estimate_low   IS 'Low estimate in units of the lot''s currency, up to 2 decimals. NULL = "estimate upon request".';
 COMMENT ON COLUMN lots.estimate_high  IS 'High estimate. NULL = upon request.';
 COMMENT ON COLUMN lots.starting_bid   IS 'First acceptable bid. NULL = use estimate_low.';
 COMMENT ON COLUMN lots.hammer_price   IS 'Final price once the auction is closed. NULL = not yet sold / unsold.';
@@ -159,7 +159,7 @@ CREATE TABLE bids (
   id        BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   lot_id    BIGINT  NOT NULL REFERENCES lots(id)  ON DELETE CASCADE,
   user_id   BIGINT  NOT NULL REFERENCES users(id),
-  amount    BIGINT NOT NULL CHECK (amount > 0),
+  amount    NUMERIC(16,2) NOT NULL CHECK (amount > 0),
   placed_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -167,7 +167,7 @@ COMMENT ON TABLE  bids           IS 'Every bid placed, append-only. Current bid 
 COMMENT ON COLUMN bids.id        IS 'Surrogate integer key.';
 COMMENT ON COLUMN bids.lot_id    IS 'Lot bid on.';
 COMMENT ON COLUMN bids.user_id   IS 'Bidder.';
-COMMENT ON COLUMN bids.amount    IS 'Bid amount in whole units of the lot''s currency.';
+COMMENT ON COLUMN bids.amount    IS 'Bid amount in units of the lot''s currency, up to 2 decimals.';
 COMMENT ON COLUMN bids.placed_at IS 'When the bid was placed (UTC).';
 
 -- ---------------------------------------------------------------- 9. notifications

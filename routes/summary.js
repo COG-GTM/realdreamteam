@@ -3,6 +3,7 @@ const { query } = require('../db/db');
 const { renderPage } = require('./helpers');
 const { matchLot } = require('../lib/matching');
 const { markAllRead } = require('../lib/notifications');
+const { formatMoney } = require('../lib/format');
 
 const router = express.Router();
 
@@ -55,6 +56,7 @@ router.get('/u/:userId/summary', async (req, res, next) => {
       hasPreferences: prefs !== null,
       matches,
       discover,
+      formatMoney,
       flash: req.query.flash || ''
     });
   } catch (error) {

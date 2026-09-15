@@ -44,6 +44,8 @@ so we use plain words:
 Every table and column carries a `COMMENT` in the database, so the Supabase table editor
 shows the same explanations.
 
+Money columns use `NUMERIC(16,2)` to support values up to 9,999,999,999,999.99.
+
 Categories are the source of truth for the selectable list, while lots and preferences
 continue to store category names as text. Inactive categories remain available to users
 who already follow them, marked as retired, until they choose otherwise.
@@ -90,7 +92,7 @@ bidding happens), one or two `upcoming` (so the matcher has lots to notify about
 
 Bidding features deliberately deferred are tracked as GitHub issues under the
 [`deferred-bidding`](https://github.com/COG-GTM/realdreamteam/issues?q=label%3Adeferred-bidding)
-label: proxy/max bids, bid increments, reserves, room/phone/absentee bidding, bidder
+label: proxy/max bids, reserves, room/phone/absentee bidding, bidder
 registration, a separate closed-sale history table, realtime bid updates. Also still out:
 condition reports, provenance, viewing schedules, an artist entity table, saved searches.
 

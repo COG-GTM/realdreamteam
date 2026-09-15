@@ -29,15 +29,16 @@ describeHttp('lot pages', (it) => {
   it('places a bid and redirects back with a flash, or an error flash when rejected', async () => {
     const client = await signedIn();
     const user = await createUser();
+    const other = await createUser();
     const lot = await createLot({ starting_bid: 100 });
     const ok = await client.post(`/u/${user.id}/lots/${lot.id}/bid`, { amount: '120' });
     assert.equal(ok.status, 302);
     assert.equal(location(ok), `/u/${user.id}/lots/${lot.id}?flash=Bid%20placed!`);
-    const low = await client.post(`/u/${user.id}/lots/${lot.id}/bid`, { amount: '110' });
+    const low = await client.post(`/u/${other.id}/lots/${lot.id}/bid`, { amount: '110' });
     assert.match(location(low), /\?flash=.*&error=1$/);
     assert.deepEqual((await rows('SELECT amount FROM bids WHERE lot_id = $1', [lot.id])).map((row) => Number(row.amount)), [120]);
     const flashed = await client.get(location(low));
-    assert.match(await flashed.text(), /must be higher than the current high bid of 120/);
+    assert.match(await flashed.text(), /at least 130 \(current high bid 120 \+ 10 step\)/);
   });
 
   it('toggles a favorite and returns to the referer', async () => {
