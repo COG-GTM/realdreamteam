@@ -57,10 +57,12 @@ absentee bids, realtime push (refresh the page).
 ## 4. Rules (in code)
 
 - **Bid accepted** iff auction `open` ∧ user not `banned` ∧ `amount` is a positive integer ∧
-  `amount > MAX(bids.amount)` (or `≥ starting_bid ?? estimate_low` when no bids). Insert in a
-  transaction. Error message tells the user the minimum.
+  `amount > MAX(bids.amount)` (or `≥ starting_bid ?? estimate_low` when no bids). Runs in a
+  transaction that first does `SELECT … FROM lots WHERE id=$1 FOR UPDATE`, so two simultaneous
+  bids on one lot are serialised and each sees the other's result. Error tells the user the minimum.
 - **Matching** (`lib/matching.js`): category ∈ prefs.categories ∨ artist ∈ prefs.artists ∨ any
-  keyword appears in title or description — all comparisons case-insensitive. Returns the reasons
+  keyword appears in title or description (supersedes the v1 doc's "title only") — all
+  comparisons case-insensitive. Returns the reasons
   so the summary can print them. Pure function, unit-tested. A user with no `preferences` row
   simply has no matches (LEFT JOIN, never seeded).
 - **Discover**: `SELECT … FROM lots JOIN auctions … WHERE status='open' AND lot NOT IN (user's
@@ -70,18 +72,25 @@ absentee bids, realtime push (refresh the page).
   Animals, Miscellaneous IT Items. Admin add/drop of categories is #37.
 - **Notifications** are an **in-app feed** (`notifications` table + `kind` + `read_at`):
   - `new_lot`: on new lot (admin or poller) → one row per matching user, `reason` = match reasons.
-  - `outbid`: on accepted bid → one row for the previous high bidder (if different user).
+  - `outbid`: on accepted bid → one row for the previous high bidder (if different user). A user
+    can be outbid on the same lot many times, so this is an **upsert**: `ON CONFLICT (user_id,
+    lot_id, kind) DO UPDATE SET reason=…, created_at=now(), read_at=NULL` — the feed shows the
+    latest loss as unread again; the bid history table keeps the full sequence.
   - `sold`: on auction close → one row per bidder on each sold lot ("Sold to X for Y").
   Unique on `(user_id, lot_id, kind)`. Shown on summary (unread badge) and history. Slack webhook
   delivery of unsent rows stays as an optional extra when `SLACK_WEBHOOK_URL` is set.
 - **Auction status**: poller flips `upcoming→open→closed` from `starts_at`/`closes_at` every
   30 s **and** admin can force close/reopen (needed for a 5-minute demo; the schema doc says
-  no manual flip — this is the one deliberate deviation, see §9).
-- **Close** sets `lots.hammer_price = MAX(amount)`, `winner_user_id = high bidder` for every
-  lot with bids; lots without bids stay unsold.
+  no manual flip — this is the one deliberate deviation, see §9). The poller only flips
+  `open→closed` when `closes_at < now()`; **reopen** sets `status='open'` and, if `closes_at` has
+  already passed, pushes it to `now() + 1 day` so the poller doesn't re-close it 30 s later.
+- **Close** locks the auction's lots (`FOR UPDATE`, same lock as bidding) then sets
+  `lots.hammer_price = MAX(amount)`, `winner_user_id = high bidder` for every lot with bids;
+  lots without bids stay unsold. Reopen clears both.
 - **Seeding**: on start, if `auction_houses` is empty, load `data/seed/*.json`. Seed rows use
-  **natural keys**, not ids: auctions by `(house name, house_ref)`, lots by `(house_ref,
-  lot_number)`, users by `name`; the DB assigns ids and the loader resolves references by lookup.
+  **natural keys**, not ids: houses by `name`, auctions by `(house name, house_ref)`, lots by
+  `(house name, house_ref, lot_number)` — `house_ref` is only unique per house — users by `name`;
+  the DB assigns ids and the loader resolves each level by lookup.
   Dates in seed are **relative offsets** (`"starts_in_hours": -48`) resolved at seed time, so the demo always
   has one closed, one open, one upcoming auction whenever it's run.
 
@@ -107,7 +116,9 @@ Reused from the closed #24 branch (already written, only needs renames + async `
 
 > **Decision (Mark):** demo data is generated in a **separate phase by a separate session**, and
 > `preferences` are never pre-populated. What follows is the *shape and volume* the app should be
-> built to handle, not the content. Nothing below is seeded by the app builder except the schema.
+> built to handle, not the content. The app builder ships only the loader plus a tiny smoke
+> dataset (§7 step 2) so `npm start` works; the data session replaces `data/seed/*.json` with the
+> real content in the same shape.
 
 Goal: every page is full on first load, every beat in §2 has pre-existing data to point at,
 and nothing looks like a fixture.
@@ -198,3 +209,6 @@ owned by the DB session since it holds the connection. Nothing else in the schem
 3. **Images**: hotlink Wikimedia (zero work, occasional 429s) vs. upload ~30 files to the
    Supabase `lots` bucket (30 min, reliable). Recommendation: hotlink for the demo, bucket later.
 4. **Bid amounts**: whole units of currency only (no cents, no increments table — #26).
+5. **Admin page is open** (no login exists, per the no-auth decision). Anyone with the URL can add
+   lots or close auctions. Fine for a laptop demo; #12 tracks access control. Cheapest hardening
+   if wanted: `ADMIN_CODE` env var checked on `/admin*`.
