@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Sotheby's",
+    "website": "https://www.sothebys.com"
+  },
+  {
+    "id": 2,
+    "name": "Christie's",
+    "website": "https://www.christies.com"
+  },
+  {
+    "id": 3,
+    "name": "Phillips",
+    "website": "https://www.phillips.com"
+  },
+  {
+    "id": 4,
+    "name": "Bonhams",
+    "website": "https://www.bonhams.com"
+  }
+]
