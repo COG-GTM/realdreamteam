@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/enter', (req, res) => {
   renderPage(res, 'Access', 'enter', {
+    gate: true,
     admin: false,
     hint: "Your favorite otter's birthday in ISO 8601 basic format…"
   });
@@ -28,20 +29,27 @@ app.post('/enter', (req, res) => {
   const expected = process.env.ACCESS_CODE || '20240312';
   if (String(req.body.code || '') !== expected) {
     return renderPage(res, 'Access', 'enter', {
+      gate: true,
       admin: false,
       error: 'That code did not match.',
       hint: "Your favorite otter's birthday in ISO 8601 basic format…"
     });
   }
-  res.cookie('rdt_access', '1', {
+  res.cookie('rdt_access', 'session', {
     signed: true,
     httpOnly: true
   });
   res.redirect('/');
 });
 
+app.post('/signout', (req, res) => {
+  res.clearCookie('rdt_access');
+  res.clearCookie('rdt_admin');
+  res.redirect('/enter');
+});
+
 app.use((req, res, next) => {
-  if (req.signedCookies.rdt_access === '1') return next();
+  if (req.signedCookies.rdt_access === 'session') return next();
   res.redirect('/enter');
 });
 
@@ -61,7 +69,7 @@ app.use(async (req, res, next) => {
 
 app.use((req, res, next) => {
   if (!req.path.startsWith('/admin') || req.path === '/admin/enter') return next();
-  if (req.signedCookies.rdt_admin === '1') return next();
+  if (req.signedCookies.rdt_admin === 'session') return next();
   res.redirect('/admin/enter');
 });
 
