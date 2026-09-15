@@ -168,6 +168,13 @@ operation. Before a deliberate remote reset, use:
 ALLOW_REMOTE_RESET=1 npm run db:reset
 ```
 
+### Security
+
+- Site and admin code prompts allow 10 failed attempts per IP per 15 minutes.
+- Gate cookies are signed, `httpOnly`, `SameSite=Lax`, and secure in production.
+- Production requires `COOKIE_SECRET`, `ACCESS_CODE`, and `ADMIN_CODE`.
+- Admin source and image URLs accept only `http://`, `https://`, or site-relative `/` paths.
+
 ## Reset
 
 `npm run db:reset` truncates the nine application tables, resets identity
