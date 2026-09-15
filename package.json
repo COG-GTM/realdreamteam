@@ -9,6 +9,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "node --test",
+    "test:unit": "node --test lib/ db/ routes/",
+    "test:integration": "node --test test/",
     "db:reset": "node db/reset.js",
     "db:check": "node db/check.js",
     "db:avatars": "node db/assign-avatars.js"

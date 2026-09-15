@@ -46,8 +46,4 @@ router.get('/u/:userId/history', async (req, res, next) => {
   }
 });
 
-router.post('/u/:userId/notifications/read', (req, res) => {
-  res.redirect(`/u/${req.params.userId}/history`);
-});
-
 module.exports = router;
