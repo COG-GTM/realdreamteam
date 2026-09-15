@@ -149,10 +149,15 @@ CREATE INDEX items_sale_idx ON items(sale_id);
 
 ## Seed data changes
 
-- `data/seed/auction_houses.json` — 4 rows.
-- `events.json` → `sales.json`, add `auctionHouseId`, `saleType`, `status`, `closesAt`, `sourceUrl`.
-- `items.json` — `eventId` → `saleId`; `imageUrl` → `images: [{url, credit}]`; add `lotNumber`,
-  `description`, `currency`, `sourceUrl`. The 18 existing lots carry over.
+The seed-data changes were done in this PR:
+
+- `data/seed/auction_houses.json` — 4 auction-house rows.
+- `data/seed/events.json` was renamed to `data/seed/sales.json`; each sale now has
+  `auctionHouseId`, `saleNumber`, `saleType`, `status`, `closesAt`, and `sourceUrl`.
+- `data/seed/items.json` — `eventId` became `saleId`; `imageUrl` became
+  `images: [{url, credit}]`; each lot now has `lotNumber`, `description`, `currency`,
+  `startingBid`, and `sourceUrl`. The 18 existing lots carry over.
+- `data/seed/IMAGE_CREDITS.md` — unchanged Wikimedia Commons attribution record.
 
 ## Left out on purpose (tracked for later)
 
