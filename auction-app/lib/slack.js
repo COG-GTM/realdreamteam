@@ -20,8 +20,9 @@ function messageFor(user, lot, auction) {
     `${baseUrl}/lots/${lot.id}`;
 }
 
-async function notifyNewItem(user, lot, auction) {
-  const text = messageFor(user, lot, auction);
+// Posts `text` to the Slack webhook when SLACK_WEBHOOK_URL is set, otherwise
+// logs it. Never throws: Slack is an optional extra and must not break a write.
+async function notify(text) {
   if (!process.env.SLACK_WEBHOOK_URL) {
     console.log(`[slack] ${text}`);
     return true;
@@ -39,4 +40,8 @@ async function notifyNewItem(user, lot, auction) {
   }
 }
 
-module.exports = { notifyNewItem, messageFor };
+function notifyNewItem(user, lot, auction) {
+  return notify(messageFor(user, lot, auction));
+}
+
+module.exports = { notify, notifyNewItem, messageFor, money };
