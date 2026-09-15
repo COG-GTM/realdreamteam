@@ -1,6 +1,6 @@
 <section class="hero intro access-card">
   <p class="eyebrow">PRIVATE SALE ROOM · ACCESS</p>
-  <h1><%= admin ? 'Admin access' : 'Welcome inside.' %></h1>
+  <h1><%= admin ? 'Admin access' : "Let's Buy Cool Shit" %></h1>
   <p class="lede">Enter the shared code to continue.</p>
   <form method="post" action="<%= admin ? '/admin/enter' : '/enter' %>" class="access-form">
     <label for="code">Access code</label>
