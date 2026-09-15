@@ -70,7 +70,7 @@ app.use(async (req, res, next) => {
 app.use((req, res, next) => {
   if (!req.path.startsWith('/admin') || req.path === '/admin/enter') return next();
   if (req.signedCookies.rdt_admin === 'session') return next();
-  res.redirect('/admin/enter');
+  res.redirect(`/admin/enter${req.query.u ? `?u=${encodeURIComponent(req.query.u)}` : ''}`);
 });
 
 app.use(routes);

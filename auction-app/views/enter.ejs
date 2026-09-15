@@ -5,6 +5,9 @@
   <form method="post" action="<%= admin ? '/admin/enter' : '/enter' %>" class="access-form">
     <label for="code">Access code</label>
     <input id="code" name="code" inputmode="numeric" autocomplete="off" autofocus required>
+    <% if (admin && typeof u !== 'undefined') { %>
+      <input type="hidden" name="u" value="<%= u %>">
+    <% } %>
     <p class="hint"><%= hint %></p>
     <button class="btn primary" type="submit">Continue →</button>
   </form>

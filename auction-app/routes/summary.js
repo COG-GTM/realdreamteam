@@ -2,8 +2,7 @@ const express = require('express');
 const { query } = require('../db/db');
 const { renderPage } = require('./helpers');
 const { matchLot } = require('../lib/matching');
-const { unreadCount, listFeed, markAllRead } = require('../lib/notifications');
-const { formatCentral } = require('../lib/time');
+const { markAllRead } = require('../lib/notifications');
 
 const router = express.Router();
 
@@ -56,10 +55,7 @@ router.get('/u/:userId/summary', async (req, res, next) => {
       hasPreferences: prefs !== null,
       matches,
       discover,
-      notifications: await listFeed(userId),
-      unread: await unreadCount(userId),
-      flash: req.query.flash || '',
-      formatCentral
+      flash: req.query.flash || ''
     });
   } catch (error) {
     next(error);
@@ -69,7 +65,16 @@ router.get('/u/:userId/summary', async (req, res, next) => {
 router.post('/u/:userId/notifications/read', async (req, res, next) => {
   try {
     await markAllRead(Number(req.params.userId));
-    res.redirect(`/u/${req.params.userId}/summary`);
+    const id = req.params.userId;
+    const back = req.get('Referer') || '';
+    let destination = `/u/${id}/summary`;
+    if (back) {
+      try {
+        const url = new URL(back, `${req.protocol}://${req.get('host')}`);
+        if (url.host === req.get('host')) destination = url.pathname + url.search;
+      } catch {}
+    }
+    res.redirect(destination);
   } catch (error) {
     next(error);
   }

@@ -1,0 +1,16 @@
+<h3 class="pane-title">Open auctions <span class="live-dot" title="live"></span></h3>
+<% if (openAuctions.length === 0) { %>
+  <p class="pane-empty">None open right now.</p>
+<% } else { %>
+  <ul class="pane-list">
+    <% for (const a of openAuctions) { %>
+      <li>
+        <a href="<%= userPath(userId, '/auctions/' + a.id) %>">
+          <span class="eyebrow"><%= a.house_name %></span>
+          <strong><%= a.title %></strong>
+          <small><%= a.lot_count %> lots<% if (a.closes_at) { %> · closes <%= formatCentral(a.closes_at) %><% } %></small>
+        </a>
+      </li>
+    <% } %>
+  </ul>
+<% } %>
