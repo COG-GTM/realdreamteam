@@ -5776,43 +5776,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 27,
-    "title": "Devin plush, classic blue",
+    "title": "Devin plushie",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Soft plush figure of Devin, the AI software engineer, in the classic Cognition blue. Approximately 30 cm tall, with embroidered eyes and a stitched Cognition wordmark on the back. From the first production run handed out at the 2024 launch.",
+    "description": "Plush Devin, the Cognition otter, in soft caramel fur with embroidered whiskers, holding a grey laptop with a stitched Cognition wordmark. About 25 cm seated. Excellent condition. Cat not included.",
     "currency": "USD",
-    "estimate_low": 120,
-    "estimate_high": 250,
-    "starting_bid": 80,
+    "estimate_low": 25,
+    "estimate_high": 75,
+    "starting_bid": 25,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/devin-plush-blue.jpg",
-        "credit": "Cognition"
-      }
-    ],
-    "winner": null
-  },
-  {
-    "house": "Sotheby's",
-    "house_ref": "L26021",
-    "lot_number": 28,
-    "title": "Devin plush, limited holiday edition",
-    "artist": "Cognition",
-    "category": "Toys and Clothes",
-    "description": "Limited holiday-edition Devin plush wearing a knitted scarf, one of a small run made for the Cognition team. Tag intact, never squeezed in anger during an outage.",
-    "currency": "USD",
-    "estimate_low": 200,
-    "estimate_high": 400,
-    "starting_bid": 140,
-    "hammer_price": null,
-    "source_url": "https://cognition.ai",
-    "images": [
-      {
-        "position": 1,
-        "url": "/images/lots/devin-plush-holiday.jpg",
+        "url": "/images/lots/devin-plush.jpg",
         "credit": "Cognition"
       }
     ],
@@ -5822,14 +5799,14 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 29,
-    "title": "The Big Devin (San Francisco office mascot)",
+    "title": "Big Devin, San Francisco office, 2026",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "The oversized Devin plush that greets visitors at Cognition's San Francisco headquarters. Roughly 1.5 m tall and slightly flattened on one side from years of being sat on. Buyer collects; it does not fit in a taxi.",
+    "description": "The giant Devin plush that sits in Cognition's San Francisco office, 2026 — roughly 1.5 m of otter clutching a grey Cognition-logo cushion. Human not included. Buyer collects; it does not fit in a taxi.",
     "currency": "USD",
-    "estimate_low": 5000,
-    "estimate_high": 10000,
-    "starting_bid": 3500,
+    "estimate_low": 25000,
+    "estimate_high": 50000,
+    "starting_bid": 25000,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
@@ -5845,20 +5822,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 30,
-    "title": "Cognition enamel pin set (5)",
+    "title": "Limited edition Cognition pin",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Set of five hard-enamel pins: the Cognition mark, a Devin head, a terminal prompt, a pull-request icon and a 'shipped it' banner. Rubber clutch backs, on original card.",
+    "description": "Limited-edition hard-enamel lapel pin of the Cognition hexagon mark, black with polished gold-tone edges, about 2 cm across. Made in a small run for early team members; rubber clutch back.",
     "currency": "USD",
-    "estimate_low": 40,
-    "estimate_high": 80,
+    "estimate_low": 25,
+    "estimate_high": 60,
     "starting_bid": 25,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-pin-set.jpg",
+        "url": "/images/lots/cognition-pin.jpg",
         "credit": "Cognition"
       }
     ],
@@ -5868,20 +5845,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 31,
-    "title": "Cognition team jacket, black, size L",
+    "title": "Cognition denim jacket",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Black lightweight bomber jacket with an embroidered Cognition wordmark on the chest and 'Devin' on the left sleeve. Issued to early team members; size L, lightly worn.",
+    "description": "Black denim chore jacket with patch pockets and a Cognition pyramid-mark button and collar pin. Issued to the team; lightly worn.",
     "currency": "USD",
-    "estimate_low": 150,
-    "estimate_high": 300,
-    "starting_bid": 100,
+    "estimate_low": 250,
+    "estimate_high": 500,
+    "starting_bid": 250,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-jacket.jpg",
+        "url": "/images/lots/cognition-denim-jacket.jpg",
         "credit": "Cognition"
       }
     ],
@@ -5891,43 +5868,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 32,
-    "title": "Cognition vintage t-shirt, 2023 'Preview' edition",
+    "title": "Cognition vintage t-shirt, otter edition",
     "artist": "Cognition",
     "category": "Toys and Clothes",
-    "description": "Heather-grey tee from the 2023 private preview, with the original pre-launch Cognition logotype. Size M, faded from washing, collar intact — a genuine piece of company archaeology.",
+    "description": "Charcoal-black tee from an early Cognition run: on the back, a sea otter floats on its back typing on a laptop above the line 'The world's first ott-onomous software engineer.' Lightly worn, print bright, collar intact — a genuine piece of company archaeology.",
     "currency": "USD",
-    "estimate_low": 60,
-    "estimate_high": 120,
-    "starting_bid": 40,
+    "estimate_low": 150,
+    "estimate_high": 300,
+    "starting_bid": 150,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-tee-preview.jpg",
-        "credit": "Cognition"
-      }
-    ],
-    "winner": null
-  },
-  {
-    "house": "Sotheby's",
-    "house_ref": "L26021",
-    "lot_number": 33,
-    "title": "Cognition vintage t-shirt, 'It Compiles'",
-    "artist": "Cognition",
-    "category": "Toys and Clothes",
-    "description": "Black tee with the internal 'It Compiles' slogan printed across the back and a small Devin icon on the front. Size XL, one of a batch printed for an early hackathon.",
-    "currency": "USD",
-    "estimate_low": 50,
-    "estimate_high": 100,
-    "starting_bid": 35,
-    "hammer_price": null,
-    "source_url": "https://cognition.ai",
-    "images": [
-      {
-        "position": 1,
-        "url": "/images/lots/cognition-tee-it-compiles.jpg",
+        "url": "/images/lots/cognition-tee-otter.jpg",
         "credit": "Cognition"
       }
     ],
@@ -5937,20 +5891,20 @@
     "house": "Sotheby's",
     "house_ref": "L26021",
     "lot_number": 34,
-    "title": "Cognition pyramid model, brushed aluminium",
+    "title": "Tetra pyramid, Cognition branded, 2026",
     "artist": "Cognition",
     "category": "Design",
-    "description": "Desk-sized model of the Cognition pyramid mark in brushed aluminium on a black acrylic base, about 15 cm tall. A small run was produced as gifts for early customers; this example is numbered on the base.",
+    "description": "Cognition-branded Tetra pyramid, 2026: a palm-sized brushed stainless-steel tetrahedron whose faces split into interlocking segments, echoing the Cognition pyramid mark. About 6 cm on a side; made in a small run for the team.",
     "currency": "USD",
-    "estimate_low": 300,
-    "estimate_high": 600,
+    "estimate_low": 200,
+    "estimate_high": 400,
     "starting_bid": 200,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-pyramid-aluminium.jpg",
+        "url": "/images/lots/cognition-tetra-pyramid.jpg",
         "credit": "Cognition"
       }
     ],
@@ -5959,21 +5913,113 @@
   {
     "house": "Sotheby's",
     "house_ref": "L26021",
-    "lot_number": 35,
-    "title": "Cognition pyramid model, walnut",
+    "lot_number": 36,
+    "title": "The original Devin shroud",
     "artist": "Cognition",
-    "category": "Design",
-    "description": "Hand-turned walnut version of the Cognition pyramid, roughly 12 cm tall, with a laser-etched wordmark on one face. Made by a team member's woodworking side project; a few dozen exist.",
+    "category": "Toys and Clothes",
+    "description": "The original printed cloth banner of Devin, the otter at a laptop, that hangs over the Engineering team in Cognition's San Francisco office. It has watched every deploy, incident and late-night refactor since the early days. Sold with hanging clips; the buyer must arrange a replacement to keep morale intact.",
     "currency": "USD",
-    "estimate_low": 250,
-    "estimate_high": 500,
-    "starting_bid": 175,
+    "estimate_low": 1000000,
+    "estimate_high": 2000000,
+    "starting_bid": 1000000,
     "hammer_price": null,
     "source_url": "https://cognition.ai",
     "images": [
       {
         "position": 1,
-        "url": "/images/lots/cognition-pyramid-walnut.jpg",
+        "url": "/images/lots/devin-shroud-sf.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 37,
+    "title": "Framed photograph: the Cognition $48B raise, September 2026",
+    "artist": "Cognition",
+    "category": "Design",
+    "description": "Framed colour photograph of the celebration cake from Cognition's $48 billion raise in September 2026: white buttercream, orange piping, the hexagon mark and Devin the otter at his laptop, with a pair of champagne glasses standing by. Printed and framed in black, about 40 x 30 cm.",
+    "currency": "USD",
+    "estimate_low": 100,
+    "estimate_high": 250,
+    "starting_bid": 100,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/cognition-48b-raise.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 38,
+    "title": "Framed vintage print: Devin coding in San Francisco by the Bay Bridge, 2026",
+    "artist": "Cognition",
+    "category": "Design",
+    "description": "Framed vintage-style print of Devin the otter coding on a laptop among golden poppies at the water's edge, with the Bay Bridge stretching across a bright blue San Francisco Bay. 2026, giclée on archival paper, black frame, about 60 x 35 cm.",
+    "currency": "USD",
+    "estimate_low": 200,
+    "estimate_high": 500,
+    "starting_bid": 200,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/devin-bay-bridge-print.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 39,
+    "title": "Framed vintage print: Devin in Austin, August 2026",
+    "artist": "Cognition",
+    "category": "Design",
+    "description": "Framed vintage-style print made to celebrate the opening of Cognition's Austin office in August 2026: Devin the otter, backpack on, leans on a boardwalk rail over Lady Bird Lake among bluebonnets, with paddleboarders, a windsurfer and the downtown Austin skyline beyond. Giclée on archival paper, black frame, about 60 x 35 cm.",
+    "currency": "USD",
+    "estimate_low": 300,
+    "estimate_high": 600,
+    "starting_bid": 300,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/devin-austin-print.jpg",
+        "credit": "Cognition"
+      }
+    ],
+    "winner": null
+  },
+  {
+    "house": "Sotheby's",
+    "house_ref": "L26021",
+    "lot_number": 40,
+    "title": "Cognition Labs Creatine, limited edition 2025, set of ten",
+    "artist": "Cognition",
+    "category": "Miscellaneous IT Items",
+    "description": "Ten sealed 300 g (10.58 oz) tubs of Cognition Labs creatine monohydrate, limited edition 2025, each labelled with a flexing Devin the otter and the promise of more PRs on git and SOTA on SWE-bench. Sold as a set of ten. These statements have not been evaluated by anyone.",
+    "currency": "USD",
+    "estimate_low": 200,
+    "estimate_high": 400,
+    "starting_bid": 200,
+    "hammer_price": null,
+    "source_url": "https://cognition.ai",
+    "images": [
+      {
+        "position": 1,
+        "url": "/images/lots/cognition-creatine.jpg",
         "credit": "Cognition"
       }
     ],
