@@ -257,8 +257,38 @@ repeatedly.
 - `ACCESS_CODE`: site-wide access code, default `20240312`.
 - `ADMIN_CODE`: admin access code, default `20250714`.
 - `POLL_SECONDS`: interval used by the lightweight poller, default `5`.
+- `SIM_ENABLED`: run the auction-house simulator, default `true` (tests force `false`).
+- `SIM_MIN_SECONDS` / `SIM_MAX_SECONDS`: jittered delay between simulated actions, defaults `5` / `30`.
+- `SIM_IDLE_SECONDS`: how long without a pane heartbeat counts as "nobody online", default `90`.
+- `SIM_IDLE_CHECK_SECONDS`: how often the simulator re-checks presence while asleep, default `30`.
+- `SIM_MIN_OPEN_AUCTIONS`: keep at least this many auctions open by pulling the next upcoming sale forward, default `3`.
+- `SIM_MIN_UPCOMING_AUCTIONS`: keep at least this many upcoming auctions by cloning a closed one forward, default `1`.
 - `PORT`: HTTP port, default `3000`.
 - `COOKIE_SECRET`: secret used to sign access cookies, default `change-me`.
+
+## Simulation
+
+The site can run a "living auction house" simulator: hidden shadow users bid,
+favorite and respond to outbids so the site feels busy while someone is
+looking at it. It only acts while at least one browser is polling the panes
+(presence = the existing 3 s `/panes/*` poll), caps itself at 300 actions an
+hour, and serialises across processes with a Postgres advisory lock. The
+`/admin` page has a Simulation box: on/off, run-one-action-now, "wake for
+10 min" for demos, and "Clone next auction now" for the recycler. Design and
+rationale: [`docs/simulation-design.md`](docs/simulation-design.md).
+
+**Production rollout**
+
+1. Apply `db/migrations/006-simulation.sql` on the Supabase database (it is
+   idempotent — safe alongside `db/schema.sql`).
+2. Deploy with `SIM_ENABLED=true` (default) and, if desired, tune
+   `SIM_MIN_SECONDS` / `SIM_MAX_SECONDS` (tick jitter, 5–30 s),
+   `SIM_IDLE_SECONDS` (presence window, 90 s),
+   `SIM_MIN_OPEN_AUCTIONS` / `SIM_MIN_UPCOMING_AUCTIONS` (recycler floors).
+3. Control it live from `/admin`: toggle on/off, run a single action, wake it
+   for 10 minutes, or force a clone-forward.
+4. To switch it off entirely without a deploy, set `SIM_ENABLED=false` and
+   restart — the loop never starts and the admin box shows it disabled.
 
 ## Seed contract
 

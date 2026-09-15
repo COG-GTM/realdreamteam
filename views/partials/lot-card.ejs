@@ -39,6 +39,9 @@
         No bids yet
       <% } %>
     </p>
+    <% if (lot.bid_count != null || lot.watch_count != null) { %>
+      <p class="lot-card-stats muted"><small><%= lot.bid_count || 0 %> bid<%= (lot.bid_count || 0) === 1 ? '' : 's' %> · <%= lot.watch_count || 0 %> watching</small></p>
+    <% } %>
     <% if (cardReasons.length) { %>
       <ul class="lot-card-reasons">
         <% for (const reason of cardReasons) { %><li><%= reason %></li><% } %>

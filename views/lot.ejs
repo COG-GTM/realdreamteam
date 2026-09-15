@@ -43,6 +43,9 @@
       <div><dt>House</dt><dd><%= lot.house_name %></dd></div>
     </dl>
     <% if (lot.source_url) { %><p><a class="btn" href="<%= lot.source_url %>">View on Wikipedia/source →</a></p><% } %>
+    <% if (previouslyOffered) { %>
+      <p class="muted"><small>Previously offered in <a href="<%= userPath(userId, '/lots/' + previouslyOffered.id) %>"><%= previouslyOffered.auction_title %></a><% if (previouslyOffered.closes_at) { %> (<%= formatCentral(previouslyOffered.closes_at) %>)<% } %> — <%= previouslyOffered.hammer_price != null ? `sold for ${formatMoney(previouslyOffered.hammer_price, previouslyOffered.currency)}` : 'unsold' %></small></p>
+    <% } %>
   </div>
 
   <aside class="bid-panel lot-bid-panel">

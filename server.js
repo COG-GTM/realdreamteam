@@ -14,6 +14,7 @@ const { seedIfEmpty } = require('./db/db');
 const routes = require('./routes');
 const { renderPage } = require('./routes/helpers');
 const { start } = require('./lib/poller');
+const sim = require('./lib/sim');
 const { gateCookieOptions } = require('./lib/cookies');
 const { gateLimiter } = require('./lib/rate-limit');
 const { SESSION, requireAccess, loadUser, requireAdmin } = require('./lib/gates');
@@ -105,6 +106,7 @@ app.use((error, req, res, next) => {
 async function boot() {
   await seedIfEmpty();
   start();
+  sim.start();
   const port = Number(process.env.PORT || 3000);
   app.listen(port, () => console.log(`Auction app listening on ${port}`));
 }

@@ -52,6 +52,21 @@ dialog#bidding-rules{background:var(--panel);color:var(--text);border:1px solid 
 .live-item.live-sold a{font-weight:600}
 .live-item.live-opened a,.live-item.live-closed a{color:var(--muted)}
 
+
+/* Paused panes (60 min browser idle) */
+.panes.paused .pane{opacity:.45}
+.panes-paused{color:var(--muted);font-size:.78rem;font-style:italic;margin:0}
+
+/* Admin simulation box */
+.sim-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:22px}
+.sim-box p{margin:0 0 8px;font-size:.86rem}
+.sim-actions-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.sim-log{list-style:none;margin:8px 0 0;padding:8px 0 0;border-top:1px solid var(--line);display:grid;gap:4px;font-size:.8rem}
+.ends-soon{color:var(--accent);font-weight:600}
+.lot-card-stats{margin:0}
+||||||| 161e9c2
+
+
 /* Auction header identity (issue #86) */
 .sale-head{margin-bottom:28px}
 .sale-title{display:flex;align-items:flex-start;flex-wrap:wrap;gap:14px 22px;margin-bottom:14px}
@@ -99,3 +114,4 @@ h1.lot-title{font:500 clamp(2rem,3.4vw,3.2rem)/1.05 var(--serif);letter-spacing:
 .sold-banner.lot-sold{font-size:1.05rem;letter-spacing:.01em;padding:16px 20px;box-shadow:0 12px 40px -12px #c6f36b66}.sold-banner.unsold{background:var(--panel);color:var(--muted);border:1px solid var(--line);box-shadow:none}
 @media(max-width:1000px){.lot-columns{grid-template-columns:1fr;gap:24px}.lot-bid-panel{position:static}.lot-hero-mat{height:clamp(220px,36vh,400px)}}
 ||||||| 161e9c2
+

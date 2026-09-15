@@ -9,6 +9,10 @@ const {
 } = require('../lib/category-admin');
 const { closeAuction, validateClosesAt } = require('../lib/close');
 const { logActivity } = require('../lib/activity');
+const sim = require('../lib/sim');
+const presence = require('../lib/sim/presence');
+const { cloneForward } = require('../lib/sim/recycle');
+const { makeRng } = require('../lib/sim/rng');
 const { formatCentral, toCentralInput } = require('../lib/time');
 const { gateCookieOptions } = require('../lib/cookies');
 const { gateLimiter } = require('../lib/rate-limit');
@@ -80,10 +84,15 @@ router.get('/admin', async (req, res, next) => {
        FROM users u WHERE u.shadow = true ORDER BY u.name`
     )).rows;
     const categoryRows = await listCategories();
+    const simStatus = sim.status();
+    const onlineNames = simStatus.humansOnline.length
+      ? (await query('SELECT id, name FROM users WHERE id = ANY($1::bigint[])', [simStatus.humansOnline])).rows
+      : [];
     renderPage(res, 'Admin', 'admin', {
       auctions,
       users,
       shadowUsers,
+      sim: { ...simStatus, onlineNames },
       categories: categoryRows.filter((category) => category.active).map((category) => category.name),
       flash: req.query.flash || '',
       error: req.query.error || '',
@@ -287,6 +296,40 @@ router.post('/admin/auctions/:id/reopen', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+router.post('/admin/sim/toggle', (req, res) => {
+  const status = sim.status();
+  sim.setEnabled(!status.enabled);
+  res.redirect(adminUrl(req, { flash: `Simulation ${status.enabled ? 'paused' : 'resumed'}.` }));
+});
+
+router.post('/admin/sim/run', async (req, res, next) => {
+  try {
+    const result = await sim.runNow();
+    const message = result.skipped
+      ? `Sim action ${result.action}: ${result.skipped}`
+      : `Sim action ${result.action}: ${result.userName || 'system'}${result.lotId ? ` on lot ${result.lotId}` : ''}${result.amount ? ` for ${result.amount}` : ''}`;
+    res.redirect(adminUrl(req, { flash: message }));
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/admin/sim/clone', async (req, res, next) => {
+  try {
+    const result = await cloneForward(makeRng(Date.now() & 0x7fffffff));
+    res.redirect(adminUrl(req, result.skipped
+      ? { error: `Clone skipped: ${result.skipped}` }
+      : { flash: `Cloned auction ${result.sourceId} forward (${result.lotCount} lots).` }));
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/admin/sim/wake', (req, res) => {
+  presence.forceAwakeUntil(Date.now() + 10 * 60 * 1000);
+  res.redirect(adminUrl(req, { flash: 'Simulation forced awake for 10 minutes.' }));
 });
 
 router.post('/admin/users/:id/ban', async (req, res, next) => {

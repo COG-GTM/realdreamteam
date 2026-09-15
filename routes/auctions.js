@@ -9,6 +9,13 @@ function userIdFrom(req) {
   return req.params.userId || req.query.u || '';
 }
 
+// Open auction closing within 24 h gets a live "Ends in …" countdown.
+function endsSoon(auction) {
+  if (!auction.closes_at || auction.status !== 'open') return false;
+  const left = new Date(auction.closes_at) - Date.now();
+  return left > 0 && left < 24 * 60 * 60 * 1000;
+}
+
 async function listAuctions(req, res, next) {
   try {
     const result = await query(
@@ -19,8 +26,11 @@ async function listAuctions(req, res, next) {
     );
     const groups = { open: [], upcoming: [], closed: [] };
     for (const auction of result.rows) {
+      auction.ends_soon = endsSoon(auction);
       (groups[auction.status] || groups.upcoming).push(auction);
     }
+    // History grows forever once the simulator recycles: show the last 12 closed.
+    groups.closed = groups.closed.slice(-12);
     renderPage(res, 'Auctions', 'auctions', {
       userId: userIdFrom(req),
       groups,
@@ -56,7 +66,9 @@ async function showAuction(req, res, next) {
         (SELECT url FROM lot_images i WHERE i.lot_id = l.id ORDER BY position LIMIT 1) AS image_url,
         hb.amount AS current_bid, hu.name AS high_bidder,
         w.name AS winner_name,
-        EXISTS (SELECT 1 FROM favorites f WHERE f.lot_id = l.id AND f.user_id = $2::bigint) AS favorited
+        EXISTS (SELECT 1 FROM favorites f WHERE f.lot_id = l.id AND f.user_id = $2::bigint) AS favorited,
+        (SELECT COUNT(*)::int FROM bids b WHERE b.lot_id = l.id) AS bid_count,
+        (SELECT COUNT(*)::int FROM favorites f WHERE f.lot_id = l.id) AS watch_count
        FROM lots l
        JOIN auctions a ON a.id = l.auction_id
        LEFT JOIN LATERAL (SELECT user_id, amount FROM bids b WHERE b.lot_id = l.id ORDER BY amount DESC, placed_at ASC, id ASC LIMIT 1) hb ON true
@@ -66,9 +78,14 @@ async function showAuction(req, res, next) {
        ORDER BY l.lot_number, l.id`,
       [req.params.id, userId || null]
     );
+    const season = auction.cloned_from_auction_id
+      ? Number((/-S(\d+)$/i.exec(auction.house_ref || '') || [null, 2])[1])
+      : null;
+    auction.ends_soon = endsSoon(auction);
     renderPage(res, auction.title, 'auction', {
       userId,
       auction,
+      season,
       lots: lotsResult.rows,
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null,

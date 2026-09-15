@@ -2,11 +2,13 @@ const express = require('express');
 const { paneData } = require('../lib/panes');
 const { formatCentral, userPath } = require('../lib/format');
 const { describeActivity, relativeTime } = require('../lib/activity');
+const presence = require('../lib/sim/presence');
 
 const router = express.Router();
 
 async function renderPane(req, res, view) {
   const userId = req.query.u || '';
+  presence.touch(userId || null);
   const data = await paneData(userId);
   res.set('Cache-Control', 'no-store');
   res.render(view, { ...data, userId, formatCentral, userPath, describeActivity, relativeTime });

@@ -16,6 +16,7 @@ async function loadLot(lotId) {
   const lotResult = await query(
     `SELECT l.*, a.title AS auction_title, a.status AS auction_status, a.format,
               a.starts_at, a.closes_at, h.name AS house_name,
+              (SELECT COUNT(*)::int FROM favorites f WHERE f.lot_id = l.id) AS watch_count,
               w.name AS winner_name, w.avatar_url AS winner_avatar_url,
               w.avatar_data IS NOT NULL AS winner_has_upload
        FROM lots l
@@ -75,12 +76,22 @@ async function showLot(req, res, next) {
       });
     }
 
-    const [imagesResult, favoriteResult, bidding] = await Promise.all([
+    const previouslyResult = lot.reoffered_from_lot_id
+      ? query(
+          `SELECT p.id, p.hammer_price, p.currency, pa.id AS auction_id, pa.title AS auction_title, pa.closes_at
+           FROM lots p JOIN auctions pa ON pa.id = p.auction_id
+           WHERE p.id = $1`,
+          [lot.reoffered_from_lot_id]
+        )
+      : Promise.resolve({ rows: [] });
+
+    const [imagesResult, favoriteResult, bidding, previously] = await Promise.all([
       query('SELECT url, credit FROM lot_images WHERE lot_id = $1 ORDER BY position', [lot.id]),
       userId
         ? query('SELECT 1 FROM favorites WHERE user_id = $1 AND lot_id = $2', [userId, lot.id])
         : Promise.resolve({ rows: [] }),
-      biddingData(lot, userId)
+      biddingData(lot, userId),
+      previouslyResult
     ]);
 
     renderPage(res, lot.title, 'lot', {
@@ -88,6 +99,7 @@ async function showLot(req, res, next) {
       images: imagesResult.rows,
       INCREMENTS,
       favorited: favoriteResult.rows.length > 0,
+      previouslyOffered: previously.rows[0] || null,
       livePath: livePathFor(lot, userId),
       flash: req.query.flash || null,
       error: req.query.error ? req.query.flash : null

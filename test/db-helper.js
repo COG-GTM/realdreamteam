@@ -9,6 +9,7 @@
 process.env.NODE_ENV = 'test';
 require('dotenv').config({ override: true });
 process.env.AUCTION_TEST_DATABASE_URL ||= 'postgres://postgres@localhost:5433/rdt_test';
+process.env.SIM_ENABLED = 'false';
 
 const test = require('node:test');
 const fs = require('node:fs');
