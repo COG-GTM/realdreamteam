@@ -2674,18 +2674,18 @@
     "title": "Superleggera chair, model 699, pair",
     "artist": "Gio Ponti",
     "category": "Design",
-    "description": "Superleggera (Italian for Superlight) is a custom tube and alloy panel automobile coachwork construction technology developed by Felice Bianchi Anderloni of Italian coachbuilder Carrozzeria Touring Superleggera. A separate chassis was still required. Touring licensed Charles Weymann's system of fabric-covered lightweight frames, which led to Touring’s own superleggera construction.",
+    "description": "Gio Ponti's Superleggera ('super-light') chair, model 699, designed for Cassina in 1957 and derived from the traditional Chiavari chair. The ash frame with its triangular-section legs weighs only 1.7 kg, light enough to lift with one finger, yet is famously robust: Cassina's advertising showed it being thrown from a fourth-floor window and bouncing. Offered as a pair with woven cane seats.",
     "currency": "GBP",
     "estimate_low": 7300,
     "estimate_high": 11000,
     "starting_bid": 5000,
     "hammer_price": null,
-    "source_url": "https://en.wikipedia.org/wiki/Superleggera",
+    "source_url": "https://en.wikipedia.org/wiki/Gio_Ponti",
     "images": [
       {
         "position": 1,
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Aston_Martin_Superleggera.jpg",
-        "credit": "Wikimedia Commons"
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Gio_Ponti%2C_Chaise_Superleggera%2C_1955.jpg",
+        "credit": "Wikimedia Commons, public domain"
       }
     ],
     "winner": null
@@ -4491,18 +4491,18 @@
     "title": "Swan Upping at Cookham",
     "artist": "Stanley Spencer",
     "category": "Modern British Art",
-    "description": "Swan upping is an annual ceremony in England in which mute swans on the River Thames are rounded up, caught, ringed, and then released.",
+    "description": "Swan Upping at Cookham (1915–19) by Stanley Spencer shows the annual Thames ceremony in which swans are rounded up and marked, set beside Cookham Bridge in the artist's home village. Spencer began the canvas before serving in the First World War and finished the lower part on his return in 1919, later saying the unfinished picture had haunted him throughout the war. The original is in Tate Britain.",
     "currency": "GBP",
     "estimate_low": 110000,
     "estimate_high": 190000,
     "starting_bid": 64000,
     "hammer_price": null,
-    "source_url": "https://en.wikipedia.org/wiki/Swan_upping",
+    "source_url": "https://en.wikipedia.org/wiki/Stanley_Spencer",
     "images": [
       {
         "position": 1,
         "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Queen%27s_Swan_Uppers.jpg",
-        "credit": "Wikimedia Commons"
+        "credit": "Wikimedia Commons (swan upping on the Thames; illustrative)"
       }
     ],
     "winner": null
@@ -4721,18 +4721,18 @@
     "title": "Merry-Go-Round",
     "artist": "Mark Gertler",
     "category": "Modern British Art",
-    "description": "Mark Gertler (born Marks Gertler; 9 December 1891 – 23 June 1939) was a British painter of figure subjects, portraits and still-life. His early life and his relationship with Dora Carrington were the inspiration for Gilbert Cannan's novel Mendel. The characters of Loerke in D. H. Lawrence's Women in Love, and Gombauld in Aldous Huxley's Crome Yellow were based on him.",
+    "description": "Merry-Go-Round is a large oil on canvas painting made by Mark Gertler in September 1916, when he was 24 years old. It is perhaps his most famous work, and depicts men and women — several in uniform — on a merry-go-round ride, mouths open in a frozen scream. The painting may have been inspired by a ride at the annual fair on Hampstead Heath and is widely read as a response to the First World War. The original is held in Tate Britain.",
     "currency": "GBP",
     "estimate_low": 300000,
     "estimate_high": 430000,
     "starting_bid": 200000,
     "hammer_price": null,
-    "source_url": "https://en.wikipedia.org/wiki/Mark_Gertler_(artist)",
+    "source_url": "https://en.wikipedia.org/wiki/Merry-Go-Round_(Gertler_painting)",
     "images": [
       {
         "position": 1,
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Mark_Gertler%2C_by_Mark_Gertler.jpg",
-        "credit": "Wikimedia Commons"
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Mark_Gertler_-_Merry-Go-Round_-_Google_Art_Project.jpg",
+        "credit": "Wikimedia Commons, public domain"
       }
     ],
     "winner": null
@@ -4859,7 +4859,7 @@
     "title": "Workshop",
     "artist": "Wyndham Lewis",
     "category": "Modern British Art",
-    "description": "Percy Wyndham Lewis (18 November 1882 – 7 March 1957) was a Canadian-born British writer, painter and critic. He was a co-founder of the Vorticist movement in art and edited Blast, the literary magazine of the Vorticists. Lewis is known for his novels Tarr (1918) and The Apes of God (1930), short story collection The Wild Body (1927), and autobiography Blasting and Bombardiering (1937).",
+    "description": "Workshop (c. 1914–15) is one of the few surviving Vorticist paintings by Wyndham Lewis, founder of the movement and editor of its magazine Blast. Jagged, tilted planes in acid pinks, yellows and greens evoke the hard geometry of the modern city and the machine age. The original is in Tate Britain.",
     "currency": "GBP",
     "estimate_low": 10000,
     "estimate_high": 15000,
@@ -4974,7 +4974,7 @@
     "title": "Travoys Arriving with Wounded at a Dressing-Station",
     "artist": "Stanley Spencer",
     "category": "Modern British Art",
-    "description": "Sir Stanley Spencer (30 June 1891 – 14 December 1959) was an English painter. Shortly after leaving the Slade School of Art, Spencer became well known for his paintings depicting Biblical scenes occurring as if in Cookham, Berkshire, the small village beside the River Thames where he was born and spent much of his life.",
+    "description": "Travoys Arriving with Wounded at a Dressing-Station at Smol, Macedonia, September 1916 (1919) is Stanley Spencer's official war painting, commissioned by the British War Memorials Committee. Mule-drawn travoys carrying wounded men converge on a lamplit operating theatre in a former Greek church, a scene Spencer witnessed while serving with the Royal Army Medical Corps in Salonika. The original is in the Imperial War Museum, London.",
     "currency": "GBP",
     "estimate_low": 24000,
     "estimate_high": 37000,
@@ -5089,17 +5089,17 @@
     "title": "Pelagos",
     "artist": "Barbara Hepworth",
     "category": "Modern British Art",
-    "description": "Pelagos (Greek: Πέλαγος) is a village in the municipality of Tripoli, Arcadia, Greece. It is situated in the plain of Tripoli, at 670 m above sea level. As of 2011, it had a population of 151. It is 2 km northwest of Zevgolateio and 4 km northeast of Tripoli city centre. The A7 motorway (Corinth–Tripoli–Kalamata) passes west of the village.",
+    "description": "Pelagos is a sculpture by British artist Barbara Hepworth, made in 1946 from elm wood with strings, mounted on a square oak base. It measures 43 cm × 46 cm × 38.5 cm and weighs about 15.2 kg (34 lb). Its spiralling hollowed form, painted pale blue inside and strung with taut cords, was inspired by the view of the bay at St Ives. The original has been held by the Tate gallery since 1964.",
     "currency": "GBP",
     "estimate_low": 180000,
     "estimate_high": 330000,
     "starting_bid": 100000,
     "hammer_price": 110000,
-    "source_url": "https://en.wikipedia.org/wiki/Pelagos",
+    "source_url": "https://en.wikipedia.org/wiki/Pelagos_(Hepworth)",
     "images": [
       {
         "position": 1,
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Ancient_Regions_Peloponnese.png",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/London%2C_England_%2832359887934%29.jpg",
         "credit": "Wikimedia Commons"
       }
     ],
@@ -5135,18 +5135,18 @@
     "title": "The Resurrection, Cookham",
     "artist": "Stanley Spencer",
     "category": "Modern British Art",
-    "description": "Cookham is a historic Thames-side village and civil parish on the north-eastern edge of Berkshire, England, 2.9 miles (5 km) north-north-east of Maidenhead and opposite the village of Bourne End. Cookham forms the southernmost and most rural part of the High Wycombe urban area. With adjoining Cookham Rise and Cookham Dean, it had a combined population of 5,779 at the 2011 Census.",
+    "description": "The Resurrection, Cookham (1924–27) is Stanley Spencer's monumental canvas, some 2.7 by 5.5 metres, in which the dead rise from their graves in the churchyard of Holy Trinity, Cookham. Spencer painted himself, his wife Hilda and friends among the resurrected; God and Christ appear in the church porch. Hailed on exhibition in 1927 as the most important picture painted by an English artist that century, the original hangs in Tate Britain.",
     "currency": "GBP",
     "estimate_low": 330000,
     "estimate_high": 470000,
     "starting_bid": 180000,
     "hammer_price": 210000,
-    "source_url": "https://en.wikipedia.org/wiki/Cookham",
+    "source_url": "https://en.wikipedia.org/wiki/Stanley_Spencer",
     "images": [
       {
         "position": 1,
         "url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Cookham_church%2Cberkshire.JPG",
-        "credit": "Wikimedia Commons"
+        "credit": "Wikimedia Commons (Holy Trinity church, Cookham; illustrative)"
       }
     ],
     "winner": "Abi"
@@ -5250,18 +5250,18 @@
     "title": "Shipbuilding on the Clyde: Burners",
     "artist": "Stanley Spencer",
     "category": "Modern British Art",
-    "description": "Port Glasgow (Scottish Gaelic: Port Ghlaschu, pronounced [pʰɔrˠʃt̪ˈɣl̪ˠas̪əxu]) is the second-largest town in the Inverclyde council area of Scotland. The population according to the 1991 census for Port Glasgow was 19,426 persons and in the 2001 census was 16,617 persons. The most recent census in 2011 states that the population has declined to 15,414.",
+    "description": "Burners (1940) is the first of Stanley Spencer's Shipbuilding on the Clyde series, painted for the War Artists' Advisory Committee at Lithgows' yard in Port Glasgow. The triptych shows men crouched over steel plates with cutting torches, their bodies folded into the curves of the metal, in Spencer's densely packed and tender record of wartime industrial labour. The original series is in the Imperial War Museum, London.",
     "currency": "GBP",
     "estimate_low": 68000,
     "estimate_high": 120000,
     "starting_bid": 44000,
     "hammer_price": 55000,
-    "source_url": "https://en.wikipedia.org/wiki/Port_Glasgow",
+    "source_url": "https://en.wikipedia.org/wiki/Stanley_Spencer",
     "images": [
       {
         "position": 1,
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Port_Glasgow.jpg",
-        "credit": "Wikimedia Commons"
+        "credit": "Wikimedia Commons (Port Glasgow; illustrative)"
       }
     ],
     "winner": "Jonny"
