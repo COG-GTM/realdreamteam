@@ -100,7 +100,7 @@
               : null;
             try {
               const response = await fetch(pane.dataset.src, { credentials: 'same-origin' });
-              if (!response.ok) return;
+              if (!response.ok || response.redirected) return;
               const html = await response.text();
               if (html === pane.innerHTML || busy(pane)) return;
               pane.innerHTML = html;
