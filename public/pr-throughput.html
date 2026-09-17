@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PR throughput · Auction Interest</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #111111;
+      --muted: #777777;
+      --grid: #e7e7e7;
+      --merged: #3210f5;
+      --closed: #575757;
+      --open: #d8d8d5;
+      --projected: #a6a6a6;
+      --paper: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      width: min(100% - 42px, 1140px);
+      margin: 0 auto;
+      padding: 38px 0 44px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 39px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 0 0 25px;
+      color: #545454;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 36px;
+      margin: 26px 0 34px;
+    }
+
+    .stat-label {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .stat-value {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+      letter-spacing: -.03em;
+    }
+
+    .chart-card {
+      border-top: 1px solid #ededed;
+      padding-top: 23px;
+    }
+
+    .chart-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .range {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+    }
+
+    .swatch.closed { background: #d23d34; }
+    .swatch.open { background: #4ca35a; }
+    .swatch.merged { background: #8538df; }
+    .swatch.projected {
+      border: 2px dotted var(--projected);
+      background: #fff;
+    }
+
+    .chart {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .chart text {
+      font-family: Arial, Helvetica, sans-serif;
+      fill: var(--muted);
+      font-size: 12px;
+    }
+
+    .chart .bar-label {
+      fill: #515151;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chart .x-label {
+      fill: #666;
+      font-size: 12px;
+    }
+
+    .chart .projection-label {
+      fill: #636363;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .notes {
+      display: grid;
+      gap: 4px;
+      margin-top: 8px;
+      color: #6e6e6e;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 28px, 1140px); padding-top: 26px; }
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; margin-bottom: 28px; }
+      .chart-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
+      .chart { min-width: 660px; }
+      .chart-wrap { overflow-x: auto; margin-inline: -8px; padding-inline: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">Delivery performance · weekly view</p>
+    <h1>PRs are turning into shipped work</h1>
+    <p class="intro">
+      Pull request volume is climbing, with merged work making up most of the throughput.
+      The current week is still in progress; its dotted outline projects the full-week total.
+    </p>
+
+    <section class="stats" aria-label="Pull request summary">
+      <div>
+        <p class="stat-label">PRs created</p>
+        <p class="stat-value">2,554</p>
+      </div>
+      <div>
+        <p class="stat-label">PRs merged</p>
+        <p class="stat-value">1,895</p>
+      </div>
+      <div>
+        <p class="stat-label">PR merge rate</p>
+        <p class="stat-value">74.2%</p>
+      </div>
+      <div>
+        <p class="stat-label">ACUs / PR merged</p>
+        <p class="stat-value">74.86</p>
+      </div>
+    </section>
+
+    <section class="chart-card" aria-labelledby="chart-title">
+      <div class="chart-heading">
+        <h2 id="chart-title">Pull requests over time</h2>
+        <span class="range">Weekly <span aria-hidden="true">⌄</span></span>
+      </div>
+      <div class="legend" aria-label="Chart legend">
+        <span class="legend-item"><i class="swatch closed"></i>Closed</span>
+        <span class="legend-item"><i class="swatch open"></i>Open</span>
+        <span class="legend-item"><i class="swatch merged"></i>Merged</span>
+        <span class="legend-item"><i class="swatch projected"></i>Projected full week</span>
+      </div>
+      <div class="chart-wrap">
+        <svg class="chart" viewBox="0 0 1140 390" role="img" aria-labelledby="chart-title chart-desc">
+          <desc id="chart-desc">Weekly stacked bars from June 29 through September 14. September 14 is a partial week with a dotted projected full-week outline.</desc>
+          <g id="grid"></g>
+          <g id="bars"></g>
+          <g id="labels"></g>
+        </svg>
+      </div>
+      <div class="notes">
+        <span>Closed and open PRs are shown alongside merged work.</span>
+        <span>* Sep 14 is in progress; the dotted outline is the projected full-week total.</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const weeks = [
+        { label: 'Jun 29', closed: 0, open: 0, merged: 0 },
+        { label: 'Jul 6', closed: 0, open: 0, merged: 0 },
+        { label: 'Jul 13', closed: 0, open: 0, merged: 0 },
+        { label: 'Jul 20', closed: 0, open: 0, merged: 0 },
+        { label: 'Jul 27', closed: 0, open: 6, merged: 0 },
+        { label: 'Aug 3', closed: 0, open: 4, merged: 0 },
+        { label: 'Aug 10', closed: 0, open: 4, merged: 20 },
+        { label: 'Aug 17', closed: 5, open: 11, merged: 30 },
+        { label: 'Aug 24', closed: 45, open: 73, merged: 230 },
+        { label: 'Aug 31', closed: 70, open: 117, merged: 445 },
+        { label: 'Sep 7', closed: 59, open: 90, merged: 530 },
+        { label: 'Sep 14*', closed: 89, open: 86, merged: 640, projected: 1020 }
+      ];
+
+      const svg = document.querySelector('.chart');
+      const grid = document.querySelector('#grid');
+      const bars = document.querySelector('#bars');
+      const labels = document.querySelector('#labels');
+      const chart = { left: 62, top: 22, width: 1050, height: 258, max: 1100, base: 280 };
+      const step = chart.width / weeks.length;
+      const barWidth = Math.min(78, step * .72);
+      const y = (value) => chart.base - (value / chart.max) * chart.height;
+      const x = (index) => chart.left + step * index + (step - barWidth) / 2;
+
+      [0, 200, 400, 600, 800, 1000].forEach((value) => {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', chart.left);
+        line.setAttribute('x2', chart.left + chart.width);
+        line.setAttribute('y1', y(value));
+        line.setAttribute('y2', y(value));
+        line.setAttribute('stroke', value === 0 ? '#d7d7d7' : '#e5e5e5');
+        line.setAttribute('stroke-dasharray', value === 0 ? '0' : '5 5');
+        grid.appendChild(line);
+
+        if (value > 0) {
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', chart.left - 12);
+          text.setAttribute('y', y(value) + 4);
+          text.setAttribute('text-anchor', 'end');
+          text.textContent = value.toLocaleString();
+          grid.appendChild(text);
+        }
+      });
+
+      weeks.forEach((week, index) => {
+        const values = [week.closed, week.open, week.merged];
+        const colors = ['#d23d34', '#4ca35a', '#8538df'];
+        const total = values.reduce((sum, value) => sum + value, 0);
+        let cursor = chart.base;
+
+        values.forEach((value, segmentIndex) => {
+          if (!value) return;
+          const height = (value / chart.max) * chart.height;
+          cursor -= height;
+          const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('x', x(index));
+          rect.setAttribute('y', cursor);
+          rect.setAttribute('width', barWidth);
+          rect.setAttribute('height', height);
+          rect.setAttribute('fill', colors[segmentIndex]);
+          bars.appendChild(rect);
+        });
+
+        if (week.projected) {
+          const outline = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          outline.setAttribute('x', x(index) - 2);
+          outline.setAttribute('y', y(week.projected) - 3);
+          outline.setAttribute('width', barWidth + 4);
+          outline.setAttribute('height', chart.base - y(week.projected) + 3);
+          outline.setAttribute('fill', 'none');
+          outline.setAttribute('stroke', '#9d9d9d');
+          outline.setAttribute('stroke-width', '2');
+          outline.setAttribute('stroke-dasharray', '5 4');
+          bars.appendChild(outline);
+
+          const projectedLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          projectedLabel.setAttribute('x', x(index) + barWidth / 2);
+          projectedLabel.setAttribute('y', y(week.projected) - 10);
+          projectedLabel.setAttribute('text-anchor', 'middle');
+          projectedLabel.setAttribute('class', 'projection-label');
+          projectedLabel.textContent = '1,020 projected';
+          labels.appendChild(projectedLabel);
+        }
+
+        if (total > 0) {
+          const totalLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          totalLabel.setAttribute('x', x(index) + barWidth / 2);
+          totalLabel.setAttribute('y', y(total) - 8);
+          totalLabel.setAttribute('text-anchor', 'middle');
+          totalLabel.setAttribute('class', 'bar-label');
+          totalLabel.textContent = total.toLocaleString();
+          labels.appendChild(totalLabel);
+        }
+
+        const xLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        xLabel.setAttribute('x', x(index) + barWidth / 2);
+        xLabel.setAttribute('y', chart.base + 31);
+        xLabel.setAttribute('text-anchor', 'middle');
+        xLabel.setAttribute('class', 'x-label');
+        xLabel.setAttribute('transform', `rotate(-45 ${x(index) + barWidth / 2} ${chart.base + 31})`);
+        xLabel.textContent = week.label;
+        labels.appendChild(xLabel);
+      });
+    })();
+  </script>
+</body>
+</html>
