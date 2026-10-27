@@ -4,7 +4,7 @@
   "private": true,
   "description": "A small server-rendered auction interest demo",
   "engines": {
-    "node": ">=20"
+    "node": "22.x"
   },
   "scripts": {
     "start": "node server.js",
