@@ -10,7 +10,7 @@ const path = require('node:path');
 const querystring = require('node:querystring');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { seedIfEmpty } = require('./db/db');
+const { seedIfEmpty, query } = require('./db/db');
 const routes = require('./routes');
 const { renderPage } = require('./routes/helpers');
 const { start } = require('./lib/poller');
@@ -40,6 +40,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser(cookieSecret));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/healthz', async (req, res) => {
+  try {
+    await query('SELECT 1');
+    res.json({ status: 'ok' });
+  } catch (error) {
+    res.status(503).json({ status: 'unavailable' });
+  }
+});
 
 app.get('/enter', (req, res) => {
   renderPage(res, 'Access', 'enter', {
