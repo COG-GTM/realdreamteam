@@ -44,6 +44,7 @@ jobs:
       - run: npm ci
       - name: Run tests
         run: |
+          set -o pipefail
           npm test 2>&1 | tee test-output.txt
           if grep -q '# SKIP' test-output.txt; then echo 'database tests were skipped'; exit 1; fi
 
